@@ -1,0 +1,15 @@
+FROM node:24
+
+USER root
+
+RUN apt-get update \
+    && apt-get install -y sudo \
+    && rm -rf /var/lib/apt/lists/* \
+    && echo "node ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/node \
+    && chmod 0440 /etc/sudoers.d/node
+
+RUN npm install --global @angular/cli@22.1.8
+
+WORKDIR /workspace
+
+USER node

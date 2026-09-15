@@ -1,0 +1,26 @@
+{
+  "name": "LeuDuel",
+  "build": {
+    "dockerfile": "dockerfile"
+  },
+  "remoteUser": "node",
+  "workspaceFolder": "/workspace/leuduel-app",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "mounts": [
+    "source=leuduel-node-modules,target=/workspace/leuduel-app/node_modules,type=volume"
+  ],
+  "postCreateCommand": "chown -R node:node /workspace/leuduel-app",
+  "forwardPorts": [4200],
+  "containerEnv": {
+    "CHOKIDAR_USEPOLLING": "true"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      }
+    }
+  }
+}
