@@ -1,0 +1,14 @@
+<button
+  class="damage-button"
+  [class.damage-button--damage]="type() === 'damage'"
+  [class.damage-button--heal]="type() === 'heal'"
+  [class.damage-button--divide]="type() === 'divide'"
+  [class.damage-button--multiply]="type() === 'multiply'"
+  [class.damage-button--set]="type() === 'set'"
+  type="button"
+  [attr.aria-label]="typeLabel + ' ' + change()"
+  (click)="onClick()"
+>
+  <span class="damage-button__symbol" aria-hidden="true">{{ typeSymbol }}</span>
+  <span class="text-2xl">{{ change() }}</span>
+</button>

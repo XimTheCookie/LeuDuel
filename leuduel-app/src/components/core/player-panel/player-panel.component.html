@@ -1,0 +1,15 @@
+<div class="player-panel">
+  <div class="lp-display">
+    <span class="lp-value">{{ lifePoints }}</span>
+    <span class="lp-label">LP</span>
+  </div>
+  <div class="actions-grid">
+    @for (damage of defaultDamageTypes; track damage) {
+      <app-damage-button
+        [player]="player()"
+        [change]="damage.change"
+        [type]="damage.type"
+      ></app-damage-button>
+    }
+  </div>
+</div>

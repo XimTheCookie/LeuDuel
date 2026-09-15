@@ -1,0 +1,19 @@
+<button
+  class="default-button flex items-center justify-center"
+  [class.default-button--xs]="size() === 'xs'"
+  [class.default-button--sm]="size() === 'sm'"
+  [class.default-button--md]="size() === 'md'"
+  [class.default-button--xl]="size() === 'xl'"
+  [class.default-button--neutral]="tone() === 'neutral'"
+  [class.default-button--positive]="tone() === 'positive'"
+  [class.default-button--negative]="tone() === 'negative'"
+  [class.default-button--warning]="tone() === 'warning'"
+  type="button"
+  [disabled]="isDisabled()"
+  [aria-label]="label()"
+  (click)="clickHandler()"
+>
+  @if (icon()) {
+    <app-icon [icon]="icon()" />
+  }
+</button>

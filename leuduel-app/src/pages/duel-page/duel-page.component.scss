@@ -1,0 +1,19 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.duel-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-deep);
+}
+
+.duel-page__panel {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}

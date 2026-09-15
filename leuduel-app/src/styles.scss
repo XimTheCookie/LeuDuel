@@ -1,0 +1,33 @@
+@use 'tailwindcss';
+
+:root {
+  --bg-deep: #080c14;
+  --bg-panel: #0d1526;
+  --bg-card: #111d35;
+  --bg-card-hover: #162240;
+  --border-subtle: rgba(99, 132, 199, 0.18);
+  --border-glow: rgba(180, 150, 60, 0.45);
+  --gold: #c9a84c;
+  --gold-light: #f0d080;
+  --gold-dim: rgba(201, 168, 76, 0.15);
+  --lp-color: #e8f4ff;
+  --text-primary: #dce8ff;
+  --text-muted: #6b82a8;
+  --red-accent: #c0392b;
+  --green-accent: #1a7a4a;
+  --font-lp: 'Georgia', serif;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.mirror {
+  transform: rotate(180deg);
+}

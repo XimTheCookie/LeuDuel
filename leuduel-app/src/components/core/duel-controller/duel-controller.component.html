@@ -1,0 +1,36 @@
+<div class="controller">
+  <div class="controller__row">
+    <div class="controller__side">
+      <app-button icon="log" label="Log" size="xs" tone="neutral" />
+    </div>
+    <div class="controller__timer" [class.controller__timer--overtime]="isOvertime()">
+      {{ isOvertime() ? '-' : '' }}{{ (isOvertime() ? -remainingTime() : remainingTime()) | date: 'HH:mm:ss' : 'UTC' }}
+    </div>
+    <div class="controller__side controller__side--right">
+      <app-button icon="rules" label="Rulings" tone="neutral" size="xs" />
+    </div>
+  </div>
+
+  <div class="controller__actions">
+    <app-button
+      [clickEvent]="resetDuel"
+      icon="reset"
+      label="Reset"
+      [isDisabled]="!duelStore.isDuelPaused()"
+      size="xs"
+      tone="warning"
+    />
+
+    <div class="controller__main-btn">
+      @if (duelStore.isDuelPaused()) {
+        <app-button [clickEvent]="resumeDuel" icon="play" label="Resume" size="xl" tone="positive" />
+      } @else if (duelStore.isDuelStarted()) {
+        <app-button [clickEvent]="pauseDuel" icon="pause" label="Pause" size="xl" tone="warning" />
+      } @else {
+        <app-button [clickEvent]="startDuel" icon="play" label="Play" size="xl" tone="positive" />
+      }
+    </div>
+
+    <div style="width: 2.5rem"></div>
+  </div>
+</div>

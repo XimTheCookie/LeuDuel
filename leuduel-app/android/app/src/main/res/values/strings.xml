@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">leuDuel</string>
+    <string name="title_activity_main">leuDuel</string>
+    <string name="package_name">com.ximthecookie.leuduel</string>
+    <string name="custom_url_scheme">com.ximthecookie.leuduel</string>
+</resources>
