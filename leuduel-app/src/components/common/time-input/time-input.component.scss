@@ -1,0 +1,102 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.ti-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.ti-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  & > div.has-reset::after {
+    content: '';
+    display: block;
+    width: 2.2rem;
+    height: 2.2rem;
+    flex-shrink: 0;
+  }
+}
+
+.ti-row {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 0.25rem 0.6rem;
+  transition: border-color 150ms ease;
+}
+
+.ti-row--invalid {
+  border-color: #e05252;
+  box-shadow: 0 0 0 2px rgba(224, 82, 82, 0.15);
+}
+
+.ti-segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.ti-value {
+  font-size: 1.1rem;
+  font-family: var(--font-lp);
+  color: var(--text-primary);
+  min-width: 2ch;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.ti-sep {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 0.1rem;
+  align-self: center;
+}
+
+.ni-btn {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-panel);
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 100ms ease,
+    transform 80ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:active:not(:disabled) {
+    transform: scale(0.9);
+    background: var(--bg-card-hover);
+  }
+
+  &:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+}

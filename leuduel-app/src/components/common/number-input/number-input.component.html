@@ -1,0 +1,25 @@
+<div class="ni-container">
+  @if (label()) {
+    <span class="ni-label">{{ label() }}</span>
+  }
+  <div [class.has-reset]="canReset()">
+    @if (canReset()) {
+      <button class="ni-btn" type="button" (click)="reset()">
+        <app-icon icon="reset" size="sm" />
+      </button>
+    }
+    <div class="ni-row" [class.ni-row--invalid]="formControl().invalid && formControl().touched">
+      <button class="ni-btn" type="button" (click)="decrement()" [disabled]="atMin"><app-icon icon="minus" size="sm" /></button>
+      <input
+        class="ni-value"
+        type="number"
+        inputmode="numeric"
+        [formControl]="formControl()"
+        [min]="minValue()"
+        [max]="maxValue()"
+        [step]="step()"
+      />
+      <button class="ni-btn" type="button" (click)="increment()" [disabled]="atMax"><app-icon icon="plus" size="sm" /></button>
+    </div>
+  </div>
+</div>

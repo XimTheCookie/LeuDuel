@@ -1,0 +1,55 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  position: relative;
+
+  &.modal-full {
+    border: none;
+    border-radius: 0;
+  }
+
+  &.modal-md {
+    border-radius: 16px;
+    align-self: flex-end;
+  }
+
+  &.modal-sm {
+    border-radius: 12px;
+    height: auto;
+    padding: 1.5rem;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 10;
+  line-height: 1;
+
+  &:active {
+    color: var(--text-primary);
+  }
+}
+
+.modal-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

@@ -67,3 +67,10 @@
   align-items: center;
   justify-content: center;
 }
+
+.controller__side-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}

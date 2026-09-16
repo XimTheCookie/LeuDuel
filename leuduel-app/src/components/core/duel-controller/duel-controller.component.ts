@@ -2,6 +2,10 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
 import { DatePipe } from '@angular/common';
 import { ButtonComponent } from '../../common/button/button.component';
+import { ModalService } from '../../../services/modal.service';
+import { SettingsPageComponent } from '../../../pages/settings-page/settings-page.component';
+import { LogsPageComponent } from '../../../pages/logs-page/logs-page.component';
+import { SettingsService } from '../../../services/settings.service';
 
 @Component({
   selector: 'app-duel-controller',
@@ -11,11 +15,14 @@ import { ButtonComponent } from '../../common/button/button.component';
   imports: [DatePipe, ButtonComponent],
 })
 export class DuelControllerComponent implements OnInit {
+  private readonly settingsService = inject(SettingsService);
   duelStore = inject(DuelStore);
 
   remainingTime = signal<number>(this.duelStore.timer().duration);
   remainingTimeTimeout = signal<number | null>(null);
   isOvertime = computed(() => this.remainingTime() < 0);
+
+  private readonly modalService = inject(ModalService);
 
   ngOnInit(): void {}
 
@@ -48,25 +55,52 @@ export class DuelControllerComponent implements OnInit {
     }
   }
 
-  pauseDuel = () => {
+  pauseDuel() {
     this.duelStore.pauseDuel();
     this.stopRemainingTimeUpdate();
     this.updateRemainingTime();
-  };
+  }
 
-  resumeDuel = () => {
+  resumeDuel() {
     this.duelStore.resumeDuel();
     this.updateRemainingTime();
-  };
+  }
 
-  resetDuel = () => {
+  resetDuel() {
     this.duelStore.reset();
     this.stopRemainingTimeUpdate();
     this.remainingTime.set(this.duelStore.timer().duration);
-  };
+  }
 
-  startDuel = () => {
+  startDuel() {
     this.duelStore.startDuel('Player 1', 'Player 2');
     this.updateRemainingTime();
-  };
+  }
+
+  resetLifePoints() {
+    this.duelStore.lifeAction('player1', {
+      type: 'set',
+      change: this.settingsService.getStartingLifePoints(),
+      lifeReset: true,
+    });
+    this.duelStore.lifeAction('player2', {
+      type: 'set',
+      change: this.settingsService.getStartingLifePoints(),
+      lifeReset: true,
+    });
+  }
+
+  openSettings() {
+    this.modalService.open(SettingsPageComponent, {
+      size: 'full',
+      closeEvent: () => this.resetDuel(),
+    });
+  }
+
+  viewLog() {
+    this.modalService.open(LogsPageComponent, {
+      size: 'md',
+      opacity: 0.7,
+    });
+  }
 }

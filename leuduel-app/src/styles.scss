@@ -31,3 +31,21 @@ body {
 .mirror {
   transform: rotate(180deg);
 }
+
+// CDK Modal overlay
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.modal-panel {
+  display: flex;
+
+  &.modal-md {
+    align-items: flex-end;
+  }
+
+  &.modal-sm {
+    align-items: center;
+    justify-content: center;
+  }
+}

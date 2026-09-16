@@ -1,0 +1,33 @@
+<div class="settings-page">
+  <div class="settings-section">
+    <h2 class="settings-section__title">Duel Settings</h2>
+
+    <div class="settings-section__fields">
+      <app-number-input
+        [formControl]="lifePoints"
+        label="Starting Life Points"
+        [maxValue]="9999999"
+        [minValue]="1"
+        [step]="1000"
+        [canReset]="true"
+        (doReset)="lpReset()"
+      />
+
+      <app-time-input
+        [formControl]="duration"
+        label="Duel Timer"
+        [canReset]="true"
+        (doReset)="resetTimer()"
+      />
+    </div>
+
+    <div class="settings-section__footer">
+      <app-button
+        (clicked)="saveDuelSettings()"
+        [isDisabled]="!duelSettingsValid()"
+        [icon]="duelSettingsValid() ? 'check' : 'x'"
+        [tone]="!duelSettingsValid() ? 'warning' : duelSettingsUnchanged() ? 'neutral' : 'positive'"
+      />
+    </div>
+  </div>
+</div>

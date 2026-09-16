@@ -1,0 +1,23 @@
+<div class="logs-page">
+  <div class="logs-page__header">
+    <span class="logs-page__title">Life Log</span>
+    <span class="logs-page__count">{{ logs().length }} events</span>
+  </div>
+
+  <div class="logs-page__list">
+    @if (logs().length === 0) {
+      <div class="logs-page__empty">
+        <app-icon icon="log" size="lg" />
+        <span>No events yet</span>
+      </div>
+    } @else {
+      @for (log of logs(); let i = $index; track i) {
+        <app-log-item
+          [lifeLog]="log"
+          [undoable]="log.undoable"
+          (undo)="undoChange(log.timestamp)"
+        />
+      }
+    }
+  </div>
+</div>

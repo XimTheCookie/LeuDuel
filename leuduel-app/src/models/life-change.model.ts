@@ -5,8 +5,11 @@
 // Previous life points changes are stored in a stack, and can be undone/redone by popping/pushing the stack
 // */
 export interface LifeChange {
+  player: string;
   timestamp: number;
+  timerSnapshot: number;
   change: number;
   beforeChange: number;
   afterChange: number;
+  isReset: boolean;
 }

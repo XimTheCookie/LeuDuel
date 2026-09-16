@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { IconComponent } from '../icon/icon.component';
 
 @Component({
@@ -15,7 +15,7 @@ export class ButtonComponent {
   icon = input<string>();
   label = input<string>('');
 
-  clickEvent = input<() => void>(() => {});
+  clicked = output<void>();
 
   cooldown = input<number>(50);
 
@@ -29,6 +29,6 @@ export class ButtonComponent {
     setTimeout(() => {
       this.coolingDown.set(false);
     }, this.cooldown());
-    this.clickEvent()();
+    this.clicked.emit();
   }
 }

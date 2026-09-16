@@ -1,0 +1,37 @@
+<div
+  class="log-item"
+  [class.log-item--positive]="!lifeLog().isReset && lifeLog().change > 0"
+  [class.log-item--negative]="!lifeLog().isReset && lifeLog().change < 0"
+  [class.log-item--reset]="lifeLog().isReset"
+>
+  <div class="log-item__accent"></div>
+
+  <div class="log-item__body">
+    <div class="log-item__header">
+      <span class="log-item__player">{{ lifeLog().player }}</span>
+      @if (lifeLog().isReset) {
+        <span class="log-item__reset-badge">LP RESET</span>
+      }
+      <span class="log-item__time">{{ lifeLog().timerSnapshot < 0 ? '-' : '' }}{{ (lifeLog().timerSnapshot < 0 ? -lifeLog().timerSnapshot : lifeLog().timerSnapshot) | date: 'HH:mm:ss' : 'UTC' }}</span>
+    </div>
+
+    <div class="log-item__change">
+      <span class="log-item__before">{{ lifeLog().beforeChange }}</span>
+      @if (lifeLog().change !== 0) {
+        <span
+          class="log-item__delta"
+          [class.log-item__delta--pos]="lifeLog().change > 0"
+          [class.log-item__delta--neg]="lifeLog().change < 0"
+        >
+          {{ lifeLog().change > 0 ? '+' : '' }}{{ lifeLog().change }}
+        </span>
+      }
+      <span class="log-item__arrow">→</span>
+      <span class="log-item__after">{{ lifeLog().afterChange }}</span>
+    </div>
+  </div>
+
+  <button class="log-item__undo" type="button" aria-label="Undo" [disabled]="!undoable()" (click)="undo.emit(lifeLog().timestamp)">
+    <app-icon icon="reset" size="sm" />
+  </button>
+</div>

@@ -1,17 +1,16 @@
-import { computed } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, tap } from 'rxjs';
-import { DuelState } from '../../models/duel.model';
 import { DuelStatus } from '../../models/duel-status.model';
+import { DuelState } from '../../models/duel.model';
 import { LifeAction } from '../../models/life-action.model';
 import { LifeChange } from '../../models/life-change.model';
+import { SettingsService } from '../../services/settings.service';
 
 const initialState: DuelState = {
   player1: { name: 'P1', lifePoints: 8000, lifeChanges: [] },
   player2: { name: 'P2', lifePoints: 8000, lifeChanges: [] },
   status: DuelStatus.FINISHED,
-  timer: { startTime: 0, elapsedTime: 0, duration: 10000 },
+  timer: { startTime: 0, elapsedTime: 0, duration: 3000000 },
   createdAt: Date.now(),
   updatedAt: Date.now(),
 };
@@ -25,88 +24,169 @@ export const DuelStore = signalStore(
     lifePoints1: computed(() => store.player1().lifePoints),
     lifePoints2: computed(() => store.player2().lifePoints),
   })),
-  withMethods((store) => ({
-    reset(): void {
-      patchState(store, initialState);
-    },
-    startDuel(player1: string, player2: string): void {
-      patchState(store, {
-        player1: { name: player1, lifePoints: 8000, lifeChanges: [] },
-        player2: { name: player2, lifePoints: 8000, lifeChanges: [] },
-        status: DuelStatus.ONGOING,
-        timer: { startTime: Date.now(), elapsedTime: 0, duration: 10000 },
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
-      });
-    },
-    pauseDuel(): void {
-      console.log('pause');
+  withMethods((store, settingsService = inject(SettingsService)) => {
+    const getRemainingTime = () => {
       const timer = store.timer();
-      const elapsedSinceStart = Date.now() - timer.startTime;
+      const elapsed = store.isDuelPaused()
+        ? timer.elapsedTime
+        : timer.elapsedTime + Date.now() - timer.startTime;
+      return timer.duration - elapsed;
+    };
 
-      patchState(store, {
-        status: DuelStatus.PAUSED,
-        timer: {
-          startTime: timer.startTime,
-          elapsedTime: timer.elapsedTime + elapsedSinceStart,
-          duration: timer.duration,
-        },
-      });
-    },
-    resumeDuel(): void {
-      patchState(store, {
-        status: DuelStatus.ONGOING,
-        timer: {
-          startTime: Date.now(),
-          elapsedTime: store.timer().elapsedTime,
-          duration: store.timer().duration,
-        },
-      });
-    },
-    lifeAction(player: 'player1' | 'player2', LifeAction: LifeAction): void {
-      const playerState = store[player]();
-      console.log('playerState', playerState);
-      const currentLifePoints = playerState.lifePoints;
-      console.log('currentLifePoints', currentLifePoints);
-      let newLifePoints = currentLifePoints;
-      console.log('newLifePoints', newLifePoints);
+    return {
+      reset(): void {
+        patchState(store, {
+          player1: {
+            name: 'P1',
+            lifePoints: settingsService.getStartingLifePoints(),
+            lifeChanges: [],
+          },
+          player2: {
+            name: 'P2',
+            lifePoints: settingsService.getStartingLifePoints(),
+            lifeChanges: [],
+          },
+          status: DuelStatus.FINISHED,
+          timer: {
+            startTime: Date.now(),
+            elapsedTime: 0,
+            duration: settingsService.getDuelDuration(),
+          },
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
+        });
+      },
+      startDuel(player1: string, player2: string): void {
+        patchState(store, {
+          player1: {
+            name: player1,
+            lifePoints: settingsService.getStartingLifePoints(),
+            lifeChanges: [],
+          },
+          player2: {
+            name: player2,
+            lifePoints: settingsService.getStartingLifePoints(),
+            lifeChanges: [],
+          },
+          status: DuelStatus.ONGOING,
+          timer: {
+            startTime: Date.now(),
+            elapsedTime: 0,
+            duration: settingsService.getDuelDuration(),
+          },
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
+        });
+      },
+      pauseDuel(): void {
+        const timer = store.timer();
+        const elapsedSinceStart = Date.now() - timer.startTime;
 
-      switch (LifeAction.type) {
-        case 'damage':
-          newLifePoints -= LifeAction.change;
-          break;
-        case 'heal':
-          newLifePoints += LifeAction.change;
-          break;
-        case 'set':
-          newLifePoints = LifeAction.change;
-          break;
-        case 'multiply':
-          newLifePoints *= LifeAction.change;
-          break;
-        case 'divide':
-          // rounted up the result of the division to avoid losing life points due to decimal values
-          newLifePoints = Math.round(newLifePoints / LifeAction.change);
-          break;
-      }
-      console.log('newLifePoints', newLifePoints);
-      const effectiveChange = newLifePoints - currentLifePoints;
-      console.log('effectiveChange', effectiveChange);
-      newLifePoints = Math.max(0, newLifePoints);
-      const change: LifeChange = {
-        change: effectiveChange,
-        timestamp: Date.now(),
-        beforeChange: currentLifePoints,
-        afterChange: newLifePoints,
-      };
-      const currentLifeChanges = playerState.lifeChanges ?? [];
-      patchState(store, {
-        [player]: {
-          ...playerState,
-          lifePoints: newLifePoints,
-          lifeChanges: [...currentLifeChanges, change],
-        },
-      });
-    },
-  })),
+        patchState(store, {
+          status: DuelStatus.PAUSED,
+          timer: {
+            startTime: timer.startTime,
+            elapsedTime: timer.elapsedTime + elapsedSinceStart,
+            duration: timer.duration,
+          },
+        });
+      },
+      resumeDuel(): void {
+        patchState(store, {
+          status: DuelStatus.ONGOING,
+          timer: {
+            startTime: Date.now(),
+            elapsedTime: store.timer().elapsedTime,
+            duration: store.timer().duration,
+          },
+        });
+      },
+      undoLifeChange(player: 'player1' | 'player2', timestamp: number): void {
+        const playerState = store[player]();
+        const changes = playerState.lifeChanges;
+        const idx = changes.findIndex((c) => c.timestamp === timestamp);
+        if (idx === -1) return;
+
+        let lp = changes[idx].beforeChange;
+
+        const before = changes.slice(0, idx);
+        const after = changes.slice(idx + 1).map((c) => {
+          const next = Math.max(0, lp + (c.afterChange - c.beforeChange));
+          const recalc = { ...c, beforeChange: lp, afterChange: next };
+          lp = next;
+          return recalc;
+        });
+
+        patchState(store, {
+          [player]: { ...playerState, lifePoints: lp, lifeChanges: [...before, ...after] },
+        });
+      },
+      resetLifePoints(): void {
+        const startingLp = settingsService.getStartingLifePoints();
+        const now = Date.now();
+        const timerSnapshot = getRemainingTime();
+        (['player1', 'player2'] as const).forEach((player) => {
+          const playerState = store[player]();
+          const change: LifeChange = {
+            player: playerState.name,
+            change: startingLp - playerState.lifePoints,
+            timestamp: now,
+            timerSnapshot,
+            beforeChange: playerState.lifePoints,
+            afterChange: startingLp,
+            isReset: true,
+          };
+          patchState(store, {
+            [player]: {
+              ...playerState,
+              lifePoints: startingLp,
+              lifeChanges: [...(playerState.lifeChanges ?? []), change],
+            },
+          });
+        });
+      },
+      lifeAction(player: 'player1' | 'player2', LifeAction: LifeAction): void {
+        const playerState = store[player]();
+        const currentLifePoints = playerState.lifePoints;
+        let newLifePoints = currentLifePoints;
+
+        switch (LifeAction.type) {
+          case 'damage':
+            newLifePoints -= LifeAction.change;
+            break;
+          case 'heal':
+            newLifePoints += LifeAction.change;
+            break;
+          case 'set':
+            newLifePoints = LifeAction.change;
+            break;
+          case 'multiply':
+            newLifePoints *= LifeAction.change;
+            break;
+          case 'divide':
+            newLifePoints = Math.round(newLifePoints / LifeAction.change);
+            break;
+        }
+        const effectiveChange = newLifePoints - currentLifePoints;
+        newLifePoints = Math.max(0, newLifePoints);
+        const change: LifeChange = {
+          player: playerState.name,
+          change: effectiveChange,
+          timestamp: Date.now(),
+          timerSnapshot: getRemainingTime(),
+          beforeChange: currentLifePoints,
+          afterChange: newLifePoints,
+          isReset: LifeAction.lifeReset ?? false,
+        };
+        const currentLifeChanges = playerState.lifeChanges ?? [];
+        patchState(store, {
+          [player]: {
+            ...playerState,
+            lifePoints: newLifePoints,
+            lifeChanges: [...currentLifeChanges, change],
+          },
+        });
+      },
+    };
+  }),
 );
