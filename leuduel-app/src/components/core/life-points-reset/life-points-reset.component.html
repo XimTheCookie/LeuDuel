@@ -1,0 +1,50 @@
+<div class="lp-reset">
+  <div class="lp-reset__header">
+    <span class="lp-reset__title">New Duel?</span>
+    @if (isOngoing()) {
+      <p class="lp-reset__subtitle">Timer is still ticking.</p>
+    }
+  </div>
+
+  <div class="lp-reset__divider">
+    <span class="lp-reset__divider-gem"></span>
+  </div>
+
+  <div class="lp-reset__winner">
+    <span class="lp-reset__winner-label">Assign Victory</span>
+    <div class="lp-reset__winner-btns">
+      <app-button
+        [label]="duelStore.player1().name"
+        icon="arrow-down"
+        size="md"
+        [tone]="selectedPlayer() === 'player1' ? 'positive' : 'neutral'"
+        (clicked)="togglePlayer('player1')"
+      />
+      <app-button
+        label="None"
+        icon="ban"
+        size="md"
+        [tone]="selectedPlayer() === null ? 'warning' : 'neutral'"
+        (clicked)="togglePlayer(null)"
+      />
+      <app-button
+        [label]="duelStore.player2().name"
+        icon="arrow-up"
+        size="md"
+        [tone]="selectedPlayer() === 'player2' ? 'positive' : 'neutral'"
+        (clicked)="togglePlayer('player2')"
+      />
+    </div>
+  </div>
+
+  <div class="lp-reset__actions">
+    <app-button label="Cancel" icon="x" tone="neutral" size="sm" (clicked)="closeModal(false)" />
+    <app-button
+      label="Confirm"
+      icon="check"
+      tone="negative"
+      size="sm"
+      (clicked)="closeModal(true)"
+    />
+  </div>
+</div>

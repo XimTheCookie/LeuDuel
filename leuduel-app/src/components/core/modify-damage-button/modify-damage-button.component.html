@@ -1,0 +1,43 @@
+<div class="modify-form">
+  <h2 class="modify-form__title">Modify Button</h2>
+
+  <div class="modify-form__section">
+    <span class="modify-form__label">Value</span>
+    <app-number-input
+      [formControl]="buttonValueController"
+      [minValue]="1"
+      [maxValue]="99999"
+      [step]="100"
+    />
+  </div>
+
+  <div class="modify-form__section">
+    <span class="modify-form__label">Action Type</span>
+    <div class="modify-form__types">
+      @for (t of actionTypes; track t.type) {
+        <button
+          class="type-btn"
+          [class.type-btn--active]="selectedType() === t.type"
+          [class.type-btn--damage]="t.type === 'damage'"
+          [class.type-btn--heal]="t.type === 'heal'"
+          type="button"
+          (click)="selectType(t.type)"
+        >
+          <span class="type-btn__symbol">{{ t.symbol }}</span>
+          <span class="type-btn__label">{{ t.label }}</span>
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="modify-form__footer">
+    <button
+      class="save-btn"
+      type="button"
+      [disabled]="buttonValueController.invalid"
+      (click)="save()"
+    >
+      Confirm
+    </button>
+  </div>
+</div>

@@ -21,6 +21,12 @@ export class SettingsPageComponent {
     Validators.max(9999999),
   ]);
 
+  bestOf = new FormControl<number>(this.settingsService.getNumberOfGames(), [
+    Validators.required,
+    Validators.min(1),
+    Validators.max(9),
+  ]);
+
   duration = new FormControl<number>(this.settingsService.getDuelDuration(), [
     Validators.required,
     Validators.min(300000),
@@ -31,6 +37,10 @@ export class SettingsPageComponent {
     this.lifePoints.setValue(this.settingsService.getStartingLifePoints());
   }
 
+  resetBestOf() {
+    this.bestOf.setValue(this.settingsService.getNumberOfGames());
+  }
+
   resetTimer() {
     this.duration.setValue(this.settingsService.getDuelDuration());
   }
@@ -38,12 +48,13 @@ export class SettingsPageComponent {
   duelSettingsUnchanged() {
     return (
       this.lifePoints.value === this.settingsService.getStartingLifePoints() &&
-      this.duration.value === this.settingsService.getDuelDuration()
+      this.duration.value === this.settingsService.getDuelDuration() &&
+      this.bestOf.value === this.settingsService.getNumberOfGames()
     );
   }
 
   duelSettingsValid() {
-    return this.lifePoints.valid && this.duration.valid;
+    return this.lifePoints.valid && this.duration.valid && this.bestOf.valid;
   }
 
   saveDuelSettings() {
@@ -52,5 +63,6 @@ export class SettingsPageComponent {
     }
     this.settingsService.setStartingLifePoints(this.lifePoints.value!);
     this.settingsService.setDuelDuration(this.duration.value!);
+    this.settingsService.setNumberOfGames(this.bestOf.value!);
   }
 }

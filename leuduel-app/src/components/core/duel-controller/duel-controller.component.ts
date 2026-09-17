@@ -1,11 +1,11 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { DuelStore } from '../../../stores/duel-store/duel.store';
 import { DatePipe } from '@angular/common';
-import { ButtonComponent } from '../../common/button/button.component';
-import { ModalService } from '../../../services/modal.service';
-import { SettingsPageComponent } from '../../../pages/settings-page/settings-page.component';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { LogsPageComponent } from '../../../pages/logs-page/logs-page.component';
-import { SettingsService } from '../../../services/settings.service';
+import { SettingsPageComponent } from '../../../pages/settings-page/settings-page.component';
+import { ModalService } from '../../../services/modal.service';
+import { DuelStore } from '../../../stores/duel-store/duel.store';
+import { ButtonComponent } from '../../common/button/button.component';
+import { LifePointsResetComponent } from '../life-points-reset/life-points-reset.component';
 
 @Component({
   selector: 'app-duel-controller',
@@ -15,7 +15,6 @@ import { SettingsService } from '../../../services/settings.service';
   imports: [DatePipe, ButtonComponent],
 })
 export class DuelControllerComponent implements OnInit {
-  private readonly settingsService = inject(SettingsService);
   duelStore = inject(DuelStore);
 
   remainingTime = signal<number>(this.duelStore.timer().duration);
@@ -78,16 +77,7 @@ export class DuelControllerComponent implements OnInit {
   }
 
   resetLifePoints() {
-    this.duelStore.lifeAction('player1', {
-      type: 'set',
-      change: this.settingsService.getStartingLifePoints(),
-      lifeReset: true,
-    });
-    this.duelStore.lifeAction('player2', {
-      type: 'set',
-      change: this.settingsService.getStartingLifePoints(),
-      lifeReset: true,
-    });
+    this.modalService.open(LifePointsResetComponent, { size: 'sm', opacity: 0.7 });
   }
 
   openSettings() {

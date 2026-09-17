@@ -8,6 +8,10 @@
   type="button"
   [attr.aria-label]="typeLabel + ' ' + change()"
   (click)="onClick()"
+  (contextmenu)="onHold($event)"
+  (touchstart)="onTouchStart($event)"
+  (touchend)="onTouchEnd()"
+  (touchmove)="onTouchEnd()"
 >
   <span class="damage-button__symbol" aria-hidden="true">{{ typeSymbol }}</span>
   <span class="text-2xl">{{ change() }}</span>

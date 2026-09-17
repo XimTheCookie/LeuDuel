@@ -7,8 +7,8 @@ import { LifeChange } from '../../models/life-change.model';
 import { SettingsService } from '../../services/settings.service';
 
 const initialState: DuelState = {
-  player1: { name: 'P1', lifePoints: 8000, lifeChanges: [] },
-  player2: { name: 'P2', lifePoints: 8000, lifeChanges: [] },
+  player1: { name: 'P1', lifePoints: 8000, lifeChanges: [], wins: 0 },
+  player2: { name: 'P2', lifePoints: 8000, lifeChanges: [], wins: 0 },
   status: DuelStatus.FINISHED,
   timer: { startTime: 0, elapsedTime: 0, duration: 3000000 },
   createdAt: Date.now(),
@@ -21,8 +21,10 @@ export const DuelStore = signalStore(
   withComputed((store) => ({
     isDuelStarted: computed(() => store.status() !== DuelStatus.FINISHED),
     isDuelPaused: computed(() => store.status() === DuelStatus.PAUSED),
-    lifePoints1: computed(() => store.player1().lifePoints),
-    lifePoints2: computed(() => store.player2().lifePoints),
+    lifePoints1: computed(() => Math.min(store.player1().lifePoints, 99999999)),
+    lifePoints2: computed(() => Math.min(store.player2().lifePoints, 99999999)),
+    wins1: computed(() => store.player1().wins),
+    wins2: computed(() => store.player2().wins),
   })),
   withMethods((store, settingsService = inject(SettingsService)) => {
     const getRemainingTime = () => {
@@ -40,11 +42,13 @@ export const DuelStore = signalStore(
             name: 'P1',
             lifePoints: settingsService.getStartingLifePoints(),
             lifeChanges: [],
+            wins: 0,
           },
           player2: {
             name: 'P2',
             lifePoints: settingsService.getStartingLifePoints(),
             lifeChanges: [],
+            wins: 0,
           },
           status: DuelStatus.FINISHED,
           timer: {
@@ -62,11 +66,13 @@ export const DuelStore = signalStore(
             name: player1,
             lifePoints: settingsService.getStartingLifePoints(),
             lifeChanges: [],
+            wins: 0,
           },
           player2: {
             name: player2,
             lifePoints: settingsService.getStartingLifePoints(),
             lifeChanges: [],
+            wins: 0,
           },
           status: DuelStatus.ONGOING,
           timer: {
@@ -101,6 +107,12 @@ export const DuelStore = signalStore(
           },
         });
       },
+      addVictory(player: 'player1' | 'player2'): void {
+        const playerState = store[player]();
+        patchState(store, {
+          [player]: { ...playerState, wins: playerState.wins + 1 },
+        });
+      },
       undoLifeChange(player: 'player1' | 'player2', timestamp: number): void {
         const playerState = store[player]();
         const changes = playerState.lifeChanges;
@@ -119,30 +131,6 @@ export const DuelStore = signalStore(
 
         patchState(store, {
           [player]: { ...playerState, lifePoints: lp, lifeChanges: [...before, ...after] },
-        });
-      },
-      resetLifePoints(): void {
-        const startingLp = settingsService.getStartingLifePoints();
-        const now = Date.now();
-        const timerSnapshot = getRemainingTime();
-        (['player1', 'player2'] as const).forEach((player) => {
-          const playerState = store[player]();
-          const change: LifeChange = {
-            player: playerState.name,
-            change: startingLp - playerState.lifePoints,
-            timestamp: now,
-            timerSnapshot,
-            beforeChange: playerState.lifePoints,
-            afterChange: startingLp,
-            isReset: true,
-          };
-          patchState(store, {
-            [player]: {
-              ...playerState,
-              lifePoints: startingLp,
-              lifeChanges: [...(playerState.lifeChanges ?? []), change],
-            },
-          });
         });
       },
       lifeAction(player: 'player1' | 'player2', LifeAction: LifeAction): void {
@@ -169,6 +157,7 @@ export const DuelStore = signalStore(
         }
         const effectiveChange = newLifePoints - currentLifePoints;
         newLifePoints = Math.max(0, newLifePoints);
+        newLifePoints = Math.min(newLifePoints, 99999999);
         const change: LifeChange = {
           player: playerState.name,
           change: effectiveChange,

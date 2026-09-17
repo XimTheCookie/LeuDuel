@@ -1,5 +1,8 @@
 import { Component, computed, input } from '@angular/core';
 import {
+  LucideArrowDown,
+  LucideArrowUp,
+  LucideBan,
   LucideBookOpen,
   LucideCheck,
   LucideDynamicIcon,
@@ -42,7 +45,10 @@ export class IconComponent {
       case 'plus':    return LucidePlus;
       case 'minus':   return LucideMinus;
       case 'heart-reset': return LucideHeartPulse;
-      case 'x':       return LucideX;
+      case 'x':         return LucideX;
+      case 'arrow-down': return LucideArrowDown;
+      case 'arrow-up':   return LucideArrowUp;
+      case 'ban':        return LucideBan;
     }
     return LucideX;
   });

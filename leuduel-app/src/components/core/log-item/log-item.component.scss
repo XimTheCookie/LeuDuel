@@ -53,9 +53,10 @@
 }
 
 .log-item__player {
-  font-size: 0.7rem;
+  font-family: var(--font-title);
+  font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -63,7 +64,7 @@
 .log-item__time {
   font-size: 0.65rem;
   color: var(--text-muted);
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-mono);
   margin-left: auto;
 }
 

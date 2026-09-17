@@ -13,6 +13,32 @@
   border: 1px solid var(--border-subtle);
 }
 
+.wins-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--border-glow);
+}
+
+.wins-bar__gem {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  border: 1.5px solid rgba(201, 168, 76, 0.4);
+  background: transparent;
+  transition: background 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+
+  &--filled {
+    background: var(--gold);
+    border-color: var(--gold-light);
+    box-shadow: 0 0 8px var(--gold-glow), 0 0 3px var(--gold);
+  }
+}
+
 .lp-display {
   display: flex;
   align-items: baseline;
@@ -21,6 +47,18 @@
   padding: 0.5rem 1rem 0.25rem;
   background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-panel) 100%);
   border-bottom: 1px solid var(--border-glow);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+    opacity: 0.4;
+  }
 }
 
 .lp-value {
@@ -28,18 +66,20 @@
   font-size: clamp(3rem, 12vw, 5rem);
   font-weight: 700;
   color: var(--lp-color);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
   line-height: 1;
-  text-shadow: 0 0 24px rgba(180, 210, 255, 0.35);
+  text-shadow: 0 0 30px rgba(180, 210, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .lp-label {
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  font-weight: 700;
   color: var(--gold);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.8;
+  opacity: 0.9;
+  text-shadow: 0 0 10px var(--gold-glow);
 }
 
 .actions-grid {

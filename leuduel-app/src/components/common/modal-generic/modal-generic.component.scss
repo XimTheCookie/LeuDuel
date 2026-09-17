@@ -14,20 +14,38 @@
   overflow: hidden;
   position: relative;
 
+  // Gold top bar — like a card's rarity stripe
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent 100%);
+    opacity: 0.7;
+    z-index: 1;
+  }
+
   &.modal-full {
     border: none;
     border-radius: 0;
+
+    &::before { display: none; }
   }
 
   &.modal-md {
-    border-radius: 16px;
+    border-radius: 16px 16px 0 0;
     align-self: flex-end;
+    border-top-color: rgba(201, 168, 76, 0.35);
   }
 
   &.modal-sm {
     border-radius: 12px;
     height: auto;
     padding: 1.5rem;
+    border-color: rgba(201, 168, 76, 0.25);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(201, 168, 76, 0.1);
   }
 }
 

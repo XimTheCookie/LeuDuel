@@ -30,11 +30,11 @@
 }
 
 .controller__timer {
-  font-family: 'Courier New', monospace;
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 400;
   color: var(--gold-light);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-shadow: 0 0 12px rgba(240, 208, 128, 0.5);
   padding: 0.2rem 0.75rem;
   background: rgba(201, 168, 76, 0.08);

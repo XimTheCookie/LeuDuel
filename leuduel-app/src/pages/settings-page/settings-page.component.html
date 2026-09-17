@@ -13,6 +13,16 @@
         (doReset)="lpReset()"
       />
 
+      <app-number-input
+        [formControl]="bestOf"
+        label="Best of"
+        [maxValue]="9"
+        [minValue]="1"
+        [step]="1"
+        [canReset]="true"
+        (doReset)="resetBestOf()"
+      />
+
       <app-time-input
         [formControl]="duration"
         label="Duel Timer"
