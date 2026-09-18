@@ -1,10 +1,11 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Injectable, InjectionToken, Injector, Type } from '@angular/core';
+import { inject, Injectable, InjectionToken, Injector, Type } from '@angular/core';
 import {
   ModalGenericComponent,
   MODAL_DATA,
 } from '../components/common/modal-generic/modal-generic.component';
+import { AndroidNavigationService } from './android-navigation.service';
 
 export const MODAL_COMPONENT_DATA = new InjectionToken<unknown>('MODAL_COMPONENT_DATA');
 
@@ -30,6 +31,8 @@ const SIZE_STYLES: Record<ModalConfig['size'], { width: string; height?: string 
 
 @Injectable({ providedIn: 'root' })
 export class ModalService {
+  private androidNavigationService = inject(AndroidNavigationService);
+
   constructor(
     private overlay: Overlay,
     private injector: Injector,
@@ -60,6 +63,9 @@ export class ModalService {
     overlayRef.attach(new ComponentPortal(ModalGenericComponent, null, injector));
     setTimeout(() => overlayRef.updatePosition());
     overlayRef.backdropClick().subscribe(() => overlayRef.dispose());
+
+    const unregister = this.androidNavigationService.register(() => overlayRef.dispose());
+    overlayRef.detachments().subscribe(unregister);
 
     return { close: () => overlayRef.dispose(), overlayRef };
   }
