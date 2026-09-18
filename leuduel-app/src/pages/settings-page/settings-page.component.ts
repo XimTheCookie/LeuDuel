@@ -4,6 +4,8 @@ import { NumberInputComponent } from '../../components/common/number-input/numbe
 import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
 import { TimeInputComponent } from '../../components/common/time-input/time-input.component';
 import { SettingsService } from '../../services/settings.service';
+import { ModalService } from '../../services/modal.service';
+import { AboutComponent } from '../../components/core/about/about.component';
 
 @Component({
   selector: 'app-settings-page',
@@ -13,6 +15,7 @@ import { SettingsService } from '../../services/settings.service';
   imports: [NumberInputComponent, TimeInputComponent, TextButtonComponent],
 })
 export class SettingsPageComponent {
+  private readonly modalService = inject(ModalService);
   private readonly settingsService = inject(SettingsService);
 
   lifePoints = new FormControl<number>(this.settingsService.getStartingLifePoints(), [
@@ -103,5 +106,12 @@ export class SettingsPageComponent {
     }
     this.settingsService.setNumberOfRapidButtons(this.numberOfRapidButtons.value!);
     this.settingsService.setRapidButtonsColumns(this.rapidButtonsColumns.value!);
+  }
+
+  viewAboutModal() {
+    this.modalService.open(AboutComponent, {
+      opacity: 0.7,
+      size: 'sm',
+    });
   }
 }
