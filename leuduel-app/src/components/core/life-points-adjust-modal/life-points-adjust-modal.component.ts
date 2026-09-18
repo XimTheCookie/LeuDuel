@@ -81,7 +81,7 @@ export class LifePointsAdjustModalComponent {
   halfLp() {
     this.withCooldown(() => {
       this.op.set('damage');
-      this.input.set(String(Math.round(this.currentLp() / 2)));
+      this.input.set(String(Math.floor(this.currentLp() / 2)));
     });
   }
 
