@@ -1,0 +1,75 @@
+.text-button {
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--button-accent);
+  border: 1px solid var(--button-border);
+  background: var(--button-surface);
+  border-radius: 0.5rem;
+  padding: 0.6rem 2rem;
+  cursor: pointer;
+  box-shadow: 0 0 12px var(--button-glow);
+  transition: opacity 0.15s;
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+}
+
+.text-button--neutral {
+  --button-accent: #8ba4cc;
+  --button-surface: rgba(13, 21, 38, 0.9);
+  --button-border: rgba(99, 132, 199, 0.35);
+  --button-glow: transparent;
+}
+
+.text-button--positive {
+  --button-accent: #4ade80;
+  --button-surface: rgba(26, 122, 74, 0.2);
+  --button-border: rgba(74, 222, 128, 0.4);
+  --button-glow: rgba(74, 222, 128, 0.25);
+}
+
+.text-button--negative {
+  --button-accent: #f87171;
+  --button-surface: rgba(192, 57, 43, 0.2);
+  --button-border: rgba(248, 113, 113, 0.4);
+  --button-glow: rgba(248, 113, 113, 0.25);
+}
+
+.text-button--warning {
+  --button-accent: #fbbf24;
+  --button-surface: rgba(180, 83, 9, 0.2);
+  --button-border: rgba(251, 191, 36, 0.4);
+  --button-glow: rgba(251, 191, 36, 0.2);
+}
+
+.text-button:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow:
+    0 0 28px var(--button-glow),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.text-button:active {
+  transform: scale(0.99);
+}
+
+.text-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.text-button:focus-visible {
+  outline: 2px solid var(--button-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-button {
+    transition: none;
+  }
+}

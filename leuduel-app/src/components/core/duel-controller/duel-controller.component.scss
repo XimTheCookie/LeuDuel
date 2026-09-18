@@ -40,7 +40,11 @@
   background: rgba(201, 168, 76, 0.08);
   border: 1px solid rgba(201, 168, 76, 0.2);
   border-radius: 0.4rem;
-  transition: color 0.4s ease, text-shadow 0.4s ease, background 0.4s ease, border-color 0.4s ease;
+  transition:
+    color 0.4s ease,
+    text-shadow 0.4s ease,
+    background 0.4s ease,
+    border-color 0.4s ease;
 }
 
 .controller__timer--overtime {
@@ -71,6 +75,14 @@
 .controller__side-actions {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.3rem;
+  flex: 1;
+}
+
+.controller__extra-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex: 1;
+  justify-content: flex-end;
 }

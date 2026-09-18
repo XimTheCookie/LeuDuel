@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ButtonComponent } from '../../components/common/button/button.component';
 import { NumberInputComponent } from '../../components/common/number-input/number-input.component';
+import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
 import { TimeInputComponent } from '../../components/common/time-input/time-input.component';
 import { SettingsService } from '../../services/settings.service';
 
@@ -10,7 +10,7 @@ import { SettingsService } from '../../services/settings.service';
   standalone: true,
   templateUrl: './settings-page.component.html',
   styleUrls: ['./settings-page.component.scss'],
-  imports: [NumberInputComponent, TimeInputComponent, ButtonComponent],
+  imports: [NumberInputComponent, TimeInputComponent, TextButtonComponent],
 })
 export class SettingsPageComponent {
   private readonly settingsService = inject(SettingsService);
@@ -31,6 +31,18 @@ export class SettingsPageComponent {
     Validators.required,
     Validators.min(300000),
     Validators.max(86400000),
+  ]);
+
+  numberOfRapidButtons = new FormControl<number>(this.settingsService.getNumberOfRapidButtons(), [
+    Validators.required,
+    Validators.min(1),
+    Validators.max(15),
+  ]);
+
+  rapidButtonsColumns = new FormControl<number>(this.settingsService.getRapidButtonsColumns(), [
+    Validators.required,
+    Validators.min(1),
+    Validators.max(3),
   ]);
 
   lpReset() {
@@ -64,5 +76,32 @@ export class SettingsPageComponent {
     this.settingsService.setStartingLifePoints(this.lifePoints.value!);
     this.settingsService.setDuelDuration(this.duration.value!);
     this.settingsService.setNumberOfGames(this.bestOf.value!);
+  }
+
+  resetRapidButtons() {
+    this.numberOfRapidButtons.setValue(this.settingsService.getNumberOfRapidButtons());
+  }
+
+  resetRapidButtonsColumns() {
+    this.rapidButtonsColumns.setValue(this.settingsService.getRapidButtonsColumns());
+  }
+
+  rapidButtonsSettingsUnchanged() {
+    return (
+      this.numberOfRapidButtons.value === this.settingsService.getNumberOfRapidButtons() &&
+      this.rapidButtonsColumns.value === this.settingsService.getRapidButtonsColumns()
+    );
+  }
+
+  rapidButtonsSettingsValid() {
+    return this.numberOfRapidButtons.valid && this.rapidButtonsColumns.valid;
+  }
+
+  saveRapidButtonsSettings() {
+    if (this.rapidButtonsSettingsUnchanged() || !this.rapidButtonsSettingsValid()) {
+      return;
+    }
+    this.settingsService.setNumberOfRapidButtons(this.numberOfRapidButtons.value!);
+    this.settingsService.setRapidButtonsColumns(this.rapidButtonsColumns.value!);
   }
 }

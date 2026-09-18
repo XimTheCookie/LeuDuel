@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { NumberInputComponent } from '../../common/number-input/number-input.component';
 import { LifeAction } from '../../../models/life-action.model';
 import { MODAL_COMPONENT_DATA } from '../../../services/modal.service';
+import { TextButtonComponent } from '../../common/text-button/text-button.component';
 
 export interface ModifyDamageData {
   action: LifeAction;
@@ -22,7 +23,7 @@ const ACTION_TYPES: { type: LifeAction['type']; label: string; symbol: string }[
   standalone: true,
   templateUrl: './modify-damage-button.component.html',
   styleUrls: ['./modify-damage-button.component.scss'],
-  imports: [NumberInputComponent],
+  imports: [NumberInputComponent, TextButtonComponent],
 })
 export class ModifyDamageButtonComponent {
   readonly actionTypes = ACTION_TYPES;

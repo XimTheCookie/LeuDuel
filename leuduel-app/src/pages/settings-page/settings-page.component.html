@@ -32,11 +32,51 @@
     </div>
 
     <div class="settings-section__footer">
-      <app-button
+      <app-text-button
         (clicked)="saveDuelSettings()"
         [isDisabled]="!duelSettingsValid()"
-        [icon]="duelSettingsValid() ? 'check' : 'x'"
+        label="Save changes"
         [tone]="!duelSettingsValid() ? 'warning' : duelSettingsUnchanged() ? 'neutral' : 'positive'"
+      />
+    </div>
+  </div>
+
+  <div class="settings-section">
+    <h2 class="settings-section__title">Rapid Buttons</h2>
+
+    <div class="settings-section__fields">
+      <app-number-input
+        [formControl]="numberOfRapidButtons"
+        label="Number of rapid buttons"
+        [maxValue]="15"
+        [minValue]="1"
+        [step]="1"
+        [canReset]="true"
+        (doReset)="resetRapidButtons()"
+      />
+      <app-number-input
+        [formControl]="rapidButtonsColumns"
+        label="Number of columns"
+        [maxValue]="3"
+        [minValue]="1"
+        [step]="1"
+        [canReset]="true"
+        (doReset)="resetRapidButtonsColumns()"
+      />
+    </div>
+
+    <div class="settings-section__footer">
+      <app-text-button
+        (clicked)="saveRapidButtonsSettings()"
+        [isDisabled]="!rapidButtonsSettingsValid()"
+        label="Save changes"
+        [tone]="
+          !rapidButtonsSettingsValid()
+            ? 'warning'
+            : rapidButtonsSettingsUnchanged()
+              ? 'neutral'
+              : 'positive'
+        "
       />
     </div>
   </div>

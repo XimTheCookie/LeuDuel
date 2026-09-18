@@ -13,6 +13,7 @@ export interface ModalConfig {
   mirror?: boolean;
   closeEvent?: () => void;
   opacity?: number;
+  hideClose?: boolean;
 }
 
 export interface ModalRef {
@@ -49,7 +50,9 @@ export class ModalService {
       parent: this.injector,
       providers: [
         { provide: MODAL_DATA, useValue: { component, config, overlayRef } },
-        ...(componentData !== undefined ? [{ provide: MODAL_COMPONENT_DATA, useValue: componentData }] : []),
+        ...(componentData !== undefined
+          ? [{ provide: MODAL_COMPONENT_DATA, useValue: componentData }]
+          : []),
       ],
     });
 

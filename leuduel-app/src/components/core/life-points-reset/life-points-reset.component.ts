@@ -6,13 +6,14 @@ import { OverlayRef } from '@angular/cdk/overlay';
 import { ModalConfig } from '../../../services/modal.service';
 import { ButtonComponent } from '../../common/button/button.component';
 import { Type } from '@angular/core';
+import { TextButtonComponent } from '../../common/text-button/text-button.component';
 
 @Component({
   selector: 'app-life-points-reset',
   templateUrl: './life-points-reset.component.html',
   styleUrls: ['./life-points-reset.component.scss'],
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [ButtonComponent, TextButtonComponent],
 })
 export class LifePointsResetComponent {
   private readonly settingsService = inject(SettingsService);

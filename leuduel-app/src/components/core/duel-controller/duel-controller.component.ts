@@ -6,6 +6,8 @@ import { ModalService } from '../../../services/modal.service';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
 import { ButtonComponent } from '../../common/button/button.component';
 import { LifePointsResetComponent } from '../life-points-reset/life-points-reset.component';
+import { StopMatchModalComponent } from '../stop-match-modal/stop-match-modal.component';
+import { ToolsPageComponent } from '../../../pages/tools-page/tools-page.component';
 
 @Component({
   selector: 'app-duel-controller',
@@ -65,7 +67,13 @@ export class DuelControllerComponent implements OnInit {
     this.updateRemainingTime();
   }
 
-  resetDuel() {
+  stopMatch() {
+    this.modalService.open(StopMatchModalComponent, { size: 'sm', opacity: 0.7 }, () =>
+      this.handleStopMatch(),
+    );
+  }
+
+  private handleStopMatch() {
     this.duelStore.reset();
     this.stopRemainingTimeUpdate();
     this.remainingTime.set(this.duelStore.timer().duration);
@@ -83,7 +91,7 @@ export class DuelControllerComponent implements OnInit {
   openSettings() {
     this.modalService.open(SettingsPageComponent, {
       size: 'full',
-      closeEvent: () => this.resetDuel(),
+      closeEvent: () => this.handleStopMatch(),
     });
   }
 
@@ -91,6 +99,14 @@ export class DuelControllerComponent implements OnInit {
     this.modalService.open(LogsPageComponent, {
       size: 'md',
       opacity: 0.7,
+    });
+  }
+
+  openToolsPage() {
+    this.modalService.open(ToolsPageComponent, {
+      size: 'full',
+      opacity: 0.7,
+      hideClose: true,
     });
   }
 }

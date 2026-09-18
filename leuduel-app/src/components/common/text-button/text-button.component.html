@@ -1,0 +1,13 @@
+<button
+  class="text-button flex items-center justify-center"
+  [class.text-button--neutral]="tone() === 'neutral'"
+  [class.text-button--positive]="tone() === 'positive'"
+  [class.text-button--negative]="tone() === 'negative'"
+  [class.text-button--warning]="tone() === 'warning'"
+  type="button"
+  [disabled]="isDisabled()"
+  (click)="clickHandler()"
+  [aria-label]="label()"
+>
+  {{ label() }}
+</button>

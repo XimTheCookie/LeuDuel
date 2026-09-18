@@ -2,8 +2,8 @@
   <h2 class="modify-form__title">Modify Button</h2>
 
   <div class="modify-form__section">
-    <span class="modify-form__label">Value</span>
     <app-number-input
+      label="Value"
       [formControl]="buttonValueController"
       [minValue]="1"
       [maxValue]="99999"
@@ -20,6 +20,9 @@
           [class.type-btn--active]="selectedType() === t.type"
           [class.type-btn--damage]="t.type === 'damage'"
           [class.type-btn--heal]="t.type === 'heal'"
+          [class.type-btn--divide]="t.type === 'divide'"
+          [class.type-btn--multiply]="t.type === 'multiply'"
+          [class.type-btn--set]="t.type === 'set'"
           type="button"
           (click)="selectType(t.type)"
         >
@@ -31,13 +34,12 @@
   </div>
 
   <div class="modify-form__footer">
-    <button
-      class="save-btn"
-      type="button"
-      [disabled]="buttonValueController.invalid"
-      (click)="save()"
-    >
-      Confirm
-    </button>
+    <span class="modify-form__footer_label">(Configurations are shared)</span>
+    <app-text-button
+      [tone]="buttonValueController.invalid ? 'neutral' : 'positive'"
+      [isDisabled]="buttonValueController.invalid"
+      (clicked)="save()"
+      label="Confirm"
+    />
   </div>
 </div>

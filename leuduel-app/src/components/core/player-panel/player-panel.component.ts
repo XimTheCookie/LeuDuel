@@ -23,40 +23,8 @@ export class PlayerPanelComponent {
   });
 
   player = input.required<'player1' | 'player2'>();
-  defaultDamageTypes = signal<LifeAction[]>([
-    {
-      change: 1000,
-      type: 'damage',
-    },
-    {
-      change: 500,
-      type: 'damage',
-    },
-    {
-      change: 100,
-      type: 'damage',
-    },
-    {
-      change: 50,
-      type: 'damage',
-    },
-    {
-      change: 1000,
-      type: 'heal',
-    },
-    {
-      change: 500,
-      type: 'heal',
-    },
-    {
-      change: 100,
-      type: 'heal',
-    },
-    {
-      change: 2,
-      type: 'divide',
-    },
-  ]);
+  rapidButtons = computed(() => this.settingsService.rapidButtonsConfig());
+  numberOfColumns = computed(() => this.settingsService.rapidButtonsColumns());
 
   duelStore = inject(DuelStore);
 
@@ -73,15 +41,11 @@ export class PlayerPanelComponent {
   doModify = (index: number) => {
     const modalRef = this.modalService.open(
       ModifyDamageButtonComponent,
-      { size: 'sm' },
+      { size: 'sm', mirror: this.player() === 'player2' },
       {
-        action: { ...this.defaultDamageTypes()[index] },
+        action: { ...this.rapidButtons()[index] },
         onSave: (updated: LifeAction) => {
-          this.defaultDamageTypes.update((prev) => {
-            const newArr = [...prev];
-            newArr[index] = updated;
-            return newArr;
-          });
+          this.settingsService.updateRapidButton(index, updated);
           modalRef.close();
         },
       },

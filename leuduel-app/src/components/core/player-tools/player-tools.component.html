@@ -1,0 +1,61 @@
+<div class="player-tools">
+  <div class="tool-section">
+    @if (diceRolls().length > 0) {
+      @if (diceRolls().length > 1) {
+        <div class="history">
+          @for (roll of diceRolls().slice(0, -1).reverse().slice(0, 5); track roll.timestamp) {
+            <span class="history__chip">{{ roll.result }}</span>
+          }
+        </div>
+      }
+      <div class="last-result">
+        @if (diceAnimTick() % 2 === 0) {
+          <span class="last-result__value anim-a">{{ diceRolls()[diceRolls().length - 1].result }}</span>
+        } @else {
+          <span class="last-result__value anim-b">{{ diceRolls()[diceRolls().length - 1].result }}</span>
+        }
+      </div>
+    }
+
+    <button class="tool-btn" (click)="rollDice()" [disabled]="coolingDown()">
+      <span class="tool-btn__icon">🎲</span>
+      <span class="tool-btn__label">Roll D6</span>
+    </button>
+  </div>
+
+  <div class="tool-divider"></div>
+
+  <div class="tool-section">
+    @if (coinFlips().length > 0) {
+      @if (coinFlips().length > 1) {
+        <div class="history">
+          @for (flip of coinFlips().slice(0, -1).reverse().slice(0, 5); track flip.timestamp) {
+            <span
+              class="history__chip history__chip--coin"
+              [class.history__chip--heads]="flip.result === 'heads'"
+            >
+              {{ flip.result === 'heads' ? 'H' : 'T' }}
+            </span>
+          }
+        </div>
+      }
+      <div class="last-result">
+        @if (coinAnimTick() % 2 === 0) {
+          <span
+            class="last-result__value last-result__value--coin anim-a"
+            [class.last-result__value--heads]="coinFlips()[coinFlips().length - 1].result === 'heads'"
+          >{{ coinFlips()[coinFlips().length - 1].result }}</span>
+        } @else {
+          <span
+            class="last-result__value last-result__value--coin anim-b"
+            [class.last-result__value--heads]="coinFlips()[coinFlips().length - 1].result === 'heads'"
+          >{{ coinFlips()[coinFlips().length - 1].result }}</span>
+        }
+      </div>
+    }
+    <button class="tool-btn" (click)="flipCoin()" [disabled]="coolingDown()">
+      <span class="tool-btn__icon">🪙</span>
+      <span class="tool-btn__label">Flip Coin</span>
+    </button>
+  </div>
+</div>

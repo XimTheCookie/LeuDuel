@@ -3,7 +3,9 @@
   [class]="'modal-' + data.config.size"
   [style.opacity]="data.config.opacity ?? 1"
 >
-  <button class="modal-close" (click)="close()">✕</button>
+  @if (!data.config.hideClose) {
+    <button class="modal-close" (click)="close()">✕</button>
+  }
   <div class="modal-content">
     <ng-container #content />
   </div>

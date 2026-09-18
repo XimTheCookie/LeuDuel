@@ -1,0 +1,13 @@
+<div class="tools-page">
+  <div class="tools-page__zone mirror">
+    <app-player-tools [player]="2" />
+  </div>
+
+  <button class="tools-page__divider" (click)="close()">
+    <span class="tools-page__divider-label">✕</span>
+  </button>
+
+  <div class="tools-page__zone">
+    <app-player-tools [player]="1" />
+  </div>
+</div>

@@ -38,13 +38,7 @@
   </div>
 
   <div class="lp-reset__actions">
-    <app-button label="Cancel" icon="x" tone="neutral" size="sm" (clicked)="closeModal(false)" />
-    <app-button
-      label="Confirm"
-      icon="check"
-      tone="negative"
-      size="sm"
-      (clicked)="closeModal(true)"
-    />
+    <app-text-button label="Confirm" tone="negative" (clicked)="closeModal(true)" />
+    <app-text-button label="Cancel" tone="neutral" (clicked)="closeModal(false)" />
   </div>
 </div>

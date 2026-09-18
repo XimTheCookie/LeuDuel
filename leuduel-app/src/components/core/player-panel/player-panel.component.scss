@@ -30,12 +30,17 @@
   transform: rotate(45deg);
   border: 1.5px solid rgba(201, 168, 76, 0.4);
   background: transparent;
-  transition: background 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+  transition:
+    background 300ms ease,
+    box-shadow 300ms ease,
+    border-color 300ms ease;
 
   &--filled {
     background: var(--gold);
     border-color: var(--gold-light);
-    box-shadow: 0 0 8px var(--gold-glow), 0 0 3px var(--gold);
+    box-shadow:
+      0 0 8px var(--gold-glow),
+      0 0 3px var(--gold);
   }
 }
 
@@ -68,7 +73,9 @@
   color: var(--lp-color);
   letter-spacing: 0.02em;
   line-height: 1;
-  text-shadow: 0 0 30px rgba(180, 210, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.6);
+  text-shadow:
+    0 0 30px rgba(180, 210, 255, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .lp-label {
@@ -85,7 +92,21 @@
 .actions-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.4rem;
+  gap: 0.5rem;
   padding: 0.5rem;
   flex: 1;
+  align-content: start;
+
+  &__cols-one {
+    grid-template-columns: 1fr;
+  }
+
+  &__cols-two {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__cols-three {
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0.25rem;
+  }
 }

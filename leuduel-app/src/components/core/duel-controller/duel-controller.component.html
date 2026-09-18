@@ -1,7 +1,14 @@
 <div class="controller">
   <div class="controller__row">
     <div class="controller__side">
-      <app-button (clicked)="viewLog()" icon="log" label="Log" size="xs" tone="neutral" />
+      <app-button
+        (clicked)="viewLog()"
+        [isDisabled]="!duelStore.isDuelStarted()"
+        icon="log"
+        label="Log"
+        size="xs"
+        tone="neutral"
+      />
     </div>
     <div class="controller__timer" [class.controller__timer--overtime]="isOvertime()">
       {{ isOvertime() ? '-' : ''
@@ -15,9 +22,9 @@
   <div class="controller__actions">
     <div class="controller__side-actions">
       <app-button
-        (clicked)="resetDuel()"
+        (clicked)="stopMatch()"
         icon="reset"
-        label="Reset"
+        label="Stop match"
         [isDisabled]="!duelStore.isDuelPaused()"
         size="xs"
         tone="warning"
@@ -42,13 +49,16 @@
       }
     </div>
 
-    <app-button
-      (clicked)="openSettings()"
-      icon="settings"
-      label="Settings"
-      [isDisabled]="duelStore.isDuelStarted() || duelStore.isDuelPaused()"
-      size="xs"
-      tone="neutral"
-    />
+    <div class="controller__extra-actions">
+      <app-button icon="dices" size="xs" tone="neutral" (clicked)="openToolsPage()" />
+      <app-button
+        (clicked)="openSettings()"
+        icon="settings"
+        label="Settings"
+        [isDisabled]="duelStore.isDuelStarted() || duelStore.isDuelPaused()"
+        size="xs"
+        tone="neutral"
+      />
+    </div>
   </div>
 </div>

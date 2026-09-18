@@ -172,7 +172,8 @@ export const DuelStore = signalStore(
           [player]: {
             ...playerState,
             lifePoints: newLifePoints,
-            lifeChanges: [...currentLifeChanges, change],
+            lifeChanges:
+              store.status() === DuelStatus.FINISHED ? [] : [...currentLifeChanges, change],
           },
         });
       },
