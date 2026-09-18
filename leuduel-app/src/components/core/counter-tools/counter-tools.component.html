@@ -1,28 +1,5 @@
 <div class="ct">
   <div class="ct__field">
-    <div></div>
-    <button class="ct__btn"
-      type="button"
-      (mousedown)="onPress()"
-      (touchstart)="onPress(); $event.preventDefault()"
-      (mouseup)="onRelease(emzAdd.bind(this, player() === 1 ? 0 : 1), emzRemove.bind(this, player() === 1 ? 0 : 1), $event)"
-      (touchend)="onRelease(emzAdd.bind(this, player() === 1 ? 0 : 1), emzRemove.bind(this, player() === 1 ? 0 : 1), $event)"
-      (contextmenu)="onContextMenu(emzRemove.bind(this, player() === 1 ? 0 : 1), $event)">
-      {{ emz()[player() === 1 ? 0 : 1] }}
-    </button>
-    <div></div>
-    <button class="ct__btn"
-      type="button"
-      (mousedown)="onPress()"
-      (touchstart)="onPress(); $event.preventDefault()"
-      (mouseup)="onRelease(emzAdd.bind(this, player() === 1 ? 1 : 0), emzRemove.bind(this, player() === 1 ? 1 : 0), $event)"
-      (touchend)="onRelease(emzAdd.bind(this, player() === 1 ? 1 : 0), emzRemove.bind(this, player() === 1 ? 1 : 0), $event)"
-      (contextmenu)="onContextMenu(emzRemove.bind(this, player() === 1 ? 1 : 0), $event)">
-      {{ emz()[player() === 1 ? 1 : 0] }}
-    </button>
-    <div></div>
-  </div>
-  <div class="ct__field">
     @for (mz of playerMz(); let i = $index; track i) {
       <button class="ct__btn"
         type="button"
