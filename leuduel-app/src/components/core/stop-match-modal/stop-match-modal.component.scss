@@ -19,6 +19,7 @@
     font-size: 1.15rem;
     font-weight: 700;
     color: var(--gold-light);
+    user-select: none;
     letter-spacing: 0.08em;
     text-shadow: 0 0 18px var(--gold-glow);
   }
@@ -57,6 +58,7 @@
     font-family: var(--font-title);
     font-size: 0.65rem;
     letter-spacing: 0.18em;
+    user-select: none;
     text-transform: uppercase;
     color: var(--gold);
     opacity: 0.85;
@@ -65,12 +67,14 @@
   &__winner-draw {
     font-size: 0.85rem;
     color: var(--text-muted);
+    user-select: none;
     letter-spacing: 0.05em;
   }
 
   &__winner-scores {
     display: flex;
     align-items: center;
+    user-select: none;
     gap: 0.75rem;
     font-size: 0.85rem;
     color: var(--text-muted);

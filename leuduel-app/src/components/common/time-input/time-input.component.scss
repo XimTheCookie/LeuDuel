@@ -11,6 +11,7 @@
   text-transform: uppercase;
   text-align: center;
   color: var(--text-muted);
+  user-select: none;
 }
 
 .ti-container {
@@ -62,6 +63,7 @@
   font-family: var(--font-lp);
   color: var(--text-primary);
   min-width: 2ch;
+  user-select: none;
   text-align: center;
   line-height: 1.2;
 }
@@ -70,6 +72,7 @@
   font-size: 1.1rem;
   color: var(--text-muted);
   margin-bottom: 0.1rem;
+  user-select: none;
   align-self: center;
 }
 

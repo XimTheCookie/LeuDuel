@@ -15,6 +15,7 @@
   background: var(--bg-card);
   font-size: 1.1rem;
   font-weight: 700;
+  user-select: none;
   color: var(--text-primary);
   transition:
     transform 80ms ease-in-out,
@@ -24,7 +25,9 @@
 
 .damage-button:hover {
   background: var(--bg-card-hover);
-  box-shadow: 0 0 10px var(--accent-bg), inset 0 0 0 1px rgba(255,255,255,0.06);
+  box-shadow:
+    0 0 10px var(--accent-bg),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 .damage-button:active {
