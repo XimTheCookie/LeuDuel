@@ -7,8 +7,8 @@ import { LifeChange } from '../../models/life-change.model';
 import { SettingsService } from '../../services/settings.service';
 
 const initialState: DuelState = {
-  player1: { name: 'P1', lifePoints: 8000, lifeChanges: [], wins: 0 },
-  player2: { name: 'P2', lifePoints: 8000, lifeChanges: [], wins: 0 },
+  player1: { name: 'Player 1', lifePoints: 8000, lifeChanges: [], wins: 0 },
+  player2: { name: 'Player 2', lifePoints: 8000, lifeChanges: [], wins: 0 },
   status: DuelStatus.FINISHED,
   timer: { startTime: 0, elapsedTime: 0, duration: 3000000 },
   createdAt: Date.now(),
@@ -39,13 +39,13 @@ export const DuelStore = signalStore(
       reset(): void {
         patchState(store, {
           player1: {
-            name: 'P1',
+            name: 'Player 1',
             lifePoints: settingsService.getStartingLifePoints(),
             lifeChanges: [],
             wins: 0,
           },
           player2: {
-            name: 'P2',
+            name: 'Player 2',
             lifePoints: settingsService.getStartingLifePoints(),
             lifeChanges: [],
             wins: 0,

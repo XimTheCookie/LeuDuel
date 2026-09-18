@@ -14,6 +14,7 @@ export interface ModalConfig {
   closeEvent?: () => void;
   opacity?: number;
   hideClose?: boolean;
+  custom?: any;
 }
 
 export interface ModalRef {

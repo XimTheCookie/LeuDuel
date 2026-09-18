@@ -5,6 +5,7 @@ import { DamageButtonComponent } from '../../common/damage-button/damage-button.
 import { SettingsService } from '../../../services/settings.service';
 import { ModalService } from '../../../services/modal.service';
 import { ModifyDamageButtonComponent } from '../modify-damage-button/modify-damage-button.component';
+import { LifePointsAdjustModalComponent } from '../life-points-adjust-modal/life-points-adjust-modal.component';
 
 @Component({
   selector: 'app-player-panel',
@@ -51,4 +52,12 @@ export class PlayerPanelComponent {
       },
     );
   };
+
+  modifyLp() {
+    this.modalService.open(
+      LifePointsAdjustModalComponent,
+      { opacity: 0.7, size: 'sm', mirror: this.player() === 'player2' },
+      { player: this.player() },
+    );
+  }
 }
