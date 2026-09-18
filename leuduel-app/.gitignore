@@ -46,3 +46,7 @@ Thumbs.db
 # Screenshots
 Screenshot*.png
 Screenshot*.jpg
+
+# Apk files
+/*.apk
+/output
