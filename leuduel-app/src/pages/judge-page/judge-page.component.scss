@@ -26,6 +26,7 @@
 .judge-page__title {
   font-family: var(--font-title);
   font-size: 1rem;
+  user-select: none;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold);
@@ -34,6 +35,7 @@
 
 .judge-page__hint {
   font-size: 0.7rem;
+  user-select: none;
   color: var(--text-muted);
 
   em {
@@ -83,6 +85,7 @@
 .judge-page__results {
   flex: 1;
   overflow-y: auto;
+  user-select: none;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
