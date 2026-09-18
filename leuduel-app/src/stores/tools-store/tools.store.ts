@@ -35,11 +35,11 @@ export const ToolsStore = signalStore(
 
       if (player === 1) {
         patchState(store, {
-          player1rolls: [...store.player1rolls(), { min, max, result, timestamp }],
+          player1rolls: [...store.player1rolls(), { min, max, result, timestamp }].slice(-10),
         });
       } else {
         patchState(store, {
-          player2rolls: [...store.player2rolls(), { min, max, result, timestamp }],
+          player2rolls: [...store.player2rolls(), { min, max, result, timestamp }].slice(-10),
         });
       }
     },
@@ -49,11 +49,11 @@ export const ToolsStore = signalStore(
 
       if (player === 1) {
         patchState(store, {
-          player1coins: [...store.player1coins(), { result, timestamp }],
+          player1coins: [...store.player1coins(), { result, timestamp }].slice(-10),
         });
       } else {
         patchState(store, {
-          player2coins: [...store.player2coins(), { result, timestamp }],
+          player2coins: [...store.player2coins(), { result, timestamp }].slice(-10),
         });
       }
     },
