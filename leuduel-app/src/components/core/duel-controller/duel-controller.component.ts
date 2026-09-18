@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { LogsPageComponent } from '../../../pages/logs-page/logs-page.component';
 import { SettingsPageComponent } from '../../../pages/settings-page/settings-page.component';
 import { ModalService } from '../../../services/modal.service';
@@ -16,7 +16,7 @@ import { ToolsPageComponent } from '../../../pages/tools-page/tools-page.compone
   standalone: true,
   imports: [DatePipe, ButtonComponent],
 })
-export class DuelControllerComponent implements OnInit {
+export class DuelControllerComponent implements AfterViewInit {
   duelStore = inject(DuelStore);
 
   remainingTime = signal<number>(this.duelStore.timer().duration);
@@ -25,9 +25,15 @@ export class DuelControllerComponent implements OnInit {
 
   private readonly modalService = inject(ModalService);
 
-  ngOnInit(): void {}
+  ngAfterViewInit(): void {
+    setTimeout(() => this.updateRemainingTime(), 500);
+  }
 
   private updateRemainingTime(): void {
+    if (this.duelStore.isDuelStarted() === false) {
+      this.stopRemainingTimeUpdate();
+      return;
+    }
     const timer = this.duelStore.timer();
 
     if (!timer) {

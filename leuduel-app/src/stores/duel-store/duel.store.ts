@@ -1,9 +1,10 @@
-import { computed, inject } from '@angular/core';
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import { computed, inject, Injector, runInInjectionContext } from '@angular/core';
+import { patchState, signalStore, watchState, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
 import { DuelStatus } from '../../models/duel-status.model';
 import { DuelState } from '../../models/duel.model';
 import { LifeAction } from '../../models/life-action.model';
 import { LifeChange } from '../../models/life-change.model';
+import { PersistanceService } from '../../services/persistance.service';
 import { SettingsService } from '../../services/settings.service';
 import { ToolsStore } from '../tools-store/tools.store';
 
@@ -15,6 +16,8 @@ const initialState: DuelState = {
   createdAt: Date.now(),
   updatedAt: Date.now(),
 };
+
+const DUEL_STORE_KEY = 'duel_store';
 
 export const DuelStore = signalStore(
   { providedIn: 'root' },
@@ -188,4 +191,12 @@ export const DuelStore = signalStore(
       };
     },
   ),
+  withHooks({
+    onInit(store, persistance = inject(PersistanceService), injector = inject(Injector)) {
+      persistance.load<DuelState>(DUEL_STORE_KEY).then((saved) => {
+        if (saved) patchState(store, saved);
+        runInInjectionContext(injector, () => watchState(store, (state) => persistance.save(DUEL_STORE_KEY, state)));
+      });
+    },
+  }),
 );

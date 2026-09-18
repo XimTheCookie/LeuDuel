@@ -14,7 +14,7 @@
     [class.actions-grid__cols-two]="numberOfColumns() === 2"
     [class.actions-grid__cols-three]="numberOfColumns() === 3"
   >
-    @for (damage of rapidButtons(); track damage; let i = $index) {
+    @for (damage of rapidButtons(); track i; let i = $index) {
       <app-damage-button
         [player]="player()"
         [change]="damage.change"

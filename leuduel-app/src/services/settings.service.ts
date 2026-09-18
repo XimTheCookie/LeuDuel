@@ -1,5 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, EnvironmentInjector, inject, signal, effect } from '@angular/core';
 import { LifeAction } from '../models/life-action.model';
+import { PersistanceService } from './persistance.service';
 
 const DEFAULT_VALUES = {
   startingLifePoints: 8000,
@@ -43,21 +44,55 @@ const DEFAULT_VALUES = {
   ] as LifeAction[],
 };
 
+const SETTINGS_KEY = 'settings';
+
+interface SettingsSnapshot {
+  startingLifePoints: number;
+  numberOfGames: number;
+  duelDurationMs: number;
+  numberOfRapidButtons: number;
+  rapidButtonsColumns: number;
+  rapidButtonsConfig: LifeAction[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class SettingsService {
   private startingLifePoints = signal<number>(DEFAULT_VALUES.startingLifePoints);
-
   private numberOfGames = signal<number>(DEFAULT_VALUES.numberOfGames);
-
   private duelDurationMs = signal<number>(DEFAULT_VALUES.duelDurationMs);
-
   private numberOfRapidButtons = signal<number>(DEFAULT_VALUES.numberOfRapidButtons);
-
   rapidButtonsColumns = signal<number>(DEFAULT_VALUES.numberOfRapidButtonsColumns);
-
   rapidButtonsConfig = signal<LifeAction[]>(DEFAULT_VALUES.rapidButtons);
+
+  constructor(private persistance: PersistanceService) {
+    const injector = inject(EnvironmentInjector);
+    this.restore().then(() => injector.runInContext(() => effect(() => this.persist())));
+  }
+
+  private async restore() {
+    const saved = await this.persistance.load<SettingsSnapshot>(SETTINGS_KEY);
+    if (!saved) return;
+    this.startingLifePoints.set(saved.startingLifePoints);
+    this.numberOfGames.set(saved.numberOfGames);
+    this.duelDurationMs.set(saved.duelDurationMs);
+    this.numberOfRapidButtons.set(saved.numberOfRapidButtons);
+    this.rapidButtonsColumns.set(saved.rapidButtonsColumns);
+    this.rapidButtonsConfig.set(saved.rapidButtonsConfig);
+  }
+
+  private persist() {
+    const snapshot: SettingsSnapshot = {
+      startingLifePoints: this.startingLifePoints(),
+      numberOfGames: this.numberOfGames(),
+      duelDurationMs: this.duelDurationMs(),
+      numberOfRapidButtons: this.numberOfRapidButtons(),
+      rapidButtonsColumns: this.rapidButtonsColumns(),
+      rapidButtonsConfig: this.rapidButtonsConfig(),
+    };
+    this.persistance.save(SETTINGS_KEY, snapshot);
+  }
 
   getStartingLifePoints() {
     return this.startingLifePoints();

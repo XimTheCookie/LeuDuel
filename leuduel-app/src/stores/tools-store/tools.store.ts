@@ -1,9 +1,10 @@
-import { inject } from '@angular/core';
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import { inject, Injector, runInInjectionContext } from '@angular/core';
+import { patchState, signalStore, watchState, withHooks, withMethods, withState } from '@ngrx/signals';
 import { RandomService } from '../../services/random.service';
 import { RollEvent } from '../../models/roll-event.model';
 import { CoinEvent } from '../../models/coin-event.model';
 import { PlayerCounters } from '../../models/player-counters.model';
+import { PersistanceService } from '../../services/persistance.service';
 
 interface ToolsState {
   player1rolls: RollEvent[];
@@ -24,6 +25,8 @@ const initialState: ToolsState = {
   player1counters: { mz: [0, 0, 0, 0, 0], stz: [0, 0, 0, 0, 0] },
   player2counters: { mz: [0, 0, 0, 0, 0], stz: [0, 0, 0, 0, 0] },
 };
+
+const TOOLS_STORE_KEY = 'tools_store';
 
 export const ToolsStore = signalStore(
   { providedIn: 'root' },
@@ -117,4 +120,12 @@ export const ToolsStore = signalStore(
       });
     },
   })),
+  withHooks({
+    onInit(store, persistance = inject(PersistanceService), injector = inject(Injector)) {
+      persistance.load<ToolsState>(TOOLS_STORE_KEY).then((saved) => {
+        if (saved) patchState(store, saved);
+        runInInjectionContext(injector, () => watchState(store, (state) => persistance.save(TOOLS_STORE_KEY, state)));
+      });
+    },
+  }),
 );
