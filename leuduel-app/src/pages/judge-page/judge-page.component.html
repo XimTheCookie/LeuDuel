@@ -1,0 +1,76 @@
+<div class="judge-page">
+  <div class="judge-page__header">
+    <span class="judge-page__title">Card Search</span>
+    <span class="judge-page__hint"
+      >Try: <em>dark magician</em> or <em>dragon,atk=2500,attr=dark</em></span
+    >
+  </div>
+
+  <div class="judge-page__search-row">
+    <input
+      class="judge-page__input"
+      type="text"
+      placeholder="Search cards…"
+      [ngModel]="query()"
+      (ngModelChange)="onQueryChange($event)"
+      (keydown)="onKeydown($event)"
+      autocomplete="off"
+      spellcheck="false"
+    />
+    <app-text-button
+      label="Search"
+      tone="neutral"
+      [cooldown]="500"
+      [isDisabled]="!query().trim() || loading()"
+      (clicked)="search()"
+    />
+  </div>
+
+  @if (loading()) {
+    <div class="judge-page__status">Searching…</div>
+  }
+
+  @if (error()) {
+    <div class="judge-page__status judge-page__status--error">{{ error() }}</div>
+  }
+
+  @if (results().length) {
+    <div class="judge-page__results">
+      @for (card of results(); track card.id) {
+        <div
+          class="card-item"
+          [class.card-item--clickable]="!!card.misc_info?.[0]?.konami_id"
+          (click)="openCard(card)"
+        >
+          @if (card.card_images?.[0]?.image_url_small) {
+            <img
+              class="card-item__img"
+              [src]="card.card_images[0].image_url_small"
+              [alt]="card.name"
+              loading="lazy"
+            />
+          }
+          <div class="card-item__info">
+            <span class="card-item__name">{{ card.name }}</span>
+            <span class="card-item__type">{{ card.type }}</span>
+            @if (card.attribute) {
+              <span class="card-item__tag">{{ card.attribute }}</span>
+            }
+            @if (card.race) {
+              <span class="card-item__tag">{{ card.race }}</span>
+            }
+            @if (card.atk !== undefined) {
+              <span class="card-item__stat">ATK {{ card.atk }} / DEF {{ card.def }}</span>
+            }
+            @if (card.level !== undefined) {
+              <span class="card-item__stat">LV {{ card.level }}</span>
+            }
+            @if (card.archetype) {
+              <span class="card-item__tag card-item__tag--arch">{{ card.archetype }}</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

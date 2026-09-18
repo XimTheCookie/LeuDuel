@@ -8,6 +8,7 @@ import { ButtonComponent } from '../../common/button/button.component';
 import { LifePointsResetComponent } from '../life-points-reset/life-points-reset.component';
 import { StopMatchModalComponent } from '../stop-match-modal/stop-match-modal.component';
 import { ToolsPageComponent } from '../../../pages/tools-page/tools-page.component';
+import { JudgePageComponent } from '../../../pages/judge-page/judge-page.component';
 
 @Component({
   selector: 'app-duel-controller',
@@ -113,6 +114,13 @@ export class DuelControllerComponent implements AfterViewInit {
       size: 'full',
       opacity: 0.7,
       hideClose: true,
+    });
+  }
+
+  openJudgePage() {
+    this.modalService.open(JudgePageComponent, {
+      size: 'full',
+      opacity: 0.7,
     });
   }
 }

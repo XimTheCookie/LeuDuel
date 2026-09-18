@@ -15,7 +15,13 @@
       }}{{ (isOvertime() ? -remainingTime() : remainingTime()) | date: 'HH:mm:ss' : 'UTC' }}
     </div>
     <div class="controller__side controller__side--right">
-      <app-button icon="rules" label="Rulings" tone="neutral" size="xs" />
+      <app-button
+        (clicked)="openJudgePage()"
+        icon="rules"
+        label="Rulings"
+        tone="neutral"
+        size="xs"
+      />
     </div>
   </div>
 
