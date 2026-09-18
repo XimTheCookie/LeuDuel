@@ -3,12 +3,16 @@ import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { RandomService } from '../../services/random.service';
 import { RollEvent } from '../../models/roll-event.model';
 import { CoinEvent } from '../../models/coin-event.model';
+import { PlayerCounters } from '../../models/player-counters.model';
 
 interface ToolsState {
   player1rolls: RollEvent[];
   player2rolls: RollEvent[];
   player1coins: CoinEvent[];
   player2coins: CoinEvent[];
+  emz: number[];
+  player1counters: PlayerCounters;
+  player2counters: PlayerCounters;
 }
 
 const initialState: ToolsState = {
@@ -16,6 +20,9 @@ const initialState: ToolsState = {
   player2rolls: [],
   player1coins: [],
   player2coins: [],
+  emz: [0, 0],
+  player1counters: { mz: [0, 0, 0, 0, 0], stz: [0, 0, 0, 0, 0] },
+  player2counters: { mz: [0, 0, 0, 0, 0], stz: [0, 0, 0, 0, 0] },
 };
 
 export const ToolsStore = signalStore(
@@ -49,6 +56,65 @@ export const ToolsStore = signalStore(
           player2coins: [...store.player2coins(), { result, timestamp }],
         });
       }
+    },
+    addCounter(player: 1 | 2, type: 'mz' | 'stz', index: number): void {
+      if (player === 1) {
+        patchState(store, {
+          player1counters: {
+            ...store.player1counters(),
+            [type]: [...store.player1counters()[type].map((v, i) => (i === index ? v + 1 : v))],
+          },
+        });
+      } else {
+        patchState(store, {
+          player2counters: {
+            ...store.player2counters(),
+            [type]: [...store.player2counters()[type].map((v, i) => (i === index ? v + 1 : v))],
+          },
+        });
+      }
+    },
+    removeCounter(player: 1 | 2, type: 'mz' | 'stz', index: number): void {
+      if (player === 1) {
+        patchState(store, {
+          player1counters: {
+            ...store.player1counters(),
+            [type]: [
+              ...store
+                .player1counters()
+                [type].map((v, i) => (i === index ? Math.max(v - 1, 0) : v)),
+            ],
+          },
+        });
+      } else {
+        patchState(store, {
+          player2counters: {
+            ...store.player2counters(),
+            [type]: [
+              ...store
+                .player2counters()
+                [type].map((v, i) => (i === index ? Math.max(v - 1, 0) : v)),
+            ],
+          },
+        });
+      }
+    },
+    addEmz(zone: 0 | 1) {
+      patchState(store, {
+        emz: store.emz().map((v, i) => (i === zone ? v + 1 : v)),
+      });
+    },
+    removeEmz(zone: 0 | 1) {
+      patchState(store, {
+        emz: store.emz().map((v, i) => (i === zone ? Math.max(v - 1, 0) : v)),
+      });
+    },
+    resetCounters() {
+      patchState(store, {
+        player1counters: { mz: [0, 0, 0, 0, 0], stz: [0, 0, 0, 0, 0] },
+        player2counters: { mz: [0, 0, 0, 0, 0], stz: [0, 0, 0, 0, 0] },
+        emz: [0, 0],
+      });
     },
   })),
 );

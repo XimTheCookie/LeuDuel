@@ -1,11 +1,13 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { ToolsStore } from '../../../stores/tools-store/tools.store';
+import { CounterToolsComponent } from '../counter-tools/counter-tools.component';
 
 @Component({
   selector: 'app-player-tools',
   standalone: true,
   templateUrl: './player-tools.component.html',
   styleUrls: ['./player-tools.component.scss'],
+  imports: [CounterToolsComponent],
 })
 export class PlayerToolsComponent {
   toolsStore = inject(ToolsStore);
@@ -34,14 +36,14 @@ export class PlayerToolsComponent {
   rollDice() {
     this.withCooldown(() => {
       this.toolsStore.diceRoll(this.player());
-      this.diceAnimTick.update(v => v + 1);
+      this.diceAnimTick.update((v) => v + 1);
     });
   }
 
   flipCoin() {
     this.withCooldown(() => {
       this.toolsStore.coinFlip(this.player());
-      this.coinAnimTick.update(v => v + 1);
+      this.coinAnimTick.update((v) => v + 1);
     });
   }
 }

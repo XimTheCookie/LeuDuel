@@ -1,0 +1,31 @@
+.ct {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  &__field {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.25rem;
+  }
+
+  &__btn {
+    padding: 0.65rem 0;
+    font-family: var(--font-lp);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--bg-card);
+    border: 1px solid rgba(99, 132, 199, 0.2);
+    border-radius: 8px;
+    user-select: none;
+    cursor: pointer;
+
+    &:active {
+      background: var(--bg-card-hover);
+      transform: scale(0.97);
+    }
+  }
+}
