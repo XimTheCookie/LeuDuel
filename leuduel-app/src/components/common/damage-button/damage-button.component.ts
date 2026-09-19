@@ -1,6 +1,7 @@
 import { Component, inject, input, output, signal } from '@angular/core';
 import { LifeAction } from '../../../models/life-action.model';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
+import { SoundboardService } from '../../../services/soundboard.service';
 
 @Component({
   selector: 'app-damage-button',
@@ -9,6 +10,7 @@ import { DuelStore } from '../../../stores/duel-store/duel.store';
   standalone: true,
 })
 export class DamageButtonComponent {
+  private readonly soundboardService = inject(SoundboardService);
   player = input.required<'player1' | 'player2'>();
   change = input.required<number>();
   type = input.required<LifeAction['type']>();
@@ -42,6 +44,7 @@ export class DamageButtonComponent {
     if (this.coolingDown()) {
       return;
     }
+    this.soundboardService.clickSound();
 
     this.coolingDown.set(true);
     setTimeout(() => this.coolingDown.set(false), 50);

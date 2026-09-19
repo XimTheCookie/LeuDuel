@@ -57,14 +57,23 @@
 
     <div class="controller__extra-actions">
       <app-button icon="dices" size="xs" tone="neutral" (clicked)="openToolsPage()" />
-      <app-button
-        (clicked)="openSettings()"
-        icon="settings"
-        label="Settings"
-        [isDisabled]="duelStore.isDuelStarted() || duelStore.isDuelPaused()"
-        size="xs"
-        tone="neutral"
-      />
+      <div class="controller__side-settings">
+        <app-button
+          (clicked)="openSettings()"
+          icon="settings"
+          label="Settings"
+          [isDisabled]="duelStore.isDuelStarted() || duelStore.isDuelPaused()"
+          size="xs"
+          tone="neutral"
+        />
+        <app-button
+          (clicked)="toggleSounds()"
+          [icon]="settingsService.soundsOn() ? 'volume' : 'volume-off'"
+          label="Settings"
+          size="xs"
+          tone="neutral"
+        />
+      </div>
     </div>
   </div>
 </div>

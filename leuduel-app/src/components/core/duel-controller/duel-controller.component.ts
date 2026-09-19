@@ -10,6 +10,8 @@ import { StopMatchModalComponent } from '../stop-match-modal/stop-match-modal.co
 import { ToolsPageComponent } from '../../../pages/tools-page/tools-page.component';
 import { JudgePageComponent } from '../../../pages/judge-page/judge-page.component';
 import { AndroidManagementService } from '../../../services/android-management.service';
+import { SettingsService } from '../../../services/settings.service';
+import { SoundboardService } from '../../../services/soundboard.service';
 
 @Component({
   selector: 'app-duel-controller',
@@ -20,10 +22,13 @@ import { AndroidManagementService } from '../../../services/android-management.s
 })
 export class DuelControllerComponent implements AfterViewInit {
   private readonly androidManagementService = inject(AndroidManagementService);
+  readonly settingsService = inject(SettingsService);
+  private readonly soundboardService = inject(SoundboardService);
   duelStore = inject(DuelStore);
 
   remainingTime = signal<number>(this.duelStore.timer().duration);
   remainingTimeTimeout = signal<number | null>(null);
+  wasOvertime = signal<boolean>(false);
   isOvertime = computed(() => this.remainingTime() < 0);
 
   private readonly modalService = inject(ModalService);
@@ -36,6 +41,16 @@ export class DuelControllerComponent implements AfterViewInit {
         this.androidManagementService.keepAwake();
       } else {
         this.androidManagementService.allowSleep();
+      }
+    });
+
+    effect(() => {
+      const isOvertime = this.isOvertime();
+      if (isOvertime && !this.wasOvertime()) {
+        this.soundboardService.alarmSound();
+        this.wasOvertime.set(true);
+      } else if (!isOvertime) {
+        this.wasOvertime.set(false);
       }
     });
   }
@@ -82,19 +97,22 @@ export class DuelControllerComponent implements AfterViewInit {
 
   pauseDuel() {
     this.duelStore.pauseDuel();
+    this.soundboardService.clickSound();
     this.stopRemainingTimeUpdate();
     this.updateRemainingTime();
   }
 
   resumeDuel() {
     this.duelStore.resumeDuel();
+    this.soundboardService.clickSound();
     this.updateRemainingTime();
   }
 
   stopMatch() {
-    this.modalService.open(StopMatchModalComponent, { size: 'sm', opacity: 0.7 }, () =>
-      this.handleStopMatch(),
-    );
+    this.modalService.open(StopMatchModalComponent, { size: 'sm', opacity: 0.7 }, () => {
+      this.handleStopMatch();
+      this.soundboardService.confirmationSound();
+    });
   }
 
   private handleStopMatch() {
@@ -105,6 +123,7 @@ export class DuelControllerComponent implements AfterViewInit {
 
   startDuel() {
     this.duelStore.startDuel('Player 1', 'Player 2');
+    this.soundboardService.confirmationSound();
     this.updateRemainingTime();
   }
 
@@ -139,5 +158,9 @@ export class DuelControllerComponent implements AfterViewInit {
       size: 'full',
       opacity: 0.7,
     });
+  }
+
+  toggleSounds() {
+    this.settingsService.toggleSounds();
   }
 }

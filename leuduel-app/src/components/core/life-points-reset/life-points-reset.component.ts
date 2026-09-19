@@ -7,6 +7,7 @@ import { ModalConfig } from '../../../services/modal.service';
 import { ButtonComponent } from '../../common/button/button.component';
 import { Type } from '@angular/core';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
+import { SoundboardService } from '../../../services/soundboard.service';
 
 @Component({
   selector: 'app-life-points-reset',
@@ -17,6 +18,7 @@ import { TextButtonComponent } from '../../common/text-button/text-button.compon
 })
 export class LifePointsResetComponent {
   private readonly settingsService = inject(SettingsService);
+  private readonly soundboardService = inject(SoundboardService);
   readonly duelStore = inject(DuelStore);
 
   selectedPlayer = signal<'player1' | 'player2' | null>(null);
@@ -34,6 +36,7 @@ export class LifePointsResetComponent {
 
   togglePlayer(player: 'player1' | 'player2' | null) {
     this.selectedPlayer.set(player);
+    this.soundboardService.clickSound();
   }
 
   closeModal(reset = false) {
@@ -52,6 +55,7 @@ export class LifePointsResetComponent {
         change: this.settingsService.getStartingLifePoints(),
         lifeReset: true,
       });
+      this.soundboardService.confirmationSound();
     }
     this.modalData.overlayRef.dispose();
   }

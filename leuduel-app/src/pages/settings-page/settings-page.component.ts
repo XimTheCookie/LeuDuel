@@ -7,6 +7,7 @@ import { SettingsService } from '../../services/settings.service';
 import { ModalService } from '../../services/modal.service';
 import { AboutComponent } from '../../components/core/about/about.component';
 import { AndroidManagementService } from '../../services/android-management.service';
+import { SoundboardService } from '../../services/soundboard.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -16,6 +17,7 @@ import { AndroidManagementService } from '../../services/android-management.serv
   imports: [NumberInputComponent, TimeInputComponent, TextButtonComponent],
 })
 export class SettingsPageComponent {
+  private readonly soundboardService = inject(SoundboardService);
   private readonly modalService = inject(ModalService);
   private readonly settingsService = inject(SettingsService);
   private readonly androidService = inject(AndroidManagementService);
@@ -45,8 +47,9 @@ export class SettingsPageComponent {
   }
 
   saveKeepAwake() {
-    this.settingsService.setKeepAwake(this.keepAwake.value!);
-    this.keepAwakeSavedValue.set(this.keepAwake.value!);
+    this.settingsService.setKeepAwake(!!this.keepAwake.value);
+    this.keepAwakeSavedValue.set(!!this.keepAwake.value);
+    this.soundboardService.confirmationSound();
   }
 
   lifePoints = new FormControl<number>(this.settingsService.getStartingLifePoints(), [
@@ -104,12 +107,13 @@ export class SettingsPageComponent {
   }
 
   saveDuelSettings() {
-    if (!this.duelSettingsValid()) {
+    if (!this.duelSettingsValid() || this.duelSettingsUnchanged()) {
       return;
     }
     this.settingsService.setStartingLifePoints(this.lifePoints.value!);
     this.settingsService.setDuelDuration(this.duration.value!);
     this.settingsService.setNumberOfGames(this.bestOf.value!);
+    this.soundboardService.confirmationSound();
   }
 
   resetRapidButtons() {
@@ -137,6 +141,7 @@ export class SettingsPageComponent {
     }
     this.settingsService.setNumberOfRapidButtons(this.numberOfRapidButtons.value!);
     this.settingsService.setRapidButtonsColumns(this.rapidButtonsColumns.value!);
+    this.soundboardService.confirmationSound();
   }
 
   viewAboutModal() {

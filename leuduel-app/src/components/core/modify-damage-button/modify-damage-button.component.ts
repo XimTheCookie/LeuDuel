@@ -1,9 +1,10 @@
-import { Component, Inject, signal } from '@angular/core';
+import { Component, inject, Inject, signal } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NumberInputComponent } from '../../common/number-input/number-input.component';
 import { LifeAction } from '../../../models/life-action.model';
 import { MODAL_COMPONENT_DATA } from '../../../services/modal.service';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
+import { SoundboardService } from '../../../services/soundboard.service';
 
 export interface ModifyDamageData {
   action: LifeAction;
@@ -26,6 +27,7 @@ const ACTION_TYPES: { type: LifeAction['type']; label: string; symbol: string }[
   imports: [NumberInputComponent, TextButtonComponent],
 })
 export class ModifyDamageButtonComponent {
+  private readonly soundboardService = inject(SoundboardService);
   readonly actionTypes = ACTION_TYPES;
 
   buttonValueController = new FormControl<number | null>(1, [
@@ -43,10 +45,12 @@ export class ModifyDamageButtonComponent {
 
   selectType(type: LifeAction['type']) {
     this.selectedType.set(type);
+    this.soundboardService.clickSound();
   }
 
   save() {
     if (this.buttonValueController.invalid) return;
+    this.soundboardService.confirmationSound();
     this.data.onSave({ change: this.buttonValueController.value!, type: this.selectedType() });
   }
 }

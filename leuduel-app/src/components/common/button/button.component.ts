@@ -17,7 +17,7 @@ export class ButtonComponent {
 
   clicked = output<void>();
 
-  cooldown = input<number>(50);
+  cooldown = input<number>(100);
 
   coolingDown = signal<boolean>(false);
 

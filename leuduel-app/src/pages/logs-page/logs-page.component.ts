@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { DuelStore } from '../../stores/duel-store/duel.store';
 import { LogItemComponent } from '../../components/core/log-item/log-item.component';
 import { IconComponent } from '../../components/common/icon/icon.component';
+import { SoundboardService } from '../../services/soundboard.service';
 
 @Component({
   selector: 'app-logs-page',
@@ -11,6 +12,7 @@ import { IconComponent } from '../../components/common/icon/icon.component';
   imports: [LogItemComponent, IconComponent],
 })
 export class LogsPageComponent {
+  private readonly soundboardService = inject(SoundboardService);
   private readonly dualStore = inject(DuelStore);
 
   undoCoolingDown = signal<boolean>(false);
@@ -37,6 +39,7 @@ export class LogsPageComponent {
 
   undoChange(timestamp: number): void {
     if (this.undoCoolingDown()) return;
+    this.soundboardService.clickSound();
     this.undoCoolingDown.set(true);
     setTimeout(() => this.undoCoolingDown.set(false), 300);
     const entry = this.logs().find((l) => l.timestamp === timestamp);

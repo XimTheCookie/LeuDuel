@@ -1,14 +1,27 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { SettingsService } from './settings.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SoundboardService {
-  constructor() {}
+  private settingsService = inject(SettingsService);
 
-  playSound(soundFile: string) {
-    let audio = new Audio();
-    audio.src = soundFile;
+  private play(src: string) {
+    if (!this.settingsService.soundsOn()) {
+      return;
+    }
+    const audio = new Audio(src);
     audio.play();
+  }
+
+  confirmationSound() {
+    this.play('confirm.wav');
+  }
+  clickSound() {
+    this.play('click.wav');
+  }
+  alarmSound() {
+    this.play('alarm.wav');
   }
 }

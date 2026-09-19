@@ -5,6 +5,7 @@ import {
   ModalGenericComponent,
 } from '../../common/modal-generic/modal-generic.component';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
+import { SoundboardService } from '../../../services/soundboard.service';
 
 type Op = 'damage' | 'heal';
 
@@ -16,6 +17,7 @@ type Op = 'damage' | 'heal';
   imports: [],
 })
 export class LifePointsAdjustModalComponent {
+  private readonly soundboardService = inject(SoundboardService);
   duelStore = inject(DuelStore);
 
   player: 'player1' | 'player2';
@@ -90,6 +92,7 @@ export class LifePointsAdjustModalComponent {
     if (val > 0) {
       this.duelStore.lifeAction(this.player, { change: val, type: this.op() });
     }
+    this.soundboardService.confirmationSound();
     this.close();
   }
 

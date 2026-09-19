@@ -1,4 +1,11 @@
-import { Injectable, EnvironmentInjector, inject, signal, effect, runInInjectionContext } from '@angular/core';
+import {
+  Injectable,
+  EnvironmentInjector,
+  inject,
+  signal,
+  effect,
+  runInInjectionContext,
+} from '@angular/core';
 import { LifeAction } from '../models/life-action.model';
 import { PersistanceService } from './persistance.service';
 
@@ -43,6 +50,7 @@ const DEFAULT_VALUES = {
     },
   ] as LifeAction[],
   useKeepAwake: true,
+  soundsOn: true,
 };
 
 const SETTINGS_KEY = 'settings';
@@ -55,6 +63,7 @@ interface SettingsSnapshot {
   rapidButtonsColumns: number;
   rapidButtonsConfig: LifeAction[];
   useKeepAwake: boolean;
+  soundsOn: boolean;
 }
 
 @Injectable({
@@ -68,6 +77,7 @@ export class SettingsService {
   rapidButtonsColumns = signal<number>(DEFAULT_VALUES.numberOfRapidButtonsColumns);
   rapidButtonsConfig = signal<LifeAction[]>(DEFAULT_VALUES.rapidButtons);
   private useKeepAwake = signal<boolean>(DEFAULT_VALUES.useKeepAwake);
+  soundsOn = signal<boolean>(DEFAULT_VALUES.soundsOn);
 
   constructor(private persistance: PersistanceService) {
     const injector = inject(EnvironmentInjector);
@@ -84,6 +94,7 @@ export class SettingsService {
     this.rapidButtonsColumns.set(saved.rapidButtonsColumns);
     this.rapidButtonsConfig.set(saved.rapidButtonsConfig);
     this.useKeepAwake.set(saved.useKeepAwake);
+    this.soundsOn.set(saved.soundsOn);
   }
 
   private persist() {
@@ -95,6 +106,7 @@ export class SettingsService {
       rapidButtonsColumns: this.rapidButtonsColumns(),
       rapidButtonsConfig: this.rapidButtonsConfig(),
       useKeepAwake: this.useKeepAwake(),
+      soundsOn: this.soundsOn(),
     };
     this.persistance.save(SETTINGS_KEY, snapshot);
   }
@@ -203,6 +215,10 @@ export class SettingsService {
 
   setRapidButtonsConfig(config: LifeAction[]) {
     this.rapidButtonsConfig.set(config);
+  }
+
+  toggleSounds() {
+    this.soundsOn.set(!this.soundsOn());
   }
 
   updateRapidButton(index: number, newValues: LifeAction) {

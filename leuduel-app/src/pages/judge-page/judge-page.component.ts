@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CardSearchService } from '../../services/card-search.service';
 import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
 import { YgoCard } from '../../models/ygo-card.model';
+import { SoundboardService } from '../../services/soundboard.service';
 
 @Component({
   selector: 'app-judge-page',
@@ -12,6 +13,7 @@ import { YgoCard } from '../../models/ygo-card.model';
   imports: [FormsModule, TextButtonComponent],
 })
 export class JudgePageComponent {
+  private readonly soundboardService = inject(SoundboardService);
   private readonly cardSearchService = inject(CardSearchService);
 
   openCard(card: YgoCard) {
@@ -31,6 +33,7 @@ export class JudgePageComponent {
   search() {
     const raw = this.query().trim();
     if (!raw || this.coolingDown()) return;
+    this.soundboardService.clickSound();
 
     this.coolingDown.set(true);
     setTimeout(() => this.coolingDown.set(false), 500);
@@ -44,10 +47,12 @@ export class JudgePageComponent {
       next: (res) => {
         this.results.set(res.data ?? []);
         this.loading.set(false);
+        this.soundboardService.confirmationSound();
       },
       error: (err) => {
         this.error.set(err?.error?.error ?? 'No cards found.');
         this.loading.set(false);
+        this.soundboardService.clickSound();
       },
     });
   }

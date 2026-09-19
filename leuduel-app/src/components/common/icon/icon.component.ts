@@ -15,6 +15,8 @@ import {
   LucideRotateCcw,
   LucideScrollText,
   LucideSettings,
+  LucideVolume2,
+  LucideVolumeOff,
   LucideX,
 } from '@lucide/angular';
 
@@ -68,6 +70,10 @@ export class IconComponent {
         return LucideBan;
       case 'dices':
         return LucideDices;
+      case 'volume':
+        return LucideVolume2;
+      case 'volume-off':
+        return LucideVolumeOff;
     }
     return LucideX;
   });
