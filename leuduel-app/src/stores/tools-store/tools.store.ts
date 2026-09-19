@@ -1,5 +1,12 @@
 import { inject, Injector, runInInjectionContext } from '@angular/core';
-import { patchState, signalStore, watchState, withHooks, withMethods, withState } from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  watchState,
+  withHooks,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 import { RandomService } from '../../services/random.service';
 import { RollEvent } from '../../models/roll-event.model';
 import { CoinEvent } from '../../models/coin-event.model';
@@ -12,6 +19,7 @@ interface ToolsState {
   player1coins: CoinEvent[];
   player2coins: CoinEvent[];
   emz: number[];
+  fz: number[];
   player1counters: PlayerCounters;
   player2counters: PlayerCounters;
 }
@@ -22,6 +30,7 @@ const initialState: ToolsState = {
   player1coins: [],
   player2coins: [],
   emz: [0, 0],
+  fz: [0, 0],
   player1counters: { mz: [0, 0, 0, 0, 0], stz: [0, 0, 0, 0, 0] },
   player2counters: { mz: [0, 0, 0, 0, 0], stz: [0, 0, 0, 0, 0] },
 };
@@ -112,6 +121,16 @@ export const ToolsStore = signalStore(
         emz: store.emz().map((v, i) => (i === zone ? Math.max(v - 1, 0) : v)),
       });
     },
+    addFz(zone: 0 | 1) {
+      patchState(store, {
+        fz: store.fz().map((v, i) => (i === zone ? v + 1 : v)),
+      });
+    },
+    removeFz(zone: 0 | 1) {
+      patchState(store, {
+        fz: store.fz().map((v, i) => (i === zone ? Math.max(v - 1, 0) : v)),
+      });
+    },
     resetCounters() {
       patchState(store, {
         player1counters: { mz: [0, 0, 0, 0, 0], stz: [0, 0, 0, 0, 0] },
@@ -124,7 +143,9 @@ export const ToolsStore = signalStore(
     onInit(store, persistance = inject(PersistanceService), injector = inject(Injector)) {
       persistance.load<ToolsState>(TOOLS_STORE_KEY).then((saved) => {
         if (saved) patchState(store, saved);
-        runInInjectionContext(injector, () => watchState(store, (state) => persistance.save(TOOLS_STORE_KEY, state)));
+        runInInjectionContext(injector, () =>
+          watchState(store, (state) => persistance.save(TOOLS_STORE_KEY, state)),
+        );
       });
     },
   }),

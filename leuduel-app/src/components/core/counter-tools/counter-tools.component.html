@@ -1,24 +1,46 @@
 <div class="ct">
   <div class="ct__field">
+    <button
+      class="ct__btn"
+      type="button"
+      (mousedown)="onPress()"
+      (touchstart)="onPress(); $event.preventDefault()"
+      (mouseup)="onRelease(fzAdd.bind(this), fzRemove.bind(this), $event)"
+      (touchend)="onRelease(fzAdd.bind(this), fzRemove.bind(this), $event)"
+      (contextmenu)="onContextMenu(fzRemove.bind(this), $event)"
+    >
+      {{ playerFz() }}
+    </button>
     @for (mz of playerMz(); let i = $index; track i) {
-      <button class="ct__btn"
+      <button
+        class="ct__btn"
         type="button"
         (mousedown)="onPress()"
         (touchstart)="onPress(); $event.preventDefault()"
         (mouseup)="onRelease(mzAdd.bind(this, i), mzRemove.bind(this, i), $event)"
         (touchend)="onRelease(mzAdd.bind(this, i), mzRemove.bind(this, i), $event)"
-        (contextmenu)="onContextMenu(mzRemove.bind(this, i), $event)">{{ mz }}</button>
+        (contextmenu)="onContextMenu(mzRemove.bind(this, i), $event)"
+      >
+        {{ mz }}
+      </button>
     }
+    <div class="ct__btn"></div>
   </div>
   <div class="ct__field">
+    <div class="ct__btn"></div>
     @for (stz of playerStz(); let i = $index; track i) {
-      <button class="ct__btn"
+      <button
+        class="ct__btn"
         type="button"
         (mousedown)="onPress()"
         (touchstart)="onPress(); $event.preventDefault()"
         (mouseup)="onRelease(stzAdd.bind(this, i), stzRemove.bind(this, i), $event)"
         (touchend)="onRelease(stzAdd.bind(this, i), stzRemove.bind(this, i), $event)"
-        (contextmenu)="onContextMenu(stzRemove.bind(this, i), $event)">{{ stz }}</button>
+        (contextmenu)="onContextMenu(stzRemove.bind(this, i), $event)"
+      >
+        {{ stz }}
+      </button>
     }
+    <div class="ct__btn"></div>
   </div>
 </div>
