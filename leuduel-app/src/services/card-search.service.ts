@@ -4,6 +4,7 @@ import { Capacitor } from '@capacitor/core';
 import { Browser } from '@capacitor/browser';
 import { API_CONFIG } from '../app/api.config';
 import { take } from 'rxjs';
+import { YgoCard } from '../models/ygo-card.model';
 
 export interface CardSearchParams {
   name?: string;
@@ -15,23 +16,6 @@ export interface CardSearchParams {
   level?: string;
   scale?: string;
   archetype?: string;
-}
-
-export interface YgoCard {
-  id: number;
-  name: string;
-  type: string;
-  frameType: string;
-  desc: string;
-  atk?: number;
-  def?: number;
-  level?: number;
-  race?: string;
-  attribute?: string;
-  archetype?: string;
-  scale?: number;
-  card_images: { id: number; image_url_small: string }[];
-  misc_info?: { konami_id?: number }[];
 }
 
 @Injectable({ providedIn: 'root' })
@@ -67,7 +51,10 @@ export class CardSearchService {
   }
 
   parseQuery(raw: string): CardSearchParams {
-    const parts = raw.split(',').map((p) => p.trim()).filter(Boolean);
+    const parts = raw
+      .split(',')
+      .map((p) => p.trim())
+      .filter(Boolean);
     const params: CardSearchParams = {};
     const filters: string[] = [];
 

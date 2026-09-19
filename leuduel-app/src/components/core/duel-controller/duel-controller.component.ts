@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { AfterViewInit, Component, computed, inject, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, computed, effect, inject, OnInit, signal } from '@angular/core';
 import { LogsPageComponent } from '../../../pages/logs-page/logs-page.component';
 import { SettingsPageComponent } from '../../../pages/settings-page/settings-page.component';
 import { ModalService } from '../../../services/modal.service';
@@ -9,6 +9,7 @@ import { LifePointsResetComponent } from '../life-points-reset/life-points-reset
 import { StopMatchModalComponent } from '../stop-match-modal/stop-match-modal.component';
 import { ToolsPageComponent } from '../../../pages/tools-page/tools-page.component';
 import { JudgePageComponent } from '../../../pages/judge-page/judge-page.component';
+import { AndroidManagementService } from '../../../services/android-management.service';
 
 @Component({
   selector: 'app-duel-controller',
@@ -18,6 +19,7 @@ import { JudgePageComponent } from '../../../pages/judge-page/judge-page.compone
   imports: [DatePipe, ButtonComponent],
 })
 export class DuelControllerComponent implements AfterViewInit {
+  private readonly androidManagementService = inject(AndroidManagementService);
   duelStore = inject(DuelStore);
 
   remainingTime = signal<number>(this.duelStore.timer().duration);
@@ -25,6 +27,18 @@ export class DuelControllerComponent implements AfterViewInit {
   isOvertime = computed(() => this.remainingTime() < 0);
 
   private readonly modalService = inject(ModalService);
+
+  isDuelRunning = signal<boolean>(false);
+
+  constructor() {
+    effect(() => {
+      if (this.isDuelRunning()) {
+        this.androidManagementService.keepAwake();
+      } else {
+        this.androidManagementService.allowSleep();
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => this.updateRemainingTime(), 500);
@@ -38,8 +52,10 @@ export class DuelControllerComponent implements AfterViewInit {
     const timer = this.duelStore.timer();
 
     if (!timer) {
+      this.isDuelRunning.set(false);
       return;
     }
+    this.isDuelRunning.set(true);
 
     const elapsedTime = this.duelStore.isDuelPaused()
       ? timer.elapsedTime
@@ -61,6 +77,7 @@ export class DuelControllerComponent implements AfterViewInit {
       clearTimeout(remainingTimeTimeout);
       this.remainingTimeTimeout.set(null);
     }
+    this.isDuelRunning.set(false);
   }
 
   pauseDuel() {

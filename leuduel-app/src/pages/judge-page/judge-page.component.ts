@@ -1,7 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CardSearchService, YgoCard } from '../../services/card-search.service';
+import { CardSearchService } from '../../services/card-search.service';
 import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
+import { YgoCard } from '../../models/ygo-card.model';
 
 @Component({
   selector: 'app-judge-page',

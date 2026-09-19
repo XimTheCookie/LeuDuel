@@ -1,12 +1,15 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { KeepAwake } from '@capacitor-community/keep-awake';
 import { Capacitor } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
+import { SettingsService } from './settings.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AndroidManagementService {
+  private readonly settingService = inject(SettingsService);
+
   isAndroid(): boolean {
     return Capacitor.getPlatform() === 'android';
   }
@@ -34,6 +37,7 @@ export class AndroidManagementService {
   }
 
   keepAwake() {
+    if (this.settingService.getKeepAwake() === false) return;
     this.isKeepAwakeAllowed().then((isAllowed) => {
       if (isAllowed) {
         KeepAwake.keepAwake();
