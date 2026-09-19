@@ -1,5 +1,13 @@
 import { computed, inject, Injector, runInInjectionContext } from '@angular/core';
-import { patchState, signalStore, watchState, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  watchState,
+  withComputed,
+  withHooks,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 import { DuelStatus } from '../../models/duel-status.model';
 import { DuelState } from '../../models/duel.model';
 import { LifeAction } from '../../models/life-action.model';
@@ -7,6 +15,7 @@ import { LifeChange } from '../../models/life-change.model';
 import { PersistanceService } from '../../services/persistance.service';
 import { SettingsService } from '../../services/settings.service';
 import { ToolsStore } from '../tools-store/tools.store';
+import { AndroidManagementService } from '../../services/android-management.service';
 
 const initialState: DuelState = {
   player1: { name: 'Player 1', lifePoints: 8000, lifeChanges: [], wins: 0 },
@@ -31,7 +40,12 @@ export const DuelStore = signalStore(
     wins2: computed(() => store.player2().wins),
   })),
   withMethods(
-    (store, settingsService = inject(SettingsService), toolsStore = inject(ToolsStore)) => {
+    (
+      store,
+      settingsService = inject(SettingsService),
+      toolsStore = inject(ToolsStore),
+      androidManagementService = inject(AndroidManagementService),
+    ) => {
       const getRemainingTime = () => {
         const timer = store.timer();
         const elapsed = store.isDuelPaused()
@@ -65,6 +79,7 @@ export const DuelStore = signalStore(
             updatedAt: Date.now(),
           });
           toolsStore.resetCounters();
+          androidManagementService.allowSleep();
         },
         startDuel(player1: string, player2: string): void {
           patchState(store, {
@@ -91,6 +106,7 @@ export const DuelStore = signalStore(
           });
 
           toolsStore.resetCounters();
+          androidManagementService.keepAwake();
         },
         pauseDuel(): void {
           const timer = store.timer();
@@ -195,7 +211,9 @@ export const DuelStore = signalStore(
     onInit(store, persistance = inject(PersistanceService), injector = inject(Injector)) {
       persistance.load<DuelState>(DUEL_STORE_KEY).then((saved) => {
         if (saved) patchState(store, saved);
-        runInInjectionContext(injector, () => watchState(store, (state) => persistance.save(DUEL_STORE_KEY, state)));
+        runInInjectionContext(injector, () =>
+          watchState(store, (state) => persistance.save(DUEL_STORE_KEY, state)),
+        );
       });
     },
   }),

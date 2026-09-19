@@ -1,7 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { DuelPageComponent } from '../pages/duel-page/duel-page.component';
 import { Capacitor } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
+import { KeepAwake } from '@capacitor-community/keep-awake';
+import { AndroidManagementService } from '../services/android-management.service';
 
 @Component({
   imports: [DuelPageComponent],
@@ -12,11 +14,9 @@ import { StatusBar, Style } from '@capacitor/status-bar';
 export class App {
   protected readonly title = signal('leuduel-app');
 
+  private readonly androidManagementService = inject(AndroidManagementService);
+
   constructor() {
-    if (Capacitor.isNativePlatform()) {
-      StatusBar.setOverlaysWebView({ overlay: true });
-      StatusBar.setStyle({ style: Style.Dark });
-      StatusBar.hide();
-    }
+    this.androidManagementService.setStatusBarDark();
   }
 }
