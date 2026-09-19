@@ -22,6 +22,7 @@ export class SettingsPageComponent {
 
   readonly isAndroid = this.androidService.isAndroid();
   readonly keepAwakeSupported = signal(false);
+  readonly keepAwakeSavedValue = signal(false);
 
   keepAwake = new FormControl<boolean>({ value: false, disabled: true });
 
@@ -29,16 +30,23 @@ export class SettingsPageComponent {
     if (this.isAndroid) {
       this.androidService.isKeepAwakeAllowed().then((supported) => {
         this.keepAwakeSupported.set(supported);
+        const saved = supported ? this.settingsService.getKeepAwake() : false;
+        this.keepAwakeSavedValue.set(saved);
         if (supported) {
-          this.keepAwake.setValue(this.settingsService.getKeepAwake());
+          this.keepAwake.setValue(saved);
           this.keepAwake.enable();
         }
       });
     }
   }
 
+  keepAwakeUnchanged() {
+    return this.keepAwake.value === this.keepAwakeSavedValue();
+  }
+
   saveKeepAwake() {
     this.settingsService.setKeepAwake(this.keepAwake.value!);
+    this.keepAwakeSavedValue.set(this.keepAwake.value!);
   }
 
   lifePoints = new FormControl<number>(this.settingsService.getStartingLifePoints(), [

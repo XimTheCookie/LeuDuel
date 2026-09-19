@@ -59,9 +59,39 @@
     cursor: pointer;
 
     input[type='checkbox'] {
-      width: 1.1rem;
-      height: 1.1rem;
+      appearance: none;
+      -webkit-appearance: none;
+      width: 2.6rem;
+      height: 1.4rem;
+      border-radius: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      position: relative;
       cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0.15rem;
+        left: 0.15rem;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background: var(--text-muted);
+        transition: transform 0.2s, background 0.2s;
+      }
+
+      &:checked {
+        background: var(--gold-dim);
+        border-color: var(--gold);
+
+        &::after {
+          transform: translateX(1.2rem);
+          background: var(--gold);
+        }
+      }
 
       &:disabled {
         opacity: 0.4;

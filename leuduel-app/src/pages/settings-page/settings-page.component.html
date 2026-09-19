@@ -92,7 +92,12 @@
     </div>
     @if (keepAwakeSupported()) {
     <div class="settings-section__footer">
-      <app-text-button (clicked)="saveKeepAwake()" label="Save changes" tone="positive" />
+      <app-text-button
+        (clicked)="saveKeepAwake()"
+        [isDisabled]="keepAwakeUnchanged()"
+        label="Save changes"
+        [tone]="keepAwakeUnchanged() ? 'neutral' : 'positive'"
+      />
     </div>
     }
   </div>
