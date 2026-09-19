@@ -7,6 +7,10 @@ import { StatusBar, Style } from '@capacitor/status-bar';
   providedIn: 'root',
 })
 export class AndroidManagementService {
+  isAndroid(): boolean {
+    return Capacitor.getPlatform() === 'android';
+  }
+
   setStatusBarDark() {
     if (Capacitor.isNativePlatform()) {
       StatusBar.setOverlaysWebView({ overlay: true });
@@ -21,10 +25,20 @@ export class AndroidManagementService {
     }
   }
 
-  keepAwake() {
+  async isKeepAwakeAllowed(): Promise<boolean> {
     if (Capacitor.isNativePlatform()) {
-      KeepAwake.keepAwake();
+      const res = await KeepAwake.isSupported();
+      return res.isSupported.valueOf();
     }
+    return Promise.resolve(false);
+  }
+
+  keepAwake() {
+    this.isKeepAwakeAllowed().then((isAllowed) => {
+      if (isAllowed) {
+        KeepAwake.keepAwake();
+      }
+    });
   }
 
   allowSleep() {

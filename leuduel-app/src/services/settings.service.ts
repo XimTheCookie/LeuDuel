@@ -1,4 +1,4 @@
-import { Injectable, EnvironmentInjector, inject, signal, effect } from '@angular/core';
+import { Injectable, EnvironmentInjector, inject, signal, effect, runInInjectionContext } from '@angular/core';
 import { LifeAction } from '../models/life-action.model';
 import { PersistanceService } from './persistance.service';
 
@@ -42,6 +42,7 @@ const DEFAULT_VALUES = {
       type: 'divide',
     },
   ] as LifeAction[],
+  useKeepAwake: true,
 };
 
 const SETTINGS_KEY = 'settings';
@@ -53,6 +54,7 @@ interface SettingsSnapshot {
   numberOfRapidButtons: number;
   rapidButtonsColumns: number;
   rapidButtonsConfig: LifeAction[];
+  useKeepAwake: boolean;
 }
 
 @Injectable({
@@ -65,10 +67,11 @@ export class SettingsService {
   private numberOfRapidButtons = signal<number>(DEFAULT_VALUES.numberOfRapidButtons);
   rapidButtonsColumns = signal<number>(DEFAULT_VALUES.numberOfRapidButtonsColumns);
   rapidButtonsConfig = signal<LifeAction[]>(DEFAULT_VALUES.rapidButtons);
+  private useKeepAwake = signal<boolean>(DEFAULT_VALUES.useKeepAwake);
 
   constructor(private persistance: PersistanceService) {
     const injector = inject(EnvironmentInjector);
-    this.restore().then(() => injector.runInContext(() => effect(() => this.persist())));
+    this.restore().then(() => runInInjectionContext(injector, () => effect(() => this.persist())));
   }
 
   private async restore() {
@@ -80,6 +83,7 @@ export class SettingsService {
     this.numberOfRapidButtons.set(saved.numberOfRapidButtons);
     this.rapidButtonsColumns.set(saved.rapidButtonsColumns);
     this.rapidButtonsConfig.set(saved.rapidButtonsConfig);
+    this.useKeepAwake.set(saved.useKeepAwake);
   }
 
   private persist() {
@@ -90,6 +94,7 @@ export class SettingsService {
       numberOfRapidButtons: this.numberOfRapidButtons(),
       rapidButtonsColumns: this.rapidButtonsColumns(),
       rapidButtonsConfig: this.rapidButtonsConfig(),
+      useKeepAwake: this.useKeepAwake(),
     };
     this.persistance.save(SETTINGS_KEY, snapshot);
   }
@@ -180,6 +185,14 @@ export class SettingsService {
   resetAllRapid() {
     this.resetNumberOfRapidButtons();
     this.resetRapidButtonsColumns();
+  }
+
+  getKeepAwake() {
+    return this.useKeepAwake();
+  }
+
+  setKeepAwake(value: boolean) {
+    this.useKeepAwake.set(value);
   }
 
   resetAll() {

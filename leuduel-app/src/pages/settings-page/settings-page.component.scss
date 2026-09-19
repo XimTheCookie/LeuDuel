@@ -50,6 +50,26 @@
     padding: 0.75rem;
   }
 
+  &__toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    cursor: pointer;
+
+    input[type='checkbox'] {
+      width: 1.1rem;
+      height: 1.1rem;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    }
+  }
+
   &__about-footer {
     padding-top: 0.5rem;
     display: flex;

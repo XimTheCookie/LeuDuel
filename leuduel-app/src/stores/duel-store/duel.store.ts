@@ -79,7 +79,9 @@ export const DuelStore = signalStore(
             updatedAt: Date.now(),
           });
           toolsStore.resetCounters();
-          androidManagementService.allowSleep();
+          if (settingsService.getKeepAwake()) {
+            androidManagementService.allowSleep();
+          }
         },
         startDuel(player1: string, player2: string): void {
           patchState(store, {

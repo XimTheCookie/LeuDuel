@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NumberInputComponent } from '../../components/common/number-input/number-input.component';
 import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
@@ -6,6 +6,7 @@ import { TimeInputComponent } from '../../components/common/time-input/time-inpu
 import { SettingsService } from '../../services/settings.service';
 import { ModalService } from '../../services/modal.service';
 import { AboutComponent } from '../../components/core/about/about.component';
+import { AndroidManagementService } from '../../services/android-management.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -17,6 +18,28 @@ import { AboutComponent } from '../../components/core/about/about.component';
 export class SettingsPageComponent {
   private readonly modalService = inject(ModalService);
   private readonly settingsService = inject(SettingsService);
+  private readonly androidService = inject(AndroidManagementService);
+
+  readonly isAndroid = this.androidService.isAndroid();
+  readonly keepAwakeSupported = signal(false);
+
+  keepAwake = new FormControl<boolean>({ value: false, disabled: true });
+
+  constructor() {
+    if (this.isAndroid) {
+      this.androidService.isKeepAwakeAllowed().then((supported) => {
+        this.keepAwakeSupported.set(supported);
+        if (supported) {
+          this.keepAwake.setValue(this.settingsService.getKeepAwake());
+          this.keepAwake.enable();
+        }
+      });
+    }
+  }
+
+  saveKeepAwake() {
+    this.settingsService.setKeepAwake(this.keepAwake.value!);
+  }
 
   lifePoints = new FormControl<number>(this.settingsService.getStartingLifePoints(), [
     Validators.required,
