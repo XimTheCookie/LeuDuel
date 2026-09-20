@@ -68,6 +68,12 @@ export class SettingsPageComponent {
     Validators.max(9),
   ]);
 
+  modalOpacity = new FormControl<number>(this.settingsService.modalOpacity(), [
+    Validators.required,
+    Validators.min(6),
+    Validators.max(10),
+  ]);
+
   duration = new FormControl<number>(this.settingsService.getDuelDuration(), [
     Validators.required,
     Validators.min(300000),
@@ -92,6 +98,10 @@ export class SettingsPageComponent {
 
   resetBestOf() {
     this.bestOf.setValue(this.settingsService.getNumberOfGames());
+  }
+
+  resetOpacity() {
+    this.modalOpacity.setValue(this.settingsService.modalOpacity());
   }
 
   resetTimer() {
@@ -132,7 +142,8 @@ export class SettingsPageComponent {
     return (
       this.numberOfRapidButtons.value === this.settingsService.getNumberOfRapidButtons() &&
       this.rapidButtonsColumns.value === this.settingsService.getRapidButtonsColumns() &&
-      this.isLandscapeOrientation.value === this.settingsService.landscapeMode()
+      this.isLandscapeOrientation.value === this.settingsService.landscapeMode() &&
+      this.modalOpacity.value === this.settingsService.modalOpacity()
     );
   }
 
@@ -140,7 +151,8 @@ export class SettingsPageComponent {
     return (
       this.numberOfRapidButtons.valid &&
       this.rapidButtonsColumns.valid &&
-      this.isLandscapeOrientation.valid
+      this.isLandscapeOrientation.valid &&
+      this.modalOpacity.valid
     );
   }
 
@@ -152,11 +164,12 @@ export class SettingsPageComponent {
     this.settingsService.setNumberOfRapidButtons(this.numberOfRapidButtons.value!);
     this.settingsService.setRapidButtonsColumns(this.rapidButtonsColumns.value!);
     this.settingsService.setLandscapeMode(this.isLandscapeOrientation.value!);
+    this.settingsService.setModalOpacity(this.modalOpacity.value!);
   }
 
   viewAboutModal() {
     this.modalService.open(AboutComponent, {
-      opacity: 0.7,
+      opacity: this.settingsService.getModalOpacity(),
       size: 'sm',
     });
   }

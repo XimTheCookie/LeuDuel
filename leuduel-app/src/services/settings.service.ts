@@ -51,6 +51,7 @@ const DEFAULT_VALUES = {
   ] as LifeAction[],
   useKeepAwake: true,
   soundsOn: true,
+  modalOpacity: 7,
 };
 
 const SETTINGS_KEY = 'settings';
@@ -65,6 +66,7 @@ interface SettingsSnapshot {
   useKeepAwake: boolean;
   soundsOn: boolean;
   landscapeMode: boolean;
+  modalOpacity: number;
 }
 
 @Injectable({
@@ -80,6 +82,7 @@ export class SettingsService {
   private useKeepAwake = signal<boolean>(DEFAULT_VALUES.useKeepAwake);
   soundsOn = signal<boolean>(DEFAULT_VALUES.soundsOn);
   landscapeMode = signal<boolean>(false);
+  modalOpacity = signal<number>(DEFAULT_VALUES.modalOpacity);
 
   constructor(private persistance: PersistanceService) {
     const injector = inject(EnvironmentInjector);
@@ -98,6 +101,7 @@ export class SettingsService {
     this.useKeepAwake.set(saved.useKeepAwake);
     this.soundsOn.set(saved.soundsOn);
     this.landscapeMode.set(saved.landscapeMode ?? false);
+    this.modalOpacity.set(saved.modalOpacity ?? 7);
   }
 
   private persist() {
@@ -111,6 +115,7 @@ export class SettingsService {
       useKeepAwake: this.useKeepAwake(),
       soundsOn: this.soundsOn(),
       landscapeMode: this.landscapeMode(),
+      modalOpacity: this.modalOpacity(),
     };
     this.persistance.save(SETTINGS_KEY, snapshot);
   }
@@ -231,6 +236,14 @@ export class SettingsService {
       updated[index] = newValues;
       return updated;
     });
+  }
+
+  setModalOpacity(value: number) {
+    this.modalOpacity.set(value);
+  }
+
+  getModalOpacity() {
+    return (this.modalOpacity() ?? 7) / 10;
   }
 
   resetRapidButtonsConfig() {

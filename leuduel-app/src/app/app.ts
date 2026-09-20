@@ -17,6 +17,7 @@ export class App {
 
   constructor() {
     this.androidManagementService.setStatusBarDark();
+    this.androidManagementService.hideStatusBar();
     effect(() => {
       this.androidManagementService.setOrientation(this.settingsService.landscapeMode());
     });

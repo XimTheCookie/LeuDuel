@@ -17,14 +17,18 @@ export class AndroidManagementService {
 
   setStatusBarDark() {
     if (Capacitor.isNativePlatform()) {
-      StatusBar.setOverlaysWebView({ overlay: true });
       StatusBar.setStyle({ style: Style.Dark });
+    }
+  }
+
+  hideStatusBar() {
+    if (Capacitor.isNativePlatform()) {
+      StatusBar.hide();
     }
   }
 
   setStatusBarLight() {
     if (Capacitor.isNativePlatform()) {
-      StatusBar.setOverlaysWebView({ overlay: true });
       StatusBar.setStyle({ style: Style.Light });
     }
   }

@@ -110,10 +110,14 @@ export class DuelControllerComponent implements AfterViewInit {
   }
 
   stopMatch() {
-    this.modalService.open(StopMatchModalComponent, { size: 'sm', opacity: 0.7 }, () => {
-      this.handleStopMatch();
-      this.soundboardService.confirmationSound();
-    });
+    this.modalService.open(
+      StopMatchModalComponent,
+      { size: 'sm', opacity: this.settingsService.getModalOpacity() },
+      () => {
+        this.handleStopMatch();
+        this.soundboardService.confirmationSound();
+      },
+    );
   }
 
   private handleStopMatch() {
@@ -129,7 +133,10 @@ export class DuelControllerComponent implements AfterViewInit {
   }
 
   resetLifePoints() {
-    this.modalService.open(LifePointsResetComponent, { size: 'sm', opacity: 0.7 });
+    this.modalService.open(LifePointsResetComponent, {
+      size: 'sm',
+      opacity: this.settingsService.getModalOpacity(),
+    });
   }
 
   openSettings() {
@@ -142,14 +149,14 @@ export class DuelControllerComponent implements AfterViewInit {
   viewLog() {
     this.modalService.open(LogsPageComponent, {
       size: 'md',
-      opacity: 0.7,
+      opacity: this.settingsService.getModalOpacity(),
     });
   }
 
   openToolsPage() {
     this.modalService.open(ToolsPageComponent, {
       size: 'full',
-      opacity: 0.7,
+      opacity: this.settingsService.getModalOpacity(),
       hideClose: true,
     });
   }
@@ -157,7 +164,7 @@ export class DuelControllerComponent implements AfterViewInit {
   openCountersPage() {
     this.modalService.open(CounterPageComponent, {
       size: 'full',
-      opacity: 0.7,
+      opacity: this.settingsService.getModalOpacity(),
       hideClose: true,
     });
   }
@@ -165,7 +172,7 @@ export class DuelControllerComponent implements AfterViewInit {
   openJudgePage() {
     this.modalService.open(JudgePageComponent, {
       size: 'full',
-      opacity: 0.7,
+      opacity: this.settingsService.getModalOpacity(),
     });
   }
 

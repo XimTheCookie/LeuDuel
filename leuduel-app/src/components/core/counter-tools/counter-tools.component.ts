@@ -31,9 +31,7 @@ export class CounterToolsComponent {
   emz = computed(() => this.toolsStore.emz());
 
   playerFz = computed(() =>
-    this.player() === 1
-      ? this.toolsStore.fz()[0]
-      : this.toolsStore.fz()[1],
+    this.player() === 1 ? this.toolsStore.fz()[0] : this.toolsStore.fz()[1],
   );
 
   private lastAction = 0;
@@ -76,7 +74,7 @@ export class CounterToolsComponent {
   }
 
   mzAdd(i: number) {
-    this.soundboardService.clickSound();
+    this.soundboardService.counterSound();
     this.toolsStore.addCounter(this.player(), 'mz', i);
   }
   mzRemove(i: number) {
@@ -84,7 +82,7 @@ export class CounterToolsComponent {
     this.toolsStore.removeCounter(this.player(), 'mz', i);
   }
   stzAdd(i: number) {
-    this.soundboardService.clickSound();
+    this.soundboardService.counterSound();
     this.toolsStore.addCounter(this.player(), 'stz', i);
   }
   stzRemove(i: number) {
@@ -92,7 +90,7 @@ export class CounterToolsComponent {
     this.toolsStore.removeCounter(this.player(), 'stz', i);
   }
   emzAdd(i: 0 | 1) {
-    this.soundboardService.clickSound();
+    this.soundboardService.counterSound();
     this.toolsStore.addEmz(i);
   }
   emzRemove(i: 0 | 1) {
@@ -100,7 +98,7 @@ export class CounterToolsComponent {
     this.toolsStore.removeEmz(i);
   }
   fzAdd() {
-    this.soundboardService.clickSound();
+    this.soundboardService.counterSound();
     this.toolsStore.addFz(this.player() === 1 ? 0 : 1);
   }
   fzRemove() {

@@ -63,9 +63,17 @@
         [canReset]="true"
         (doReset)="resetRapidButtonsColumns()"
       />
-    </div>
 
-    <div class="settings-section__fields">
+      <app-number-input
+        [formControl]="modalOpacity"
+        label="Window opacity"
+        [maxValue]="10"
+        [minValue]="6"
+        [step]="1"
+        [canReset]="true"
+        (doReset)="resetBestOf()"
+      />
+
       <label class="settings-section__toggle-row">
         <span>Landscape mode</span>
         <input

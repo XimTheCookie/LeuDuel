@@ -40,9 +40,7 @@ export class CounterToolsLandscapeComponent {
   }
 
   playerFz = computed(() =>
-    this.player() === 1
-      ? this.toolsStore.fz()[0]
-      : this.toolsStore.fz()[1],
+    this.player() === 1 ? this.toolsStore.fz()[0] : this.toolsStore.fz()[1],
   );
 
   private lastAction = 0;
@@ -85,7 +83,7 @@ export class CounterToolsLandscapeComponent {
   }
 
   mzAdd(i: number) {
-    this.soundboardService.clickSound();
+    this.soundboardService.counterSound();
     this.toolsStore.addCounter(this.player(), 'mz', i);
   }
   mzRemove(i: number) {
@@ -93,7 +91,7 @@ export class CounterToolsLandscapeComponent {
     this.toolsStore.removeCounter(this.player(), 'mz', i);
   }
   stzAdd(i: number) {
-    this.soundboardService.clickSound();
+    this.soundboardService.counterSound();
     this.toolsStore.addCounter(this.player(), 'stz', i);
   }
   stzRemove(i: number) {
@@ -101,7 +99,7 @@ export class CounterToolsLandscapeComponent {
     this.toolsStore.removeCounter(this.player(), 'stz', i);
   }
   fzAdd() {
-    this.soundboardService.clickSound();
+    this.soundboardService.counterSound();
     this.toolsStore.addFz(this.player() === 1 ? 0 : 1);
   }
   fzRemove() {

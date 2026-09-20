@@ -1,6 +1,7 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { ToolsStore } from '../../../stores/tools-store/tools.store';
 import { SettingsService } from '../../../services/settings.service';
+import { SoundboardService } from '../../../services/soundboard.service';
 
 @Component({
   selector: 'app-player-tools',
@@ -11,6 +12,7 @@ import { SettingsService } from '../../../services/settings.service';
 })
 export class PlayerToolsComponent {
   toolsStore = inject(ToolsStore);
+  private readonly soundboardService = inject(SoundboardService);
   settingsService = inject(SettingsService);
 
   player = input.required<1 | 2>();
@@ -36,6 +38,7 @@ export class PlayerToolsComponent {
 
   rollDice() {
     this.withCooldown(() => {
+      this.soundboardService.diceRollSound();
       this.toolsStore.diceRoll(this.player());
       this.diceAnimTick.update((v) => v + 1);
     });
@@ -43,6 +46,7 @@ export class PlayerToolsComponent {
 
   flipCoin() {
     this.withCooldown(() => {
+      this.soundboardService.coinFlipSound();
       this.toolsStore.coinFlip(this.player());
       this.coinAnimTick.update((v) => v + 1);
     });

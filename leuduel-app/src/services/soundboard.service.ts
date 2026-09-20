@@ -11,7 +11,7 @@ export class SoundboardService {
     if (!this.settingsService.soundsOn()) {
       return;
     }
-    const audio = new Audio(src);
+    const audio = new Audio(`audio/${src}`);
     audio.play();
   }
 
@@ -23,5 +23,17 @@ export class SoundboardService {
   }
   alarmSound() {
     this.play('alarm.wav');
+  }
+  counterSound() {
+    this.play('counter.wav');
+  }
+  lifePointsSound() {
+    this.play('lp.wav');
+  }
+  coinFlipSound() {
+    this.play('coin_flip.wav');
+  }
+  diceRollSound() {
+    this.play('dice_roll.wav');
   }
 }

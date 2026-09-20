@@ -29,7 +29,7 @@ export class DuelPageComponent {
     } else {
       this.modalService.open(
         LifePointsAdjustModalComponent,
-        { opacity: 0.8, size: 'sm' },
+        { opacity: this.settingsService.getModalOpacity(), size: 'sm' },
         { player },
       );
     }
