@@ -64,6 +64,7 @@ interface SettingsSnapshot {
   rapidButtonsConfig: LifeAction[];
   useKeepAwake: boolean;
   soundsOn: boolean;
+  landscapeMode: boolean;
 }
 
 @Injectable({
@@ -78,6 +79,7 @@ export class SettingsService {
   rapidButtonsConfig = signal<LifeAction[]>(DEFAULT_VALUES.rapidButtons);
   private useKeepAwake = signal<boolean>(DEFAULT_VALUES.useKeepAwake);
   soundsOn = signal<boolean>(DEFAULT_VALUES.soundsOn);
+  landscapeMode = signal<boolean>(false);
 
   constructor(private persistance: PersistanceService) {
     const injector = inject(EnvironmentInjector);
@@ -95,6 +97,7 @@ export class SettingsService {
     this.rapidButtonsConfig.set(saved.rapidButtonsConfig);
     this.useKeepAwake.set(saved.useKeepAwake);
     this.soundsOn.set(saved.soundsOn);
+    this.landscapeMode.set(saved.landscapeMode ?? false);
   }
 
   private persist() {
@@ -107,6 +110,7 @@ export class SettingsService {
       rapidButtonsConfig: this.rapidButtonsConfig(),
       useKeepAwake: this.useKeepAwake(),
       soundsOn: this.soundsOn(),
+      landscapeMode: this.landscapeMode(),
     };
     this.persistance.save(SETTINGS_KEY, snapshot);
   }
@@ -231,5 +235,9 @@ export class SettingsService {
 
   resetRapidButtonsConfig() {
     this.rapidButtonsConfig.set(DEFAULT_VALUES.rapidButtons);
+  }
+
+  setLandscapeMode(value: boolean) {
+    this.landscapeMode.set(value);
   }
 }

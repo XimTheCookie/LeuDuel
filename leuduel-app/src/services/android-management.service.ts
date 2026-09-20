@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { KeepAwake } from '@capacitor-community/keep-awake';
 import { Capacitor } from '@capacitor/core';
+import { ScreenOrientation } from '@capacitor/screen-orientation';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { SettingsService } from './settings.service';
 
@@ -48,6 +49,12 @@ export class AndroidManagementService {
   allowSleep() {
     if (Capacitor.isNativePlatform()) {
       KeepAwake.allowSleep();
+    }
+  }
+
+  setOrientation(landscape: boolean) {
+    if (Capacitor.isNativePlatform()) {
+      ScreenOrientation.lock({ orientation: landscape ? 'landscape' : 'portrait' });
     }
   }
 }

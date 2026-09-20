@@ -1,4 +1,4 @@
-<div class="settings-page">
+<div class="settings-page" [class.landscape]="landscapeMode()">
   <div class="settings-section">
     <h2 class="settings-section__title">Duel Settings</h2>
 
@@ -42,7 +42,7 @@
   </div>
 
   <div class="settings-section">
-    <h2 class="settings-section__title">Rapid Buttons</h2>
+    <h2 class="settings-section__title">GUI Preferences</h2>
 
     <div class="settings-section__fields">
       <app-number-input
@@ -65,17 +65,24 @@
       />
     </div>
 
+    <div class="settings-section__fields">
+      <label class="settings-section__toggle-row">
+        <span>Landscape mode</span>
+        <input
+          type="checkbox"
+          [checked]="isLandscapeOrientation.value!"
+          (change)="isLandscapeOrientation.setValue($any($event.target).checked)"
+        />
+      </label>
+    </div>
+
     <div class="settings-section__footer">
       <app-text-button
-        (clicked)="saveRapidButtonsSettings()"
-        [isDisabled]="!rapidButtonsSettingsValid()"
+        (clicked)="saveGuiPreferences()"
+        [isDisabled]="!guiPreferencesValid()"
         label="Save changes"
         [tone]="
-          !rapidButtonsSettingsValid()
-            ? 'warning'
-            : rapidButtonsSettingsUnchanged()
-              ? 'neutral'
-              : 'positive'
+          !guiPreferencesValid() ? 'warning' : guiPreferencesUnchanged() ? 'neutral' : 'positive'
         "
       />
     </div>
@@ -108,7 +115,7 @@
     </div>
   }
 
-  <div class="settings-section__about-footer">
+  <div class="settings-section__about-footer" [class.landscape]="landscapeMode()">
     <app-text-button (clicked)="viewAboutModal()" label="About" tone="neutral" />
   </div>
 </div>

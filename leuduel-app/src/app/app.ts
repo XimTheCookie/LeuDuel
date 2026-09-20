@@ -1,9 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { DuelPageComponent } from '../pages/duel-page/duel-page.component';
-import { Capacitor } from '@capacitor/core';
-import { StatusBar, Style } from '@capacitor/status-bar';
-import { KeepAwake } from '@capacitor-community/keep-awake';
 import { AndroidManagementService } from '../services/android-management.service';
+import { SettingsService } from '../services/settings.service';
 
 @Component({
   imports: [DuelPageComponent],
@@ -15,8 +13,12 @@ export class App {
   protected readonly title = signal('leuduel-app');
 
   private readonly androidManagementService = inject(AndroidManagementService);
+  private readonly settingsService = inject(SettingsService);
 
   constructor() {
     this.androidManagementService.setStatusBarDark();
+    effect(() => {
+      this.androidManagementService.setOrientation(this.settingsService.landscapeMode());
+    });
   }
 }

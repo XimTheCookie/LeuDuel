@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NumberInputComponent } from '../../components/common/number-input/number-input.component';
 import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
@@ -28,6 +28,10 @@ export class SettingsPageComponent {
 
   keepAwake = new FormControl<boolean>({ value: false, disabled: true });
 
+  isLandscapeOrientation = new FormControl<boolean>(this.settingsService.landscapeMode());
+
+  landscapeMode = computed(() => this.settingsService.landscapeMode());
+
   constructor() {
     if (this.isAndroid) {
       this.androidService.isKeepAwakeAllowed().then((supported) => {
@@ -47,9 +51,9 @@ export class SettingsPageComponent {
   }
 
   saveKeepAwake() {
+    this.soundboardService.confirmationSound();
     this.settingsService.setKeepAwake(!!this.keepAwake.value);
     this.keepAwakeSavedValue.set(!!this.keepAwake.value);
-    this.soundboardService.confirmationSound();
   }
 
   lifePoints = new FormControl<number>(this.settingsService.getStartingLifePoints(), [
@@ -110,10 +114,10 @@ export class SettingsPageComponent {
     if (!this.duelSettingsValid() || this.duelSettingsUnchanged()) {
       return;
     }
+    this.soundboardService.confirmationSound();
     this.settingsService.setStartingLifePoints(this.lifePoints.value!);
     this.settingsService.setDuelDuration(this.duration.value!);
     this.settingsService.setNumberOfGames(this.bestOf.value!);
-    this.soundboardService.confirmationSound();
   }
 
   resetRapidButtons() {
@@ -124,24 +128,30 @@ export class SettingsPageComponent {
     this.rapidButtonsColumns.setValue(this.settingsService.getRapidButtonsColumns());
   }
 
-  rapidButtonsSettingsUnchanged() {
+  guiPreferencesUnchanged() {
     return (
       this.numberOfRapidButtons.value === this.settingsService.getNumberOfRapidButtons() &&
-      this.rapidButtonsColumns.value === this.settingsService.getRapidButtonsColumns()
+      this.rapidButtonsColumns.value === this.settingsService.getRapidButtonsColumns() &&
+      this.isLandscapeOrientation.value === this.settingsService.landscapeMode()
     );
   }
 
-  rapidButtonsSettingsValid() {
-    return this.numberOfRapidButtons.valid && this.rapidButtonsColumns.valid;
+  guiPreferencesValid() {
+    return (
+      this.numberOfRapidButtons.valid &&
+      this.rapidButtonsColumns.valid &&
+      this.isLandscapeOrientation.valid
+    );
   }
 
-  saveRapidButtonsSettings() {
-    if (this.rapidButtonsSettingsUnchanged() || !this.rapidButtonsSettingsValid()) {
+  saveGuiPreferences() {
+    if (this.guiPreferencesUnchanged() || !this.guiPreferencesValid()) {
       return;
     }
+    this.soundboardService.confirmationSound();
     this.settingsService.setNumberOfRapidButtons(this.numberOfRapidButtons.value!);
     this.settingsService.setRapidButtonsColumns(this.rapidButtonsColumns.value!);
-    this.soundboardService.confirmationSound();
+    this.settingsService.setLandscapeMode(this.isLandscapeOrientation.value!);
   }
 
   viewAboutModal() {
