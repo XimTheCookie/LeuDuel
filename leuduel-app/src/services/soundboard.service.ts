@@ -30,6 +30,12 @@ export class SoundboardService {
   lifePointsSound() {
     this.play('lp.wav');
   }
+  lifePointsChange() {
+    this.play('lp_change.wav');
+  }
+  lifePointsSet() {
+    this.play('lp_set.wav');
+  }
   coinFlipSound() {
     this.play('coin_flip.wav');
   }

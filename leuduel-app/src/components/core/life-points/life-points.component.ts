@@ -23,6 +23,7 @@ export class LifePointsComponent {
   private animTarget = 0;
   private animStart = 0;
   private rafId = 0;
+  private changeAudio: HTMLAudioElement | null = null;
   private ready = false;
 
   constructor() {
@@ -42,26 +43,39 @@ export class LifePointsComponent {
       untracked(() => {
         this.gaining.set(next > current);
         if (!this.animating()) {
-          this.soundboardService.lifePointsSound();
+          this.startSoundLoop();
           this.animating.set(true);
         }
       });
 
       cancelAnimationFrame(this.rafId);
       this.animStart = performance.now();
-      this.animate();
+      const duration = Math.abs(next - current) < 100 ? 500 : ANIM_DURATION;
+      this.animate(duration);
     });
   }
 
-  private animate() {
+  private startSoundLoop() {
+    this.changeAudio = new Audio('audio/lp_change.wav');
+    this.changeAudio.play();
+  }
+
+  private stopSoundLoop() {
+    this.changeAudio?.pause();
+    this.changeAudio = null;
+    this.soundboardService.lifePointsSet();
+  }
+
+  private animate(duration: number) {
     this.rafId = requestAnimationFrame((now) => {
-      const t = Math.min((now - this.animStart) / ANIM_DURATION, 1);
+      const t = Math.min((now - this.animStart) / duration, 1);
       const eased = t < 1 ? 1 - Math.pow(1 - t, 3) : 1;
       this.displayValue.set(Math.round(this.animFrom + (this.animTarget - this.animFrom) * eased));
 
       if (t < 1) {
-        this.animate();
+        this.animate(duration);
       } else {
+        this.stopSoundLoop();
         this.animating.set(false);
       }
     });
