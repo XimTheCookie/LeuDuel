@@ -1,5 +1,6 @@
 import { Component, effect, inject, input, signal, untracked } from '@angular/core';
 import { SoundboardService } from '../../../services/soundboard.service';
+import { SettingsService } from '../../../services/settings.service';
 
 const ANIM_DURATION = 1500;
 
@@ -10,6 +11,7 @@ const ANIM_DURATION = 1500;
   standalone: true,
 })
 export class LifePointsComponent {
+  private readonly settingsService = inject(SettingsService);
   private readonly soundboardService = inject(SoundboardService);
 
   lifePoints = input<number>();
@@ -53,9 +55,16 @@ export class LifePointsComponent {
       const duration = Math.abs(next - current) < 100 ? 500 : ANIM_DURATION;
       this.animate(duration);
     });
+
+    effect(() => {
+      if (!this.settingsService.soundsOn() && this.changeAudio) {
+        this.stopSoundLoop();
+      }
+    });
   }
 
   private startSoundLoop() {
+    if (!this.settingsService.soundsOn()) return;
     this.changeAudio = new Audio('audio/lp_change.wav');
     this.changeAudio.play();
   }
