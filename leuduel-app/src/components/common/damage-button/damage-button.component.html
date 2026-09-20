@@ -1,5 +1,6 @@
 <button
   class="damage-button"
+  [class.damage-button--full-height]="fullHeight()"
   [class.damage-button--damage]="type() === 'damage'"
   [class.damage-button--heal]="type() === 'heal'"
   [class.damage-button--divide]="type() === 'divide'"

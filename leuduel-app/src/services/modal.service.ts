@@ -6,6 +6,7 @@ import {
   MODAL_DATA,
 } from '../components/common/modal-generic/modal-generic.component';
 import { AndroidNavigationService } from './android-navigation.service';
+import { AndroidManagementService } from './android-management.service';
 
 export const MODAL_COMPONENT_DATA = new InjectionToken<unknown>('MODAL_COMPONENT_DATA');
 
@@ -31,7 +32,8 @@ const SIZE_STYLES: Record<ModalConfig['size'], { width: string; height?: string 
 
 @Injectable({ providedIn: 'root' })
 export class ModalService {
-  private androidNavigationService = inject(AndroidNavigationService);
+  private readonly androidNavigationService = inject(AndroidNavigationService);
+  private readonly androidManagementService = inject(AndroidManagementService);
 
   constructor(
     private overlay: Overlay,
@@ -40,7 +42,7 @@ export class ModalService {
 
   open<T>(component: Type<T>, config: ModalConfig, componentData?: unknown): ModalRef {
     const { width, height } = SIZE_STYLES[config.size];
-
+    this.androidManagementService.hideStatusBar();
     const overlayRef = this.overlay.create({
       width,
       height,

@@ -24,7 +24,7 @@ export class CounterPageComponent {
   }
 
   onEmzPress(i: 0 | 1, event: MouseEvent | TouchEvent) {
-    this.soundboardService.clickSound();
+    this.soundboardService.counterSound();
     event.preventDefault();
     if (event instanceof MouseEvent && event.button === 2) {
       this.toolsStore.removeEmz(i);
@@ -34,6 +34,7 @@ export class CounterPageComponent {
   }
 
   onEmzContextMenu(i: 0 | 1, event: MouseEvent) {
+    this.soundboardService.clickSound();
     event.preventDefault();
     this.toolsStore.removeEmz(i);
   }

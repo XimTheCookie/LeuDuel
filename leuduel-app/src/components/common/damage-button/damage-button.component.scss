@@ -68,6 +68,10 @@
   --accent-bg: rgba(250, 204, 21, 0.12);
 }
 
+.damage-button--full-height {
+  height: 100%;
+}
+
 .damage-button--set {
   --accent: #60a5fa;
   --accent-bg: rgba(96, 165, 250, 0.12);

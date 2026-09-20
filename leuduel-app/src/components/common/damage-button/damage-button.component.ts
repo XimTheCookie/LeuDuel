@@ -14,6 +14,7 @@ export class DamageButtonComponent {
   player = input.required<'player1' | 'player2'>();
   change = input.required<number>();
   type = input.required<LifeAction['type']>();
+  fullHeight = input(false);
 
   private readonly duelStore = inject(DuelStore);
   private readonly coolingDown = signal(false);

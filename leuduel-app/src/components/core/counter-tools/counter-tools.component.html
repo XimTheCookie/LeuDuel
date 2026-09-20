@@ -3,11 +3,8 @@
     <button
       class="ct__btn"
       type="button"
-      (mousedown)="onPress()"
-      (touchstart)="onPress(); $event.preventDefault()"
-      (mouseup)="onRelease(fzAdd.bind(this), fzRemove.bind(this), $event)"
-      (touchend)="onRelease(fzAdd.bind(this), fzRemove.bind(this), $event)"
-      (contextmenu)="onContextMenu(fzRemove.bind(this), $event)"
+      (click)="fzAdd()"
+      (contextmenu)="fzRemove(); $event.preventDefault()"
     >
       {{ playerFz() }}
     </button>
@@ -15,11 +12,8 @@
       <button
         class="ct__btn"
         type="button"
-        (mousedown)="onPress()"
-        (touchstart)="onPress(); $event.preventDefault()"
-        (mouseup)="onRelease(mzAdd.bind(this, i), mzRemove.bind(this, i), $event)"
-        (touchend)="onRelease(mzAdd.bind(this, i), mzRemove.bind(this, i), $event)"
-        (contextmenu)="onContextMenu(mzRemove.bind(this, i), $event)"
+        (click)="mzAdd(i)"
+        (contextmenu)="mzRemove(i); $event.preventDefault()"
       >
         {{ mz }}
       </button>
@@ -32,11 +26,8 @@
       <button
         class="ct__btn"
         type="button"
-        (mousedown)="onPress()"
-        (touchstart)="onPress(); $event.preventDefault()"
-        (mouseup)="onRelease(stzAdd.bind(this, i), stzRemove.bind(this, i), $event)"
-        (touchend)="onRelease(stzAdd.bind(this, i), stzRemove.bind(this, i), $event)"
-        (contextmenu)="onContextMenu(stzRemove.bind(this, i), $event)"
+        (click)="stzAdd(i)"
+        (contextmenu)="stzRemove(i); $event.preventDefault()"
       >
         {{ stz }}
       </button>

@@ -27,6 +27,7 @@ export class PlayerPanelComponent {
   player = input.required<'player1' | 'player2'>();
   rapidButtons = computed(() => this.settingsService.rapidButtonsConfig());
   numberOfColumns = computed(() => this.settingsService.rapidButtonsColumns());
+  numberOfRows = computed(() => Math.max(3, Math.ceil(this.rapidButtons().length / this.numberOfColumns())));
 
   duelStore = inject(DuelStore);
 

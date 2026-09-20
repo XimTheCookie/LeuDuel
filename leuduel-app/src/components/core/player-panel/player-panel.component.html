@@ -10,12 +10,14 @@
     [class.actions-grid__cols-one]="numberOfColumns() === 1"
     [class.actions-grid__cols-two]="numberOfColumns() === 2"
     [class.actions-grid__cols-three]="numberOfColumns() === 3"
+    [style.grid-template-rows]="'repeat(' + numberOfRows() + ', 1fr)'"
   >
     @for (damage of rapidButtons(); track i; let i = $index) {
       <app-damage-button
         [player]="player()"
         [change]="damage.change"
         [type]="damage.type"
+        [fullHeight]="true"
         (doModify)="doModify(i)"
       ></app-damage-button>
     }
