@@ -12,6 +12,7 @@ import { JudgePageComponent } from '../../../pages/judge-page/judge-page.compone
 import { AndroidManagementService } from '../../../services/android-management.service';
 import { SettingsService } from '../../../services/settings.service';
 import { SoundboardService } from '../../../services/soundboard.service';
+import { CounterPageComponent } from '../../../pages/counter-page/counter-page.component';
 
 @Component({
   selector: 'app-duel-controller',
@@ -147,6 +148,14 @@ export class DuelControllerComponent implements AfterViewInit {
 
   openToolsPage() {
     this.modalService.open(ToolsPageComponent, {
+      size: 'full',
+      opacity: 0.7,
+      hideClose: true,
+    });
+  }
+
+  openCountersPage() {
+    this.modalService.open(CounterPageComponent, {
       size: 'full',
       opacity: 0.7,
       hideClose: true,

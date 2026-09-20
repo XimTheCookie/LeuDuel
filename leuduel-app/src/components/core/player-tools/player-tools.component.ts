@@ -1,5 +1,6 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { ToolsStore } from '../../../stores/tools-store/tools.store';
+import { SettingsService } from '../../../services/settings.service';
 
 @Component({
   selector: 'app-player-tools',
@@ -10,6 +11,7 @@ import { ToolsStore } from '../../../stores/tools-store/tools.store';
 })
 export class PlayerToolsComponent {
   toolsStore = inject(ToolsStore);
+  settingsService = inject(SettingsService);
 
   player = input.required<1 | 2>();
 

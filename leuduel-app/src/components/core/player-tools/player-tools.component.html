@@ -1,5 +1,8 @@
 <div class="player-tools">
-  <div class="player-tools-container">
+  <div
+    class="player-tools-container"
+    [class.lid]="player() === 2 && settingsService.landscapeMode()"
+  >
     <div class="tool-section">
       @if (diceRolls().length > 0) {
         @if (diceRolls().length > 1) {

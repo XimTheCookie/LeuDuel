@@ -56,7 +56,7 @@
       />
       <app-number-input
         [formControl]="rapidButtonsColumns"
-        label="Number of columns"
+        [label]="isLandscapeOrientation.value ? 'Number of rows' : 'Number of columns'"
         [maxValue]="3"
         [minValue]="1"
         [step]="1"

@@ -1,0 +1,117 @@
+<div class="ctl" [class.p2]="player() === 2">
+  @if (player() === 1) {
+    <div class="ctl__field">
+      <div class="ctl__btn"></div>
+      @for (mz of playerMzReversed(); let i = $index; track i) {
+        <button
+          class="ctl__btn"
+          type="button"
+          (mousedown)="onPress()"
+          (touchstart)="onPress(); $event.preventDefault()"
+          (mouseup)="
+            onRelease(
+              mzAdd.bind(this, reversedMzIndex(i)),
+              mzRemove.bind(this, reversedMzIndex(i)),
+              $event
+            )
+          "
+          (touchend)="
+            onRelease(
+              mzAdd.bind(this, reversedMzIndex(i)),
+              mzRemove.bind(this, reversedMzIndex(i)),
+              $event
+            )
+          "
+          (contextmenu)="onContextMenu(mzRemove.bind(this, reversedMzIndex(i)), $event)"
+        >
+          {{ mz }}
+        </button>
+      }
+      <button
+        class="ctl__btn"
+        type="button"
+        (mousedown)="onPress()"
+        (touchstart)="onPress(); $event.preventDefault()"
+        (mouseup)="onRelease(fzAdd.bind(this), fzRemove.bind(this), $event)"
+        (touchend)="onRelease(fzAdd.bind(this), fzRemove.bind(this), $event)"
+        (contextmenu)="onContextMenu(fzRemove.bind(this), $event)"
+      >
+        {{ playerFz() }}
+      </button>
+    </div>
+    <div class="ctl__field">
+      <div class="ctl__btn"></div>
+      @for (stz of playerStzReversed(); let i = $index; track i) {
+        <button
+          class="ctl__btn"
+          type="button"
+          (mousedown)="onPress()"
+          (touchstart)="onPress(); $event.preventDefault()"
+          (mouseup)="
+            onRelease(
+              stzAdd.bind(this, reversedStzIndex(i)),
+              stzRemove.bind(this, reversedStzIndex(i)),
+              $event
+            )
+          "
+          (touchend)="
+            onRelease(
+              stzAdd.bind(this, reversedStzIndex(i)),
+              stzRemove.bind(this, reversedStzIndex(i)),
+              $event
+            )
+          "
+          (contextmenu)="onContextMenu(stzRemove.bind(this, reversedStzIndex(i)), $event)"
+        >
+          {{ stz }}
+        </button>
+      }
+      <div class="ctl__btn"></div>
+    </div>
+  } @else {
+    <div class="ctl__field">
+      <div class="ctl__btn"></div>
+      @for (stz of playerStz(); let i = $index; track i) {
+        <button
+          class="ctl__btn"
+          type="button"
+          (mousedown)="onPress()"
+          (touchstart)="onPress(); $event.preventDefault()"
+          (mouseup)="onRelease(stzAdd.bind(this, i), stzRemove.bind(this, i), $event)"
+          (touchend)="onRelease(stzAdd.bind(this, i), stzRemove.bind(this, i), $event)"
+          (contextmenu)="onContextMenu(stzRemove.bind(this, i), $event)"
+        >
+          {{ stz }}
+        </button>
+      }
+      <div class="ctl__btn"></div>
+    </div>
+    <div class="ctl__field">
+      <button
+        class="ctl__btn"
+        type="button"
+        (mousedown)="onPress()"
+        (touchstart)="onPress(); $event.preventDefault()"
+        (mouseup)="onRelease(fzAdd.bind(this), fzRemove.bind(this), $event)"
+        (touchend)="onRelease(fzAdd.bind(this), fzRemove.bind(this), $event)"
+        (contextmenu)="onContextMenu(fzRemove.bind(this), $event)"
+      >
+        {{ playerFz() }}
+      </button>
+      @for (mz of playerMz(); let i = $index; track i) {
+        <button
+          class="ctl__btn"
+          type="button"
+          (mousedown)="onPress()"
+          (touchstart)="onPress(); $event.preventDefault()"
+          (mouseup)="onRelease(mzAdd.bind(this, i), mzRemove.bind(this, i), $event)"
+          (touchend)="onRelease(mzAdd.bind(this, i), mzRemove.bind(this, i), $event)"
+          (contextmenu)="onContextMenu(mzRemove.bind(this, i), $event)"
+        >
+          {{ mz }}
+        </button>
+      }
+      <div class="ctl__btn"></div>
+    </div>
+  }
+</div>

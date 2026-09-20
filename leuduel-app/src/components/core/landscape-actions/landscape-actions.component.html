@@ -1,0 +1,15 @@
+<div
+  class="landscape-actions__grid"
+  [class.landscape-actions__grid--cols-one]="numberOfColumns() === 1"
+  [class.landscape-actions__grid--cols-two]="numberOfColumns() === 2"
+  [class.landscape-actions__grid--cols-three]="numberOfColumns() === 3"
+>
+  @for (damage of rapidButtons(); track i; let i = $index) {
+    <app-damage-button
+      [player]="selectedPlayer()"
+      [change]="damage.change"
+      [type]="damage.type"
+      (doModify)="doModify(i)"
+    ></app-damage-button>
+  }
+</div>

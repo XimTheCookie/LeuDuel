@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MODAL_DATA } from '../../components/common/modal-generic/modal-generic.component';
 import { PlayerToolsComponent } from '../../components/core/player-tools/player-tools.component';
-import { ModalService } from '../../services/modal.service';
-import { CounterPageComponent } from '../counter-page/counter-page.component';
+import { SettingsService } from '../../services/settings.service';
 
 @Component({
   selector: 'app-tools-page',
@@ -13,15 +12,7 @@ import { CounterPageComponent } from '../counter-page/counter-page.component';
 })
 export class ToolsPageComponent {
   private readonly modalData = inject(MODAL_DATA);
-  private readonly modalService = inject(ModalService);
-
-  openCounterPage() {
-    this.modalService.open(CounterPageComponent, {
-      size: 'full',
-      opacity: 0.7,
-      hideClose: true,
-    });
-  }
+  readonly settingsService = inject(SettingsService);
 
   close() {
     this.modalData.overlayRef.dispose();

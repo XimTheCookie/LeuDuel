@@ -10,9 +10,95 @@
   width: 100%;
   height: 100%;
   background: var(--bg-deep);
+
+  &--landscape {
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 .duel-page__panel {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+// Landscape layout
+.duel-page__lp-row {
+  display: flex;
+  align-items: stretch;
+  min-height: 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.duel-page__controller {
+  align-self: center;
+}
+
+.duel-page__lp-cell {
+  flex: 0 0 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border-subtle);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
+
+  &--right {
+    border-right: none;
+    border-left: 1px solid var(--border-subtle);
+  }
+
+  &--selected {
+    background: linear-gradient(135deg, var(--bg-panel) 0%, rgba(201, 168, 76, 0.15) 100%);
+    border-color: var(--gold);
+
+    .duel-page__lp-value {
+      color: var(--gold-light);
+      text-shadow:
+        0 0 20px var(--gold-glow),
+        0 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .duel-page__lp-label {
+      opacity: 1;
+    }
+  }
+}
+
+.duel-page__lp-value {
+  font-family: var(--font-lp);
+  font-size: clamp(1rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--lp-color);
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    color 200ms ease,
+    text-shadow 200ms ease;
+  text-shadow:
+    0 0 30px rgba(180, 210, 255, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.duel-page__lp-label {
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  text-shadow: 0 0 10px var(--gold-glow);
+}
+
+.duel-page__landscape-actions {
   flex: 1;
   min-height: 0;
   overflow: hidden;

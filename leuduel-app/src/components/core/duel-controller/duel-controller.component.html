@@ -56,7 +56,10 @@
     </div>
 
     <div class="controller__extra-actions">
-      <app-button icon="dices" size="xs" tone="neutral" (clicked)="openToolsPage()" />
+      <div class="controller__side-settings">
+        <app-button icon="dices" size="xs" tone="neutral" (clicked)="openToolsPage()" />
+        <app-button icon="coins" size="xs" tone="neutral" (clicked)="openCountersPage()" />
+      </div>
       <div class="controller__side-settings">
         <app-button
           (clicked)="openSettings()"

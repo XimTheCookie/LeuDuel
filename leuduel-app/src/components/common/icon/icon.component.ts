@@ -5,6 +5,7 @@ import {
   LucideBan,
   LucideBookOpen,
   LucideCheck,
+  LucideCoins,
   LucideDices,
   LucideDynamicIcon,
   LucideHeartPulse,
@@ -74,6 +75,8 @@ export class IconComponent {
         return LucideVolume2;
       case 'volume-off':
         return LucideVolumeOff;
+      case 'coins':
+        return LucideCoins;
     }
     return LucideX;
   });

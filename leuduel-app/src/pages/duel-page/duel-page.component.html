@@ -1,9 +1,34 @@
-<div class="duel-page">
-  <div class="duel-page__panel duel-page__panel--opponent mirror">
-    <app-player-panel player="player2"></app-player-panel>
+@if (settingsService.landscapeMode()) {
+  <div class="duel-page duel-page--landscape">
+    <div class="duel-page__lp-row">
+      <div
+        class="duel-page__lp-cell"
+        [class.duel-page__lp-cell--selected]="selectedPlayer() === 'player1'"
+        (click)="onLpClick('player1')"
+      >
+        <span class="duel-page__lp-value">{{ lifePoints1() }}</span>
+        <span class="duel-page__lp-label">LP</span>
+      </div>
+      <app-duel-controller class="duel-page__controller" />
+      <div
+        class="duel-page__lp-cell duel-page__lp-cell--right"
+        [class.duel-page__lp-cell--selected]="selectedPlayer() === 'player2'"
+        (click)="onLpClick('player2')"
+      >
+        <span class="duel-page__lp-value">{{ lifePoints2() }}</span>
+        <span class="duel-page__lp-label">LP</span>
+      </div>
+    </div>
+    <app-landscape-actions class="duel-page__landscape-actions" [selectedPlayer]="selectedPlayer()" />
   </div>
-  <app-duel-controller />
-  <div class="duel-page__panel">
-    <app-player-panel player="player1"></app-player-panel>
+} @else {
+  <div class="duel-page">
+    <div class="duel-page__panel duel-page__panel--opponent mirror">
+      <app-player-panel player="player2"></app-player-panel>
+    </div>
+    <app-duel-controller />
+    <div class="duel-page__panel">
+      <app-player-panel player="player1"></app-player-panel>
+    </div>
   </div>
-</div>
+}

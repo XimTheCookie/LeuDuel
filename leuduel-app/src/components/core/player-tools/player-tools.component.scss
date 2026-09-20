@@ -23,6 +23,10 @@
   flex: 1;
   padding: 0.5rem;
 
+  &.lid {
+    flex-direction: row-reverse;
+  }
+
   &.btm-ctn {
     height: 100%;
   }

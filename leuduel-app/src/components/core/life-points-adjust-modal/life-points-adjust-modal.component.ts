@@ -6,6 +6,7 @@ import {
 } from '../../common/modal-generic/modal-generic.component';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
 import { SoundboardService } from '../../../services/soundboard.service';
+import { SettingsService } from '../../../services/settings.service';
 
 type Op = 'damage' | 'heal';
 
@@ -18,6 +19,7 @@ type Op = 'damage' | 'heal';
 })
 export class LifePointsAdjustModalComponent {
   private readonly soundboardService = inject(SoundboardService);
+  readonly settingsService = inject(SettingsService);
   duelStore = inject(DuelStore);
 
   player: 'player1' | 'player2';

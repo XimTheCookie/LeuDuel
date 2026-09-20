@@ -1,11 +1,11 @@
-<div class="tools-page">
-  <div class="tools-page__zone mirror">
+<div class="tools-page" [class.tools-page--landscape]="settingsService.landscapeMode()">
+  <div class="tools-page__zone" [class.mirror]="!settingsService.landscapeMode()">
     <app-player-tools [player]="2" />
   </div>
 
   <div class="tools-page__divider">
     <div class="tools-page__emz">
-      <button class="tools-page__emz-btn" (click)="openCounterPage()">⚔</button>
+      <div></div>
       <div></div>
       <div></div>
       <button class="tools-page__close" (click)="close()">✕</button>

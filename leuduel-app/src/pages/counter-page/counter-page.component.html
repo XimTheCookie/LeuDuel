@@ -1,6 +1,10 @@
-<div class="counter-page">
-  <div class="counter-page__zone mirror">
-    <app-counter-tools class="w-full" [player]="2" />
+<div class="counter-page" [class.counter-page--landscape]="settingsService.landscapeMode()">
+  <div class="counter-page__zone" [class.mirror]="!settingsService.landscapeMode()">
+    @if (settingsService.landscapeMode()) {
+      <app-counter-tools-landscape class="w-full h-full" [player]="2" />
+    } @else {
+      <app-counter-tools class="w-full" [player]="2" />
+    }
   </div>
 
   <div class="counter-page__divider">
@@ -28,6 +32,10 @@
   </div>
 
   <div class="counter-page__zone">
-    <app-counter-tools class="w-full" [player]="1" />
+    @if (settingsService.landscapeMode()) {
+      <app-counter-tools-landscape class="w-full h-full" [player]="1" />
+    } @else {
+      <app-counter-tools class="w-full" [player]="1" />
+    }
   </div>
 </div>

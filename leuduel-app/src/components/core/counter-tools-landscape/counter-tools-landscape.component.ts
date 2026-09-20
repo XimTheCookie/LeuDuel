@@ -1,0 +1,111 @@
+import { Component, computed, inject, input } from '@angular/core';
+import { ToolsStore } from '../../../stores/tools-store/tools.store';
+import { SoundboardService } from '../../../services/soundboard.service';
+
+const COOLDOWN_MS = 50;
+
+@Component({
+  selector: 'app-counter-tools-landscape',
+  templateUrl: './counter-tools-landscape.component.html',
+  styleUrls: ['./counter-tools-landscape.component.scss'],
+  standalone: true,
+})
+export class CounterToolsLandscapeComponent {
+  private soundboardService = inject(SoundboardService);
+  toolsStore = inject(ToolsStore);
+
+  player = input.required<1 | 2>();
+
+  playerMz = computed(() =>
+    this.player() === 1
+      ? this.toolsStore.player1counters().mz
+      : this.toolsStore.player2counters().mz,
+  );
+
+  playerStz = computed(() =>
+    this.player() === 1
+      ? this.toolsStore.player1counters().stz
+      : this.toolsStore.player2counters().stz,
+  );
+
+  playerMzReversed = computed(() => [...this.playerMz()].reverse());
+  playerStzReversed = computed(() => [...this.playerStz()].reverse());
+
+  reversedMzIndex(reversedI: number) {
+    return this.playerMz().length - 1 - reversedI;
+  }
+
+  reversedStzIndex(reversedI: number) {
+    return this.playerStz().length - 1 - reversedI;
+  }
+
+  playerFz = computed(() =>
+    this.player() === 1
+      ? this.toolsStore.fz()[0]
+      : this.toolsStore.fz()[1],
+  );
+
+  private lastAction = 0;
+  private longPressTimer: ReturnType<typeof setTimeout> | null = null;
+
+  private canAct(): boolean {
+    const now = Date.now();
+    if (now - this.lastAction < COOLDOWN_MS) return false;
+    this.lastAction = now;
+    return true;
+  }
+
+  onPress(): void {
+    this.longPressTimer = setTimeout(() => {
+      this.longPressTimer = null;
+    }, 500);
+  }
+
+  onRelease(addAction: () => void, removeAction: () => void, event: MouseEvent | TouchEvent): void {
+    event.preventDefault();
+    if (event instanceof MouseEvent && event.button === 2) return;
+    if (!this.canAct()) return;
+    if (this.longPressTimer !== null) {
+      clearTimeout(this.longPressTimer);
+      this.longPressTimer = null;
+      addAction();
+    } else {
+      removeAction();
+    }
+  }
+
+  onContextMenu(removeAction: () => void, event: MouseEvent): void {
+    event.preventDefault();
+    if (!this.canAct()) return;
+    if (this.longPressTimer !== null) {
+      clearTimeout(this.longPressTimer);
+      this.longPressTimer = null;
+    }
+    removeAction();
+  }
+
+  mzAdd(i: number) {
+    this.soundboardService.clickSound();
+    this.toolsStore.addCounter(this.player(), 'mz', i);
+  }
+  mzRemove(i: number) {
+    this.soundboardService.clickSound();
+    this.toolsStore.removeCounter(this.player(), 'mz', i);
+  }
+  stzAdd(i: number) {
+    this.soundboardService.clickSound();
+    this.toolsStore.addCounter(this.player(), 'stz', i);
+  }
+  stzRemove(i: number) {
+    this.soundboardService.clickSound();
+    this.toolsStore.removeCounter(this.player(), 'stz', i);
+  }
+  fzAdd() {
+    this.soundboardService.clickSound();
+    this.toolsStore.addFz(this.player() === 1 ? 0 : 1);
+  }
+  fzRemove() {
+    this.soundboardService.clickSound();
+    this.toolsStore.removeFz(this.player() === 1 ? 0 : 1);
+  }
+}
