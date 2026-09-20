@@ -5,25 +5,13 @@
 
   <div class="tools-page__divider">
     <div class="tools-page__emz">
-      <div class="tools-page__emz-btn"></div>
+      <button class="tools-page__emz-btn" (click)="openCounterPage()">⚔</button>
       <div></div>
-      <button
-        class="tools-page__emz-btn"
-        (click)="onEmzPress(0, $event)"
-        (contextmenu)="onEmzContextMenu(0, $event)"
-      >
-        {{ emz()[0] }}
-      </button>
+      <div></div>
       <button class="tools-page__close" (click)="close()">✕</button>
-      <button
-        class="tools-page__emz-btn"
-        (click)="onEmzPress(1, $event)"
-        (contextmenu)="onEmzContextMenu(1, $event)"
-      >
-        {{ emz()[1] }}
-      </button>
       <div></div>
-      <div class="tools-page__emz-btn"></div>
+      <div></div>
+      <div></div>
     </div>
   </div>
 

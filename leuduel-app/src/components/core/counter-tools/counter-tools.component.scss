@@ -1,15 +1,14 @@
 .ct {
-  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  padding: 0.3rem 0.5rem;
 
   &__field {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0.25rem;
-    flex: 1;
   }
 
   &__btn {

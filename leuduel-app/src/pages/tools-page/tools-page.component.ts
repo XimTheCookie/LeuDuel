@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { MODAL_DATA } from '../../components/common/modal-generic/modal-generic.component';
 import { PlayerToolsComponent } from '../../components/core/player-tools/player-tools.component';
-import { ToolsStore } from '../../stores/tools-store/tools.store';
-import { SoundboardService } from '../../services/soundboard.service';
+import { ModalService } from '../../services/modal.service';
+import { CounterPageComponent } from '../counter-page/counter-page.component';
 
 @Component({
   selector: 'app-tools-page',
@@ -13,26 +13,14 @@ import { SoundboardService } from '../../services/soundboard.service';
 })
 export class ToolsPageComponent {
   private readonly modalData = inject(MODAL_DATA);
-  private readonly soundboardService = inject(SoundboardService);
-  readonly toolsStore = inject(ToolsStore);
+  private readonly modalService = inject(ModalService);
 
-  emz() {
-    return this.toolsStore.emz();
-  }
-
-  onEmzPress(i: 0 | 1, event: MouseEvent | TouchEvent) {
-    this.soundboardService.clickSound();
-    event.preventDefault();
-    if (event instanceof MouseEvent && event.button === 2) {
-      this.toolsStore.removeEmz(i);
-    } else {
-      this.toolsStore.addEmz(i);
-    }
-  }
-
-  onEmzContextMenu(i: 0 | 1, event: MouseEvent) {
-    event.preventDefault();
-    this.toolsStore.removeEmz(i);
+  openCounterPage() {
+    this.modalService.open(CounterPageComponent, {
+      size: 'full',
+      opacity: 0.7,
+      hideClose: true,
+    });
   }
 
   close() {

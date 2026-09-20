@@ -71,7 +71,7 @@
           [icon]="settingsService.soundsOn() ? 'volume' : 'volume-off'"
           label="Settings"
           size="xs"
-          tone="neutral"
+          [tone]="settingsService.soundsOn() ? 'neutral' : 'negative'"
         />
       </div>
     </div>

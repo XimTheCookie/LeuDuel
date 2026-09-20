@@ -1,0 +1,33 @@
+<div class="counter-page">
+  <div class="counter-page__zone mirror">
+    <app-counter-tools class="w-full" [player]="2" />
+  </div>
+
+  <div class="counter-page__divider">
+    <div class="counter-page__emz">
+      <div class="counter-page__emz-btn"></div>
+      <div></div>
+      <button
+        class="counter-page__emz-btn"
+        (click)="onEmzPress(0, $event)"
+        (contextmenu)="onEmzContextMenu(0, $event)"
+      >
+        {{ emz()[0] }}
+      </button>
+      <button class="counter-page__close" (click)="close()">✕</button>
+      <button
+        class="counter-page__emz-btn"
+        (click)="onEmzPress(1, $event)"
+        (contextmenu)="onEmzContextMenu(1, $event)"
+      >
+        {{ emz()[1] }}
+      </button>
+      <div></div>
+      <div class="counter-page__emz-btn"></div>
+    </div>
+  </div>
+
+  <div class="counter-page__zone">
+    <app-counter-tools class="w-full" [player]="1" />
+  </div>
+</div>

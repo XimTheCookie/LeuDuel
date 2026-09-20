@@ -162,5 +162,6 @@ export class DuelControllerComponent implements AfterViewInit {
 
   toggleSounds() {
     this.settingsService.toggleSounds();
+    this.soundboardService.clickSound();
   }
 }
