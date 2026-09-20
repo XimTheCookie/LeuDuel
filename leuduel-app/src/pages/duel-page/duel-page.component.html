@@ -6,8 +6,7 @@
         [class.duel-page__lp-cell--selected]="selectedPlayer() === 'player1'"
         (click)="onLpClick('player1')"
       >
-        <span class="duel-page__lp-value">{{ lifePoints1() }}</span>
-        <span class="duel-page__lp-label">LP</span>
+        <app-life-points [compact]="true" [lifePoints]="lifePoints1()" [playerName]="playerName1()" />
       </div>
       <app-duel-controller class="duel-page__controller" />
       <div
@@ -15,11 +14,13 @@
         [class.duel-page__lp-cell--selected]="selectedPlayer() === 'player2'"
         (click)="onLpClick('player2')"
       >
-        <span class="duel-page__lp-value">{{ lifePoints2() }}</span>
-        <span class="duel-page__lp-label">LP</span>
+        <app-life-points [compact]="true" [lifePoints]="lifePoints2()" [playerName]="playerName2()" />
       </div>
     </div>
-    <app-landscape-actions class="duel-page__landscape-actions" [selectedPlayer]="selectedPlayer()" />
+    <app-landscape-actions
+      class="duel-page__landscape-actions"
+      [selectedPlayer]="selectedPlayer()"
+    />
   </div>
 } @else {
   <div class="duel-page">

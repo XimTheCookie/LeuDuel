@@ -1,0 +1,7 @@
+<div class="lp-display" [class.lp-display--compact]="compact()" [class.animating]="animating()" [class.gaining]="animating() && gaining()">
+  @if (playerName()) {
+    <span class="lp-player">{{ playerName() }}</span>
+  }
+  <span class="lp-value">{{ displayValue() ?? lifePoints() }}</span>
+  <span class="lp-label">LP</span>
+</div>

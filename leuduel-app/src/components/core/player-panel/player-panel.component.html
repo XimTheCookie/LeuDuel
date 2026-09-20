@@ -4,10 +4,7 @@
       <span class="wins-bar__gem" [class.wins-bar__gem--filled]="i <= wins"></span>
     }
   </div>
-  <div class="lp-display">
-    <span class="lp-value" (click)="modifyLp()">{{ lifePoints }}</span>
-    <span class="lp-label">LP</span>
-  </div>
+  <app-life-points (click)="modifyLp()" [lifePoints]="lifePoints" />
   <div
     class="actions-grid"
     [class.actions-grid__cols-one]="numberOfColumns() === 1"

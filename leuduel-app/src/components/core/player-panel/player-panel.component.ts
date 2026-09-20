@@ -6,13 +6,14 @@ import { SettingsService } from '../../../services/settings.service';
 import { ModalService } from '../../../services/modal.service';
 import { ModifyDamageButtonComponent } from '../modify-damage-button/modify-damage-button.component';
 import { LifePointsAdjustModalComponent } from '../life-points-adjust-modal/life-points-adjust-modal.component';
+import { LifePointsComponent } from '../life-points/life-points.component';
 
 @Component({
   selector: 'app-player-panel',
   templateUrl: './player-panel.component.html',
   styleUrl: './player-panel.component.scss',
   standalone: true,
-  imports: [DamageButtonComponent],
+  imports: [DamageButtonComponent, LifePointsComponent],
 })
 export class PlayerPanelComponent {
   private readonly settingsService = inject(SettingsService);

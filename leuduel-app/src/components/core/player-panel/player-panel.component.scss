@@ -44,52 +44,6 @@
   }
 }
 
-.lp-display {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  user-select: none;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem 0.25rem;
-  background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-panel) 100%);
-  border-bottom: 1px solid var(--border-glow);
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 15%;
-    right: 15%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
-    opacity: 0.4;
-  }
-}
-
-.lp-value {
-  font-family: var(--font-lp);
-  font-size: clamp(3rem, 12vw, 5rem);
-  font-weight: 700;
-  color: var(--lp-color);
-  letter-spacing: 0.02em;
-  line-height: 1;
-  text-shadow:
-    0 0 30px rgba(180, 210, 255, 0.4),
-    0 2px 4px rgba(0, 0, 0, 0.6);
-}
-
-.lp-label {
-  font-family: var(--font-title);
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  opacity: 0.9;
-  text-shadow: 0 0 10px var(--gold-glow);
-}
-
 .actions-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
