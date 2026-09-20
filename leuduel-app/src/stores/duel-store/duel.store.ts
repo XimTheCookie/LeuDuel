@@ -33,6 +33,7 @@ export const DuelStore = signalStore(
   withComputed((store) => ({
     isDuelStarted: computed(() => store.status() !== DuelStatus.FINISHED),
     isDuelPaused: computed(() => store.status() === DuelStatus.PAUSED),
+    isDuelFinished: computed(() => store.status() === DuelStatus.FINISHED),
     lifePoints1: computed(() => Math.min(store.player1().lifePoints, 99999999)),
     lifePoints2: computed(() => Math.min(store.player2().lifePoints, 99999999)),
     wins1: computed(() => store.player1().wins),

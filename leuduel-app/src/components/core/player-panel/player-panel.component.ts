@@ -56,7 +56,7 @@ export class PlayerPanelComponent {
   modifyLp() {
     this.modalService.open(
       LifePointsAdjustModalComponent,
-      { opacity: 0.7, size: 'sm', mirror: this.player() === 'player2' },
+      { opacity: 0.8, size: 'sm', mirror: this.player() === 'player2' },
       { player: this.player() },
     );
   }
