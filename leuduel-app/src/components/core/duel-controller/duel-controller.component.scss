@@ -12,14 +12,6 @@
   border-top: 1px solid var(--border-glow);
   border-bottom: 1px solid var(--border-glow);
   position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent 0%, var(--gold-dim) 50%, transparent 100%);
-    pointer-events: none;
-  }
 }
 
 .controller__row {
@@ -84,7 +76,7 @@
 .controller__side-settings {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 0.3rem;
 }
 

@@ -28,6 +28,7 @@
     border-radius: 8px;
     user-select: none;
     cursor: pointer;
+    transition: background 80ms ease, transform 80ms ease;
 
     &:active {
       background: var(--bg-card-hover);
