@@ -1,6 +1,9 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
+import { take } from 'rxjs';
+import { WelcomeModalComponent } from '../components/core/welcome-modal/welcome-modal.component';
 import { DuelPageComponent } from '../pages/duel-page/duel-page.component';
 import { AndroidManagementService } from '../services/android-management.service';
+import { ModalService } from '../services/modal.service';
 import { SettingsService } from '../services/settings.service';
 
 @Component({
@@ -10,16 +13,25 @@ import { SettingsService } from '../services/settings.service';
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('leuduel-app');
-
+  private readonly modalService = inject(ModalService);
   private readonly androidManagementService = inject(AndroidManagementService);
   private readonly settingsService = inject(SettingsService);
 
   constructor() {
     this.androidManagementService.setStatusBarDark();
-    this.androidManagementService.hideStatusBar();
+    this.androidManagementService.hideStatusBar(true);
     effect(() => {
       this.androidManagementService.setOrientation(this.settingsService.landscapeMode());
+    });
+
+    this.settingsService.settingsInitialized.pipe(take(1)).subscribe(() => {
+      if (this.settingsService.firstVisit()) {
+        this.modalService.open(WelcomeModalComponent, {
+          size: 'md',
+          opacity: this.settingsService.getModalOpacity(),
+        });
+        this.settingsService.setFirstVisitDone();
+      }
     });
   }
 }

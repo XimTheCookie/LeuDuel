@@ -104,7 +104,6 @@ export class DuelControllerComponent implements AfterViewInit {
   }
 
   resumeDuel() {
-    this.androidManagementService.hideStatusBar();
     this.duelStore.resumeDuel();
     this.soundboardService.clickSound();
     this.updateRemainingTime();
@@ -128,7 +127,6 @@ export class DuelControllerComponent implements AfterViewInit {
   }
 
   startDuel() {
-    this.androidManagementService.hideStatusBar();
     this.duelStore.startDuel('Player 1', 'Player 2');
     this.soundboardService.confirmationSound();
     this.updateRemainingTime();

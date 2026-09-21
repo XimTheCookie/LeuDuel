@@ -1,6 +1,8 @@
 <div class="lpa" [class.lpa--landscape]="settingsService.landscapeMode()">
-  <span class="lpa__title">Set {{ playerName() }} LP</span>
-  <!-- lp delta preview -->
+  @if (!settingsService.landscapeMode()) {
+    <span class="lpa__title">Set {{ playerName() }} LP</span>
+  }
+  <!-- quadrante lp -->
   <div class="lpa__preview">
     <span class="lpa__preview-lp">{{ currentLp() }}</span>
     <span class="lpa__preview-op" [class.lpa__preview-op--pos]="op() === 'heal'">{{

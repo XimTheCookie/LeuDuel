@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { LifeAction } from '../models/life-action.model';
 import { PersistanceService } from './persistance.service';
+import { Subject } from 'rxjs';
 
 const DEFAULT_VALUES = {
   startingLifePoints: 8000,
@@ -52,6 +53,7 @@ const DEFAULT_VALUES = {
   useKeepAwake: true,
   soundsOn: true,
   modalOpacity: 7,
+  firstVisit: true,
 };
 
 const SETTINGS_KEY = 'settings';
@@ -67,6 +69,7 @@ interface SettingsSnapshot {
   soundsOn: boolean;
   landscapeMode: boolean;
   modalOpacity: number;
+  firstVisit: boolean;
 }
 
 @Injectable({
@@ -83,6 +86,9 @@ export class SettingsService {
   soundsOn = signal<boolean>(DEFAULT_VALUES.soundsOn);
   landscapeMode = signal<boolean>(false);
   modalOpacity = signal<number>(DEFAULT_VALUES.modalOpacity);
+  firstVisit = signal<boolean>(DEFAULT_VALUES.firstVisit);
+
+  settingsInitialized = new Subject<void>();
 
   constructor(private persistance: PersistanceService) {
     const injector = inject(EnvironmentInjector);
@@ -102,6 +108,8 @@ export class SettingsService {
     this.soundsOn.set(saved.soundsOn);
     this.landscapeMode.set(saved.landscapeMode ?? false);
     this.modalOpacity.set(saved.modalOpacity ?? 7);
+    this.firstVisit.set(saved.firstVisit == null ? true : saved.firstVisit);
+    this.settingsInitialized.next();
   }
 
   private persist() {
@@ -116,6 +124,7 @@ export class SettingsService {
       soundsOn: this.soundsOn(),
       landscapeMode: this.landscapeMode(),
       modalOpacity: this.modalOpacity(),
+      firstVisit: this.firstVisit(),
     };
     this.persistance.save(SETTINGS_KEY, snapshot);
   }
@@ -171,12 +180,14 @@ export class SettingsService {
     this.rapidButtonsConfig.update((config) => {
       if (value > config.length) {
         const diff = value - config.length;
+        const possibleValues = [2500, 2000, 1500, 1000, 500];
+        const possibleTypes = ['damage', 'heal'];
         const newItems = Array.from(
           { length: diff },
           () =>
             ({
-              change: 1000,
-              type: 'damage',
+              change: possibleValues[Math.floor(Math.random() * possibleValues.length)],
+              type: possibleTypes[Math.floor(Math.random() * possibleTypes.length)],
             }) as LifeAction,
         );
         return [...config, ...newItems];
@@ -252,5 +263,9 @@ export class SettingsService {
 
   setLandscapeMode(value: boolean) {
     this.landscapeMode.set(value);
+  }
+
+  setFirstVisitDone() {
+    this.firstVisit.set(false);
   }
 }

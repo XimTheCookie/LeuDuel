@@ -18,12 +18,22 @@ export class AndroidManagementService {
   setStatusBarDark() {
     if (Capacitor.isNativePlatform()) {
       StatusBar.setStyle({ style: Style.Dark });
+      StatusBar.setOverlaysWebView({ overlay: false });
+      StatusBar.setBackgroundColor({ color: '#000000' });
     }
   }
 
-  hideStatusBar() {
+  hideStatusBar(addListener = false) {
     if (Capacitor.isNativePlatform()) {
       StatusBar.hide();
+      if (!addListener) return;
+      StatusBar.addListener('statusBarVisibilityChanged', (event) => {
+        if (event.visible === true) {
+          setTimeout(() => {
+            StatusBar.hide();
+          }, 15000);
+        }
+      });
     }
   }
 
