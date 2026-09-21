@@ -72,7 +72,8 @@ export class LifePointsComponent {
   private stopSoundLoop() {
     this.changeAudio?.pause();
     this.changeAudio = null;
-    this.soundboardService.lifePointsSet();
+    if ((this.displayValue() ?? this.lifePoints()) === 0) this.soundboardService.lifePointsZero();
+    else this.soundboardService.lifePointsSet();
   }
 
   private animate(duration: number) {
