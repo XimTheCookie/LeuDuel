@@ -143,6 +143,7 @@ export class DuelControllerComponent implements AfterViewInit {
     this.modalService.open(SettingsPageComponent, {
       size: 'full',
       closeEvent: () => this.handleStopMatch(),
+      opacity: this.settingsService.getModalOpacity(),
     });
   }
 

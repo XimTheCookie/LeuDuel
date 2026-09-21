@@ -1,10 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Capacitor } from '@capacitor/core';
 import { Browser } from '@capacitor/browser';
 import { API_CONFIG } from '../app/api.config';
 import { take } from 'rxjs';
 import { YgoCard } from '../models/ygo-card.model';
+import { SoundboardService } from './soundboard.service';
 
 export interface CardSearchParams {
   name?: string;
@@ -20,9 +21,22 @@ export interface CardSearchParams {
 
 @Injectable({ providedIn: 'root' })
 export class CardSearchService {
+  private readonly soundboardService = inject(SoundboardService);
   private readonly httpClient = inject(HttpClient);
 
+  results = signal<YgoCard[]>([]);
+  loading = signal(false);
+  error = signal('');
+
+  enterPage() {
+    this.error.set('');
+  }
+
   searchCards(params: CardSearchParams) {
+    this.loading.set(true);
+    this.error.set('');
+    this.results.set([]);
+
     let httpParams = new HttpParams();
     if (params.name) httpParams = httpParams.set('fname', params.name);
     if (params.atk) httpParams = httpParams.set('atk', params.atk);
@@ -36,7 +50,19 @@ export class CardSearchService {
     httpParams = httpParams.set('misc', 'yes');
     return this.httpClient
       .get<{ data: YgoCard[] }>(API_CONFIG.YGOPRODECK, { params: httpParams })
-      .pipe(take(1));
+      .pipe(take(1))
+      .subscribe({
+        next: (res) => {
+          this.results.set(res.data ?? []);
+          this.loading.set(false);
+          this.soundboardService.confirmationSound();
+        },
+        error: (err) => {
+          this.error.set(err?.error?.error ?? 'No cards found.');
+          this.loading.set(false);
+          this.soundboardService.clickSound();
+        },
+      });
   }
 
   openCardPage(card: YgoCard) {

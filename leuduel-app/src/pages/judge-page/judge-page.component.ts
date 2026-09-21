@@ -1,8 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CardSearchService } from '../../services/card-search.service';
 import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
 import { YgoCard } from '../../models/ygo-card.model';
+import { CardSearchService } from '../../services/card-search.service';
 import { SoundboardService } from '../../services/soundboard.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { SoundboardService } from '../../services/soundboard.service';
   standalone: true,
   imports: [FormsModule, TextButtonComponent],
 })
-export class JudgePageComponent {
+export class JudgePageComponent implements OnInit {
   private readonly soundboardService = inject(SoundboardService);
   private readonly cardSearchService = inject(CardSearchService);
 
@@ -21,9 +21,9 @@ export class JudgePageComponent {
   }
 
   query = signal('');
-  results = signal<YgoCard[]>([]);
-  loading = signal(false);
-  error = signal('');
+  results = computed(() => this.cardSearchService.results());
+  loading = computed(() => this.cardSearchService.loading());
+  error = computed(() => this.cardSearchService.error());
   coolingDown = signal(false);
 
   onQueryChange(value: string) {
@@ -38,26 +38,15 @@ export class JudgePageComponent {
     this.coolingDown.set(true);
     setTimeout(() => this.coolingDown.set(false), 500);
 
-    this.loading.set(true);
-    this.error.set('');
-    this.results.set([]);
-
     const params = this.cardSearchService.parseQuery(raw);
-    this.cardSearchService.searchCards(params).subscribe({
-      next: (res) => {
-        this.results.set(res.data ?? []);
-        this.loading.set(false);
-        this.soundboardService.confirmationSound();
-      },
-      error: (err) => {
-        this.error.set(err?.error?.error ?? 'No cards found.');
-        this.loading.set(false);
-        this.soundboardService.clickSound();
-      },
-    });
+    this.cardSearchService.searchCards(params);
   }
 
   onKeydown(event: KeyboardEvent) {
     if (event.key === 'Enter') this.search();
+  }
+
+  ngOnInit(): void {
+    this.cardSearchService.enterPage();
   }
 }

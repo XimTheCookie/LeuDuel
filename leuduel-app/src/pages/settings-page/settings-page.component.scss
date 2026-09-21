@@ -13,10 +13,8 @@
   gap: 1rem;
 
   &.landscape {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: min-content;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -48,6 +46,23 @@
     > * {
       padding: 1rem;
       border-bottom: 1px solid var(--border-subtle);
+    }
+  }
+
+  &__inline-pair {
+    display: contents;
+
+    .landscape & {
+      display: flex;
+      flex-direction: row;
+
+      > * {
+        flex: 1;
+
+        &:first-child {
+          border-right: 1px solid var(--border-subtle);
+        }
+      }
     }
   }
 
@@ -125,12 +140,5 @@
     display: flex;
     width: 100%;
     justify-content: end;
-
-    &.landscape {
-      grid-column: 2;
-      align-self: end;
-      justify-self: end;
-      width: auto;
-    }
   }
 }
