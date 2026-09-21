@@ -1,6 +1,6 @@
 .damage-button {
-  --accent: #4a6080;
-  --accent-bg: rgba(74, 96, 128, 0.12);
+  --accent: var(--text-muted);
+  --accent-bg: rgba(107, 130, 168, 0.12);
 
   display: inline-flex;
   align-items: center;
