@@ -11,11 +11,6 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
-  &.landscape {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 .settings-section {
@@ -49,23 +44,6 @@
     }
   }
 
-  &__inline-pair {
-    display: contents;
-
-    .landscape & {
-      display: flex;
-      flex-direction: row;
-
-      > * {
-        flex: 1;
-
-        &:first-child {
-          border-right: 1px solid var(--border-subtle);
-        }
-      }
-    }
-  }
-
   &__footer {
     display: flex;
     justify-content: center;
@@ -74,20 +52,12 @@
 
   &__toggle-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 1.5rem;
     align-items: center;
     font-size: 0.9rem;
     color: var(--text-primary);
     cursor: pointer;
-
-    & > span {
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-align: center;
-      user-select: none;
-      color: var(--text-muted);
-    }
 
     input[type='checkbox'] {
       appearance: none;
@@ -141,4 +111,13 @@
     width: 100%;
     justify-content: end;
   }
+}
+
+.toggle-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  user-select: none;
+  color: var(--text-muted);
 }

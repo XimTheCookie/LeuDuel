@@ -1,29 +1,27 @@
-<div class="settings-page" [class.landscape]="landscapeMode()">
+<div class="settings-page">
   <div class="settings-section">
     <h2 class="settings-section__title">Duel Settings</h2>
 
     <div class="settings-section__fields">
-      <div class="settings-section__inline-pair">
-        <app-number-input
-          [formControl]="lifePoints"
-          label="Starting Life Points"
-          [maxValue]="9999999"
-          [minValue]="1"
-          [step]="1000"
-          [canReset]="true"
-          (doReset)="lpReset()"
-        />
+      <app-number-input
+        [formControl]="lifePoints"
+        label="Starting Life Points"
+        [maxValue]="9999999"
+        [minValue]="1"
+        [step]="1000"
+        [canReset]="true"
+        (doReset)="lpReset()"
+      />
 
-        <app-number-input
-          [formControl]="bestOf"
-          label="Best of"
-          [maxValue]="9"
-          [minValue]="1"
-          [step]="1"
-          [canReset]="true"
-          (doReset)="resetBestOf()"
-        />
-      </div>
+      <app-number-input
+        [formControl]="bestOf"
+        label="Best of"
+        [maxValue]="9"
+        [minValue]="1"
+        [step]="1"
+        [canReset]="true"
+        (doReset)="resetBestOf()"
+      />
 
       <app-time-input
         [formControl]="duration"
@@ -44,42 +42,30 @@
   </div>
 
   <div class="settings-section">
-    <h2 class="settings-section__title">GUI Preferences</h2>
+    <h2 class="settings-section__title">Rapid Buttons</h2>
 
     <div class="settings-section__fields">
-      <div class="settings-section__inline-pair">
-        <app-number-input
-          [formControl]="numberOfRapidButtons"
-          label="Number of rapid buttons"
-          [maxValue]="15"
-          [minValue]="1"
-          [step]="1"
-          [canReset]="true"
-          (doReset)="resetRapidButtons()"
-        />
-        <app-number-input
-          [formControl]="rapidButtonsColumns"
-          [label]="isLandscapeOrientation.value ? 'Number of rows' : 'Number of columns'"
-          [maxValue]="3"
-          [minValue]="1"
-          [step]="1"
-          [canReset]="true"
-          (doReset)="resetRapidButtonsColumns()"
-        />
-      </div>
-
       <app-number-input
-        [formControl]="modalOpacity"
-        label="Window opacity"
-        [maxValue]="10"
-        [minValue]="6"
+        [formControl]="numberOfRapidButtons"
+        label="Number of rapid buttons"
+        [maxValue]="15"
+        [minValue]="1"
         [step]="1"
         [canReset]="true"
-        (doReset)="resetBestOf()"
+        (doReset)="resetRapidButtons()"
+      />
+      <app-number-input
+        [formControl]="rapidButtonsColumns"
+        label="Number of columns"
+        [maxValue]="3"
+        [minValue]="1"
+        [step]="1"
+        [canReset]="true"
+        (doReset)="resetRapidButtonsColumns()"
       />
 
       <label class="settings-section__toggle-row">
-        <span>Landscape mode</span>
+        <span class="toggle-label">Landscape mode</span>
         <input
           type="checkbox"
           [checked]="isLandscapeOrientation.value!"
@@ -87,6 +73,8 @@
         />
       </label>
     </div>
+
+    <div class="settings-section__fields"></div>
 
     <div class="settings-section__footer">
       <app-text-button
@@ -105,7 +93,7 @@
       <h2 class="settings-section__title">Android</h2>
       <div class="settings-section__fields">
         <label class="settings-section__toggle-row">
-          <span>Keep Awake (during match)</span>
+          <span class="toggle-label">Keep Awake (during match)</span>
           <input
             type="checkbox"
             [checked]="keepAwake.value!"
@@ -127,7 +115,7 @@
     </div>
   }
 
-  <div class="settings-section__about-footer" [class.landscape]="landscapeMode()">
+  <div class="settings-section__about-footer">
     <app-text-button (clicked)="viewAboutModal()" label="About" tone="neutral" />
   </div>
 </div>
