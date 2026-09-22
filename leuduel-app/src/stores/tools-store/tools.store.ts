@@ -136,6 +136,7 @@ export const ToolsStore = signalStore(
         player1counters: { mz: [0, 0, 0, 0, 0], stz: [0, 0, 0, 0, 0] },
         player2counters: { mz: [0, 0, 0, 0, 0], stz: [0, 0, 0, 0, 0] },
         emz: [0, 0],
+        fz: [0, 0],
       });
     },
   })),
