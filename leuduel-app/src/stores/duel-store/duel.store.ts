@@ -79,7 +79,7 @@ export const DuelStore = signalStore(
             createdAt: Date.now(),
             updatedAt: Date.now(),
           });
-          if (behaviourService.gameReset() > 0) toolsStore.resetCounters();
+          if (behaviourService.counterReset() > 0) toolsStore.resetCounters();
         },
         startDuel(player1: string, player2: string): void {
           patchState(store, {
@@ -105,7 +105,7 @@ export const DuelStore = signalStore(
             updatedAt: Date.now(),
           });
 
-          if (behaviourService.gameReset() > 0) toolsStore.resetCounters();
+          if (behaviourService.counterReset() > 0) toolsStore.resetCounters();
         },
         pauseDuel(): void {
           const timer = store.timer();
@@ -181,7 +181,7 @@ export const DuelStore = signalStore(
           const effectiveChange = newLifePoints - currentLifePoints;
           newLifePoints = Math.max(0, newLifePoints);
           newLifePoints = Math.min(newLifePoints, 99999999);
-          if (LifeAction.lifeReset && behaviourService.gameReset() === 1) {
+          if (LifeAction.lifeReset && behaviourService.counterReset() === 1) {
             toolsStore.resetCounters();
           }
           const change: LifeChange = {
