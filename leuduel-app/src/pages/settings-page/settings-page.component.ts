@@ -176,6 +176,7 @@ export class SettingsPageComponent {
   }
 
   openBehaviourSettings() {
+    this.soundboardService.clickSound();
     this.modalService.open(BehaviourSettingsPageComponent, {
       size: 'md',
       opacity: this.settingsService.getModalOpacity(),

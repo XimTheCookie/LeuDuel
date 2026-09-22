@@ -1,6 +1,10 @@
 import { Component, effect, inject, input, signal, untracked } from '@angular/core';
 import { SoundboardService } from '../../../services/soundboard.service';
 import { SettingsService } from '../../../services/settings.service';
+import { BehaviourSettingsService } from '../../../services/behaviour-settings.service';
+import { ModalService } from '../../../services/modal.service';
+import { LifePointsResetComponent } from '../life-points-reset/life-points-reset.component';
+import { DuelStore } from '../../../stores/duel-store/duel.store';
 
 const ANIM_DURATION = 1500;
 
@@ -13,6 +17,10 @@ const ANIM_DURATION = 1500;
 export class LifePointsComponent {
   private readonly settingsService = inject(SettingsService);
   private readonly soundboardService = inject(SoundboardService);
+  private readonly behaviourService = inject(BehaviourSettingsService);
+  private readonly modalService = inject(ModalService);
+
+  private readonly duelStore = inject(DuelStore);
 
   lifePoints = input<number>();
   compact = input(false);
@@ -20,6 +28,8 @@ export class LifePointsComponent {
   displayValue = signal<number | undefined>(undefined);
   animating = signal(false);
   gaining = signal(false);
+
+  private static zeroHandled = false;
 
   private animFrom = 0;
   private animTarget = 0;
@@ -72,8 +82,66 @@ export class LifePointsComponent {
   private stopSoundLoop() {
     this.changeAudio?.pause();
     this.changeAudio = null;
-    if ((this.displayValue() ?? this.lifePoints()) === 0) this.soundboardService.lifePointsZero();
-    else this.soundboardService.lifePointsSet();
+    if ((this.displayValue() ?? this.lifePoints()) === 0) {
+      this.soundboardService.lifePointsZero();
+      this.onLpReachedZero();
+    } else {
+      this.soundboardService.lifePointsSet();
+    }
+  }
+
+  private onLpReachedZero() {
+    if (this.behaviourService.gameReset() === 0) return;
+    if (this.duelStore.isDuelFinished()) return;
+    if (LifePointsComponent.zeroHandled) return;
+    LifePointsComponent.zeroHandled = true;
+    const isAuto = this.behaviourService.gameReset() === 2;
+    setTimeout(
+      () => {
+        LifePointsComponent.zeroHandled = false;
+        // stop if lp value changed from 0
+        if (this.displayValue() ?? this.lifePoints()) {
+          return;
+        }
+        if (isAuto) {
+          if (this.behaviourService.winnerSelect() === 1) {
+            const getWinner = (): 'player1' | 'player2' | null => {
+              const player1Lp = this.duelStore.lifePoints1();
+              const player2Lp = this.duelStore.lifePoints2();
+              if (player1Lp === player2Lp) return null;
+              else if (player1Lp === 0) return 'player2';
+              else if (player2Lp === 0) return 'player1';
+              return null;
+            };
+
+            let selected = getWinner();
+
+            if (selected !== null) {
+              this.duelStore.addVictory(selected);
+            }
+          }
+
+          // auto apply
+          this.duelStore.lifeAction('player1', {
+            type: 'set',
+            change: this.settingsService.getStartingLifePoints(),
+            lifeReset: true,
+          });
+          this.duelStore.lifeAction('player2', {
+            type: 'set',
+            change: this.settingsService.getStartingLifePoints(),
+            lifeReset: true,
+          });
+        } else {
+          // auto-prompt
+          this.modalService.open(LifePointsResetComponent, {
+            size: 'sm',
+            opacity: this.settingsService.getModalOpacity(),
+          });
+        }
+      },
+      isAuto ? 1500 : 750,
+    );
   }
 
   private animate(duration: number) {

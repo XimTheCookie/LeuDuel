@@ -1,4 +1,4 @@
-import { Component, computed, Inject, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, computed, Inject, inject, signal } from '@angular/core';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
 import { SettingsService } from '../../../services/settings.service';
 import { MODAL_DATA } from '../../common/modal-generic/modal-generic.component';
@@ -8,6 +8,7 @@ import { ButtonComponent } from '../../common/button/button.component';
 import { Type } from '@angular/core';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
 import { SoundboardService } from '../../../services/soundboard.service';
+import { BehaviourSettingsService } from '../../../services/behaviour-settings.service';
 
 @Component({
   selector: 'app-life-points-reset',
@@ -16,9 +17,10 @@ import { SoundboardService } from '../../../services/soundboard.service';
   standalone: true,
   imports: [ButtonComponent, TextButtonComponent],
 })
-export class LifePointsResetComponent {
+export class LifePointsResetComponent implements AfterViewInit {
   private readonly settingsService = inject(SettingsService);
   private readonly soundboardService = inject(SoundboardService);
+  private readonly behaviourService = inject(BehaviourSettingsService);
   readonly duelStore = inject(DuelStore);
 
   selectedPlayer = signal<'player1' | 'player2' | null>(null);
@@ -33,6 +35,16 @@ export class LifePointsResetComponent {
       overlayRef: OverlayRef;
     },
   ) {}
+
+  ngAfterViewInit(): void {
+    if (this.behaviourService.winnerSelect() === 1) {
+      const player1Lp = this.duelStore.lifePoints1();
+      const player2Lp = this.duelStore.lifePoints2();
+      if (player1Lp === player2Lp) this.togglePlayer(null);
+      else if (player1Lp === 0) this.togglePlayer('player2');
+      else if (player2Lp === 0) this.togglePlayer('player1');
+    }
+  }
 
   togglePlayer(player: 'player1' | 'player2' | null) {
     this.selectedPlayer.set(player);

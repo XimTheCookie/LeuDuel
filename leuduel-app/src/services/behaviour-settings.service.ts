@@ -10,12 +10,14 @@ import { PersistanceService } from './persistance.service';
 
 export const VALUE_LABELS = {
   counterReset: ['Never', 'Game', 'Match'],
-  gameReset: ['Never', 'LP Zero (Suggest)', 'LP Zero (Auto)'],
+  gameReset: ['Manual', 'LP Zero', 'LP Zero (auto)'],
+  winnerSelect: ['Manual', 'Auto'],
 };
 
 const DEFAULT_VALUES: BehaviourSettingsSnapshot = {
   counterReset: 1,
   gameReset: 0,
+  winnerSelect: 0,
 };
 
 const SETTINGS_KEY = 'behaviour-settings';
@@ -23,6 +25,7 @@ const SETTINGS_KEY = 'behaviour-settings';
 interface BehaviourSettingsSnapshot {
   counterReset: number;
   gameReset: number;
+  winnerSelect: number;
 }
 
 /**
@@ -38,6 +41,7 @@ interface BehaviourSettingsSnapshot {
 export class BehaviourSettingsService {
   counterReset = signal<number>(DEFAULT_VALUES.counterReset);
   gameReset = signal<number>(DEFAULT_VALUES.gameReset);
+  winnerSelect = signal<number>(DEFAULT_VALUES.winnerSelect);
 
   constructor(private persistance: PersistanceService) {
     const injector = inject(EnvironmentInjector);
@@ -49,12 +53,14 @@ export class BehaviourSettingsService {
     if (!saved) return;
     this.counterReset.set(saved.counterReset);
     this.gameReset.set(saved.gameReset);
+    this.winnerSelect.set(saved.winnerSelect);
   }
 
   private persist() {
     const snapshot: BehaviourSettingsSnapshot = {
       counterReset: this.counterReset(),
       gameReset: this.gameReset(),
+      winnerSelect: this.winnerSelect(),
     };
     this.persistance.save(SETTINGS_KEY, snapshot);
   }
