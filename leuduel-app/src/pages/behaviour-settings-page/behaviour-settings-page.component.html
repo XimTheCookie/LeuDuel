@@ -1,0 +1,27 @@
+<div class="bs-page">
+  <h2 class="bs-title">Behaviour Settings</h2>
+
+  <div class="bs-list">
+    <app-select-setting
+      [control]="counterReset"
+      [labels]="labels.counterReset"
+      label="Counter Reset"
+      [defaultValue]="1"
+    />
+    <app-select-setting
+      [control]="gameReset"
+      [labels]="labels.gameReset"
+      label="Game Reset"
+      [defaultValue]="0"
+    />
+  </div>
+
+  <div class="bs-footer">
+    <app-text-button
+      label="Confirm"
+      [isDisabled]="!settingsValid() || !settingsChanged()"
+      [tone]="settingsValid() ? (settingsChanged() ? 'positive' : 'neutral') : 'negative'"
+      (clicked)="confirm()"
+    />
+  </div>
+</div>

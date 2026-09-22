@@ -10,13 +10,13 @@ import { LifeAction } from '../models/life-action.model';
 import { PersistanceService } from './persistance.service';
 import { Subject } from 'rxjs';
 
-const DEFAULT_VALUES = {
+const DEFAULT_VALUES: SettingsSnapshot = {
   startingLifePoints: 8000,
   duelDurationMs: 3000000,
   numberOfGames: 3,
   numberOfRapidButtons: 8,
-  numberOfRapidButtonsColumns: 2,
-  rapidButtons: [
+  rapidButtonsColumns: 2,
+  rapidButtonsConfig: [
     {
       change: 3000,
       type: 'damage',
@@ -49,11 +49,12 @@ const DEFAULT_VALUES = {
       change: 2,
       type: 'divide',
     },
-  ] as LifeAction[],
+  ],
   useKeepAwake: true,
   soundsOn: true,
   modalOpacity: 7,
   firstVisit: true,
+  landscapeMode: false,
 };
 
 const SETTINGS_KEY = 'settings';
@@ -80,8 +81,8 @@ export class SettingsService {
   private numberOfGames = signal<number>(DEFAULT_VALUES.numberOfGames);
   private duelDurationMs = signal<number>(DEFAULT_VALUES.duelDurationMs);
   private numberOfRapidButtons = signal<number>(DEFAULT_VALUES.numberOfRapidButtons);
-  rapidButtonsColumns = signal<number>(DEFAULT_VALUES.numberOfRapidButtonsColumns);
-  rapidButtonsConfig = signal<LifeAction[]>(DEFAULT_VALUES.rapidButtons);
+  rapidButtonsColumns = signal<number>(DEFAULT_VALUES.rapidButtonsColumns);
+  rapidButtonsConfig = signal<LifeAction[]>(DEFAULT_VALUES.rapidButtonsConfig);
   private useKeepAwake = signal<boolean>(DEFAULT_VALUES.useKeepAwake);
   soundsOn = signal<boolean>(DEFAULT_VALUES.soundsOn);
   landscapeMode = signal<boolean>(false);
@@ -211,7 +212,7 @@ export class SettingsService {
   }
 
   resetRapidButtonsColumns() {
-    this.rapidButtonsColumns.set(DEFAULT_VALUES.numberOfRapidButtonsColumns);
+    this.rapidButtonsColumns.set(DEFAULT_VALUES.rapidButtonsColumns);
   }
 
   resetAllRapid() {
@@ -258,7 +259,7 @@ export class SettingsService {
   }
 
   resetRapidButtonsConfig() {
-    this.rapidButtonsConfig.set(DEFAULT_VALUES.rapidButtons);
+    this.rapidButtonsConfig.set(DEFAULT_VALUES.rapidButtonsConfig);
   }
 
   setLandscapeMode(value: boolean) {

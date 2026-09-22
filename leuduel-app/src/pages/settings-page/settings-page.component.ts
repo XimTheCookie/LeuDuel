@@ -8,6 +8,7 @@ import { ModalService } from '../../services/modal.service';
 import { AboutComponent } from '../../components/core/about/about.component';
 import { AndroidManagementService } from '../../services/android-management.service';
 import { SoundboardService } from '../../services/soundboard.service';
+import { BehaviourSettingsPageComponent } from '../behaviour-settings-page/behaviour-settings-page.component';
 
 @Component({
   selector: 'app-settings-page',
@@ -171,6 +172,13 @@ export class SettingsPageComponent {
     this.modalService.open(AboutComponent, {
       opacity: this.settingsService.getModalOpacity(),
       size: 'sm',
+    });
+  }
+
+  openBehaviourSettings() {
+    this.modalService.open(BehaviourSettingsPageComponent, {
+      size: 'md',
+      opacity: this.settingsService.getModalOpacity(),
     });
   }
 }

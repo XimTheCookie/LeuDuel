@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ss-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ss-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.ss-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.ss-btn {
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-panel);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 100ms ease, border-color 100ms ease, transform 80ms ease;
+  user-select: none;
+
+  &:active {
+    transform: scale(0.93);
+  }
+
+  &--active {
+    background: var(--bg-card-hover);
+    border-color: var(--text-muted);
+  }
+
+  &--reset {
+    margin-left: auto;
+    font-size: 1rem;
+    padding: 0.3rem 0.6rem;
+    color: var(--text-muted);
+  }
+}

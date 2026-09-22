@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.bs-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  height: 100%;
+}
+
+.bs-title {
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.bs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
+}
+
+.bs-footer {
+  display: flex;
+  justify-content: flex-end;
+}

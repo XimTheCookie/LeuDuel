@@ -12,6 +12,7 @@ import { DuelStatus } from '../../models/duel-status.model';
 import { DuelState } from '../../models/duel.model';
 import { LifeAction } from '../../models/life-action.model';
 import { LifeChange } from '../../models/life-change.model';
+import { BehaviourSettingsService } from '../../services/behaviour-settings.service';
 import { PersistanceService } from '../../services/persistance.service';
 import { SettingsService } from '../../services/settings.service';
 import { ToolsStore } from '../tools-store/tools.store';
@@ -40,7 +41,12 @@ export const DuelStore = signalStore(
     wins2: computed(() => store.player2().wins),
   })),
   withMethods(
-    (store, settingsService = inject(SettingsService), toolsStore = inject(ToolsStore)) => {
+    (
+      store,
+      settingsService = inject(SettingsService),
+      toolsStore = inject(ToolsStore),
+      behaviourService = inject(BehaviourSettingsService),
+    ) => {
       const getRemainingTime = () => {
         const timer = store.timer();
         const elapsed = store.isDuelPaused()
@@ -73,7 +79,7 @@ export const DuelStore = signalStore(
             createdAt: Date.now(),
             updatedAt: Date.now(),
           });
-          toolsStore.resetCounters();
+          if (behaviourService.gameReset() > 0) toolsStore.resetCounters();
         },
         startDuel(player1: string, player2: string): void {
           patchState(store, {
@@ -99,7 +105,7 @@ export const DuelStore = signalStore(
             updatedAt: Date.now(),
           });
 
-          toolsStore.resetCounters();
+          if (behaviourService.gameReset() > 0) toolsStore.resetCounters();
         },
         pauseDuel(): void {
           const timer = store.timer();
@@ -175,7 +181,7 @@ export const DuelStore = signalStore(
           const effectiveChange = newLifePoints - currentLifePoints;
           newLifePoints = Math.max(0, newLifePoints);
           newLifePoints = Math.min(newLifePoints, 99999999);
-          if (LifeAction.lifeReset) {
+          if (LifeAction.lifeReset && behaviourService.gameReset() === 1) {
             toolsStore.resetCounters();
           }
           const change: LifeChange = {
