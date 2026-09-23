@@ -27,7 +27,7 @@ export class App {
     this.settingsService.settingsInitialized.pipe(take(1)).subscribe(() => {
       if (this.settingsService.firstVisit()) {
         this.modalService.open(WelcomeModalComponent, {
-          size: 'md',
+          size: 'sm',
           opacity: this.settingsService.getModalOpacity(),
         });
         this.settingsService.setFirstVisitDone();

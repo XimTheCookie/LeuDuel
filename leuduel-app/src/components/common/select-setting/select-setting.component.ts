@@ -37,7 +37,7 @@ export class SelectSettingComponent {
       InfoModalComponent,
       {
         size: 'sm',
-        opacity: this.settingsService.modalOpacity(),
+        opacity: this.settingsService.getModalOpacity(),
       },
       { info: this.config().helper },
     );

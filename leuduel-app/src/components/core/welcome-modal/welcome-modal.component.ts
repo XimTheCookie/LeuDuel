@@ -4,6 +4,7 @@ import { ModalConfig } from '../../../services/modal.service';
 import { SettingsService } from '../../../services/settings.service';
 import { MODAL_DATA } from '../../common/modal-generic/modal-generic.component';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
+import { SoundboardService } from '../../../services/soundboard.service';
 
 @Component({
   selector: 'welcome-modal',
@@ -13,6 +14,7 @@ import { TextButtonComponent } from '../../common/text-button/text-button.compon
   imports: [TextButtonComponent],
 })
 export class WelcomeModalComponent {
+  private readonly soundboardService = inject(SoundboardService);
   private readonly settingsService = inject(SettingsService);
 
   constructor(
@@ -25,6 +27,7 @@ export class WelcomeModalComponent {
   ) {}
 
   selectMode(landscape: boolean) {
+    this.soundboardService.clickSound();
     this.settingsService.setLandscapeMode(landscape);
     this.modalData.overlayRef.dispose();
   }

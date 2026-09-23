@@ -1,26 +1,5 @@
 @use 'tailwindcss';
 
-:root {
-  --bg-deep: #060a12;
-  --bg-panel: #0b1220;
-  --bg-card: #0f1a30;
-  --bg-card-hover: #14213c;
-  --border-subtle: rgba(99, 132, 199, 0.18);
-  --border-glow: rgba(180, 150, 60, 0.5);
-  --gold: #c9a84c;
-  --gold-light: #f0d080;
-  --gold-dim: rgba(201, 168, 76, 0.15);
-  --gold-glow: rgba(201, 168, 76, 0.35);
-  --lp-color: #e8f4ff;
-  --text-primary: #dce8ff;
-  --text-muted: #6b82a8;
-  --red-accent: #c0392b;
-  --green-accent: #1a7a4a;
-  --font-lp: 'Cinzel', 'Georgia', serif;
-  --font-mono: 'Share Tech Mono', 'Courier New', monospace;
-  --font-title: 'Cinzel Decorative', 'Cinzel', serif;
-}
-
 html,
 body {
   width: 100%;
