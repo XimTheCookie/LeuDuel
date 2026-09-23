@@ -1,9 +1,12 @@
 <div class="ss-container">
   @if (label()) {
-    <span class="ss-label">{{ label() }}</span>
+    <div class="flex gap-2 w-full items-center">
+      <button class="ss-btn" type="button" (click)="info()">ⓘ</button>
+      <span class="ss-label">{{ label() }}</span>
+    </div>
   }
   <div class="ss-row">
-    @for (item of labels(); track $index) {
+    @for (item of config().labels; track $index) {
       <button
         class="ss-btn"
         type="button"

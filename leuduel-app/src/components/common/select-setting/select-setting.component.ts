@@ -1,6 +1,9 @@
 import { Component, inject, input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SoundboardService } from '../../../services/soundboard.service';
+import { ModalService } from '../../../services/modal.service';
+import { SettingsService } from '../../../services/settings.service';
+import { InfoModalComponent } from '../info-modal/info-modal.component';
 
 @Component({
   selector: 'app-select-setting',
@@ -9,18 +12,14 @@ import { SoundboardService } from '../../../services/soundboard.service';
   standalone: true,
   imports: [],
 })
-export class SelectSettingComponent implements OnInit {
+export class SelectSettingComponent {
   private readonly soundboardService = inject(SoundboardService);
+  private readonly modalService = inject(ModalService);
+  private readonly settingsService = inject(SettingsService);
   control = input.required<FormControl<number>>();
-  labels = input.required<string[]>();
+  config = input.required<{ labels: string[]; helper: string }>();
   label = input<string>('');
   defaultValue = input<number>(0);
-
-  private initialValue!: number;
-
-  ngOnInit() {
-    this.initialValue = this.control().value;
-  }
 
   select(index: number) {
     this.soundboardService.counterSound();
@@ -30,5 +29,17 @@ export class SelectSettingComponent implements OnInit {
   reset() {
     this.soundboardService.clickSound();
     this.control().setValue(this.defaultValue());
+  }
+
+  info() {
+    this.soundboardService.clickSound();
+    this.modalService.open(
+      InfoModalComponent,
+      {
+        size: 'sm',
+        opacity: this.settingsService.modalOpacity(),
+      },
+      { info: this.config().helper },
+    );
   }
 }

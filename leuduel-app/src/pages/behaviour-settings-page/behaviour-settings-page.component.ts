@@ -1,6 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviourSettingsService, VALUE_LABELS } from '../../services/behaviour-settings.service';
+import {
+  BEHAVIOURS_CONFIG,
+  BehaviourSettingsService,
+} from '../../services/behaviour-settings.service';
 import { SelectSettingComponent } from '../../components/common/select-setting/select-setting.component';
 import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
 import { MODAL_DATA } from '../../components/common/modal-generic/modal-generic.component';
@@ -18,7 +21,7 @@ export class BehaviourSettingsPageComponent {
   private readonly service = inject(BehaviourSettingsService);
   private readonly modalData = inject(MODAL_DATA);
 
-  readonly labels = VALUE_LABELS;
+  readonly configs = BEHAVIOURS_CONFIG;
 
   counterReset = new FormControl<number>(this.service.counterReset(), { nonNullable: true });
   gameReset = new FormControl<number>(this.service.gameReset(), { nonNullable: true });

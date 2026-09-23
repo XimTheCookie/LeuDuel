@@ -1,0 +1,13 @@
+<div class="info-modal">
+  <div class="info-modal__header">
+    <span class="info-modal__title">Info</span>
+  </div>
+
+  <div>
+    <span class="info-modal__label" [innerHTML]="infoText()"></span>
+  </div>
+
+  <div class="info-modal__actions">
+    <app-text-button (click)="close()" label="Close" tone="neutral" />
+  </div>
+</div>

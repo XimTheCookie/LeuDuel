@@ -1,0 +1,37 @@
+.info-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0.25rem 1rem 0.25rem;
+
+  &__header {
+    text-align: center;
+    padding-top: 0.25rem;
+  }
+
+  &__title {
+    display: block;
+    font-family: var(--font-title);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    user-select: none;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 18px var(--gold-glow);
+  }
+
+  &__label {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    user-select: none;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    padding-bottom: 0.25rem;
+  }
+}

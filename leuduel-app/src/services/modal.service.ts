@@ -40,6 +40,12 @@ export class ModalService {
     private injector: Injector,
   ) {}
 
+  private openCount = 0;
+
+  get hasOpenModal(): boolean {
+    return this.openCount > 0;
+  }
+
   open<T>(component: Type<T>, config: ModalConfig, componentData?: unknown): ModalRef {
     const { width, height } = SIZE_STYLES[config.size];
     this.androidManagementService.hideStatusBar();
@@ -68,6 +74,8 @@ export class ModalService {
 
     const unregister = this.androidNavigationService.register(() => overlayRef.dispose());
     overlayRef.detachments().subscribe(unregister);
+    this.openCount++;
+    overlayRef.detachments().subscribe(() => this.openCount--);
 
     return { close: () => overlayRef.dispose(), overlayRef };
   }

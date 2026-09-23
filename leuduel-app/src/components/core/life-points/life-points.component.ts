@@ -132,7 +132,7 @@ export class LifePointsComponent {
             change: this.settingsService.getStartingLifePoints(),
             lifeReset: true,
           });
-        } else {
+        } else if (!this.modalService.hasOpenModal) {
           // auto-prompt
           this.modalService.open(LifePointsResetComponent, {
             size: 'sm',
