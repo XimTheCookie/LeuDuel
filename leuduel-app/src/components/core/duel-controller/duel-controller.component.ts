@@ -1,5 +1,14 @@
 import { DatePipe } from '@angular/common';
-import { AfterViewInit, Component, computed, effect, inject, OnInit, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  computed,
+  effect,
+  inject,
+  OnInit,
+  signal,
+  untracked,
+} from '@angular/core';
 import { LogsPageComponent } from '../../../pages/logs-page/logs-page.component';
 import { SettingsPageComponent } from '../../../pages/settings-page/settings-page.component';
 import { ModalService } from '../../../services/modal.service';
@@ -13,6 +22,8 @@ import { AndroidManagementService } from '../../../services/android-management.s
 import { SettingsService } from '../../../services/settings.service';
 import { SoundboardService } from '../../../services/soundboard.service';
 import { CounterPageComponent } from '../../../pages/counter-page/counter-page.component';
+import { BehaviourSettingsService } from '../../../services/behaviour-settings.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-duel-controller',
@@ -24,6 +35,7 @@ import { CounterPageComponent } from '../../../pages/counter-page/counter-page.c
 export class DuelControllerComponent implements AfterViewInit {
   private readonly androidManagementService = inject(AndroidManagementService);
   readonly settingsService = inject(SettingsService);
+  private readonly behaviourSettings = inject(BehaviourSettingsService);
   private readonly soundboardService = inject(SoundboardService);
   duelStore = inject(DuelStore);
 
@@ -35,6 +47,8 @@ export class DuelControllerComponent implements AfterViewInit {
   private readonly modalService = inject(ModalService);
 
   isDuelRunning = signal<boolean>(false);
+
+  startupStop = signal<boolean>(false);
 
   constructor() {
     effect(() => {
@@ -54,10 +68,51 @@ export class DuelControllerComponent implements AfterViewInit {
         this.wasOvertime.set(false);
       }
     });
+
+    effect(() => {
+      const bestOf = this.settingsService.getNumberOfGames();
+      const winsPlayer1 = this.duelStore.wins1();
+      const winsPlayer2 = this.duelStore.wins2();
+      if (winsPlayer1 === 0 && winsPlayer2 === 0) return;
+      if (winsPlayer1 >= bestOf / 2 || winsPlayer2 >= bestOf / 2) {
+        if (
+          this.behaviourSettings.matchStop() === 1 &&
+          untracked(() => this.duelStore.isDuelStarted())
+        ) {
+          this.suggestMatchStop();
+        }
+      }
+    });
+
+    this.behaviourSettings.settingsInitialized.pipe(take(1)).subscribe(() => {
+      if (this.behaviourSettings.onStartup() === 1) {
+        this.startupStop.set(true);
+      }
+    });
+  }
+
+  private suggestMatchStop() {
+    setTimeout(() => {
+      const bestOf = this.settingsService.getNumberOfGames();
+      const winsPlayer1 = this.duelStore.wins1();
+      const winsPlayer2 = this.duelStore.wins2();
+      if (winsPlayer1 === 0 && winsPlayer2 === 0) return;
+      if (winsPlayer1 >= bestOf / 2 || winsPlayer2 >= bestOf / 2) {
+        if (this.behaviourSettings.matchStop() === 1 && this.duelStore.isDuelStarted()) {
+          this.stopMatch();
+        }
+      }
+    }, 1000);
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.updateRemainingTime(), 500);
+    setTimeout(() => {
+      if (this.startupStop()) {
+        this.handleStopMatch();
+      } else {
+        this.updateRemainingTime();
+      }
+    }, 500);
   }
 
   private updateRemainingTime(): void {

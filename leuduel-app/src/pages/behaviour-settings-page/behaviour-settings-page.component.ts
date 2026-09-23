@@ -26,17 +26,27 @@ export class BehaviourSettingsPageComponent {
   counterReset = new FormControl<number>(this.service.counterReset(), { nonNullable: true });
   gameReset = new FormControl<number>(this.service.gameReset(), { nonNullable: true });
   winnerSelect = new FormControl<number>(this.service.winnerSelect(), { nonNullable: true });
+  matchStop = new FormControl<number>(this.service.matchStop(), { nonNullable: true });
+  onStartup = new FormControl<number>(this.service.onStartup(), { nonNullable: true });
 
   settingsChanged() {
     return (
       this.counterReset.value !== this.service.counterReset() ||
       this.gameReset.value !== this.service.gameReset() ||
-      this.winnerSelect.value !== this.service.winnerSelect()
+      this.winnerSelect.value !== this.service.winnerSelect() ||
+      this.onStartup.value !== this.service.onStartup() ||
+      this.matchStop.value !== this.service.matchStop()
     );
   }
 
   settingsValid() {
-    return this.counterReset.valid && this.gameReset.valid && this.winnerSelect.valid;
+    return (
+      this.counterReset.valid &&
+      this.gameReset.valid &&
+      this.winnerSelect.valid &&
+      this.onStartup.valid &&
+      this.matchStop.valid
+    );
   }
 
   confirm() {
@@ -45,6 +55,8 @@ export class BehaviourSettingsPageComponent {
     this.service.counterReset.set(this.counterReset.value);
     this.service.gameReset.set(this.gameReset.value);
     this.service.winnerSelect.set(this.winnerSelect.value);
+    this.service.matchStop.set(this.matchStop.value);
+    this.service.onStartup.set(this.onStartup.value);
     this.modalData.overlayRef.dispose();
   }
 }

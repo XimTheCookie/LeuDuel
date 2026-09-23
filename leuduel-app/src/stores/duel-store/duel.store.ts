@@ -156,33 +156,35 @@ export const DuelStore = signalStore(
             [player]: { ...playerState, lifePoints: lp, lifeChanges: [...before, ...after] },
           });
         },
-        lifeAction(player: 'player1' | 'player2', LifeAction: LifeAction): void {
+        lifeAction(player: 'player1' | 'player2', lifeAction: LifeAction): void {
           const playerState = store[player]();
           const currentLifePoints = playerState.lifePoints;
           let newLifePoints = currentLifePoints;
 
-          switch (LifeAction.type) {
+          switch (lifeAction.type) {
             case 'damage':
-              newLifePoints -= LifeAction.change;
+              newLifePoints -= lifeAction.change;
               break;
             case 'heal':
-              newLifePoints += LifeAction.change;
+              newLifePoints += lifeAction.change;
               break;
             case 'set':
-              newLifePoints = LifeAction.change;
+              newLifePoints = lifeAction.change;
               break;
             case 'multiply':
-              newLifePoints *= LifeAction.change;
+              newLifePoints *= lifeAction.change;
               break;
             case 'divide':
-              newLifePoints = Math.round(newLifePoints / LifeAction.change);
+              newLifePoints = Math.round(newLifePoints / lifeAction.change);
               break;
           }
           const effectiveChange = newLifePoints - currentLifePoints;
           newLifePoints = Math.max(0, newLifePoints);
           newLifePoints = Math.min(newLifePoints, 99999999);
-          if (LifeAction.lifeReset && behaviourService.counterReset() === 1) {
-            toolsStore.resetCounters();
+          if (lifeAction.lifeReset) {
+            if (behaviourService.counterReset() === 1) {
+              toolsStore.resetCounters();
+            }
           }
           const change: LifeChange = {
             player: playerState.name,
@@ -191,7 +193,7 @@ export const DuelStore = signalStore(
             timerSnapshot: getRemainingTime(),
             beforeChange: currentLifePoints,
             afterChange: newLifePoints,
-            isReset: LifeAction.lifeReset ?? false,
+            isReset: lifeAction.lifeReset ?? false,
           };
           const currentLifeChanges = playerState.lifeChanges ?? [];
           patchState(store, {
