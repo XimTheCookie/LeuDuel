@@ -1,6 +1,6 @@
 <div class="logs-page">
   <div class="logs-page__header">
-    <span class="logs-page__title">Life Log</span>
+    <span class="logs-page__title">Logs</span>
     <span class="logs-page__count">{{ logs().length }} events</span>
   </div>
 
@@ -16,6 +16,8 @@
           [lifeLog]="log"
           [undoable]="log.undoable"
           (undo)="undoChange(log.timestamp)"
+          [playerProfile1]="playerProfile1()"
+          [playerProfile2]="playerProfile2()"
         />
       }
     }

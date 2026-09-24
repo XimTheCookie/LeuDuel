@@ -55,6 +55,7 @@ const DEFAULT_VALUES: SettingsSnapshot = {
   modalOpacity: 7,
   firstVisit: true,
   landscapeMode: false,
+  showCustomPlayers: false,
 };
 
 const SETTINGS_KEY = 'settings';
@@ -71,6 +72,7 @@ interface SettingsSnapshot {
   landscapeMode: boolean;
   modalOpacity: number;
   firstVisit: boolean;
+  showCustomPlayers: boolean;
 }
 
 @Injectable({
@@ -88,6 +90,7 @@ export class SettingsService {
   landscapeMode = signal<boolean>(false);
   modalOpacity = signal<number>(DEFAULT_VALUES.modalOpacity);
   firstVisit = signal<boolean>(DEFAULT_VALUES.firstVisit);
+  showCustomPlayers = signal<boolean>(DEFAULT_VALUES.showCustomPlayers);
 
   settingsInitialized = new Subject<void>();
 
@@ -110,6 +113,7 @@ export class SettingsService {
     this.landscapeMode.set(saved.landscapeMode ?? false);
     this.modalOpacity.set(saved.modalOpacity ?? 7);
     this.firstVisit.set(saved.firstVisit == null ? true : saved.firstVisit);
+    this.showCustomPlayers.set(saved.showCustomPlayers ?? false);
     this.settingsInitialized.next();
   }
 
@@ -126,6 +130,7 @@ export class SettingsService {
       landscapeMode: this.landscapeMode(),
       modalOpacity: this.modalOpacity(),
       firstVisit: this.firstVisit(),
+      showCustomPlayers: this.showCustomPlayers(),
     };
     this.persistance.save(SETTINGS_KEY, snapshot);
   }
@@ -268,5 +273,13 @@ export class SettingsService {
 
   setFirstVisitDone() {
     this.firstVisit.set(false);
+  }
+
+  setCustomPlayers(value: boolean) {
+    this.showCustomPlayers.set(value);
+  }
+
+  resetCustomPlayers() {
+    this.showCustomPlayers.set(DEFAULT_VALUES.showCustomPlayers);
   }
 }

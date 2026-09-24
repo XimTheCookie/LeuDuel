@@ -10,10 +10,7 @@
         tone="neutral"
       />
     </div>
-    <div class="controller__timer" [class.controller__timer--overtime]="isOvertime()">
-      {{ isOvertime() ? '-' : ''
-      }}{{ (isOvertime() ? -remainingTime() : remainingTime()) | date: 'HH:mm:ss' : 'UTC' }}
-    </div>
+    <app-timer />
     <div class="controller__side controller__side--right">
       <app-button
         (clicked)="openJudgePage()"

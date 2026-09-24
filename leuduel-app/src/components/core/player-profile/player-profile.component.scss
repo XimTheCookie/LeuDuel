@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  user-select: none;
+}
+
+.profile__image {
+  width: 3.5rem;
+  height: auto;
+  border-radius: 4px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border: 1px solid var(--border-subtle);
+
+  &--smaller {
+    width: 3rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+}
+
+.profile__name {
+  font-family: var(--font-title);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  word-break: break-word;
+}

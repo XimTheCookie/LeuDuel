@@ -1,0 +1,38 @@
+<div class="profile-editor">
+  <div class="profile-editor__header">
+    <span class="profile-editor__title">
+      {{ data.mode === 'main' ? 'My Profile' : data.opponent ? 'Edit Opponent' : 'Add Opponent' }}
+    </span>
+  </div>
+
+  <div class="profile-editor__preview">
+    <app-player-profile [profile]="preview()" [showName]="true" [showAvatar]="true" />
+    <app-text-button
+      (clicked)="clearCard()"
+      [isDisabled]="!selectedCardUrl()"
+      [tone]="!selectedCardUrl() ? 'neutral' : 'negative'"
+      label="Remove"
+    />
+  </div>
+
+  <div class="profile-editor__field">
+    <label class="profile-editor__label">Display name</label>
+    <input
+      class="profile-editor__input"
+      type="text"
+      [maxLength]="32"
+      placeholder="Enter name…"
+      [ngModel]="displayName()"
+      (ngModelChange)="displayName.set($event)"
+      autocomplete="off"
+      spellcheck="false"
+    />
+  </div>
+
+  <div class="profile-editor__section-title">Profile picture</div>
+  <app-card-search (cardSelected)="onCardSelected($event)" />
+
+  <div class="profile-editor__footer">
+    <app-text-button label="Save" tone="positive" [isDisabled]="!canSave()" (clicked)="save()" />
+  </div>
+</div>

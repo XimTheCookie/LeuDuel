@@ -6,13 +6,23 @@
 >
   <div class="log-item__accent"></div>
 
+  @if (displayProfile()) {
+    <app-player-profile [small]="true" [profile]="displayProfile()!" [showName]="false" />
+  }
+
   <div class="log-item__body">
     <div class="log-item__header">
-      <span class="log-item__player">{{ lifeLog().player }}</span>
+      <span class="log-item__player">{{ displayProfile()?.displayName ?? lifeLog().player }}</span>
       @if (lifeLog().isReset) {
         <span class="log-item__reset-badge">LP RESET</span>
       }
-      <span class="log-item__time">{{ lifeLog().timerSnapshot < 0 ? '-' : '' }}{{ (lifeLog().timerSnapshot < 0 ? -lifeLog().timerSnapshot : lifeLog().timerSnapshot) | date: 'HH:mm:ss' : 'UTC' }}</span>
+      <span class="log-item__time"
+        >{{ lifeLog().timerSnapshot < 0 ? '-' : ''
+        }}{{
+          (lifeLog().timerSnapshot < 0 ? -lifeLog().timerSnapshot : lifeLog().timerSnapshot)
+            | date: 'HH:mm:ss' : 'UTC'
+        }}</span
+      >
     </div>
 
     <div class="log-item__change">
@@ -31,7 +41,13 @@
     </div>
   </div>
 
-  <button class="log-item__undo" type="button" aria-label="Undo" [disabled]="!undoable()" (click)="undo.emit(lifeLog().timestamp)">
+  <button
+    class="log-item__undo"
+    type="button"
+    aria-label="Undo"
+    [disabled]="!undoable()"
+    (click)="undo.emit(lifeLog().timestamp)"
+  >
     <app-icon icon="reset" size="sm" />
   </button>
 </div>

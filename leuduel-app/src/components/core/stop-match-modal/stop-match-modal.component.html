@@ -13,6 +13,11 @@
       @if (winnerInfo().isDraw) {
         <span class="match-stop__winner-draw">Draw / Double lose</span>
       } @else {
+        @let wp = displayProfile();
+        @if (wp) {
+          <app-player-profile [profile]="wp" [showName]="false" />
+        }
+
         <div class="match-stop__winner-scores">
           <span [class.match-stop__winner-scores--bold]="winnerInfo().leader === 'player1'">
             {{ duelStore.player1().name }} — {{ duelStore.wins1() }}

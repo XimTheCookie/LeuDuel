@@ -9,13 +9,14 @@ import { Type } from '@angular/core';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
 import { SoundboardService } from '../../../services/soundboard.service';
 import { BehaviourSettingsService } from '../../../services/behaviour-settings.service';
+import { PlayerProfileComponent } from '../player-profile/player-profile.component';
 
 @Component({
   selector: 'app-life-points-reset',
   templateUrl: './life-points-reset.component.html',
   styleUrls: ['./life-points-reset.component.scss'],
   standalone: true,
-  imports: [ButtonComponent, TextButtonComponent],
+  imports: [ButtonComponent, TextButtonComponent, PlayerProfileComponent],
 })
 export class LifePointsResetComponent implements AfterViewInit {
   private readonly settingsService = inject(SettingsService);
@@ -26,6 +27,10 @@ export class LifePointsResetComponent implements AfterViewInit {
   selectedPlayer = signal<'player1' | 'player2' | null>(null);
 
   isOngoing = computed(() => this.duelStore.isDuelStarted() && !this.duelStore.isDuelPaused());
+  isLandscape = computed(() => this.settingsService.landscapeMode());
+  showProfiles = computed(() => this.settingsService.showCustomPlayers());
+  profile1 = computed(() => this.duelStore.player1().profile ?? null);
+  profile2 = computed(() => this.duelStore.player2().profile ?? null);
 
   constructor(
     @Inject(MODAL_DATA)

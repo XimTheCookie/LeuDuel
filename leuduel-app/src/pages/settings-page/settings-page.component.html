@@ -28,6 +28,19 @@
         [canReset]="true"
         (doReset)="resetTimer()"
       />
+      <label class="settings-section__toggle-row">
+        <span class="toggle-label">Use custom profiles</span>
+        <input
+          type="checkbox"
+          [checked]="showCustomPlayers.value!"
+          (change)="showCustomPlayers.setValue($any($event.target).checked)"
+        />
+      </label>
+      <app-text-button
+        (clicked)="openProfiles()"
+        label="Customize player profiles"
+        tone="neutral"
+      />
     </div>
     <div class="settings-section__footer">
       <app-text-button

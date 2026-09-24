@@ -9,6 +9,7 @@ import { AboutComponent } from '../../components/core/about/about.component';
 import { AndroidManagementService } from '../../services/android-management.service';
 import { SoundboardService } from '../../services/soundboard.service';
 import { BehaviourSettingsPageComponent } from '../behaviour-settings-page/behaviour-settings-page.component';
+import { ProfilesPageComponent } from '../profiles-page/profiles-page.component';
 
 @Component({
   selector: 'app-settings-page',
@@ -30,6 +31,8 @@ export class SettingsPageComponent {
   keepAwake = new FormControl<boolean>({ value: false, disabled: true });
 
   isLandscapeOrientation = new FormControl<boolean>(this.settingsService.landscapeMode());
+
+  showCustomPlayers = new FormControl<boolean>(this.settingsService.showCustomPlayers());
 
   landscapeMode = computed(() => this.settingsService.landscapeMode());
 
@@ -113,12 +116,18 @@ export class SettingsPageComponent {
     return (
       this.lifePoints.value === this.settingsService.getStartingLifePoints() &&
       this.duration.value === this.settingsService.getDuelDuration() &&
-      this.bestOf.value === this.settingsService.getNumberOfGames()
+      this.bestOf.value === this.settingsService.getNumberOfGames() &&
+      this.showCustomPlayers.value === this.settingsService.showCustomPlayers()
     );
   }
 
   duelSettingsValid() {
-    return this.lifePoints.valid && this.duration.valid && this.bestOf.valid;
+    return (
+      this.lifePoints.valid &&
+      this.duration.valid &&
+      this.bestOf.valid &&
+      this.showCustomPlayers.valid
+    );
   }
 
   saveDuelSettings() {
@@ -129,6 +138,7 @@ export class SettingsPageComponent {
     this.settingsService.setStartingLifePoints(this.lifePoints.value!);
     this.settingsService.setDuelDuration(this.duration.value!);
     this.settingsService.setNumberOfGames(this.bestOf.value!);
+    this.settingsService.setCustomPlayers(this.showCustomPlayers.value!);
   }
 
   resetRapidButtons() {
@@ -179,6 +189,14 @@ export class SettingsPageComponent {
     this.soundboardService.clickSound();
     this.modalService.open(BehaviourSettingsPageComponent, {
       size: 'md',
+      opacity: this.settingsService.getModalOpacity(),
+    });
+  }
+
+  openProfiles() {
+    this.soundboardService.clickSound();
+    this.modalService.open(ProfilesPageComponent, {
+      size: 'full',
       opacity: this.settingsService.getModalOpacity(),
     });
   }

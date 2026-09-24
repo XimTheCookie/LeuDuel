@@ -1,14 +1,4 @@
-import { DatePipe } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  computed,
-  effect,
-  inject,
-  OnInit,
-  signal,
-  untracked,
-} from '@angular/core';
+import { AfterViewInit, Component, effect, inject, signal, untracked } from '@angular/core';
 import { LogsPageComponent } from '../../../pages/logs-page/logs-page.component';
 import { SettingsPageComponent } from '../../../pages/settings-page/settings-page.component';
 import { ModalService } from '../../../services/modal.service';
@@ -23,6 +13,9 @@ import { SettingsService } from '../../../services/settings.service';
 import { SoundboardService } from '../../../services/soundboard.service';
 import { CounterPageComponent } from '../../../pages/counter-page/counter-page.component';
 import { BehaviourSettingsService } from '../../../services/behaviour-settings.service';
+import { TimerService } from '../../../services/timer.service';
+import { TimerComponent } from '../../common/timer/timer.component';
+import { OpponentPickerModalComponent } from '../opponent-picker-modal/opponent-picker-modal.component';
 import { take } from 'rxjs';
 
 @Component({
@@ -30,29 +23,24 @@ import { take } from 'rxjs';
   templateUrl: './duel-controller.component.html',
   styleUrl: './duel-controller.component.scss',
   standalone: true,
-  imports: [DatePipe, ButtonComponent],
+  imports: [ButtonComponent, TimerComponent],
 })
 export class DuelControllerComponent implements AfterViewInit {
   private readonly androidManagementService = inject(AndroidManagementService);
   readonly settingsService = inject(SettingsService);
   private readonly behaviourSettings = inject(BehaviourSettingsService);
   private readonly soundboardService = inject(SoundboardService);
+  private readonly timerService = inject(TimerService);
   duelStore = inject(DuelStore);
 
-  remainingTime = signal<number>(this.duelStore.timer().duration);
-  remainingTimeTimeout = signal<number | null>(null);
-  wasOvertime = signal<boolean>(false);
-  isOvertime = computed(() => this.remainingTime() < 0);
-
+  private readonly wasOvertime = signal<boolean>(false);
   private readonly modalService = inject(ModalService);
-
-  isDuelRunning = signal<boolean>(false);
 
   startupStop = signal<boolean>(false);
 
   constructor() {
     effect(() => {
-      if (this.isDuelRunning()) {
+      if (this.timerService.isRunning()) {
         this.androidManagementService.keepAwake();
       } else {
         this.androidManagementService.allowSleep();
@@ -60,7 +48,7 @@ export class DuelControllerComponent implements AfterViewInit {
     });
 
     effect(() => {
-      const isOvertime = this.isOvertime();
+      const isOvertime = this.timerService.isOvertime();
       if (isOvertime && !this.wasOvertime()) {
         this.soundboardService.alarmSound();
         this.wasOvertime.set(true);
@@ -110,58 +98,22 @@ export class DuelControllerComponent implements AfterViewInit {
       if (this.startupStop()) {
         this.handleStopMatch();
       } else {
-        this.updateRemainingTime();
+        this.timerService.update();
       }
     }, 500);
-  }
-
-  private updateRemainingTime(): void {
-    if (this.duelStore.isDuelStarted() === false) {
-      this.stopRemainingTimeUpdate();
-      return;
-    }
-    const timer = this.duelStore.timer();
-
-    if (!timer) {
-      this.isDuelRunning.set(false);
-      return;
-    }
-    this.isDuelRunning.set(true);
-
-    const elapsedTime = this.duelStore.isDuelPaused()
-      ? timer.elapsedTime
-      : timer.elapsedTime + Date.now() - timer.startTime;
-    this.remainingTime.set(timer.duration - elapsedTime);
-
-    if (this.duelStore.isDuelPaused()) {
-      return;
-    }
-
-    const timeout = setTimeout(() => this.updateRemainingTime(), 250);
-
-    this.remainingTimeTimeout.set(timeout);
-  }
-
-  stopRemainingTimeUpdate(): void {
-    const remainingTimeTimeout = this.remainingTimeTimeout();
-    if (remainingTimeTimeout !== null) {
-      clearTimeout(remainingTimeTimeout);
-      this.remainingTimeTimeout.set(null);
-    }
-    this.isDuelRunning.set(false);
   }
 
   pauseDuel() {
     this.duelStore.pauseDuel();
     this.soundboardService.clickSound();
-    this.stopRemainingTimeUpdate();
-    this.updateRemainingTime();
+    this.timerService.stop();
+    this.timerService.update();
   }
 
   resumeDuel() {
     this.duelStore.resumeDuel();
     this.soundboardService.clickSound();
-    this.updateRemainingTime();
+    this.timerService.update();
   }
 
   stopMatch() {
@@ -177,14 +129,25 @@ export class DuelControllerComponent implements AfterViewInit {
 
   private handleStopMatch() {
     this.duelStore.reset();
-    this.stopRemainingTimeUpdate();
-    this.remainingTime.set(this.duelStore.timer().duration);
+    this.timerService.reset();
   }
 
   startDuel() {
-    this.duelStore.startDuel('Player 1', 'Player 2');
+    if (this.settingsService.showCustomPlayers()) {
+      this.modalService.open(
+        OpponentPickerModalComponent,
+        { size: 'sm', opacity: this.settingsService.getModalOpacity() },
+        (opponentId?: number) => this.handleStart(opponentId),
+      );
+    } else {
+      this.handleStart();
+    }
+  }
+
+  handleStart(opponentId?: number) {
     this.soundboardService.confirmationSound();
-    this.updateRemainingTime();
+    this.duelStore.startDuel(opponentId);
+    this.timerService.update();
   }
 
   resetLifePoints() {

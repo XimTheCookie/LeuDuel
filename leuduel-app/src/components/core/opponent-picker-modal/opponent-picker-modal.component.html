@@ -1,0 +1,29 @@
+<div class="opponent-picker">
+  <div class="opponent-picker__header">
+    <span class="opponent-picker__title">Pick Opponent</span>
+  </div>
+
+  <div class="opponent-picker__divider">
+    <span class="opponent-picker__divider-gem"></span>
+  </div>
+
+  <div class="opponent-picker__list">
+    @for (opponent of playerStore.opponents(); track opponent.id) {
+      <button
+        class="opponent-picker__item"
+        [class.opponent-picker__item--selected]="selected()?.id === opponent.id"
+        (click)="select(opponent)"
+      >
+        <app-player-profile [profile]="opponent" [showAvatar]="true" [showName]="false" [small]="true" />
+        <span class="opponent-picker__name">{{ opponent.displayName }}</span>
+      </button>
+    } @empty {
+      <span class="opponent-picker__empty">No opponents saved.</span>
+    }
+  </div>
+
+  <div class="opponent-picker__actions">
+    <app-text-button (click)="confirm()" label="Start" tone="positive" [isDisabled]="!selected()" />
+    <app-text-button (click)="cancel()" label="Cancel" tone="neutral" />
+  </div>
+</div>

@@ -1,6 +1,8 @@
 import { Component, computed, input } from '@angular/core';
 import {
   LucideArrowDown,
+  LucideArrowLeft,
+  LucideArrowRight,
   LucideArrowUp,
   LucideBan,
   LucideBookOpen,
@@ -11,6 +13,7 @@ import {
   LucideHeartPulse,
   LucideMinus,
   LucidePause,
+  LucidePencil,
   LucidePlay,
   LucidePlus,
   LucideRotateCcw,
@@ -67,6 +70,10 @@ export class IconComponent {
         return LucideArrowDown;
       case 'arrow-up':
         return LucideArrowUp;
+      case 'arrow-left':
+        return LucideArrowLeft;
+      case 'arrow-right':
+        return LucideArrowRight;
       case 'ban':
         return LucideBan;
       case 'dices':
@@ -77,6 +84,8 @@ export class IconComponent {
         return LucideVolumeOff;
       case 'coins':
         return LucideCoins;
+      case 'edit':
+        return LucidePencil;
     }
     return LucideX;
   });

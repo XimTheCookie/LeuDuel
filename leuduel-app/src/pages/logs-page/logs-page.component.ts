@@ -1,8 +1,9 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { DuelStore } from '../../stores/duel-store/duel.store';
-import { LogItemComponent } from '../../components/core/log-item/log-item.component';
 import { IconComponent } from '../../components/common/icon/icon.component';
+import { LogItemComponent } from '../../components/core/log-item/log-item.component';
 import { SoundboardService } from '../../services/soundboard.service';
+import { DuelStore } from '../../stores/duel-store/duel.store';
+import { SettingsService } from '../../services/settings.service';
 
 @Component({
   selector: 'app-logs-page',
@@ -13,15 +14,25 @@ import { SoundboardService } from '../../services/soundboard.service';
 })
 export class LogsPageComponent {
   private readonly soundboardService = inject(SoundboardService);
-  private readonly dualStore = inject(DuelStore);
+  private readonly duelStore = inject(DuelStore);
+  private readonly settingsService = inject(SettingsService);
+
+  playerProfile1 = computed(() => {
+    if (!this.settingsService.showCustomPlayers()) return undefined;
+    return this.duelStore.player1()?.profile;
+  });
+  playerProfile2 = computed(() => {
+    if (!this.settingsService.showCustomPlayers()) return undefined;
+    return this.duelStore.player2()?.profile;
+  });
 
   undoCoolingDown = signal<boolean>(false);
 
   logs = computed(() => {
-    const p1 = this.dualStore
+    const p1 = this.duelStore
       .player1()
       .lifeChanges.map((c) => ({ ...c, _player: 'player1' as const }));
-    const p2 = this.dualStore
+    const p2 = this.duelStore
       .player2()
       .lifeChanges.map((c) => ({ ...c, _player: 'player2' as const }));
     const all = [...p1, ...p2].sort((a, b) => b.timestamp - a.timestamp);
@@ -43,6 +54,6 @@ export class LogsPageComponent {
     this.undoCoolingDown.set(true);
     setTimeout(() => this.undoCoolingDown.set(false), 300);
     const entry = this.logs().find((l) => l.timestamp === timestamp);
-    if (entry?.undoable) this.dualStore.undoLifeChange(entry._player, timestamp);
+    if (entry?.undoable) this.duelStore.undoLifeChange(entry._player, timestamp);
   }
 }

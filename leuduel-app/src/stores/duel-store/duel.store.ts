@@ -16,6 +16,8 @@ import { BehaviourSettingsService } from '../../services/behaviour-settings.serv
 import { PersistanceService } from '../../services/persistance.service';
 import { SettingsService } from '../../services/settings.service';
 import { ToolsStore } from '../tools-store/tools.store';
+import { PlayerStore } from '../player-store/player.store';
+import { PlayerProfile } from '../../models/player-profile.modal';
 
 const initialState: DuelState = {
   player1: { name: 'Player 1', lifePoints: 8000, lifeChanges: [], wins: 0 },
@@ -44,8 +46,9 @@ export const DuelStore = signalStore(
     (
       store,
       settingsService = inject(SettingsService),
-      toolsStore = inject(ToolsStore),
       behaviourService = inject(BehaviourSettingsService),
+      toolsStore = inject(ToolsStore),
+      playerStore = inject(PlayerStore),
     ) => {
       const getRemainingTime = () => {
         const timer = store.timer();
@@ -81,19 +84,33 @@ export const DuelStore = signalStore(
           });
           if (behaviourService.counterReset() > 0) toolsStore.resetCounters();
         },
-        startDuel(player1: string, player2: string): void {
+        startDuel(opponentId?: number): void {
+          let player1: PlayerProfile | undefined;
+          let player2: PlayerProfile | undefined;
+          if (settingsService.showCustomPlayers()) {
+            player1 = playerStore.main() ?? undefined;
+            if (opponentId !== undefined) {
+              player2 = playerStore.getOpponentById(opponentId) ?? undefined;
+            }
+            if (!player2 && playerStore.opponents().length > 0) {
+              player2 = playerStore.opponents()[0];
+            }
+          }
+
           patchState(store, {
             player1: {
-              name: player1,
+              name: 'Player 1',
               lifePoints: settingsService.getStartingLifePoints(),
               lifeChanges: [],
               wins: 0,
+              profile: player1,
             },
             player2: {
-              name: player2,
+              name: 'Player 2',
               lifePoints: settingsService.getStartingLifePoints(),
               lifeChanges: [],
               wins: 0,
+              profile: player2,
             },
             status: DuelStatus.ONGOING,
             timer: {

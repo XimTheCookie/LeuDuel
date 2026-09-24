@@ -1,0 +1,7 @@
+<div class="timer" [class.timer--overtime]="timerService.isOvertime()">
+  {{ timerService.isOvertime() ? '-' : ''
+  }}{{
+    (timerService.isOvertime() ? -timerService.remainingTime() : timerService.remainingTime())
+      | date: 'HH:mm:ss' : 'UTC'
+  }}
+</div>
