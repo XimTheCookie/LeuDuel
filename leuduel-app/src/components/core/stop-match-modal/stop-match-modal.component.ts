@@ -40,6 +40,20 @@ export class StopMatchModalComponent {
     return undefined;
   });
 
+  displayName1 = computed(() => {
+    const player = this.duelStore.player1();
+    if (this.settingsService.showCustomPlayers())
+      return player?.profile?.displayName ?? player.name;
+    return player.name;
+  });
+
+  displayName2 = computed(() => {
+    const player = this.duelStore.player2();
+    if (this.settingsService.showCustomPlayers())
+      return player?.profile?.displayName ?? player.name;
+    return player.name;
+  });
+
   constructor(
     @Inject(MODAL_DATA) private modalData: InstanceType<typeof ModalGenericComponent>['data'],
     @Inject(MODAL_COMPONENT_DATA) private onConfirm: () => void,

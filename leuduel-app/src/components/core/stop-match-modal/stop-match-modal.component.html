@@ -20,10 +20,10 @@
 
         <div class="match-stop__winner-scores">
           <span [class.match-stop__winner-scores--bold]="winnerInfo().leader === 'player1'">
-            {{ duelStore.player1().name }} — {{ duelStore.wins1() }}
+            {{ displayName1() }} — {{ duelStore.wins1() }}
           </span>
           <span [class.match-stop__winner-scores--bold]="winnerInfo().leader === 'player2'">
-            {{ duelStore.player2().name }} — {{ duelStore.wins2() }}
+            {{ displayName2() }} — {{ duelStore.wins2() }}
           </span>
         </div>
       }
