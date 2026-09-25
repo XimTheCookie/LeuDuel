@@ -7,7 +7,7 @@ body {
   overflow: hidden;
   background: var(--bg-deep);
   color: var(--text-primary);
-  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-family: var(--font-ui);
 }
 
 // Subtle star/noise texture overlay on the whole app
@@ -28,7 +28,7 @@ app-root::before {
 
 // CDK Modal overlay
 .modal-backdrop {
-  background: rgba(0, 0, 0, 0.72);
+  background: var(--modal-backdrop);
 }
 
 .modal-panel {

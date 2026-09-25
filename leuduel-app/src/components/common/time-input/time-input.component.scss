@@ -47,7 +47,7 @@
 }
 
 .ti-row--invalid {
-  border-color: #e05252;
+  border-color: var(--color-negative);
   box-shadow: 0 0 0 2px rgba(224, 82, 82, 0.15);
 }
 
@@ -60,7 +60,7 @@
 
 .ti-value {
   font-size: 1.1rem;
-  font-family: var(--font-lp);
+  font-family: var(--font-mono);
   color: var(--text-primary);
   min-width: 2ch;
   user-select: none;

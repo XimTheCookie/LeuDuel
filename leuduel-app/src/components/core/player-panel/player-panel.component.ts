@@ -2,6 +2,7 @@ import { Component, computed, inject, input, signal } from '@angular/core';
 import { LifeAction } from '../../../models/life-action.model';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
 import { DamageButtonComponent } from '../../common/damage-button/damage-button.component';
+import { WinsBarComponent } from '../../common/wins-bar/wins-bar.component';
 import { SettingsService } from '../../../services/settings.service';
 import { ModalService } from '../../../services/modal.service';
 import { ModifyDamageButtonComponent } from '../modify-damage-button/modify-damage-button.component';
@@ -13,16 +14,11 @@ import { LifePointsComponent } from '../life-points/life-points.component';
   templateUrl: './player-panel.component.html',
   styleUrl: './player-panel.component.scss',
   standalone: true,
-  imports: [DamageButtonComponent, LifePointsComponent],
+  imports: [DamageButtonComponent, LifePointsComponent, WinsBarComponent],
 })
 export class PlayerPanelComponent {
   private readonly settingsService = inject(SettingsService);
   private readonly modalService = inject(ModalService);
-
-  numberOfGamesArray = computed<number[]>(() => {
-    const numberOfGames = this.settingsService.getNumberOfGames();
-    return Array.from({ length: numberOfGames }, (_, i) => i + 1);
-  });
 
   player = input.required<'player1' | 'player2'>();
   rapidButtons = computed(() => this.settingsService.rapidButtonsConfig());

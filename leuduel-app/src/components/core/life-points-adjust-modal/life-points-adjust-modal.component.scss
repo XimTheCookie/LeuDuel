@@ -29,7 +29,7 @@
     background: var(--bg-deep);
     border-radius: 8px;
     border: 1px solid var(--border-subtle);
-    font-family: var(--font-lp);
+    font-family: var(--font-mono);
   }
 
   &__preview-lp {
@@ -41,9 +41,9 @@
   &__preview-op {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #f87171;
+    color: var(--color-negative-bright);
     &--pos {
-      color: #4ade80;
+      color: var(--color-positive);
     }
   }
 
@@ -63,7 +63,7 @@
     font-size: 1rem;
     color: var(--text-muted);
     &--zero {
-      color: #f87171;
+      color: var(--color-negative-bright);
     }
   }
 
@@ -134,7 +134,7 @@
 
   &__key {
     padding: 0.65rem 0;
-    font-family: var(--font-lp);
+    font-family: var(--font-mono);
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -170,7 +170,7 @@
 
     &--neg {
       font-size: 1.5rem;
-      color: #f87171;
+      color: var(--color-negative-bright);
       &.lpa__side--active {
         background: rgba(192, 57, 43, 0.25);
         border-color: rgba(248, 113, 113, 0.5);
@@ -180,7 +180,7 @@
 
     &--pos {
       font-size: 1.5rem;
-      color: #4ade80;
+      color: var(--color-positive);
       &.lpa__side--active {
         background: rgba(26, 122, 74, 0.25);
         border-color: rgba(74, 222, 128, 0.5);
@@ -191,7 +191,7 @@
 
   &__confirm {
     padding: 0.65rem 0;
-    font-family: var(--font-lp);
+    font-family: var(--font-title);
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--gold);

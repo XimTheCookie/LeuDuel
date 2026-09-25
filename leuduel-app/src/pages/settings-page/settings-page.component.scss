@@ -85,7 +85,7 @@
     justify-content: flex-end;
     padding: 0.65rem 1rem;
     border-top: 1px solid var(--border-subtle);
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--bg-overlay);
   }
 
   &__toggle-row {

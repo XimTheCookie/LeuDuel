@@ -12,22 +12,26 @@
 
   <div class="lp-reset__winner">
     <span class="lp-reset__winner-label">Assign Victory</span>
+    @let p1 = profile1();
+    @let p2 = profile2();
     <div class="lp-reset__winner-btns" [class.lp-reset__winner-btns--landscape]="landscapeMode()">
       <div class="lp-reset__player-col p1" [class.lp-reset__player-col--is-row]="landscapeMode()">
-        @if (showProfiles() && profile1()) {
+        @let playerLeft = whichPlayer(true);
+        @let playerProfileLeft = swapped() ? p2 : p1;
+        @if (showProfiles() && playerProfileLeft) {
           <app-player-profile
-            [profile]="profile1()!"
+            [profile]="playerProfileLeft"
             [showAvatar]="true"
             [showName]="false"
             [small]="true"
+            (click)="togglePlayer(playerLeft)"
           />
         }
         <app-button
-          [label]="duelStore.player1().name"
           [icon]="isLandscape() ? 'arrow-left' : 'arrow-down'"
           size="md"
-          [tone]="selectedPlayer() === 'player1' ? 'positive' : 'neutral'"
-          (clicked)="togglePlayer('player1')"
+          [tone]="selectedPlayer() === playerLeft ? 'positive' : 'neutral'"
+          (clicked)="togglePlayer(playerLeft)"
         />
       </div>
       <div class="lp-reset__player-col">
@@ -40,20 +44,22 @@
         />
       </div>
       <div class="lp-reset__player-col p2" [class.lp-reset__player-col--is-row]="landscapeMode()">
-        @if (showProfiles() && profile2()) {
+        @let playerRight = whichPlayer(false);
+        @let playerProfileRight = swapped() ? p1 : p2;
+        @if (showProfiles() && playerProfileRight) {
           <app-player-profile
-            [profile]="profile2()!"
+            [profile]="playerProfileRight"
             [showAvatar]="true"
             [showName]="false"
+            (click)="togglePlayer(playerRight)"
             [small]="true"
           />
         }
         <app-button
-          [label]="duelStore.player2().name"
           [icon]="isLandscape() ? 'arrow-right' : 'arrow-up'"
           size="md"
-          [tone]="selectedPlayer() === 'player2' ? 'positive' : 'neutral'"
-          (clicked)="togglePlayer('player2')"
+          [tone]="selectedPlayer() === playerRight ? 'positive' : 'neutral'"
+          (clicked)="togglePlayer(playerRight)"
         />
       </div>
     </div>

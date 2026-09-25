@@ -79,7 +79,16 @@
         <input
           type="checkbox"
           [checked]="isLandscapeOrientation.value!"
-          (change)="isLandscapeOrientation.setValue($any($event.target).checked)"
+          (change)="setIsLandscapeOrientation($any($event.target).checked)"
+        />
+      </label>
+      <label class="settings-section__toggle-row">
+        <span class="toggle-label">Swap players</span>
+        <input
+          type="checkbox"
+          [disabled]="!isLandscapeOrientation.value"
+          [checked]="swapPlayers.value!"
+          (change)="setSwapPlayers($any($event.target).checked)"
         />
       </label>
       <app-number-input

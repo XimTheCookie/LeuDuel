@@ -7,6 +7,7 @@ import { SettingsService } from '../../services/settings.service';
 import { ModalService } from '../../services/modal.service';
 import { DuelStore } from '../../stores/duel-store/duel.store';
 import { LifePointsAdjustModalComponent } from '../../components/core/life-points-adjust-modal/life-points-adjust-modal.component';
+import { WinsBarComponent } from '../../components/common/wins-bar/wins-bar.component';
 
 @Component({
   selector: 'app-duel-page',
@@ -17,6 +18,7 @@ import { LifePointsAdjustModalComponent } from '../../components/core/life-point
     DuelControllerComponent,
     LandscapeActionsComponent,
     LifePointsComponent,
+    WinsBarComponent,
   ],
   standalone: true,
 })
@@ -42,6 +44,9 @@ export class DuelPageComponent {
     return player.name;
   });
   selectedPlayer = signal<'player1' | 'player2'>('player1');
+
+  wins1 = computed(() => this.duelStore.wins1());
+  wins2 = computed(() => this.duelStore.wins2());
 
   onLpClick(player: 'player1' | 'player2') {
     if (this.selectedPlayer() !== player) {

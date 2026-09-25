@@ -34,6 +34,8 @@ export class LifePointsResetComponent implements AfterViewInit {
 
   landscapeMode = computed(() => this.settingsService.landscapeMode());
 
+  swapped = computed(() => this.settingsService.swapPlayers() && this.landscapeMode());
+
   constructor(
     @Inject(MODAL_DATA)
     private readonly modalData: {
@@ -42,6 +44,11 @@ export class LifePointsResetComponent implements AfterViewInit {
       overlayRef: OverlayRef;
     },
   ) {}
+
+  whichPlayer(left: boolean) {
+    if (this.swapped()) return left ? 'player2' : 'player1';
+    return left ? 'player1' : 'player2';
+  }
 
   ngAfterViewInit(): void {
     if (this.behaviourService.winnerSelect() === 1) {

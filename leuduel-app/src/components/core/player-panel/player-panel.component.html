@@ -1,9 +1,5 @@
 <div class="player-panel">
-  <div class="wins-bar">
-    @for (i of numberOfGamesArray(); track i) {
-      <span class="wins-bar__gem" [class.wins-bar__gem--filled]="i <= wins"></span>
-    }
-  </div>
+  <app-wins-bar [wins]="wins" />
   <app-life-points (click)="modifyLp()" [lifePoints]="lifePoints" />
   <div
     class="actions-grid"

@@ -49,22 +49,22 @@
 }
 
 .damage-button--damage {
-  --accent: #e05252;
+  --accent: var(--color-negative);
   --accent-bg: rgba(224, 82, 82, 0.15);
 }
 
 .damage-button--heal {
-  --accent: #4ade80;
+  --accent: var(--color-positive);
   --accent-bg: rgba(74, 222, 128, 0.12);
 }
 
 .damage-button--divide {
-  --accent: #fb923c;
+  --accent: var(--color-divide);
   --accent-bg: rgba(251, 146, 60, 0.12);
 }
 
 .damage-button--multiply {
-  --accent: #facc15;
+  --accent: var(--color-multiply);
   --accent-bg: rgba(250, 204, 21, 0.12);
 }
 
@@ -73,7 +73,7 @@
 }
 
 .damage-button--set {
-  --accent: #60a5fa;
+  --accent: var(--color-set);
   --accent-bg: rgba(96, 165, 250, 0.12);
 }
 

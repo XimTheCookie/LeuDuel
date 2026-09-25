@@ -36,7 +36,7 @@
   padding: 0.5rem 0;
 
   &--error {
-    color: #f87171;
+    color: var(--color-negative-bright);
   }
 }
 
@@ -125,7 +125,7 @@
   padding: 0.1rem 0.4rem;
 
   &--arch {
-    color: #8ba4cc;
+    color: var(--color-blue-accent);
     background: rgba(99, 132, 199, 0.1);
     border-color: rgba(99, 132, 199, 0.25);
   }

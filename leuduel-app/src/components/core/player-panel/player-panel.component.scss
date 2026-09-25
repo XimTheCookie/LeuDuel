@@ -13,37 +13,6 @@
   border: 1px solid var(--border-subtle);
 }
 
-.wins-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.3rem 0;
-  background: var(--bg-deep);
-  border-bottom: 1px solid var(--border-glow);
-}
-
-.wins-bar__gem {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  transform: rotate(45deg);
-  border: 1.5px solid rgba(201, 168, 76, 0.4);
-  background: transparent;
-  transition:
-    background 300ms ease,
-    box-shadow 300ms ease,
-    border-color 300ms ease;
-
-  &--filled {
-    background: var(--gold);
-    border-color: var(--gold-light);
-    box-shadow:
-      0 0 8px var(--gold-glow),
-      0 0 3px var(--gold);
-  }
-}
-
 .actions-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

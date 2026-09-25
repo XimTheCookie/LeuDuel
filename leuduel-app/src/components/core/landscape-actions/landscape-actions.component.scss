@@ -11,13 +11,18 @@
   gap: 0.4rem;
   padding: 0.4rem;
   background: var(--bg-panel);
-  border-top: 1px solid var(--border-glow);
   height: 100%;
   box-sizing: border-box;
 
-  &--cols-one { grid-template-rows: repeat(1, 1fr); }
-  &--cols-two { grid-template-rows: repeat(2, 1fr); }
-  &--cols-three { grid-template-rows: repeat(3, 1fr); }
+  &--cols-one {
+    grid-template-rows: repeat(1, 1fr);
+  }
+  &--cols-two {
+    grid-template-rows: repeat(2, 1fr);
+  }
+  &--cols-three {
+    grid-template-rows: repeat(3, 1fr);
+  }
 
   app-damage-button,
   ::ng-deep .damage-button {

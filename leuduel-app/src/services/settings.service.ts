@@ -55,6 +55,7 @@ const DEFAULT_VALUES: SettingsSnapshot = {
   modalOpacity: 7,
   firstVisit: true,
   landscapeMode: false,
+  swapPlayers: false,
   showCustomPlayers: false,
   darkMode: true,
 };
@@ -71,6 +72,7 @@ interface SettingsSnapshot {
   useKeepAwake: boolean;
   soundsOn: boolean;
   landscapeMode: boolean;
+  swapPlayers: boolean;
   modalOpacity: number;
   firstVisit: boolean;
   showCustomPlayers: boolean;
@@ -90,6 +92,7 @@ export class SettingsService {
   private useKeepAwake = signal<boolean>(DEFAULT_VALUES.useKeepAwake);
   soundsOn = signal<boolean>(DEFAULT_VALUES.soundsOn);
   landscapeMode = signal<boolean>(false);
+  swapPlayers = signal<boolean>(DEFAULT_VALUES.swapPlayers);
   modalOpacity = signal<number>(DEFAULT_VALUES.modalOpacity);
   firstVisit = signal<boolean>(DEFAULT_VALUES.firstVisit);
   showCustomPlayers = signal<boolean>(DEFAULT_VALUES.showCustomPlayers);
@@ -114,6 +117,7 @@ export class SettingsService {
     this.useKeepAwake.set(saved.useKeepAwake);
     this.soundsOn.set(saved.soundsOn);
     this.landscapeMode.set(saved.landscapeMode ?? false);
+    this.swapPlayers.set(saved.swapPlayers ?? false);
     this.modalOpacity.set(saved.modalOpacity ?? 7);
     this.firstVisit.set(saved.firstVisit == null ? true : saved.firstVisit);
     this.showCustomPlayers.set(saved.showCustomPlayers ?? false);
@@ -133,6 +137,7 @@ export class SettingsService {
       useKeepAwake: this.useKeepAwake(),
       soundsOn: this.soundsOn(),
       landscapeMode: this.landscapeMode(),
+      swapPlayers: this.swapPlayers(),
       modalOpacity: this.modalOpacity(),
       firstVisit: this.firstVisit(),
       showCustomPlayers: this.showCustomPlayers(),
@@ -229,6 +234,14 @@ export class SettingsService {
   resetAllRapid() {
     this.resetNumberOfRapidButtons();
     this.resetRapidButtonsColumns();
+  }
+
+  setSwapPlayers(value: boolean) {
+    this.swapPlayers.set(value);
+  }
+
+  resetSwapPlayers() {
+    this.swapPlayers.set(DEFAULT_VALUES.swapPlayers);
   }
 
   getKeepAwake() {

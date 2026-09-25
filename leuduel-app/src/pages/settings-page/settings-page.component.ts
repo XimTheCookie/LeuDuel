@@ -31,6 +31,7 @@ export class SettingsPageComponent {
   keepAwake = new FormControl<boolean>({ value: false, disabled: true });
 
   isLandscapeOrientation = new FormControl<boolean>(this.settingsService.landscapeMode());
+  swapPlayers = new FormControl<boolean>(this.settingsService.swapPlayers());
   darkMode = new FormControl<boolean>(this.settingsService.darkMode());
 
   showCustomPlayers = new FormControl<boolean>(this.settingsService.showCustomPlayers());
@@ -49,6 +50,20 @@ export class SettingsPageComponent {
         }
       });
     }
+  }
+
+  setIsLandscapeOrientation(value: boolean) {
+    this.isLandscapeOrientation.setValue(value);
+    if (!value) {
+      this.setSwapPlayers(value);
+      this.swapPlayers.disable();
+    } else {
+      this.swapPlayers.enable();
+    }
+  }
+
+  setSwapPlayers(value: boolean) {
+    this.swapPlayers.setValue(value);
   }
 
   keepAwakeUnchanged() {
@@ -156,7 +171,8 @@ export class SettingsPageComponent {
       this.rapidButtonsColumns.value === this.settingsService.getRapidButtonsColumns() &&
       this.isLandscapeOrientation.value === this.settingsService.landscapeMode() &&
       this.modalOpacity.value === this.settingsService.modalOpacity() &&
-      this.darkMode.value === this.settingsService.darkMode()
+      this.darkMode.value === this.settingsService.darkMode() &&
+      this.swapPlayers.value === this.settingsService.swapPlayers()
     );
   }
 
@@ -180,6 +196,7 @@ export class SettingsPageComponent {
     this.settingsService.setLandscapeMode(this.isLandscapeOrientation.value!);
     this.settingsService.setModalOpacity(this.modalOpacity.value!);
     this.settingsService.setDarkMode(this.darkMode.value!);
+    this.settingsService.setSwapPlayers(!!this.swapPlayers.value);
   }
 
   viewAboutModal() {

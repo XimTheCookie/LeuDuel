@@ -51,7 +51,7 @@
     border-color 120ms ease;
 
   &:hover {
-    color: #f87171;
+    color: var(--color-negative-bright);
     border-color: rgba(248, 113, 113, 0.4);
   }
 }

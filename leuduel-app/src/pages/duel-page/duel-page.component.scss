@@ -24,11 +24,30 @@
 }
 
 // Landscape layout
+
+.duel-page__lp-col {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.duel-page__lp-wins {
+  display: flex;
+  justify-content: space-between;
+  &--swap {
+    flex-direction: row-reverse;
+  }
+}
+
 .duel-page__lp-row {
   display: flex;
   align-items: stretch;
   min-height: 0;
   border-bottom: 1px solid var(--border-subtle);
+
+  &--swap {
+    flex-direction: row-reverse;
+  }
 }
 
 .duel-page__controller {
@@ -57,7 +76,7 @@
 
   &--selected {
     background: linear-gradient(135deg, var(--bg-panel) 0%, rgba(201, 168, 76, 0.15) 100%);
-    border-color: var(--gold);
+    border-color: var(--border-glow);
 
     .duel-page__lp-value {
       color: var(--gold-light);
@@ -71,7 +90,6 @@
     }
   }
 }
-
 
 .duel-page__landscape-actions {
   flex: 1;

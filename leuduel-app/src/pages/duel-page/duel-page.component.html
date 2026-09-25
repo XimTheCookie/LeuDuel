@@ -1,22 +1,43 @@
 @if (settingsService.landscapeMode()) {
   <div class="duel-page duel-page--landscape">
-    <div class="duel-page__lp-row">
+    <div class="duel-page__lp-col">
       <div
-        class="duel-page__lp-cell"
-        [class.duel-page__lp-cell--selected]="selectedPlayer() === 'player1'"
-        (click)="onLpClick('player1')"
+        class="duel-page__lp-row"
+        [class.duel-page__lp-row--swap]="settingsService.swapPlayers()"
       >
-        <app-life-points [compact]="true" [lifePoints]="lifePoints1()" [playerName]="playerName1()" />
+        <div
+          class="duel-page__lp-cell"
+          [class.duel-page__lp-cell--selected]="selectedPlayer() === 'player1'"
+          (click)="onLpClick('player1')"
+        >
+          <app-life-points
+            [compact]="true"
+            [lifePoints]="lifePoints1()"
+            [playerName]="playerName1()"
+          />
+        </div>
+        <app-duel-controller class="duel-page__controller" />
+        <div
+          class="duel-page__lp-cell duel-page__lp-cell--right"
+          [class.duel-page__lp-cell--selected]="selectedPlayer() === 'player2'"
+          (click)="onLpClick('player2')"
+        >
+          <app-life-points
+            [compact]="true"
+            [lifePoints]="lifePoints2()"
+            [playerName]="playerName2()"
+          />
+        </div>
       </div>
-      <app-duel-controller class="duel-page__controller" />
       <div
-        class="duel-page__lp-cell duel-page__lp-cell--right"
-        [class.duel-page__lp-cell--selected]="selectedPlayer() === 'player2'"
-        (click)="onLpClick('player2')"
+        class="duel-page__lp-wins"
+        [class.duel-page__lp-wins--swap]="settingsService.swapPlayers()"
       >
-        <app-life-points [compact]="true" [lifePoints]="lifePoints2()" [playerName]="playerName2()" />
+        <app-wins-bar class="w-full" [wins]="wins1()" />
+        <app-wins-bar class="w-full" [wins]="wins2()" />
       </div>
     </div>
+
     <app-landscape-actions
       class="duel-page__landscape-actions"
       [selectedPlayer]="selectedPlayer()"

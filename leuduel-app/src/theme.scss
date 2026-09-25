@@ -17,6 +17,21 @@
   --font-lp: 'Cinzel', 'Georgia', serif;
   --font-mono: 'Share Tech Mono', 'Courier New', monospace;
   --font-title: 'Cinzel', serif;
+  --font-ui: 'Segoe UI', system-ui, sans-serif;
+
+  --color-positive: #4ade80;
+  --color-negative: #e05252;
+  --color-negative-bright: #f87171;
+  --color-divide: #fb923c;
+  --color-multiply: #facc15;
+  --color-set: #60a5fa;
+  --color-blue-accent: #8ba4cc;
+
+  --bg-overlay: rgba(0, 0, 0, 0.2);
+  --modal-backdrop: rgba(0, 0, 0, 0.72);
+
+  --danger: #e05252;
+  --success: #4ade80;
 }
 
 :root {

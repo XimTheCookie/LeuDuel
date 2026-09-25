@@ -47,7 +47,7 @@
 }
 
 .ni-row--invalid {
-  border-color: #e05252;
+  border-color: var(--color-negative);
   box-shadow: 0 0 0 2px rgba(224, 82, 82, 0.15);
 }
 
@@ -87,7 +87,7 @@
   outline: none;
   color: var(--text-primary);
   font-size: 1.1rem;
-  font-family: var(--font-lp);
+  font-family: var(--font-mono);
 
   // hide native spinners
   appearance: textfield;
