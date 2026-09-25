@@ -43,31 +43,31 @@
 }
 
 .default-button--neutral {
-  --button-accent: #8ba4cc;
-  --button-surface: rgba(13, 21, 38, 0.9);
-  --button-border: rgba(99, 132, 199, 0.35);
-  --button-glow: transparent;
+  --button-accent: var(--btn-neutral-accent);
+  --button-surface: var(--btn-neutral-surface);
+  --button-border: var(--btn-neutral-border);
+  --button-glow: var(--btn-neutral-glow);
 }
 
 .default-button--positive {
-  --button-accent: #4ade80;
-  --button-surface: rgba(26, 122, 74, 0.2);
-  --button-border: rgba(74, 222, 128, 0.4);
-  --button-glow: rgba(74, 222, 128, 0.25);
+  --button-accent: var(--btn-positive-accent);
+  --button-surface: var(--btn-positive-surface);
+  --button-border: var(--btn-positive-border);
+  --button-glow: var(--btn-positive-glow);
 }
 
 .default-button--negative {
-  --button-accent: #f87171;
-  --button-surface: rgba(192, 57, 43, 0.2);
-  --button-border: rgba(248, 113, 113, 0.4);
-  --button-glow: rgba(248, 113, 113, 0.25);
+  --button-accent: var(--btn-negative-accent);
+  --button-surface: var(--btn-negative-surface);
+  --button-border: var(--btn-negative-border);
+  --button-glow: var(--btn-negative-glow);
 }
 
 .default-button--warning {
-  --button-accent: #fbbf24;
-  --button-surface: rgba(180, 83, 9, 0.2);
-  --button-border: rgba(251, 191, 36, 0.4);
-  --button-glow: rgba(251, 191, 36, 0.2);
+  --button-accent: var(--btn-warning-accent);
+  --button-surface: var(--btn-warning-surface);
+  --button-border: var(--btn-warning-border);
+  --button-glow: var(--btn-warning-glow);
 }
 
 .default-button:hover:not(:disabled) {

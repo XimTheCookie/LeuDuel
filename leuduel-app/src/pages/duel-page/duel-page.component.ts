@@ -27,8 +27,20 @@ export class DuelPageComponent {
 
   lifePoints1 = this.duelStore.lifePoints1;
   lifePoints2 = this.duelStore.lifePoints2;
-  playerName1 = computed(() => this.duelStore.player1().name);
-  playerName2 = computed(() => this.duelStore.player2().name);
+  playerName1 = computed(() => {
+    const player = this.duelStore.player1();
+    if (this.settingsService.showCustomPlayers()) {
+      return player.profile?.displayName ?? player.name;
+    }
+    return player.name;
+  });
+  playerName2 = computed(() => {
+    const player = this.duelStore.player2();
+    if (this.settingsService.showCustomPlayers()) {
+      return player.profile?.displayName ?? player.name;
+    }
+    return player.name;
+  });
   selectedPlayer = signal<'player1' | 'player2'>('player1');
 
   onLpClick(player: 'player1' | 'player2') {

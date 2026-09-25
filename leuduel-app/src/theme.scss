@@ -16,7 +16,29 @@
   --green-accent: #1a7a4a;
   --font-lp: 'Cinzel', 'Georgia', serif;
   --font-mono: 'Share Tech Mono', 'Courier New', monospace;
-  --font-title: 'Cinzel Decorative', 'Cinzel', serif;
+  --font-title: 'Cinzel', serif;
+}
+
+:root {
+  --btn-neutral-accent: #8ba4cc;
+  --btn-neutral-surface: rgba(13, 21, 38, 0.9);
+  --btn-neutral-border: rgba(99, 132, 199, 0.35);
+  --btn-neutral-glow: transparent;
+
+  --btn-positive-accent: #4ade80;
+  --btn-positive-surface: rgba(26, 122, 74, 0.2);
+  --btn-positive-border: rgba(74, 222, 128, 0.4);
+  --btn-positive-glow: rgba(74, 222, 128, 0.25);
+
+  --btn-negative-accent: #f87171;
+  --btn-negative-surface: rgba(192, 57, 43, 0.2);
+  --btn-negative-border: rgba(248, 113, 113, 0.4);
+  --btn-negative-glow: rgba(248, 113, 113, 0.25);
+
+  --btn-warning-accent: #fbbf24;
+  --btn-warning-surface: rgba(180, 83, 9, 0.2);
+  --btn-warning-border: rgba(251, 191, 36, 0.4);
+  --btn-warning-glow: rgba(251, 191, 36, 0.2);
 }
 
 body.light {
@@ -35,4 +57,12 @@ body.light {
   --text-muted: #4a5f88;
   --red-accent: #c0392b;
   --green-accent: #1a7a4a;
+
+  --btn-neutral-accent: #4a6a9a;
+  --btn-neutral-surface: rgba(210, 220, 240, 0.9);
+  --btn-neutral-border: rgba(99, 132, 199, 0.4);
+
+  --btn-positive-surface: rgba(26, 122, 74, 0.12);
+  --btn-negative-surface: rgba(192, 57, 43, 0.12);
+  --btn-warning-surface: rgba(180, 83, 9, 0.12);
 }
