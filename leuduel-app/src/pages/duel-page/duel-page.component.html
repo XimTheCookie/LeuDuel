@@ -8,6 +8,7 @@
         <div
           class="duel-page__lp-cell"
           [class.duel-page__lp-cell--selected]="selectedPlayer() === 'player1'"
+          [class.duel-page__lp-cell--swap]="settingsService.swapPlayers()"
           (click)="onLpClick('player1')"
         >
           <app-life-points
@@ -20,6 +21,7 @@
         <div
           class="duel-page__lp-cell duel-page__lp-cell--right"
           [class.duel-page__lp-cell--selected]="selectedPlayer() === 'player2'"
+          [class.duel-page__lp-cell--swap]="settingsService.swapPlayers()"
           (click)="onLpClick('player2')"
         >
           <app-life-points

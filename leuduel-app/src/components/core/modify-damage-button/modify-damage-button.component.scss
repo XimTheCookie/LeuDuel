@@ -4,23 +4,25 @@
 }
 
 .modify-form {
-  padding: 1.5rem 1rem 1rem;
+  padding: 0.25rem 1rem 0.25rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 
-  &__title {
-    font-family: var(--font-title);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    text-shadow: 0 0 10px var(--gold-glow);
+  &__header {
     text-align: center;
-    padding-bottom: 0.75rem;
+    padding-top: 0.25rem;
+  }
+
+  &__title {
+    display: block;
+    font-family: var(--font-title);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--gold-light);
     user-select: none;
-    border-bottom: 1px solid var(--border-subtle);
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 18px var(--gold-glow);
   }
 
   &__section {

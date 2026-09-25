@@ -1,10 +1,11 @@
-import { Component, inject, Inject, signal } from '@angular/core';
+import { Component, computed, inject, Inject, signal } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NumberInputComponent } from '../../common/number-input/number-input.component';
 import { LifeAction } from '../../../models/life-action.model';
 import { MODAL_COMPONENT_DATA } from '../../../services/modal.service';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
 import { SoundboardService } from '../../../services/soundboard.service';
+import { SettingsService } from '../../../services/settings.service';
 
 export interface ModifyDamageData {
   action: LifeAction;
@@ -27,8 +28,11 @@ const ACTION_TYPES: { type: LifeAction['type']; label: string; symbol: string }[
   imports: [NumberInputComponent, TextButtonComponent],
 })
 export class ModifyDamageButtonComponent {
+  private readonly settingsService = inject(SettingsService);
   private readonly soundboardService = inject(SoundboardService);
   readonly actionTypes = ACTION_TYPES;
+
+  landscapeMode = computed(() => this.settingsService.landscapeMode());
 
   buttonValueController = new FormControl<number | null>(1, [
     Validators.required,

@@ -1,5 +1,7 @@
 <div class="modify-form">
-  <h2 class="modify-form__title">Modify Button</h2>
+  <div class="modify-form__header">
+    <span class="modify-form__title">Modify Button</span>
+  </div>
 
   <div class="modify-form__section">
     <app-number-input
@@ -34,7 +36,9 @@
   </div>
 
   <div class="modify-form__footer">
-    <span class="modify-form__footer_label">(Configurations are shared)</span>
+    @if (!landscapeMode()) {
+      <span class="modify-form__footer_label">(Configurations are shared)</span>
+    }
     <app-text-button
       [tone]="buttonValueController.invalid ? 'neutral' : 'positive'"
       [isDisabled]="buttonValueController.invalid"
