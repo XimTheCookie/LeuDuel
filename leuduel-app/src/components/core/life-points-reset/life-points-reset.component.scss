@@ -76,6 +76,10 @@
   &__winner-btns {
     display: flex;
     gap: 0.75rem;
+
+    &--landscape {
+      align-items: center;
+    }
   }
 
   &__player-col {
@@ -84,6 +88,14 @@
     align-items: center;
     justify-content: end;
     gap: 0.4rem;
+
+    &--is-row {
+      flex-direction: row;
+
+      &.p2 {
+        flex-direction: row-reverse;
+      }
+    }
   }
 
   &__actions {

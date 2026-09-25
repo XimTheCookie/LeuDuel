@@ -56,6 +56,7 @@ const DEFAULT_VALUES: SettingsSnapshot = {
   firstVisit: true,
   landscapeMode: false,
   showCustomPlayers: false,
+  darkMode: true,
 };
 
 const SETTINGS_KEY = 'settings';
@@ -73,6 +74,7 @@ interface SettingsSnapshot {
   modalOpacity: number;
   firstVisit: boolean;
   showCustomPlayers: boolean;
+  darkMode: boolean;
 }
 
 @Injectable({
@@ -91,6 +93,7 @@ export class SettingsService {
   modalOpacity = signal<number>(DEFAULT_VALUES.modalOpacity);
   firstVisit = signal<boolean>(DEFAULT_VALUES.firstVisit);
   showCustomPlayers = signal<boolean>(DEFAULT_VALUES.showCustomPlayers);
+  darkMode = signal<boolean>(DEFAULT_VALUES.darkMode);
 
   settingsInitialized = new Subject<void>();
 
@@ -114,6 +117,8 @@ export class SettingsService {
     this.modalOpacity.set(saved.modalOpacity ?? 7);
     this.firstVisit.set(saved.firstVisit == null ? true : saved.firstVisit);
     this.showCustomPlayers.set(saved.showCustomPlayers ?? false);
+    this.darkMode.set(saved.darkMode ?? true);
+    this.applyMode();
     this.settingsInitialized.next();
   }
 
@@ -131,6 +136,7 @@ export class SettingsService {
       modalOpacity: this.modalOpacity(),
       firstVisit: this.firstVisit(),
       showCustomPlayers: this.showCustomPlayers(),
+      darkMode: this.darkMode(),
     };
     this.persistance.save(SETTINGS_KEY, snapshot);
   }
@@ -281,5 +287,19 @@ export class SettingsService {
 
   resetCustomPlayers() {
     this.showCustomPlayers.set(DEFAULT_VALUES.showCustomPlayers);
+  }
+
+  setDarkMode(value: boolean) {
+    this.darkMode.set(value);
+    this.applyMode();
+  }
+
+  resetDarkMode() {
+    this.darkMode.set(DEFAULT_VALUES.darkMode);
+    this.applyMode();
+  }
+
+  private applyMode() {
+    document.body.classList.toggle('light', !this.darkMode());
   }
 }

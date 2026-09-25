@@ -58,6 +58,31 @@
     </h2>
     <div class="settings-section__fields">
       <app-number-input
+        [formControl]="modalOpacity"
+        label="Window opacity"
+        [maxValue]="10"
+        [minValue]="6"
+        [step]="1"
+        [canReset]="true"
+        (doReset)="resetOpacity()"
+      />
+      <label class="settings-section__toggle-row">
+        <span class="toggle-label">Dark mode</span>
+        <input
+          type="checkbox"
+          [checked]="darkMode.value!"
+          (change)="darkMode.setValue($any($event.target).checked)"
+        />
+      </label>
+      <label class="settings-section__toggle-row">
+        <span class="toggle-label">Landscape mode</span>
+        <input
+          type="checkbox"
+          [checked]="isLandscapeOrientation.value!"
+          (change)="isLandscapeOrientation.setValue($any($event.target).checked)"
+        />
+      </label>
+      <app-number-input
         [formControl]="numberOfRapidButtons"
         label="Number of rapid buttons"
         [maxValue]="15"
@@ -75,23 +100,6 @@
         [canReset]="true"
         (doReset)="resetRapidButtonsColumns()"
       />
-      <app-number-input
-        [formControl]="modalOpacity"
-        label="Window opacity"
-        [maxValue]="10"
-        [minValue]="6"
-        [step]="1"
-        [canReset]="true"
-        (doReset)="resetOpacity()"
-      />
-      <label class="settings-section__toggle-row">
-        <span class="toggle-label">Landscape mode</span>
-        <input
-          type="checkbox"
-          [checked]="isLandscapeOrientation.value!"
-          (change)="isLandscapeOrientation.setValue($any($event.target).checked)"
-        />
-      </label>
     </div>
     <div class="settings-section__footer">
       <app-text-button

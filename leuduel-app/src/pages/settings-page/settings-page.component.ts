@@ -31,6 +31,7 @@ export class SettingsPageComponent {
   keepAwake = new FormControl<boolean>({ value: false, disabled: true });
 
   isLandscapeOrientation = new FormControl<boolean>(this.settingsService.landscapeMode());
+  darkMode = new FormControl<boolean>(this.settingsService.darkMode());
 
   showCustomPlayers = new FormControl<boolean>(this.settingsService.showCustomPlayers());
 
@@ -154,7 +155,8 @@ export class SettingsPageComponent {
       this.numberOfRapidButtons.value === this.settingsService.getNumberOfRapidButtons() &&
       this.rapidButtonsColumns.value === this.settingsService.getRapidButtonsColumns() &&
       this.isLandscapeOrientation.value === this.settingsService.landscapeMode() &&
-      this.modalOpacity.value === this.settingsService.modalOpacity()
+      this.modalOpacity.value === this.settingsService.modalOpacity() &&
+      this.darkMode.value === this.settingsService.darkMode()
     );
   }
 
@@ -163,7 +165,8 @@ export class SettingsPageComponent {
       this.numberOfRapidButtons.valid &&
       this.rapidButtonsColumns.valid &&
       this.isLandscapeOrientation.valid &&
-      this.modalOpacity.valid
+      this.modalOpacity.valid &&
+      this.darkMode.valid
     );
   }
 
@@ -176,6 +179,7 @@ export class SettingsPageComponent {
     this.settingsService.setRapidButtonsColumns(this.rapidButtonsColumns.value!);
     this.settingsService.setLandscapeMode(this.isLandscapeOrientation.value!);
     this.settingsService.setModalOpacity(this.modalOpacity.value!);
+    this.settingsService.setDarkMode(this.darkMode.value!);
   }
 
   viewAboutModal() {

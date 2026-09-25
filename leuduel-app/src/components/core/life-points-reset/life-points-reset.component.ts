@@ -32,6 +32,8 @@ export class LifePointsResetComponent implements AfterViewInit {
   profile1 = computed(() => this.duelStore.player1().profile ?? null);
   profile2 = computed(() => this.duelStore.player2().profile ?? null);
 
+  landscapeMode = computed(() => this.settingsService.landscapeMode());
+
   constructor(
     @Inject(MODAL_DATA)
     private readonly modalData: {

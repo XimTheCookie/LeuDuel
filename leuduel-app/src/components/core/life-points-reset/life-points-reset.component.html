@@ -12,10 +12,15 @@
 
   <div class="lp-reset__winner">
     <span class="lp-reset__winner-label">Assign Victory</span>
-    <div class="lp-reset__winner-btns">
-      <div class="lp-reset__player-col">
+    <div class="lp-reset__winner-btns" [class.lp-reset__winner-btns--landscape]="landscapeMode()">
+      <div class="lp-reset__player-col p1" [class.lp-reset__player-col--is-row]="landscapeMode()">
         @if (showProfiles() && profile1()) {
-          <app-player-profile [profile]="profile1()!" [showAvatar]="true" [showName]="false" [small]="true" />
+          <app-player-profile
+            [profile]="profile1()!"
+            [showAvatar]="true"
+            [showName]="false"
+            [small]="true"
+          />
         }
         <app-button
           [label]="duelStore.player1().name"
@@ -34,9 +39,14 @@
           (clicked)="togglePlayer(null)"
         />
       </div>
-      <div class="lp-reset__player-col">
+      <div class="lp-reset__player-col p2" [class.lp-reset__player-col--is-row]="landscapeMode()">
         @if (showProfiles() && profile2()) {
-          <app-player-profile [profile]="profile2()!" [showAvatar]="true" [showName]="false" [small]="true" />
+          <app-player-profile
+            [profile]="profile2()!"
+            [showAvatar]="true"
+            [showName]="false"
+            [small]="true"
+          />
         }
         <app-button
           [label]="duelStore.player2().name"

@@ -18,3 +18,21 @@
   --font-mono: 'Share Tech Mono', 'Courier New', monospace;
   --font-title: 'Cinzel Decorative', 'Cinzel', serif;
 }
+
+body.light {
+  --bg-deep: #f0f4fb;
+  --bg-panel: #e2e8f4;
+  --bg-card: #d6dff0;
+  --bg-card-hover: #c8d4ea;
+  --border-subtle: rgba(99, 132, 199, 0.25);
+  --border-glow: rgba(180, 150, 60, 0.5);
+  --gold: #a07820;
+  --gold-light: #c9a84c;
+  --gold-dim: rgba(160, 120, 32, 0.15);
+  --gold-glow: rgba(160, 120, 32, 0.3);
+  --lp-color: #1a2a4a;
+  --text-primary: #1a2a4a;
+  --text-muted: #4a5f88;
+  --red-accent: #c0392b;
+  --green-accent: #1a7a4a;
+}
