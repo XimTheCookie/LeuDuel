@@ -6,6 +6,7 @@
     "start": "ng serve --host 0.0.0.0 --poll 2000",
     "build": "ng build",
     "build:android": "ng build && npx cap sync android",
+    "build-assets:android": "npx capacitor-assets generate --android",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
