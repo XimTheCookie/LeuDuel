@@ -22,21 +22,24 @@
     [style.transform]="sheetTransform"
     [class.lp-sheet--dragging]="dragDelta() > 0"
   >
-    <div
-      class="lp-sheet__handle"
-      (touchstart)="onHandleTouchStart($event)"
-      (touchmove)="onHandleTouchMove($event)"
-      (touchend)="onHandleTouchEnd()"
-    ></div>
-    @for (option of options(); track option) {
-      <button
-        class="lp-option"
-        type="button"
-        [class.lp-option--active]="formControl().value === option.value"
-        (click)="select(option.value)"
-      >
-        {{ option.label }}
-      </button>
-    }
+    <div class="lp-sheet__handle">
+      <div
+        (touchstart)="onHandleTouchStart($event)"
+        (touchmove)="onHandleTouchMove($event)"
+        (touchend)="onHandleTouchEnd()"
+      ></div>
+    </div>
+    <div class="lp-sheet__list">
+      @for (option of options(); track option) {
+        <button
+          class="lp-option"
+          type="button"
+          [class.lp-option--active]="formControl().value === option.value"
+          (click)="select(option.value)"
+        >
+          {{ option.label }}
+        </button>
+      }
+    </div>
   </div>
 }

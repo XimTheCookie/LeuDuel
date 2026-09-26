@@ -13,12 +13,10 @@
         [canReset]="true"
         (doReset)="lpReset()"
       />
-      <app-number-input
+      <app-list-picker
         [formControl]="bestOf"
         label="Best of"
-        [maxValue]="9"
-        [minValue]="1"
-        [step]="1"
+        [options]="bestOfOptions"
         [canReset]="true"
         (doReset)="resetBestOf()"
       />
@@ -28,14 +26,11 @@
         [canReset]="true"
         (doReset)="resetTimer()"
       />
-      <label class="settings-section__toggle-row">
-        <span class="toggle-label">Use custom profiles</span>
-        <input
-          type="checkbox"
-          [checked]="showCustomPlayers.value!"
-          (change)="showCustomPlayers.setValue($any($event.target).checked)"
-        />
-      </label>
+      <app-list-picker
+        [formControl]="showCustomPlayers"
+        label="Custom profiles"
+        [options]="customPlayersOption"
+      />
       <app-text-button
         (clicked)="openProfiles()"
         label="Customize player profiles"
@@ -57,26 +52,29 @@
       <span class="settings-section__title-icon">◈</span> Gui settings
     </h2>
     <div class="settings-section__fields">
-      <app-list-picker
-        [formControl]="modalOpacity"
-        label="Window opacity"
-        [options]="modalOpacityOptions"
-        [canReset]="true"
-        (doReset)="resetOpacity()"
-      />
-      <app-list-picker [formControl]="theme" label="Theme" [options]="themeOptions" />
-      <app-list-picker
-        [formControl]="isLandscapeOrientation"
-        label="Screen orientation"
-        [options]="orientationOptions"
-        (valueChanged)="screenOrientationUpdated()"
-      />
-      <app-list-picker
-        [disabled]="swapPlayersDisabled()"
-        [formControl]="swapPlayers"
-        label="Swap players"
-        [options]="swapPlayerOptions"
-      />
+      <div class="settings-section__fields--row">
+        <app-list-picker [formControl]="theme" label="Theme" [options]="themeOptions" />
+        <app-list-picker
+          [formControl]="modalOpacity"
+          label="Window opacity"
+          [options]="modalOpacityOptions"
+        />
+      </div>
+
+      <div class="settings-section__fields--row">
+        <app-list-picker
+          [formControl]="isLandscapeOrientation"
+          label="Screen orientation"
+          [options]="orientationOptions"
+          (valueChanged)="screenOrientationUpdated()"
+        />
+        <app-list-picker
+          [disabled]="swapPlayersDisabled()"
+          [formControl]="swapPlayers"
+          label="Swap players"
+          [options]="swapPlayerOptions"
+        />
+      </div>
       <app-number-input
         [formControl]="numberOfRapidButtons"
         label="Number of rapid buttons"

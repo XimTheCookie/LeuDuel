@@ -72,6 +72,16 @@ export class SettingsPageComponent {
   ];
 
   showCustomPlayers = new FormControl<boolean>(this.settingsService.showCustomPlayers());
+  readonly customPlayersOption = [
+    {
+      label: "Don't use custom profiles",
+      value: false,
+    },
+    {
+      label: 'Use custom profiles',
+      value: true,
+    },
+  ];
 
   landscapeMode = computed(() => this.settingsService.landscapeMode());
 
@@ -120,6 +130,44 @@ export class SettingsPageComponent {
     Validators.min(1),
     Validators.max(9),
   ]);
+  readonly bestOfOptions = [
+    {
+      label: '1',
+      value: 1,
+    },
+    {
+      label: '2',
+      value: 2,
+    },
+    {
+      label: '3',
+      value: 3,
+    },
+    {
+      label: '4',
+      value: 4,
+    },
+    {
+      label: '5',
+      value: 5,
+    },
+    {
+      label: '6',
+      value: 6,
+    },
+    {
+      label: '7',
+      value: 7,
+    },
+    {
+      label: '8',
+      value: 8,
+    },
+    {
+      label: '9',
+      value: 9,
+    },
+  ];
 
   modalOpacity = new FormControl<number>(this.settingsService.modalOpacity(), [
     Validators.required,
@@ -129,24 +177,24 @@ export class SettingsPageComponent {
 
   readonly modalOpacityOptions = [
     {
-      label: '60%',
-      value: 6,
-    },
-    {
-      label: '70%',
-      value: 7,
-    },
-    {
-      label: '80%',
-      value: 8,
+      label: '100%',
+      value: 10,
     },
     {
       label: '90%',
       value: 9,
     },
     {
-      label: '100%',
-      value: 10,
+      label: '80%',
+      value: 8,
+    },
+    {
+      label: '70%',
+      value: 7,
+    },
+    {
+      label: '60%',
+      value: 6,
     },
   ];
 
@@ -174,10 +222,6 @@ export class SettingsPageComponent {
 
   resetBestOf() {
     this.bestOf.setValue(this.settingsService.getNumberOfGames());
-  }
-
-  resetOpacity() {
-    this.modalOpacity.setValue(this.settingsService.modalOpacity());
   }
 
   resetTimer() {
