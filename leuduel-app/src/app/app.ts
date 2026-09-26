@@ -18,7 +18,6 @@ export class App {
   private readonly settingsService = inject(SettingsService);
 
   constructor() {
-    this.androidManagementService.setStatusBarDark();
     this.androidManagementService.hideStatusBar(true);
     effect(() => {
       this.androidManagementService.setOrientation(this.settingsService.landscapeMode());

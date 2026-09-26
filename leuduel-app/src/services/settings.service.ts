@@ -9,6 +9,7 @@ import {
 import { LifeAction } from '../models/life-action.model';
 import { PersistanceService } from './persistance.service';
 import { Subject } from 'rxjs';
+import { AndroidManagementService } from './android-management.service';
 
 const DEFAULT_VALUES: SettingsSnapshot = {
   startingLifePoints: 8000,
@@ -83,6 +84,8 @@ interface SettingsSnapshot {
   providedIn: 'root',
 })
 export class SettingsService {
+  private readonly androidManagementService = inject(AndroidManagementService);
+
   private startingLifePoints = signal<number>(DEFAULT_VALUES.startingLifePoints);
   private numberOfGames = signal<number>(DEFAULT_VALUES.numberOfGames);
   private duelDurationMs = signal<number>(DEFAULT_VALUES.duelDurationMs);
@@ -107,7 +110,10 @@ export class SettingsService {
 
   private async restore() {
     const saved = await this.persistance.load<SettingsSnapshot>(SETTINGS_KEY);
-    if (!saved) return;
+    if (!saved) {
+      this.settingsInitialized.next();
+      return;
+    }
     this.startingLifePoints.set(saved.startingLifePoints);
     this.numberOfGames.set(saved.numberOfGames);
     this.duelDurationMs.set(saved.duelDurationMs);
@@ -314,5 +320,10 @@ export class SettingsService {
 
   private applyMode() {
     document.body.classList.toggle('light', !this.darkMode());
+    if (this.darkMode()) {
+      this.androidManagementService.setStatusBarDark();
+    } else {
+      this.androidManagementService.setStatusBarLight();
+    }
   }
 }

@@ -1,26 +1,16 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { KeepAwake } from '@capacitor-community/keep-awake';
 import { Capacitor } from '@capacitor/core';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
 import { StatusBar, Style } from '@capacitor/status-bar';
-import { SettingsService } from './settings.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AndroidManagementService {
-  private readonly settingService = inject(SettingsService);
 
   isAndroid(): boolean {
     return Capacitor.getPlatform() === 'android';
-  }
-
-  setStatusBarDark() {
-    if (Capacitor.isNativePlatform()) {
-      StatusBar.setStyle({ style: Style.Dark });
-      StatusBar.setOverlaysWebView({ overlay: false });
-      StatusBar.setBackgroundColor({ color: '#000000' });
-    }
   }
 
   hideStatusBar(addListener = false) {
@@ -37,9 +27,19 @@ export class AndroidManagementService {
     }
   }
 
+  setStatusBarDark() {
+    if (Capacitor.isNativePlatform()) {
+      StatusBar.setStyle({ style: Style.Dark });
+      StatusBar.setOverlaysWebView({ overlay: true });
+      StatusBar.setBackgroundColor({ color: '#060a12' });
+    }
+  }
+
   setStatusBarLight() {
     if (Capacitor.isNativePlatform()) {
       StatusBar.setStyle({ style: Style.Light });
+      StatusBar.setOverlaysWebView({ overlay: true });
+      StatusBar.setBackgroundColor({ color: '#f0f4fb' });
     }
   }
 
@@ -51,8 +51,8 @@ export class AndroidManagementService {
     return Promise.resolve(false);
   }
 
-  keepAwake() {
-    if (this.settingService.getKeepAwake() === false) return;
+  keepAwake(enabled: boolean) {
+    if (!enabled) return;
     this.isKeepAwakeAllowed().then((isAllowed) => {
       if (isAllowed) {
         KeepAwake.keepAwake();

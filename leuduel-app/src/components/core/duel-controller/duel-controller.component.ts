@@ -41,7 +41,7 @@ export class DuelControllerComponent implements AfterViewInit {
   constructor() {
     effect(() => {
       if (this.timerService.isRunning()) {
-        this.androidManagementService.keepAwake();
+        this.androidManagementService.keepAwake(this.settingsService.getKeepAwake());
       } else {
         this.androidManagementService.allowSleep();
       }
