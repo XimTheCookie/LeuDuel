@@ -13,17 +13,14 @@ export class AndroidManagementService {
     return Capacitor.getPlatform() === 'android';
   }
 
+  private readonly hideStatusBarOnClick = () => StatusBar.hide();
+
   hideStatusBar(addListener = false) {
     if (Capacitor.isNativePlatform()) {
       StatusBar.hide();
       if (!addListener) return;
-      StatusBar.addListener('statusBarVisibilityChanged', (event) => {
-        if (event.visible === true) {
-          setTimeout(() => {
-            StatusBar.hide();
-          }, 15000);
-        }
-      });
+      document.removeEventListener('click', this.hideStatusBarOnClick);
+      document.addEventListener('click', this.hideStatusBarOnClick);
     }
   }
 

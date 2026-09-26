@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { NumberInputComponent } from '../../components/common/number-input/number-input.component';
 import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
 import { TimeInputComponent } from '../../components/common/time-input/time-input.component';
+import { ListPickerComponent } from '../../components/common/list-picker/list-picker.component';
 import { SettingsService } from '../../services/settings.service';
 import { ModalService } from '../../services/modal.service';
 import { AndroidManagementService } from '../../services/android-management.service';
@@ -15,7 +16,7 @@ import { ProfilesPageComponent } from '../profiles-page/profiles-page.component'
   standalone: true,
   templateUrl: './settings-page.component.html',
   styleUrls: ['./settings-page.component.scss'],
-  imports: [NumberInputComponent, TimeInputComponent, TextButtonComponent],
+  imports: [NumberInputComponent, TimeInputComponent, TextButtonComponent, ListPickerComponent],
 })
 export class SettingsPageComponent {
   private readonly soundboardService = inject(SoundboardService);
@@ -31,7 +32,21 @@ export class SettingsPageComponent {
 
   isLandscapeOrientation = new FormControl<boolean>(this.settingsService.landscapeMode());
   swapPlayers = new FormControl<boolean>(this.settingsService.swapPlayers());
-  darkMode = new FormControl<boolean>(this.settingsService.darkMode());
+  theme = new FormControl<string>(this.settingsService.theme());
+  readonly themeOptions = [
+    {
+      label: 'Light',
+      value: 'light',
+    },
+    {
+      label: 'Dark',
+      value: 'dark',
+    },
+    {
+      label: 'High Contrast',
+      value: 'high-contrast',
+    },
+  ];
 
   showCustomPlayers = new FormControl<boolean>(this.settingsService.showCustomPlayers());
 
@@ -170,7 +185,7 @@ export class SettingsPageComponent {
       this.rapidButtonsColumns.value === this.settingsService.getRapidButtonsColumns() &&
       this.isLandscapeOrientation.value === this.settingsService.landscapeMode() &&
       this.modalOpacity.value === this.settingsService.modalOpacity() &&
-      this.darkMode.value === this.settingsService.darkMode() &&
+      this.theme.value === this.settingsService.theme() &&
       this.swapPlayers.value === this.settingsService.swapPlayers()
     );
   }
@@ -181,7 +196,7 @@ export class SettingsPageComponent {
       this.rapidButtonsColumns.valid &&
       this.isLandscapeOrientation.valid &&
       this.modalOpacity.valid &&
-      this.darkMode.valid
+      this.theme.valid
     );
   }
 
@@ -194,7 +209,7 @@ export class SettingsPageComponent {
     this.settingsService.setRapidButtonsColumns(this.rapidButtonsColumns.value!);
     this.settingsService.setLandscapeMode(this.isLandscapeOrientation.value!);
     this.settingsService.setModalOpacity(this.modalOpacity.value!);
-    this.settingsService.setDarkMode(this.darkMode.value!);
+    this.settingsService.setTheme(this.theme.value!);
     this.settingsService.setSwapPlayers(!!this.swapPlayers.value);
   }
 

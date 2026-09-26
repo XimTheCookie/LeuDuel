@@ -58,7 +58,7 @@ const DEFAULT_VALUES: SettingsSnapshot = {
   landscapeMode: false,
   swapPlayers: false,
   showCustomPlayers: false,
-  darkMode: true,
+  theme: 'dark',
 };
 
 const SETTINGS_KEY = 'settings';
@@ -77,7 +77,7 @@ interface SettingsSnapshot {
   modalOpacity: number;
   firstVisit: boolean;
   showCustomPlayers: boolean;
-  darkMode: boolean;
+  theme: string;
 }
 
 @Injectable({
@@ -99,7 +99,7 @@ export class SettingsService {
   modalOpacity = signal<number>(DEFAULT_VALUES.modalOpacity);
   firstVisit = signal<boolean>(DEFAULT_VALUES.firstVisit);
   showCustomPlayers = signal<boolean>(DEFAULT_VALUES.showCustomPlayers);
-  darkMode = signal<boolean>(DEFAULT_VALUES.darkMode);
+  theme = signal<string>(DEFAULT_VALUES.theme);
 
   settingsInitialized = new Subject<void>();
 
@@ -127,7 +127,7 @@ export class SettingsService {
     this.modalOpacity.set(saved.modalOpacity ?? 7);
     this.firstVisit.set(saved.firstVisit == null ? true : saved.firstVisit);
     this.showCustomPlayers.set(saved.showCustomPlayers ?? false);
-    this.darkMode.set(saved.darkMode ?? true);
+    this.theme.set(saved.theme ?? 'dark');
     this.applyMode();
     this.settingsInitialized.next();
   }
@@ -147,7 +147,7 @@ export class SettingsService {
       modalOpacity: this.modalOpacity(),
       firstVisit: this.firstVisit(),
       showCustomPlayers: this.showCustomPlayers(),
-      darkMode: this.darkMode(),
+      theme: this.theme(),
     };
     this.persistance.save(SETTINGS_KEY, snapshot);
   }
@@ -308,22 +308,25 @@ export class SettingsService {
     this.showCustomPlayers.set(DEFAULT_VALUES.showCustomPlayers);
   }
 
-  setDarkMode(value: boolean) {
-    this.darkMode.set(value);
+  setTheme(value: string) {
+    this.theme.set(value);
     this.applyMode();
   }
 
-  resetDarkMode() {
-    this.darkMode.set(DEFAULT_VALUES.darkMode);
+  resetTheme() {
+    this.theme.set(DEFAULT_VALUES.theme);
     this.applyMode();
   }
 
   private applyMode() {
-    document.body.classList.toggle('light', !this.darkMode());
-    if (this.darkMode()) {
-      this.androidManagementService.setStatusBarDark();
-    } else {
+    const t = this.theme();
+    document.body.classList.remove('light', 'high-contrast');
+    if (t === 'light') document.body.classList.add('light');
+    else if (t === 'high-contrast') document.body.classList.add('high-contrast');
+    if (t === 'light') {
       this.androidManagementService.setStatusBarLight();
+    } else {
+      this.androidManagementService.setStatusBarDark();
     }
   }
 }

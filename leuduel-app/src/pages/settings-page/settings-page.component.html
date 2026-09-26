@@ -66,14 +66,11 @@
         [canReset]="true"
         (doReset)="resetOpacity()"
       />
-      <label class="settings-section__toggle-row">
-        <span class="toggle-label">Dark mode</span>
-        <input
-          type="checkbox"
-          [checked]="darkMode.value!"
-          (change)="darkMode.setValue($any($event.target).checked)"
-        />
-      </label>
+      <app-list-picker
+        [formControl]="theme"
+        label="Theme"
+        [options]="themeOptions"
+      />
       <label class="settings-section__toggle-row">
         <span class="toggle-label">Landscape mode</span>
         <input

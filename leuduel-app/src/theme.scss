@@ -56,6 +56,58 @@
   --btn-warning-glow: rgba(251, 191, 36, 0.2);
 }
 
+body.high-contrast {
+  --bg-deep: #000000;
+  --bg-panel: #0a0a0a;
+  --bg-card: #111111;
+  --bg-card-hover: #1a1a1a;
+  --border-subtle: rgba(255, 255, 255, 0.4);
+  --border-glow: rgba(255, 220, 80, 0.8);
+  --gold: #ffe066;
+  --gold-light: #fff0a0;
+  --gold-dim: rgba(255, 224, 102, 0.2);
+  --gold-glow: rgba(255, 224, 102, 0.5);
+  --lp-color: #ffffff;
+  --text-primary: #ffffff;
+  --text-muted: #aaaaaa;
+  --red-accent: #ff4444;
+  --green-accent: #00ff88;
+
+  --color-positive: #00ff88;
+  --color-negative: #ff4444;
+  --color-negative-bright: #ff6666;
+  --color-divide: #ff9933;
+  --color-multiply: #ffee00;
+  --color-set: #44aaff;
+  --color-blue-accent: #88bbff;
+
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+  --modal-backdrop: rgba(0, 0, 0, 0.9);
+
+  --danger: #ff4444;
+  --success: #00ff88;
+
+  --btn-neutral-accent: #ffffff;
+  --btn-neutral-surface: rgba(30, 30, 30, 0.95);
+  --btn-neutral-border: rgba(255, 255, 255, 0.5);
+  --btn-neutral-glow: transparent;
+
+  --btn-positive-accent: #00ff88;
+  --btn-positive-surface: rgba(0, 200, 100, 0.2);
+  --btn-positive-border: rgba(0, 255, 136, 0.6);
+  --btn-positive-glow: rgba(0, 255, 136, 0.35);
+
+  --btn-negative-accent: #ff6666;
+  --btn-negative-surface: rgba(255, 50, 50, 0.2);
+  --btn-negative-border: rgba(255, 102, 102, 0.6);
+  --btn-negative-glow: rgba(255, 102, 102, 0.35);
+
+  --btn-warning-accent: #ffee00;
+  --btn-warning-surface: rgba(200, 150, 0, 0.2);
+  --btn-warning-border: rgba(255, 238, 0, 0.6);
+  --btn-warning-glow: rgba(255, 238, 0, 0.3);
+}
+
 body.light {
   --bg-deep: #f0f4fb;
   --bg-panel: #e2e8f4;
