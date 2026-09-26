@@ -57,37 +57,26 @@
       <span class="settings-section__title-icon">◈</span> Gui settings
     </h2>
     <div class="settings-section__fields">
-      <app-number-input
+      <app-list-picker
         [formControl]="modalOpacity"
         label="Window opacity"
-        [maxValue]="10"
-        [minValue]="6"
-        [step]="1"
+        [options]="modalOpacityOptions"
         [canReset]="true"
         (doReset)="resetOpacity()"
       />
+      <app-list-picker [formControl]="theme" label="Theme" [options]="themeOptions" />
       <app-list-picker
-        [formControl]="theme"
-        label="Theme"
-        [options]="themeOptions"
+        [formControl]="isLandscapeOrientation"
+        label="Screen orientation"
+        [options]="orientationOptions"
+        (valueChanged)="screenOrientationUpdated()"
       />
-      <label class="settings-section__toggle-row">
-        <span class="toggle-label">Landscape mode</span>
-        <input
-          type="checkbox"
-          [checked]="isLandscapeOrientation.value!"
-          (change)="setIsLandscapeOrientation($any($event.target).checked)"
-        />
-      </label>
-      <label class="settings-section__toggle-row">
-        <span class="toggle-label">Swap players</span>
-        <input
-          type="checkbox"
-          [disabled]="!isLandscapeOrientation.value"
-          [checked]="swapPlayers.value!"
-          (change)="setSwapPlayers($any($event.target).checked)"
-        />
-      </label>
+      <app-list-picker
+        [disabled]="swapPlayersDisabled()"
+        [formControl]="swapPlayers"
+        label="Swap players"
+        [options]="swapPlayerOptions"
+      />
       <app-number-input
         [formControl]="numberOfRapidButtons"
         label="Number of rapid buttons"

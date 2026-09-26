@@ -1,17 +1,23 @@
-import { Component, input, signal, ElementRef, viewChild } from '@angular/core';
+import { Component, input, output, signal, ElementRef, viewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
   selector: 'app-list-picker',
   templateUrl: './list-picker.component.html',
   styleUrls: ['./list-picker.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, IconComponent],
 })
 export class ListPickerComponent {
-  formControl = input.required<FormControl<string | null>>();
-  options = input.required<{ label: string; value: string }[]>();
+  formControl = input.required<FormControl<string | number | boolean | null>>();
+  options = input.required<{ label: string; value: string | number | boolean | null }[]>();
   label = input<string>('');
+  canReset = input<boolean>(false);
+  disabled = input<boolean>(false);
+  doReset = output<void>();
+
+  valueChanged = output<void>();
 
   isOpen = signal(false);
   private dragStartY = 0;
@@ -25,9 +31,10 @@ export class ListPickerComponent {
     this.isOpen.set(true);
   }
 
-  select(option: string) {
+  select(option: string | number | boolean | null) {
     this.formControl().setValue(option);
     this.isOpen.set(false);
+    this.valueChanged.emit();
   }
 
   close() {

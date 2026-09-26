@@ -31,7 +31,30 @@ export class SettingsPageComponent {
   keepAwake = new FormControl<boolean>({ value: false, disabled: true });
 
   isLandscapeOrientation = new FormControl<boolean>(this.settingsService.landscapeMode());
+  readonly orientationOptions = [
+    {
+      label: 'Potrait',
+      value: false,
+    },
+    {
+      label: 'Landscape',
+      value: true,
+    },
+  ];
+
   swapPlayers = new FormControl<boolean>(this.settingsService.swapPlayers());
+  swapPlayersDisabled = signal(!this.settingsService.landscapeMode());
+  readonly swapPlayerOptions = [
+    {
+      label: 'Not swapped',
+      value: false,
+    },
+    {
+      label: 'Player swapped',
+      value: true,
+    },
+  ];
+
   theme = new FormControl<string>(this.settingsService.theme());
   readonly themeOptions = [
     {
@@ -66,18 +89,14 @@ export class SettingsPageComponent {
     }
   }
 
-  setIsLandscapeOrientation(value: boolean) {
-    this.isLandscapeOrientation.setValue(value);
-    if (!value) {
-      this.setSwapPlayers(value);
-      this.swapPlayers.disable();
-    } else {
-      this.swapPlayers.enable();
-    }
-  }
-
-  setSwapPlayers(value: boolean) {
-    this.swapPlayers.setValue(value);
+  screenOrientationUpdated() {
+    setTimeout(() => {
+      const isLandscape = !!this.isLandscapeOrientation.value;
+      this.swapPlayersDisabled.set(!isLandscape);
+      if (!isLandscape) {
+        this.swapPlayers.setValue(false);
+      }
+    }, 150);
   }
 
   keepAwakeUnchanged() {
@@ -107,6 +126,29 @@ export class SettingsPageComponent {
     Validators.min(6),
     Validators.max(10),
   ]);
+
+  readonly modalOpacityOptions = [
+    {
+      label: '60%',
+      value: 6,
+    },
+    {
+      label: '70%',
+      value: 7,
+    },
+    {
+      label: '80%',
+      value: 8,
+    },
+    {
+      label: '90%',
+      value: 9,
+    },
+    {
+      label: '100%',
+      value: 10,
+    },
+  ];
 
   duration = new FormControl<number>(this.settingsService.getDuelDuration(), [
     Validators.required,

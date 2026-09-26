@@ -2,10 +2,17 @@
   @if (label()) {
     <span class="lp-label">{{ label() }}</span>
   }
-  <button class="lp-trigger" type="button" (click)="open()">
-    <span>{{ optionLabel ?? '—' }}</span>
-    <span class="lp-arrow">▾</span>
-  </button>
+  <div [class.has-reset]="canReset()" [class.lp-disabled]="disabled()">
+    @if (canReset()) {
+      <button class="lp-btn" type="button" (click)="doReset.emit()">
+        <app-icon icon="reset" size="sm" />
+      </button>
+    }
+    <button class="lp-trigger" type="button" (click)="open()" [disabled]="disabled()">
+      <span>{{ optionLabel ?? '—' }}</span>
+      <span class="lp-arrow">▾</span>
+    </button>
+  </div>
 </div>
 
 @if (isOpen()) {
