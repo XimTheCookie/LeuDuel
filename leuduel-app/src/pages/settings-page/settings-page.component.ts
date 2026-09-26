@@ -29,6 +29,16 @@ export class SettingsPageComponent {
   readonly keepAwakeSavedValue = signal(false);
 
   keepAwake = new FormControl<boolean>({ value: false, disabled: true });
+  readonly keepAwakeOptions = [
+    {
+      label: 'Allow sleeping',
+      value: false,
+    },
+    {
+      label: 'Keep awake (during match)',
+      value: true,
+    },
+  ];
 
   isLandscapeOrientation = new FormControl<boolean>(this.settingsService.landscapeMode());
   readonly orientationOptions = [

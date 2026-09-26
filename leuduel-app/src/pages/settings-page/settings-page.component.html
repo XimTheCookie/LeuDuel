@@ -112,17 +112,12 @@
         <span class="settings-section__title-icon">◉</span> Android
       </h2>
       <div class="settings-section__fields">
-        <label class="settings-section__toggle-row">
-          <span class="toggle-label"
-            >Keep Awake <span class="toggle-label__sub">during match</span></span
-          >
-          <input
-            type="checkbox"
-            [checked]="keepAwake.value!"
-            (change)="keepAwake.setValue($any($event.target).checked)"
-            [disabled]="keepAwake.disabled"
-          />
-        </label>
+        <app-list-picker
+          [disabled]="keepAwake.disabled"
+          [formControl]="keepAwake"
+          label="Keep Awake"
+          [options]="keepAwakeOptions"
+        />
       </div>
       @if (keepAwakeSupported()) {
         <div class="settings-section__footer">
