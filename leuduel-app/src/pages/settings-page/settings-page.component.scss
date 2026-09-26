@@ -177,4 +177,29 @@
   text-align: center;
   user-select: none;
   color: var(--text-muted);
+
+  &--col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: center;
+  }
+
+  &--link {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.section-image {
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
 }

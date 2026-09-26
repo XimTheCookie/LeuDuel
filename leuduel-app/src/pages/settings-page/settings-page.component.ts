@@ -5,7 +5,6 @@ import { TextButtonComponent } from '../../components/common/text-button/text-bu
 import { TimeInputComponent } from '../../components/common/time-input/time-input.component';
 import { SettingsService } from '../../services/settings.service';
 import { ModalService } from '../../services/modal.service';
-import { AboutComponent } from '../../components/core/about/about.component';
 import { AndroidManagementService } from '../../services/android-management.service';
 import { SoundboardService } from '../../services/soundboard.service';
 import { BehaviourSettingsPageComponent } from '../behaviour-settings-page/behaviour-settings-page.component';
@@ -199,13 +198,6 @@ export class SettingsPageComponent {
     this.settingsService.setSwapPlayers(!!this.swapPlayers.value);
   }
 
-  viewAboutModal() {
-    this.modalService.open(AboutComponent, {
-      opacity: this.settingsService.getModalOpacity(),
-      size: 'sm',
-    });
-  }
-
   openBehaviourSettings() {
     this.soundboardService.clickSound();
     this.modalService.open(BehaviourSettingsPageComponent, {
@@ -220,5 +212,9 @@ export class SettingsPageComponent {
       size: 'full',
       opacity: this.settingsService.getModalOpacity(),
     });
+  }
+
+  openGitHub() {
+    window.open('https://github.com/XimTheCookie/LeuDuel', '_blank');
   }
 }

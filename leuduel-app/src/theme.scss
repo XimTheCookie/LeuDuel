@@ -76,8 +76,20 @@ body.light {
   --btn-neutral-accent: #4a6a9a;
   --btn-neutral-surface: rgba(210, 220, 240, 0.9);
   --btn-neutral-border: rgba(99, 132, 199, 0.4);
+  --btn-neutral-glow: transparent;
 
-  --btn-positive-surface: rgba(26, 122, 74, 0.12);
-  --btn-negative-surface: rgba(192, 57, 43, 0.12);
-  --btn-warning-surface: rgba(180, 83, 9, 0.12);
+  --btn-positive-accent: #1a7a4a;
+  --btn-positive-surface: rgba(26, 122, 74, 0.22);
+  --btn-positive-border: rgba(26, 122, 74, 0.45);
+  --btn-positive-glow: rgba(26, 122, 74, 0.15);
+
+  --btn-negative-accent: #c0392b;
+  --btn-negative-surface: rgba(192, 57, 43, 0.22);
+  --btn-negative-border: rgba(192, 57, 43, 0.45);
+  --btn-negative-glow: rgba(192, 57, 43, 0.15);
+
+  --btn-warning-accent: #b45309;
+  --btn-warning-surface: rgba(180, 83, 9, 0.22);
+  --btn-warning-border: rgba(180, 83, 9, 0.45);
+  --btn-warning-glow: rgba(180, 83, 9, 0.15);
 }

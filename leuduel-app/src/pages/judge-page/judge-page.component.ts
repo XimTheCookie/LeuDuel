@@ -45,7 +45,6 @@ export class JudgePageComponent {
   <li><b>scale</b>: Pendulum Monster Card scale.</li>
   <li><b>archetype</b>: Archetype.</li>
 </ul>
-        
         `,
       },
     );

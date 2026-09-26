@@ -26,6 +26,7 @@ export class LifePointsAdjustModalComponent {
   input = signal('0');
   op = signal<Op>('damage');
   private coolingDown = false;
+  private halveMode = false;
 
   playerName = () => {
     return this.duelStore[this.player]()?.name ?? '';
@@ -52,41 +53,57 @@ export class LifePointsAdjustModalComponent {
     if (this.coolingDown) return;
     this.coolingDown = true;
     setTimeout(() => (this.coolingDown = false), 50);
+
     fn();
   }
 
   pressDigit(d: string) {
-    this.withCooldown(() =>
+    this.withCooldown(() => {
+      this.removeHalveMode();
       this.input.update((v) => {
         const next = v === '0' ? d : v + d;
         return next.length > 8 ? v : next;
-      }),
-    );
+      });
+    });
   }
 
   pressZeros(zeros: string) {
-    this.withCooldown(() =>
+    this.withCooldown(() => {
+      this.removeHalveMode();
       this.input.update((v) => {
         if (v === '0') return v;
         const next = v + zeros;
         return next.length > 8 ? v : next;
-      }),
-    );
+      });
+    });
   }
 
   clear() {
-    this.withCooldown(() => this.input.set('0'));
+    this.withCooldown(() => {
+      this.removeHalveMode();
+      this.input.set('0');
+    });
   }
 
   setOp(op: Op) {
-    this.withCooldown(() => this.op.set(op));
+    this.withCooldown(() => {
+      this.op.set(op);
+    });
   }
 
   halfLp() {
     this.withCooldown(() => {
       this.op.set('damage');
       this.input.set(String(Math.floor(this.currentLp() / 2)));
+      this.halveMode = true;
     });
+  }
+
+  removeHalveMode() {
+    if (this.halveMode) {
+      this.input.set('0');
+      this.halveMode = false;
+    }
   }
 
   apply() {
