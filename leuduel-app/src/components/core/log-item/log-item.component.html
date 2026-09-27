@@ -14,7 +14,7 @@
     <div class="log-item__header">
       <span class="log-item__player">{{ displayProfile()?.displayName ?? lifeLog().player }}</span>
       @if (lifeLog().isReset) {
-        <span class="log-item__reset-badge">LP RESET</span>
+        <span class="log-item__reset-badge">{{ 'logs.lp-reset' | translate }}</span>
       }
       <span class="log-item__time"
         >{{ lifeLog().timerSnapshot < 0 ? '-' : ''
@@ -44,7 +44,7 @@
   <button
     class="log-item__undo"
     type="button"
-    aria-label="Undo"
+    [aria-label]="'logs.undo' | translate"
     [disabled]="!undoable()"
     (click)="undo.emit(lifeLog().timestamp)"
   >

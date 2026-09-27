@@ -1,37 +1,41 @@
 <div class="match-stop">
   <div class="match-stop__header">
-    <span class="match-stop__title">Stop Match?</span>
+    <span class="match-stop__title">
+      {{ 'stop-match.title' | translate }}
+    </span>
   </div>
 
   <div class="match-stop__divider">
     <span class="match-stop__divider-gem"></span>
   </div>
 
-  @if (hasPossibleWinner()) {
-    <div class="match-stop__winner">
-      <span class="match-stop__winner-label">Possible outcome</span>
-      @if (winnerInfo().isDraw) {
-        <span class="match-stop__winner-draw">Draw / Double lose</span>
-      } @else {
-        @let wp = displayProfile();
-        @if (wp) {
-          <app-player-profile [profile]="wp" [showName]="false" />
-        }
-
-        <div class="match-stop__winner-scores">
-          <span [class.match-stop__winner-scores--bold]="winnerInfo().leader === 'player1'">
-            {{ displayName1() }} — {{ duelStore.wins1() }}
-          </span>
-          <span [class.match-stop__winner-scores--bold]="winnerInfo().leader === 'player2'">
-            {{ displayName2() }} — {{ duelStore.wins2() }}
-          </span>
-        </div>
+  <div class="match-stop__winner">
+    <span class="match-stop__winner-label">
+      {{ 'stop-match.outcome' | translate }}
+    </span>
+    @if (winnerInfo().isDraw) {
+      <span class="match-stop__winner-draw">
+        {{ 'stop-match.draw' | translate }}
+      </span>
+    } @else {
+      @let wp = displayProfile();
+      @if (wp) {
+        <app-player-profile [profile]="wp" [showName]="false" />
       }
-    </div>
-  }
+
+      <div class="match-stop__winner-scores">
+        <span [class.match-stop__winner-scores--bold]="winnerInfo().leader === 'player1'">
+          {{ displayName1() }} — {{ duelStore.wins1() }}
+        </span>
+        <span [class.match-stop__winner-scores--bold]="winnerInfo().leader === 'player2'">
+          {{ displayName2() }} — {{ duelStore.wins2() }}
+        </span>
+      </div>
+    }
+  </div>
 
   <div class="match-stop__actions">
-    <app-text-button (click)="confirm()" label="Stop" tone="negative" />
-    <app-text-button (click)="cancel()" label="Cancel" tone="neutral" />
+    <app-text-button (click)="confirm()" label="common.button.stop" tone="negative" />
+    <app-text-button (click)="cancel()" label="common.button.cancel" tone="neutral" />
   </div>
 </div>

@@ -9,21 +9,18 @@ import { TextButtonComponent } from '../../common/text-button/text-button.compon
 import { SettingsService } from '../../../services/settings/settings.service';
 import { PlayerProfile } from '../../../models/player-profile.modal';
 import { PlayerProfileComponent } from '../player-profile/player-profile.component';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-stop-match-modal',
   standalone: true,
-  imports: [TextButtonComponent, PlayerProfileComponent],
+  imports: [TextButtonComponent, PlayerProfileComponent, TranslatePipe],
   templateUrl: './stop-match-modal.component.html',
   styleUrls: ['./stop-match-modal.component.scss'],
 })
 export class StopMatchModalComponent {
   duelStore = inject(DuelStore);
   private readonly settingsService = inject(SettingsService);
-
-  hasPossibleWinner = computed(() => {
-    return this.duelStore.wins1() > 0 || this.duelStore.wins2() > 0;
-  });
 
   winnerInfo = computed(() => {
     const w1 = this.duelStore.wins1();

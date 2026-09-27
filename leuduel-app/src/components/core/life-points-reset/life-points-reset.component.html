@@ -1,8 +1,12 @@
 <div class="lp-reset">
   <div class="lp-reset__header">
-    <span class="lp-reset__title">New Duel?</span>
+    <span class="lp-reset__title">
+      {{ 'lp-reset.title' | translate }}
+    </span>
     @if (isOngoing()) {
-      <p class="lp-reset__subtitle">Timer is still ticking.</p>
+      <p class="lp-reset__subtitle">
+        {{ 'lp-reset.timer-reminder' | translate }}
+      </p>
     }
   </div>
 
@@ -11,7 +15,9 @@
   </div>
 
   <div class="lp-reset__winner">
-    <span class="lp-reset__winner-label">Assign Victory</span>
+    <span class="lp-reset__winner-label">
+      {{ 'lp-reset.assign-victory' | translate }}
+    </span>
     @let p1 = profile1();
     @let p2 = profile2();
     <div class="lp-reset__winner-btns" [class.lp-reset__winner-btns--landscape]="landscapeMode()">
@@ -66,7 +72,7 @@
   </div>
 
   <div class="lp-reset__actions">
-    <app-text-button label="Confirm" tone="negative" (clicked)="closeModal(true)" />
-    <app-text-button label="Cancel" tone="neutral" (clicked)="closeModal(false)" />
+    <app-text-button label="common.button.confirm" tone="negative" (clicked)="closeModal(true)" />
+    <app-text-button label="common.button.cancel" tone="neutral" (clicked)="closeModal(false)" />
   </div>
 </div>

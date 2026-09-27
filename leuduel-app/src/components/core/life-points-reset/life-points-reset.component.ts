@@ -10,13 +10,14 @@ import { TextButtonComponent } from '../../common/text-button/text-button.compon
 import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 import { BehaviourSettingsService } from '../../../services/settings/behaviour-settings.service';
 import { PlayerProfileComponent } from '../player-profile/player-profile.component';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-life-points-reset',
   templateUrl: './life-points-reset.component.html',
   styleUrls: ['./life-points-reset.component.scss'],
   standalone: true,
-  imports: [ButtonComponent, TextButtonComponent, PlayerProfileComponent],
+  imports: [ButtonComponent, TextButtonComponent, PlayerProfileComponent, TranslatePipe],
 })
 export class LifePointsResetComponent implements AfterViewInit {
   private readonly settingsService = inject(SettingsService);

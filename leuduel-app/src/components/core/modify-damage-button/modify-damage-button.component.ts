@@ -6,6 +6,7 @@ import { MODAL_COMPONENT_DATA } from '../../../services/modal/modal.service';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
 import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 import { SettingsService } from '../../../services/settings/settings.service';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 export interface ModifyDamageData {
   action: LifeAction;
@@ -13,11 +14,11 @@ export interface ModifyDamageData {
 }
 
 const ACTION_TYPES: { type: LifeAction['type']; label: string; symbol: string }[] = [
-  { type: 'damage', label: 'Damage', symbol: '-' },
-  { type: 'heal', label: 'Heal', symbol: '+' },
-  { type: 'divide', label: 'Divide', symbol: '/' },
-  { type: 'multiply', label: 'Multiply', symbol: '×' },
-  { type: 'set', label: 'Set', symbol: '=' },
+  { type: 'damage', label: 'common.label.damage', symbol: '-' },
+  { type: 'heal', label: 'common.label.heal', symbol: '+' },
+  { type: 'divide', label: 'common.label.divide', symbol: '/' },
+  { type: 'multiply', label: 'common.label.multiply', symbol: '×' },
+  { type: 'set', label: 'common.label.set', symbol: '=' },
 ];
 
 @Component({
@@ -25,7 +26,7 @@ const ACTION_TYPES: { type: LifeAction['type']; label: string; symbol: string }[
   standalone: true,
   templateUrl: './modify-damage-button.component.html',
   styleUrls: ['./modify-damage-button.component.scss'],
-  imports: [NumberInputComponent, TextButtonComponent],
+  imports: [NumberInputComponent, TextButtonComponent, TranslatePipe],
 })
 export class ModifyDamageButtonComponent {
   private readonly settingsService = inject(SettingsService);

@@ -37,6 +37,7 @@ export class DuelControllerComponent implements AfterViewInit {
   private readonly modalService = inject(ModalService);
 
   startupStop = signal<boolean>(false);
+  private duelActionCooldown = false;
 
   constructor() {
     effect(() => {
@@ -103,17 +104,28 @@ export class DuelControllerComponent implements AfterViewInit {
     }, 500);
   }
 
+  private withDuelCooldown(fn: () => void) {
+    if (this.duelActionCooldown) return;
+    this.duelActionCooldown = true;
+    fn();
+    setTimeout(() => (this.duelActionCooldown = false), 100);
+  }
+
   pauseDuel() {
-    this.duelStore.pauseDuel();
-    this.soundboardService.clickSound();
-    this.timerService.stop();
-    this.timerService.update();
+    this.withDuelCooldown(() => {
+      this.duelStore.pauseDuel();
+      this.soundboardService.clickSound();
+      this.timerService.stop();
+      this.timerService.update();
+    });
   }
 
   resumeDuel() {
-    this.duelStore.resumeDuel();
-    this.soundboardService.clickSound();
-    this.timerService.update();
+    this.withDuelCooldown(() => {
+      this.duelStore.resumeDuel();
+      this.soundboardService.clickSound();
+      this.timerService.update();
+    });
   }
 
   stopMatch() {
@@ -145,9 +157,11 @@ export class DuelControllerComponent implements AfterViewInit {
   }
 
   handleStart(opponentId?: number) {
-    this.soundboardService.confirmationSound();
-    this.duelStore.startDuel(opponentId);
-    this.timerService.update();
+    this.withDuelCooldown(() => {
+      this.soundboardService.confirmationSound();
+      this.duelStore.startDuel(opponentId);
+      this.timerService.update();
+    });
   }
 
   resetLifePoints() {

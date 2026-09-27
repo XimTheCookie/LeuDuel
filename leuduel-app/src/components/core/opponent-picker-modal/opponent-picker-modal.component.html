@@ -1,6 +1,8 @@
 <div class="opponent-picker">
   <div class="opponent-picker__header">
-    <span class="opponent-picker__title">Pick Opponent</span>
+    <span class="opponent-picker__title">
+      {{ 'pick-opponent.title' | translate }}
+    </span>
   </div>
 
   <div class="opponent-picker__divider">
@@ -14,16 +16,28 @@
         [class.opponent-picker__item--selected]="selected()?.id === opponent.id"
         (click)="select(opponent)"
       >
-        <app-player-profile [profile]="opponent" [showAvatar]="true" [showName]="false" [small]="true" />
+        <app-player-profile
+          [profile]="opponent"
+          [showAvatar]="true"
+          [showName]="false"
+          [small]="true"
+        />
         <span class="opponent-picker__name">{{ opponent.displayName }}</span>
       </button>
     } @empty {
-      <span class="opponent-picker__empty">No opponents saved.</span>
+      <span class="opponent-picker__empty">
+        {{ 'pick-opponent.no-opponents' | translate }}
+      </span>
     }
   </div>
 
   <div class="opponent-picker__actions">
-    <app-text-button (click)="confirm()" label="Start" tone="positive" [isDisabled]="!selected()" />
-    <app-text-button (click)="cancel()" label="Cancel" tone="neutral" />
+    <app-text-button
+      (click)="confirm()"
+      label="common.button.start"
+      tone="positive"
+      [isDisabled]="!selected()"
+    />
+    <app-text-button (click)="cancel()" label="common.button.cancel" tone="neutral" />
   </div>
 </div>

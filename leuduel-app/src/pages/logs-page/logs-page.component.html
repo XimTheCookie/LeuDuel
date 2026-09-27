@@ -1,14 +1,18 @@
 <div class="logs-page">
   <div class="logs-page__header">
-    <span class="logs-page__title">Logs</span>
-    <span class="logs-page__count">{{ logs().length }} events</span>
+    <span class="logs-page__title">{{ 'logs.title' | translate }}</span>
+    <span class="logs-page__count">
+      {{ 'logs.events' | translate: { count: logs().length.toString() } }}
+    </span>
   </div>
 
   <div class="logs-page__list">
     @if (logs().length === 0) {
       <div class="logs-page__empty">
         <app-icon icon="log" size="lg" />
-        <span>No events yet</span>
+        <span>
+          {{ 'logs.no-events' | translate }}
+        </span>
       </div>
     } @else {
       @for (log of logs(); let i = $index; track i) {

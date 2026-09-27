@@ -2,7 +2,7 @@
   <input
     class="card-search__input"
     type="text"
-    placeholder="Search cards…"
+    [placeholder]="'card-search.placeholder' | translate"
     [ngModel]="query()"
     (ngModelChange)="onQueryChange($event)"
     (keydown)="onKeydown($event)"
@@ -10,7 +10,7 @@
     spellcheck="false"
   />
   <app-text-button
-    label="Search"
+    label="common.button.search"
     tone="neutral"
     [cooldown]="500"
     [isDisabled]="!query().trim() || loading()"
@@ -19,7 +19,9 @@
 </div>
 
 @if (loading()) {
-  <div class="card-search__status">Searching…</div>
+  <div class="card-search__status">
+    {{ 'card-search.searching' | translate }}
+  </div>
 }
 
 @if (error()) {

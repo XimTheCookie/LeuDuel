@@ -5,13 +5,14 @@ import { SettingsService } from '../../../services/settings/settings.service';
 import { MODAL_DATA } from '../../common/modal-generic/modal-generic.component';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
 import { SoundboardService } from '../../../services/soundboard/soundboard.service';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'welcome-modal',
   templateUrl: './welcome-modal.component.html',
   styleUrls: ['./welcome-modal.component.scss'],
   standalone: true,
-  imports: [TextButtonComponent],
+  imports: [TextButtonComponent, TranslatePipe],
 })
 export class WelcomeModalComponent {
   private readonly soundboardService = inject(SoundboardService);

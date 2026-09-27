@@ -1,9 +1,12 @@
 <div class="judge-page">
   <div class="judge-page__header">
-    <span class="judge-page__title">Card Search</span>
+    <span class="judge-page__title">
+      {{ 'judge-page.title' | translate }}
+    </span>
     <span class="judge-page__hint"
-      >Try: <em>dark magician</em> or <em>dragon,atk=2500,attr=dark</em>
-      <span class="ml-1" (click)="openInfo()">[?]</span></span
+      >{{ 'judge-page.try' | translate }}: <em>dark magician</em> {{ 'judge-page.or' | translate }}
+      <em>dragon,atk=2500,attr=dark</em>
+      <span class="ml-1 underline" (click)="openInfo()">[?]</span></span
     >
   </div>
 

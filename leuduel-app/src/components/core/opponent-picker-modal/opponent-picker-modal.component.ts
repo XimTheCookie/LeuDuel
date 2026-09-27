@@ -8,11 +8,12 @@ import { PlayerStore } from '../../../stores/player-store/player.store';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
 import { PlayerProfileComponent } from '../player-profile/player-profile.component';
 import { PlayerProfile } from '../../../models/player-profile.modal';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-opponent-picker-modal',
   standalone: true,
-  imports: [TextButtonComponent, PlayerProfileComponent],
+  imports: [TextButtonComponent, PlayerProfileComponent, TranslatePipe],
   templateUrl: './opponent-picker-modal.component.html',
   styleUrls: ['./opponent-picker-modal.component.scss'],
 })

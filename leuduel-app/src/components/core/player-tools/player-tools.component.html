@@ -27,7 +27,9 @@
 
       <button class="tool-btn" (click)="rollDice()" [disabled]="coolingDown()">
         <span class="tool-btn__icon">🎲</span>
-        <span class="tool-btn__label">Roll D6</span>
+        <span class="tool-btn__label">
+          {{ 'common.label.roll-dice' | translate: { num: '6' } }}
+        </span>
       </button>
     </div>
 
@@ -42,7 +44,10 @@
                 class="history__chip history__chip--coin"
                 [class.history__chip--heads]="flip.result === 'heads'"
               >
-                {{ flip.result === 'heads' ? 'H' : 'T' }}
+                {{
+                  (flip.result === 'heads' ? 'common.label.heads-alt' : 'common.label.tails-alt')
+                    | translate
+                }}
               </span>
             }
           </div>
@@ -54,7 +59,7 @@
               [class.last-result__value--heads]="
                 coinFlips()[coinFlips().length - 1].result === 'heads'
               "
-              >{{ coinFlips()[coinFlips().length - 1].result }}</span
+              >{{ 'common.label.' + coinFlips()[coinFlips().length - 1].result | translate }}</span
             >
           } @else {
             <span
@@ -62,14 +67,16 @@
               [class.last-result__value--heads]="
                 coinFlips()[coinFlips().length - 1].result === 'heads'
               "
-              >{{ coinFlips()[coinFlips().length - 1].result }}</span
+              >{{ 'common.label.' + coinFlips()[coinFlips().length - 1].result | translate }}</span
             >
           }
         </div>
       }
       <button class="tool-btn" (click)="flipCoin()" [disabled]="coolingDown()">
         <span class="tool-btn__icon">🪙</span>
-        <span class="tool-btn__label">Flip Coin</span>
+        <span class="tool-btn__label">
+          {{ 'common.label.flip-coin' | translate }}
+        </span>
       </button>
     </div>
   </div>

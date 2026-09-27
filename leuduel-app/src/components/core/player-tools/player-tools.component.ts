@@ -2,13 +2,14 @@ import { Component, computed, inject, input, signal } from '@angular/core';
 import { ToolsStore } from '../../../stores/tools-store/tools.store';
 import { SettingsService } from '../../../services/settings/settings.service';
 import { SoundboardService } from '../../../services/soundboard/soundboard.service';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-player-tools',
   standalone: true,
   templateUrl: './player-tools.component.html',
   styleUrls: ['./player-tools.component.scss'],
-  imports: [],
+  imports: [TranslatePipe],
 })
 export class PlayerToolsComponent {
   toolsStore = inject(ToolsStore);

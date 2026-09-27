@@ -4,13 +4,14 @@ import { LifeChange } from '../../../models/life-change.model';
 import { IconComponent } from '../../common/icon/icon.component';
 import { PlayerProfile } from '../../../models/player-profile.modal';
 import { PlayerProfileComponent } from '../player-profile/player-profile.component';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-log-item',
   standalone: true,
   templateUrl: './log-item.component.html',
   styleUrls: ['./log-item.component.scss'],
-  imports: [DatePipe, IconComponent, PlayerProfileComponent],
+  imports: [DatePipe, IconComponent, PlayerProfileComponent, TranslatePipe],
 })
 export class LogItemComponent {
   playerProfile1 = input<PlayerProfile>();

@@ -1,11 +1,13 @@
 <div class="modify-form">
   <div class="modify-form__header">
-    <span class="modify-form__title">Modify Button</span>
+    <span class="modify-form__title">
+      {{ 'damage-button.title' | translate }}
+    </span>
   </div>
 
   <div class="modify-form__section">
     <app-number-input
-      label="Value"
+      label="damage-button.value"
       [formControl]="buttonValueController"
       [minValue]="1"
       [maxValue]="99999"
@@ -14,7 +16,9 @@
   </div>
 
   <div class="modify-form__section">
-    <span class="modify-form__label">Action Type</span>
+    <span class="modify-form__label">
+      {{ 'damage-button.action-type' | translate }}
+    </span>
     <div class="modify-form__types">
       @for (t of actionTypes; track t.type) {
         <button
@@ -29,7 +33,7 @@
           (click)="selectType(t.type)"
         >
           <span class="type-btn__symbol">{{ t.symbol }}</span>
-          <span class="type-btn__label">{{ t.label }}</span>
+          <span class="type-btn__label">{{ t.label | translate }}</span>
         </button>
       }
     </div>
@@ -37,13 +41,15 @@
 
   <div class="modify-form__footer">
     @if (!landscapeMode()) {
-      <span class="modify-form__footer_label">(Configurations are shared)</span>
+      <span class="modify-form__footer_label">
+        {{ 'damage-button.info' | translate }}
+      </span>
     }
     <app-text-button
       [tone]="buttonValueController.invalid ? 'neutral' : 'positive'"
       [isDisabled]="buttonValueController.invalid"
       (clicked)="save()"
-      label="Confirm"
+      label="common.button.confirm"
     />
   </div>
 </div>

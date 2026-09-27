@@ -1,6 +1,8 @@
 <div class="lpa" [class.lpa--landscape]="settingsService.landscapeMode()">
   @if (!settingsService.landscapeMode()) {
-    <span class="lpa__title">Set {{ playerName() }} LP</span>
+    <span class="lpa__title">
+      {{ 'common.label.set-lp-title' | translate: { player: playerName() } }}</span
+    >
   }
   <!-- quadrante lp -->
   <div class="lpa__preview">

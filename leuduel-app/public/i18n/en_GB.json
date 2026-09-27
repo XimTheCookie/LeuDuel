@@ -3,20 +3,36 @@
     "label": {
       "yes": "Yes",
       "no": "No",
-      "info": "Info"
+      "info": "Info",
+      "roll-dice": "Roll D{{num}}",
+      "flip-coin": "Flip coin",
+      "heads": "Heads",
+      "heads-alt": "H",
+      "tails": "Tails",
+      "tails-alt": "T",
+      "set-lp-title": "Set {{player}} LP",
+      "damage": "Damage",
+      "heal": "Heal",
+      "divide": "Divide",
+      "multiply": "Multiply",
+      "set": "Set"
     },
     "button": {
       "save": "Save changes",
       "close": "Close",
       "confirm": "Confirm",
-      "remove": "Remove"
+      "remove": "Remove",
+      "search": "Search",
+      "cancel": "Cancel",
+      "start": "Start",
+      "stop": "Stop"
     }
   },
   "settings": {
     "section": {
       "duel": {
         "title": "Duel Settings",
-        "start-lp": "Starting life points",
+        "start-lp": "Starting LP",
         "best-of": "Best of",
         "timer": "Duel timer",
         "custom-profiles": "Custom profiles",
@@ -114,5 +130,46 @@
     "display-name": "Display name",
     "profile-picture": "Profile picture",
     "enter-name": "Enter name..."
+  },
+  "card-search": {
+    "placeholder": "Search cards...",
+    "searching": "Searching..."
+  },
+  "judge-page": {
+    "title": "Card Search",
+    "try": "Try",
+    "or": "or",
+    "info": "All search options:<ul><li><b>atk</b>: Monster Card attack.</li><li><b>def</b>: Monster Card defense.</li><li><b>attribute</b>: Monster Card attribute.</li><li><b>race</b>: Monster Card type (Dragon, Spellcaster, etc).</li><li><b>type</b>: Monster Card type (Normal Monster, Synchro Monster, Fusion Monster, Union Effect Monster, Flip Monster).</li><li><b>level</b>: Monster Card level.</li><li><b>scale</b>: Pendulum Monster Card scale.</li><li><b>archetype</b>: Archetype.</li></ul>"
+  },
+  "pick-opponent": {
+    "title": "Pick an Opponent",
+    "no-opponents": "No opponents saved."
+  },
+  "damage-button": {
+    "title": "Modify Button",
+    "value": "Value",
+    "action-type": "Action Type",
+    "info": "(Configurations are shared)"
+  },
+  "logs": {
+    "title": "Logs",
+    "events": "{{count}} events",
+    "no-events": "No events yet",
+    "lp-reset": "LP Reset",
+    "undo": "Undo event"
+  },
+  "stop-match": {
+    "title": "Stop match?",
+    "outcome": "Outcome",
+    "draw": "Draw / Double lose"
+  },
+  "welcome": {
+    "title": "Welcome",
+    "subtitle": "How would you like the app?"
+  },
+  "lp-reset": {
+    "title": "New duel?",
+    "timer-reminder": "Timer is still ticking.",
+    "assign-victory": "Assign Victory"
   }
 }

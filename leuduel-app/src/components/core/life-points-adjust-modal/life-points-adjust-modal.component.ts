@@ -7,6 +7,7 @@ import {
 import { DuelStore } from '../../../stores/duel-store/duel.store';
 import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 import { SettingsService } from '../../../services/settings/settings.service';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 type Op = 'damage' | 'heal';
 
@@ -15,7 +16,7 @@ type Op = 'damage' | 'heal';
   templateUrl: './life-points-adjust-modal.component.html',
   styleUrls: ['./life-points-adjust-modal.component.scss'],
   standalone: true,
-  imports: [],
+  imports: [TranslatePipe],
 })
 export class LifePointsAdjustModalComponent {
   private readonly soundboardService = inject(SoundboardService);
@@ -29,7 +30,11 @@ export class LifePointsAdjustModalComponent {
   private halveMode = false;
 
   playerName = () => {
-    return this.duelStore[this.player]()?.name ?? '';
+    const player = this.duelStore[this.player]();
+    if (this.settingsService.showCustomPlayers()) {
+      return player.profile?.displayName ?? player.name;
+    }
+    return player.name ?? '';
   };
 
   currentLp = computed(() =>

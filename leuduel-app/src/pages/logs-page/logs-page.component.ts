@@ -4,13 +4,14 @@ import { LogItemComponent } from '../../components/core/log-item/log-item.compon
 import { SoundboardService } from '../../services/soundboard/soundboard.service';
 import { DuelStore } from '../../stores/duel-store/duel.store';
 import { SettingsService } from '../../services/settings/settings.service';
+import { TranslatePipe } from '../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-logs-page',
   templateUrl: './logs-page.component.html',
   styleUrls: ['./logs-page.component.scss'],
   standalone: true,
-  imports: [LogItemComponent, IconComponent],
+  imports: [LogItemComponent, IconComponent, TranslatePipe],
 })
 export class LogsPageComponent {
   private readonly soundboardService = inject(SoundboardService);

@@ -3,13 +3,29 @@
     "label": {
       "yes": "Sì",
       "no": "No",
-      "info": "Informazioni"
+      "info": "Informazioni",
+      "roll-dice": "Tira D{{num}}",
+      "flip-coin": "Lancia moneta",
+      "heads": "Testa",
+      "heads-alt": "T",
+      "tails": "Croce",
+      "tails-alt": "C",
+      "set-lp-title": "Imposta LP {{player}}",
+      "damage": "Danno",
+      "heal": "Cura",
+      "divide": "Dividi",
+      "multiply": "Moltiplica",
+      "set": "Imposta"
     },
     "button": {
       "save": "Salva modifiche",
       "close": "Chiudi",
       "confirm": "Conferma",
-      "remove": "Rimuovi"
+      "remove": "Rimuovi",
+      "search": "Cerca",
+      "cancel": "Annulla",
+      "start": "Avvia",
+      "stop": "Interrompi"
     }
   },
   "settings": {
@@ -114,5 +130,46 @@
     "display-name": "Nome mostrato",
     "profile-picture": "Immagine di profilo",
     "enter-name": "Inserisci nome..."
+  },
+  "card-search": {
+    "placeholder": "Cerca carte...",
+    "searching": "Ricerca in corso..."
+  },
+  "judge-page": {
+    "title": "Cerca carte",
+    "try": "Prova",
+    "or": "o",
+    "info": "Tutte le opzioni di ricerca:<ul><li><b>atk</b>: Attacco carta mostro.</li><li><b>def</b>: Difesa carta mostro.</li><li><b>attribute</b>: Attributo carta mostro.</li><li><b>race</b>: Tipo carta mostro (Dragon, Spellcaster, etc).</li><li><b>type</b>: Tipo carta mostro (Normal Monster, Synchro Monster, Fusion Monster, Union Effect Monster, Flip Monster).</li><li><b>level</b>: Livello carta mostro.</li><li><b>scale</b>: Scala carta mostro pendulum.</li><li><b>archetype</b>: Archetipo.</li></ul>"
+  },
+  "pick-opponent": {
+    "title": "Scegli avversario",
+    "no-opponents": "Nessun avversario salvato."
+  },
+  "damage-button": {
+    "title": "Modifica Pulsante",
+    "value": "Valore",
+    "action-type": "Tipo azione",
+    "info": "(Le configurazioni sono condivise)"
+  },
+  "logs": {
+    "title": "Registro eventi",
+    "events": "{{count}} eventi",
+    "no-events": "Ancora nessun evento",
+    "lp-reset": "Reset dei LP",
+    "undo": "Cancella evento"
+  },
+  "stop-match": {
+    "title": "Interrompere match?",
+    "outcome": "Risultato",
+    "draw": "Pareggio / Doppia sconfitta"
+  },
+  "welcome": {
+    "title": "Benvenuto",
+    "subtitle": "Come ti piacerebbe l'applicazione?"
+  },
+  "lp-reset": {
+    "title": "Nuovo duello?",
+    "timer-reminder": "Il timer è ancora in corso.",
+    "assign-victory": "Assegna vittoria"
   }
 }

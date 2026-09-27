@@ -4,13 +4,14 @@ import { TextButtonComponent } from '../text-button/text-button.component';
 import { CardSearchService } from '../../../services/card-search/card-search.service';
 import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 import { YgoCard } from '../../../models/ygo-card.model';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-card-search',
   templateUrl: './card-search.component.html',
   styleUrls: ['./card-search.component.scss'],
   standalone: true,
-  imports: [FormsModule, TextButtonComponent],
+  imports: [FormsModule, TextButtonComponent, TranslatePipe],
 })
 export class CardSearchComponent implements OnInit {
   private readonly cardSearchService = inject(CardSearchService);
