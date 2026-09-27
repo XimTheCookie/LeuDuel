@@ -1,37 +1,42 @@
 <div class="settings-page">
   <div class="settings-section">
     <h2 class="settings-section__title">
-      <span class="settings-section__title-icon">⚔</span> Duel Settings
+      <span class="settings-section__title-icon">⚔</span>
+      {{ 'settings.section.duel.title' | translate }}
     </h2>
     <div class="settings-section__fields">
       <div class="settings-section__fields--row">
         <app-number-input
           [formControl]="lifePoints"
-          label="Starting Life Points"
+          label="settings.section.duel.start-lp"
           [maxValue]="9999999"
           [minValue]="1"
           [hideButtons]="true"
           [step]="1000"
         />
-        <app-list-picker [formControl]="bestOf" label="Best of" [options]="bestOfOptions" />
+        <app-list-picker
+          [formControl]="bestOf"
+          label="settings.section.duel.best-of"
+          [options]="bestOfOptions"
+        />
       </div>
 
       <app-time-input
         [formControl]="duration"
-        label="Duel Timer"
+        label="settings.section.duel.timer"
         [canReset]="true"
         (doReset)="resetTimer()"
       />
       <div class="settings-section__fields--row">
         <app-list-picker
           [formControl]="showCustomPlayers"
-          label="Custom profiles"
+          label="settings.section.duel.custom-profiles"
           [options]="customPlayersOption"
         />
         <app-text-button
           [alignBottom]="true"
           (clicked)="openProfiles()"
-          label="Customize"
+          label="settings.section.duel.custom-profiles-modify"
           tone="neutral"
         />
       </div>
@@ -40,7 +45,7 @@
       <app-text-button
         (clicked)="saveDuelSettings()"
         [isDisabled]="!duelSettingsValid() || duelSettingsUnchanged()"
-        label="Save changes"
+        label="common.button.save"
         [tone]="!duelSettingsValid() ? 'warning' : duelSettingsUnchanged() ? 'neutral' : 'positive'"
       />
     </div>
@@ -48,34 +53,45 @@
 
   <div class="settings-section">
     <h2 class="settings-section__title">
-      <span class="settings-section__title-icon">◈</span> Gui settings
+      <span class="settings-section__title-icon">◈</span>
+      {{ 'settings.section.gui.title' | translate }}
     </h2>
     <div class="settings-section__fields">
+      <app-list-picker
+        [formControl]="language"
+        label="settings.section.gui.language"
+        [options]="languageOptions"
+        (valueChanged)="languageChanged()"
+      />
       <div class="settings-section__fields--row">
-        <app-list-picker [formControl]="theme" label="Theme" [options]="themeOptions" />
+        <app-list-picker
+          [formControl]="theme"
+          label="settings.section.gui.theme"
+          [options]="themeOptions"
+        />
         <app-list-picker
           [formControl]="modalOpacity"
-          label="Window opacity"
+          label="settings.section.gui.opacity"
           [options]="modalOpacityOptions"
         />
       </div>
       <div class="settings-section__fields--row">
         <app-list-picker
           [formControl]="isLandscapeOrientation"
-          label="Screen orientation"
+          label="settings.section.gui.orientation"
           [options]="orientationOptions"
           (valueChanged)="screenOrientationUpdated()"
         />
         <app-list-picker
           [disabled]="swapPlayersDisabled()"
           [formControl]="swapPlayers"
-          label="Swap players"
+          label="settings.section.gui.swap-players"
           [options]="swapPlayerOptions"
         />
       </div>
       <app-number-input
         [formControl]="numberOfRapidButtons"
-        label="Number of rapid buttons"
+        label="settings.section.gui.rb-number"
         [maxValue]="15"
         [minValue]="1"
         [step]="1"
@@ -84,7 +100,11 @@
       />
       <app-number-input
         [formControl]="rapidButtonsColumns"
-        label="Number of columns"
+        [label]="
+          isLandscapeOrientation?.value
+            ? 'settings.section.gui.rb-rows'
+            : 'settings.section.gui.rb-columns'
+        "
         [maxValue]="3"
         [minValue]="1"
         [step]="1"
@@ -96,7 +116,7 @@
       <app-text-button
         (clicked)="saveGuiPreferences()"
         [isDisabled]="!guiPreferencesValid() || guiPreferencesUnchanged()"
-        label="Save changes"
+        label="common.button.save"
         [tone]="
           !guiPreferencesValid() ? 'warning' : guiPreferencesUnchanged() ? 'neutral' : 'positive'
         "
@@ -107,13 +127,14 @@
   @if (isAndroid) {
     <div class="settings-section">
       <h2 class="settings-section__title">
-        <span class="settings-section__title-icon">◉</span> Android
+        <span class="settings-section__title-icon">◉</span>
+        {{ 'settings.section.android.title' | translate }}
       </h2>
       <div class="settings-section__fields">
         <app-list-picker
           [disabled]="keepAwake.disabled"
           [formControl]="keepAwake"
-          label="Keep Awake"
+          label="settings.section.android.keep-awake"
           [options]="keepAwakeOptions"
         />
       </div>
@@ -122,7 +143,7 @@
           <app-text-button
             (clicked)="saveKeepAwake()"
             [isDisabled]="keepAwakeUnchanged()"
-            label="Save changes"
+            label="common.button.save"
             [tone]="keepAwakeUnchanged() ? 'neutral' : 'positive'"
           />
         </div>
@@ -132,19 +153,25 @@
 
   <div class="settings-section">
     <h2 class="settings-section__title">
-      <span class="settings-section__title-icon">⚙</span> Behaviour Settings
+      <span class="settings-section__title-icon">⚙</span>
+      {{ 'settings.section.behaviour.title' | translate }}
     </h2>
     <div class="settings-section__fields">
-      <span class="section-label"> Customize application behaviours </span>
+      <span class="section-label"> {{ 'settings.section.behaviour.info' | translate }} </span>
     </div>
     <div class="settings-section__footer">
-      <app-text-button (clicked)="openBehaviourSettings()" label="Open settings" tone="neutral" />
+      <app-text-button
+        (clicked)="openBehaviourSettings()"
+        label="settings.section.behaviour.open"
+        tone="neutral"
+      />
     </div>
   </div>
 
   <div class="settings-section">
     <h2 class="settings-section__title">
-      <span class="settings-section__title-icon">🛈</span> Information
+      <span class="settings-section__title-icon">🛈</span>
+      {{ 'settings.section.information.title' | translate }}
     </h2>
     <div class="settings-section__fields">
       <span class="section-image">
@@ -154,7 +181,11 @@
     <div class="settings-section__fields">
       <span class="section-label section-label--col">
         <span>leuDuel v1.0</span>
-        <span>by XimTheCookie (Xim_) </span>
+        <span>
+          {{
+            'settings.section.information.author' | translate: { author: 'XimTheCookie (Xim_)' }
+          }}</span
+        >
         <a class="section-label--link" (click)="openGitHub()">GitHub</a>
       </span>
     </div>

@@ -1,13 +1,14 @@
 import { Component, input, output, signal, ElementRef, viewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { IconComponent } from '../icon/icon.component';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-list-picker',
   templateUrl: './list-picker.component.html',
   styleUrls: ['./list-picker.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, IconComponent],
+  imports: [ReactiveFormsModule, IconComponent, TranslatePipe],
 })
 export class ListPickerComponent {
   formControl = input.required<FormControl<string | number | boolean | null>>();

@@ -1,0 +1,118 @@
+{
+  "common": {
+    "label": {
+      "yes": "Sì",
+      "no": "No",
+      "info": "Informazioni"
+    },
+    "button": {
+      "save": "Salva modifiche",
+      "close": "Chiudi",
+      "confirm": "Conferma",
+      "remove": "Rimuovi"
+    }
+  },
+  "settings": {
+    "section": {
+      "duel": {
+        "title": "Impostazioni Duello",
+        "start-lp": "LP iniziali",
+        "best-of": "Al meglio di",
+        "timer": "Timer duello",
+        "custom-profiles": "Profili custom",
+        "custom-profiles-modify": "Personalizza"
+      },
+      "gui": {
+        "title": "Impostazioni Interfaccia",
+        "theme": "Tema",
+        "language": "Lingua",
+        "orientation": "Orientamento",
+        "opacity": "Opacità finestre",
+        "swap-players": "Scambia giocatori",
+        "rb-number": "Numero pulsanti",
+        "rb-columns": "Numero colonne",
+        "rb-rows": "Numero righe"
+      },
+      "behaviour": {
+        "title": "Impostazioni di Comportamento",
+        "info": "Personalizza comportamenti dell'app",
+        "open": "Apri impostazioni"
+      },
+      "android": {
+        "title": "Impostazioni Android",
+        "keep-awake": "Tieni attivo durante il duello"
+      },
+      "information": {
+        "title": "Informazioni",
+        "author": "Creato da {{author}}"
+      }
+    },
+    "list-value": {
+      "theme": {
+        "light": "Chiaro",
+        "dark": "Scuro",
+        "high-contrast": "Contrasto alto"
+      },
+      "orientation": {
+        "potrait": "Verticale",
+        "landscape": "Orizzontale"
+      }
+    }
+  },
+  "behaviour-settings": {
+    "title": "Impostazioni di Comportamento",
+    "counter-reset": {
+      "title": "Reset segnalini",
+      "label": {
+        "never": "Mai",
+        "game": "Partita",
+        "match": "Match"
+      },
+      "info": "<ul><li><b>Mai</b>: I segnalini non vengono mai resettati automaticamente.</li><li><b>Partita</b>: I segnalini vengono resettati ogni volta che vengono reimpostati i LP.</li><li><b>Match</b>: I segnalini vengono resettati al restart del match.</li></ul>"
+    },
+    "game-reset": {
+      "title": "Reset partita",
+      "label": {
+        "manual": "Manuale",
+        "lp-zero": "Zero LP",
+        "lp-zero-auto": "Zero LP (auto)"
+      },
+      "info": "Quando mostrare la finestra di reset LP.<ul><li><b>Manuale</b>: La finestra si apre solo su richiesta.</li><li><b>Zero LP</b>: La finestra si apre automaticamente quando i LP di un giocatore si azzerano.</li><li><b>Zero LP (auto)</b>: La finestra non si apre, l'azione di conferma è automatica e i LP sono resettati.</li></ul>"
+    },
+    "winner-selection": {
+      "title": "Selezione vincitore",
+      "label": {
+        "manual": "Manuale",
+        "auto": "Automatica"
+      },
+      "info": "Come viene selezionato il vincitore nella finestra di reset LP.<ul><li><b>Manuale</b>: L'utente sceglie il vincitore.</li><li><b>Auto</b>: Il vincitore è suggerito automaticamente <i>Reset partita/i> è impostato a <i>Zero LP (auto)</i>, il vincitore è scelto e confermato senza interazioni.</li></ul>"
+    },
+    "match-stop": {
+      "title": "Fine Match",
+      "label": {
+        "manual": "Manuale",
+        "winner-found": "Vincitore trovato"
+      },
+      "info": "Come ci si comporta quando il match finisce.<ul><li><b>Manuale</b>: La finestra di fine match deve essere aperta dal giocatore.</li><li><b>Vincitore trovato</b>: La finestra di fine match si apre appena un possibile vincitore è disponibile.</li></ul>"
+    },
+    "on-startup": {
+      "title": "Sull'avvio",
+      "label": {
+        "restore": "Ripristina partita",
+        "reset": "Reimposta partita"
+      },
+      "info": "Cosa succede all'avvio dell'applciazione.<ul><li><b>Ripristina partita</b>: Se c'era una partita in corso, è ripristinata.</li><li><b>Reimposta partita</b>: La partita viene resettata.</li></ul>"
+    }
+  },
+  "profiles-page": {
+    "my-profile": "Il mio profilo",
+    "opponents": "Avversari",
+    "no-opponents": "Nessun avversario.",
+    "edit-profile": "Modifica profilo",
+    "edit-opponent": "Modifica avversario",
+    "add-opponent": "Aggiungi avversario",
+    "display-name": "Nome mostrato",
+    "profile-picture": "Immagine di profilo",
+    "enter-name": "Inserisci nome..."
+  }
+}

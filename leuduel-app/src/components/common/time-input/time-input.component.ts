@@ -1,13 +1,14 @@
 import { Component, input, output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { IconComponent } from '../icon/icon.component';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-time-input',
   templateUrl: './time-input.component.html',
   styleUrls: ['./time-input.component.scss'],
   standalone: true,
-  imports: [IconComponent],
+  imports: [IconComponent, TranslatePipe],
 })
 export class TimeInputComponent {
   formControl = input.required<FormControl<number | null>>();
@@ -17,15 +18,29 @@ export class TimeInputComponent {
 
   private coolingDown = false;
 
-  get hours()   { return Math.floor((this.ms) / 3_600_000); }
-  get minutes() { return Math.floor((this.ms % 3_600_000) / 60_000); }
-  get seconds() { return Math.floor((this.ms % 60_000) / 1_000); }
+  get hours() {
+    return Math.floor(this.ms / 3_600_000);
+  }
+  get minutes() {
+    return Math.floor((this.ms % 3_600_000) / 60_000);
+  }
+  get seconds() {
+    return Math.floor((this.ms % 60_000) / 1_000);
+  }
 
-  private get ms() { return this.formControl().value ?? 0; }
+  private get ms() {
+    return this.formControl().value ?? 0;
+  }
 
-  adjustHours(delta: number)   { this.adjust(delta * 3_600_000); }
-  adjustMinutes(delta: number) { this.adjust(delta * 60_000); }
-  adjustSeconds(delta: number) { this.adjust(delta * 1_000); }
+  adjustHours(delta: number) {
+    this.adjust(delta * 3_600_000);
+  }
+  adjustMinutes(delta: number) {
+    this.adjust(delta * 60_000);
+  }
+  adjustSeconds(delta: number) {
+    this.adjust(delta * 1_000);
+  }
 
   private adjust(delta: number) {
     if (this.coolingDown) return;
@@ -40,5 +55,7 @@ export class TimeInputComponent {
     this.doReset.emit();
   }
 
-  pad(n: number) { return String(n).padStart(2, '0'); }
+  pad(n: number) {
+    return String(n).padStart(2, '0');
+  }
 }

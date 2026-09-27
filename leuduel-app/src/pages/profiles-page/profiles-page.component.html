@@ -1,7 +1,8 @@
 <div class="profiles-page">
   <div class="settings-section">
     <h2 class="settings-section__title">
-      <span class="settings-section__title-icon">◈</span> My Profile
+      <span class="settings-section__title-icon">◈</span>
+      {{ 'profiles-page.my-profile' | translate }}
     </h2>
     <div class="settings-section__fields">
       @if (playerStore.main(); as main) {
@@ -11,13 +12,18 @@
       }
     </div>
     <div class="settings-section__footer">
-      <app-text-button label="Edit profile" tone="neutral" (clicked)="openMainEditor()" />
+      <app-text-button
+        label="profiles-page.edit-profile"
+        tone="neutral"
+        (clicked)="openMainEditor()"
+      />
     </div>
   </div>
 
   <div class="settings-section">
     <h2 class="settings-section__title">
-      <span class="settings-section__title-icon">⚔</span> Opponents
+      <span class="settings-section__title-icon">⚔</span>
+      {{ 'profiles-page.opponents' | translate }}
     </h2>
     <div class="settings-section__fields">
       @for (opponent of playerStore.opponents(); track opponent.id) {
@@ -39,11 +45,17 @@
           </div>
         </div>
       } @empty {
-        <span class="profiles-page__empty">No opponents yet.</span>
+        <span class="profiles-page__empty">
+          {{ 'profiles-page.no-opponents' | translate }}
+        </span>
       }
     </div>
     <div class="settings-section__footer">
-      <app-text-button label="Add opponent" tone="neutral" (clicked)="openAddOpponent()" />
+      <app-text-button
+        label="profiles-page.add-opponent"
+        tone="neutral"
+        (clicked)="openAddOpponent()"
+      />
     </div>
   </div>
 </div>

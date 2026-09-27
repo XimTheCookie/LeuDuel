@@ -1,0 +1,118 @@
+{
+  "common": {
+    "label": {
+      "yes": "Yes",
+      "no": "No",
+      "info": "Info"
+    },
+    "button": {
+      "save": "Save changes",
+      "close": "Close",
+      "confirm": "Confirm",
+      "remove": "Remove"
+    }
+  },
+  "settings": {
+    "section": {
+      "duel": {
+        "title": "Duel Settings",
+        "start-lp": "Starting life points",
+        "best-of": "Best of",
+        "timer": "Duel timer",
+        "custom-profiles": "Custom profiles",
+        "custom-profiles-modify": "Customize"
+      },
+      "gui": {
+        "title": "GUI Settings",
+        "theme": "Theme",
+        "language": "Language",
+        "orientation": "Orientation",
+        "opacity": "Window opacity",
+        "swap-players": "Swap players",
+        "rb-number": "Number of rapid buttons",
+        "rb-columns": "Number of columns",
+        "rb-rows": "Number of rows"
+      },
+      "behaviour": {
+        "title": "Behaviour Settings",
+        "info": "Customize application behaviours",
+        "open": "Open settings"
+      },
+      "android": {
+        "title": "Android Settings",
+        "keep-awake": "Keep Awake (duel)"
+      },
+      "information": {
+        "title": "Information",
+        "author": "By {{author}}"
+      }
+    },
+    "list-value": {
+      "theme": {
+        "light": "Light",
+        "dark": "Dark",
+        "high-contrast": "High contrast"
+      },
+      "orientation": {
+        "potrait": "Vertical",
+        "landscape": "Horizontal"
+      }
+    }
+  },
+  "behaviour-settings": {
+    "title": "Behaviour Settings",
+    "counter-reset": {
+      "title": "Counter reset",
+      "label": {
+        "never": "Never",
+        "game": "Game",
+        "match": "Match"
+      },
+      "info": "<ul><li><b>Never</b>: counters are never reset automatically.</li><li><b>Game</b>: counters reset whenever LP are reset.</li><li><b>Match</b>: counters reset at the start or end of a match.</li></ul>"
+    },
+    "game-reset": {
+      "title": "Game reset",
+      "label": {
+        "manual": "Manual",
+        "lp-zero": "LP Zero",
+        "lp-zero-auto": "LP Zero (auto)"
+      },
+      "info": "Defines when the LP reset modal is displayed.<ul><li><b>Manual</b>: The modal only opens when triggered explicitly.</li><li><b>LP Zero</b>: The modal opens automatically when any player's LP reaches zero.</li><li><b>LP Zero (auto)</b>: Same as above, but the modal is auto-confirmed without opening, resetting LP immediately.</li></ul>"
+    },
+    "winner-selection": {
+      "title": "Winner selection",
+      "label": {
+        "manual": "Manual",
+        "auto": "Auto"
+      },
+      "info": "Defines how the winner is assigned in the LP reset modal.<ul><li><b>Manual</b>: The winner is selected by the user.</li><li><b>Auto</b>: The winner is suggested automatically. If <i>Game Reset</i> is also set to <i>LP Zero (auto)</i>, the winner is picked and confirmed without any interaction.</li></ul>"
+    },
+    "match-stop": {
+      "title": "Match stop",
+      "label": {
+        "manual": "Manual",
+        "winner-found": "Winner found"
+      },
+      "info": "Defines when the match stop.<ul><li><b>Manual</b>: Match stop prompt opens when triggered explicitly.</li><li><b>Winner found</b>: Match stop prompt opens when a winner is found.</li></ul>"
+    },
+    "on-startup": {
+      "title": "On startup",
+      "label": {
+        "restore": "Restore game",
+        "reset": "Reset game"
+      },
+      "info": "Defines what happens when the app starts.<ul><li><b>Restore game</b>: If any game was in progress, its restored.</li><li><b>Reset game</b>: Game is reset.</li></ul>"
+    }
+  },
+  "profiles-page": {
+    "my-profile": "My Profile",
+    "opponents": "Opponents",
+    "no-opponents": "No opponents yet.",
+    "edit-profile": "Edit profile",
+    "edit-opponent": "Edit opponent",
+    "add-opponent": "Add opponent",
+    "display-name": "Display name",
+    "profile-picture": "Profile picture",
+    "enter-name": "Enter name..."
+  }
+}

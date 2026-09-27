@@ -8,13 +8,14 @@ import { SelectSettingComponent } from '../../components/common/select-setting/s
 import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
 import { MODAL_DATA } from '../../components/common/modal-generic/modal-generic.component';
 import { SoundboardService } from '../../services/soundboard/soundboard.service';
+import { TranslatePipe } from '../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-behaviour-settings-page',
   templateUrl: './behaviour-settings-page.component.html',
   styleUrls: ['./behaviour-settings-page.component.scss'],
   standalone: true,
-  imports: [SelectSettingComponent, TextButtonComponent],
+  imports: [SelectSettingComponent, TextButtonComponent, TranslatePipe],
 })
 export class BehaviourSettingsPageComponent {
   private readonly soundboardService = inject(SoundboardService);

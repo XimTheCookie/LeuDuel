@@ -2,7 +2,7 @@
   @if (label()) {
     <div class="flex gap-2 w-full items-center">
       <button class="ss-btn" type="button" (click)="info()">ⓘ</button>
-      <span class="ss-label">{{ label() }}</span>
+      <span class="ss-label">{{ label() | translate }}</span>
     </div>
   }
   <div class="ss-row">
@@ -13,7 +13,7 @@
         [class.ss-btn--active]="control().value === $index"
         (click)="select($index)"
       >
-        {{ item }}
+        {{ item | translate }}
       </button>
     }
     <button class="ss-btn ss-btn--reset" type="button" (click)="reset()">↺</button>

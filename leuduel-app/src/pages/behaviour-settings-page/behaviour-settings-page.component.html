@@ -1,42 +1,44 @@
 <div class="bs-page">
-  <h2 class="bs-title">Behaviour Settings</h2>
+  <h2 class="bs-title">
+    {{ 'behaviour-settings.title' | translate }}
+  </h2>
 
   <div class="bs-list">
     <app-select-setting
       [control]="counterReset"
       [config]="configs.counterReset"
-      label="Counters reset"
+      label="behaviour-settings.counter-reset.title"
       [defaultValue]="1"
     />
     <app-select-setting
       [control]="gameReset"
       [config]="configs.gameReset"
-      label="Game reset"
+      label="behaviour-settings.game-reset.title"
       [defaultValue]="0"
     />
     <app-select-setting
       [control]="winnerSelect"
       [config]="configs.winnerSelect"
-      label="Winner selection"
+      label="behaviour-settings.winner-selection.title"
       [defaultValue]="0"
     />
     <app-select-setting
       [control]="matchStop"
       [config]="configs.matchStop"
-      label="Match stop"
+      label="behaviour-settings.match-stop.title"
       [defaultValue]="0"
     />
     <app-select-setting
       [control]="onStartup"
       [config]="configs.onStartup"
-      label="On startup"
+      label="behaviour-settings.on-startup.title"
       [defaultValue]="0"
     />
   </div>
 
   <div class="bs-footer">
     <app-text-button
-      label="Confirm"
+      label="common.button.confirm"
       [isDisabled]="!settingsValid() || !settingsChanged()"
       [tone]="settingsValid() ? (settingsChanged() ? 'positive' : 'neutral') : 'negative'"
       (clicked)="confirm()"

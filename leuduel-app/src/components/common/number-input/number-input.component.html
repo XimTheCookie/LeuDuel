@@ -1,6 +1,6 @@
 <div class="ni-container">
   @if (label()) {
-    <span class="ni-label">{{ label() }}</span>
+    <span class="ni-label">{{ label() | translate }}</span>
   }
   <div [class.has-reset]="canReset()">
     @if (canReset()) {

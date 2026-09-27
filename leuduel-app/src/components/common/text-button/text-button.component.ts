@@ -1,10 +1,12 @@
 import { Component, input, output, signal } from '@angular/core';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-text-button',
   templateUrl: './text-button.component.html',
   styleUrls: ['./text-button.component.scss'],
   standalone: true,
+  imports: [TranslatePipe],
 })
 export class TextButtonComponent {
   isDisabled = input<boolean>(false);

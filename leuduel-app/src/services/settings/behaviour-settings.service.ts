@@ -11,46 +11,41 @@ import { Subject } from 'rxjs';
 
 export const BEHAVIOURS_CONFIG = {
   counterReset: {
-    labels: ['Never', 'Game', 'Match'],
-    helper: `Defines when counters are reset.
-<ul>
-  <li><b>Never</b>: counters are never reset automatically.</li>
-  <li><b>Game</b>: counters reset whenever LP are reset.</li>
-  <li><b>Match</b>: counters reset at the start or end of a match.</li>
-</ul>`,
+    labels: [
+      'behaviour-settings.counter-reset.label.never',
+      'behaviour-settings.counter-reset.label.game',
+      'behaviour-settings.counter-reset.label.match',
+    ],
+    helper: 'behaviour-settings.counter-reset.info',
   },
   gameReset: {
-    labels: ['Manual', 'LP Zero', 'LP Zero (auto)'],
-    helper: `Defines when the LP reset modal is displayed.
-<ul>
-  <li><b>Manual</b>: the modal only opens when triggered explicitly.</li>
-  <li><b>LP Zero</b>: the modal opens automatically when any player's LP reaches zero.</li>
-  <li><b>LP Zero (auto)</b>: same as above, but the modal is auto-confirmed without opening, resetting LP immediately.</li>
-</ul>`,
+    labels: [
+      'behaviour-settings.game-reset.label.manual',
+      'behaviour-settings.game-reset.label.lp-zero',
+      'behaviour-settings.game-reset.label.lp-zero-auto',
+    ],
+    helper: 'behaviour-settings.game-reset.info',
   },
   winnerSelect: {
-    labels: ['Manual', 'Auto'],
-    helper: `Defines how the winner is assigned in the LP reset modal.
-<ul>
-  <li><b>Manual</b>: the winner is selected by the user.</li>
-  <li><b>Auto</b>: the winner is suggested automatically. If <i>Game Reset</i> is also set to <i>LP Zero (auto)</i>, the winner is picked and confirmed without any interaction.</li>
-</ul>`,
+    labels: [
+      'behaviour-settings.winner-selection.label.manual',
+      'behaviour-settings.game-reset.label.manual',
+    ],
+    helper: 'behaviour-settings.winner-selection.info',
   },
   matchStop: {
-    labels: ['Manual', 'Winner found'],
-    helper: `Defines when the timer stops (as stop action).
-<ul>
-  <li><b>Manual</b>: match stop prompt opens when triggered explicitly.</li>
-  <li><b>Winner found</b>: match stop prompt opens when a winner is found.</li>
-</ul>`,
+    labels: [
+      'behaviour-settings.match-stop.label.manual',
+      'behaviour-settings.match-stop.label.winner-found',
+    ],
+    helper: 'behaviour-settings.match-stop.info',
   },
   onStartup: {
-    labels: ['Restore game', 'Reset game'],
-    helper: `Defines what happens when the app starts.
-<ul>
-  <li><b>Restore game</b>: if any game was in progress, its restored.</li>
-  <li><b>Reset game</b>: game is reset.</li>
-</ul>`,
+    labels: [
+      'behaviour-settings.on-startup.label.restore',
+      'behaviour-settings.on-startup.label.reset',
+    ],
+    helper: 'behaviour-settings.on-startup.info',
   },
 };
 

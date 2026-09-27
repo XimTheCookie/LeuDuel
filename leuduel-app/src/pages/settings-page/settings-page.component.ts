@@ -10,13 +10,20 @@ import { AndroidManagementService } from '../../services/android/android-managem
 import { SoundboardService } from '../../services/soundboard/soundboard.service';
 import { BehaviourSettingsPageComponent } from '../behaviour-settings-page/behaviour-settings-page.component';
 import { ProfilesPageComponent } from '../profiles-page/profiles-page.component';
+import { TranslatePipe } from '../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-settings-page',
   standalone: true,
   templateUrl: './settings-page.component.html',
   styleUrls: ['./settings-page.component.scss'],
-  imports: [NumberInputComponent, TimeInputComponent, TextButtonComponent, ListPickerComponent],
+  imports: [
+    NumberInputComponent,
+    TimeInputComponent,
+    TextButtonComponent,
+    ListPickerComponent,
+    TranslatePipe,
+  ],
 })
 export class SettingsPageComponent {
   private readonly soundboardService = inject(SoundboardService);
@@ -53,6 +60,8 @@ export class SettingsPageComponent {
     Validators.max(9),
   ]);
 
+  language = new FormControl<string>(this.settingsService.language(), [Validators.required]);
+
   modalOpacity = new FormControl<number>(this.settingsService.modalOpacity(), [
     Validators.required,
     Validators.min(6),
@@ -79,59 +88,59 @@ export class SettingsPageComponent {
 
   readonly keepAwakeOptions = [
     {
-      label: 'Allow sleeping',
+      label: 'common.label.no',
       value: false,
     },
     {
-      label: 'Keep awake (during match)',
+      label: 'common.label.yes',
       value: true,
     },
   ];
 
   readonly customPlayersOption = [
     {
-      label: "Don't use",
+      label: 'common.label.no',
       value: false,
     },
     {
-      label: 'Use',
+      label: 'common.label.yes',
       value: true,
     },
   ];
 
   readonly themeOptions = [
     {
-      label: 'Light',
+      label: 'settings.list-value.theme.light',
       value: 'light',
     },
     {
-      label: 'Dark',
+      label: 'settings.list-value.theme.dark',
       value: 'dark',
     },
     {
-      label: 'High Contrast',
+      label: 'settings.list-value.theme.high-contrast',
       value: 'high-contrast',
     },
   ];
 
   readonly swapPlayerOptions = [
     {
-      label: 'Not swapped',
+      label: 'common.label.no',
       value: false,
     },
     {
-      label: 'Player swapped',
+      label: 'common.label.yes',
       value: true,
     },
   ];
 
   readonly orientationOptions = [
     {
-      label: 'Potrait',
+      label: 'settings.list-value.orientation.potrait',
       value: false,
     },
     {
-      label: 'Landscape',
+      label: 'settings.list-value.orientation.landscape',
       value: true,
     },
   ];
@@ -145,6 +154,17 @@ export class SettingsPageComponent {
     label: n.toString() + '0%',
     value: n,
   }));
+
+  readonly languageOptions = [
+    {
+      label: 'English',
+      value: 'en_GB',
+    },
+    {
+      label: 'Italiano',
+      value: 'it_IT',
+    },
+  ];
 
   constructor() {
     if (this.isAndroid) {
@@ -273,5 +293,10 @@ export class SettingsPageComponent {
 
   openGitHub() {
     window.open('https://github.com/XimTheCookie/LeuDuel', '_blank');
+  }
+
+  languageChanged() {
+    if (!this.language.valid) return;
+    this.settingsService.setLanguage(this.language.value!);
   }
 }

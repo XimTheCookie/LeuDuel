@@ -1,6 +1,6 @@
 <div class="ti-container">
   @if (label()) {
-    <span class="ti-label">{{ label() }}</span>
+    <span class="ti-label">{{ label() | translate }}</span>
   }
   <div [class.has-reset]="canReset()">
     @if (canReset()) {
@@ -10,7 +10,9 @@
     }
     <div class="ti-row" [class.ti-row--invalid]="formControl().invalid && formControl().touched">
       <div class="ti-segment">
-        <button class="ni-btn" type="button" (click)="adjustHours(1)"><app-icon icon="plus" size="sm" /></button>
+        <button class="ni-btn" type="button" (click)="adjustHours(1)">
+          <app-icon icon="plus" size="sm" />
+        </button>
         <span class="ti-value">{{ pad(hours) }}</span>
         <button class="ni-btn" type="button" (click)="adjustHours(-1)" [disabled]="hours === 0">
           <app-icon icon="minus" size="sm" />
@@ -18,7 +20,9 @@
       </div>
       <span class="ti-sep">:</span>
       <div class="ti-segment">
-        <button class="ni-btn" type="button" (click)="adjustMinutes(1)"><app-icon icon="plus" size="sm" /></button>
+        <button class="ni-btn" type="button" (click)="adjustMinutes(1)">
+          <app-icon icon="plus" size="sm" />
+        </button>
         <span class="ti-value">{{ pad(minutes) }}</span>
         <button
           class="ni-btn"
@@ -31,7 +35,9 @@
       </div>
       <span class="ti-sep">:</span>
       <div class="ti-segment">
-        <button class="ni-btn" type="button" (click)="adjustSeconds(1)"><app-icon icon="plus" size="sm" /></button>
+        <button class="ni-btn" type="button" (click)="adjustSeconds(1)">
+          <app-icon icon="plus" size="sm" />
+        </button>
         <span class="ti-value">{{ pad(seconds) }}</span>
         <button
           class="ni-btn"

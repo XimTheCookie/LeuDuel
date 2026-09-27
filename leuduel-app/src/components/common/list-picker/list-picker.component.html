@@ -1,6 +1,6 @@
 <div class="lp-container">
   @if (label()) {
-    <span class="lp-label">{{ label() }}</span>
+    <span class="lp-label">{{ label() | translate }}</span>
   }
   <div [class.has-reset]="canReset()" [class.lp-disabled]="disabled()">
     @if (canReset()) {
@@ -9,7 +9,7 @@
       </button>
     }
     <button class="lp-trigger" type="button" (click)="open()" [disabled]="disabled()">
-      <span>{{ optionLabel ?? '—' }}</span>
+      <span>{{ optionLabel ?? '—' | translate }}</span>
       <span class="lp-arrow">▾</span>
     </button>
   </div>
@@ -37,7 +37,7 @@
           [class.lp-option--active]="formControl().value === option.value"
           (click)="select(option.value)"
         >
-          {{ option.label }}
+          {{ option.label | translate }}
         </button>
       }
     </div>

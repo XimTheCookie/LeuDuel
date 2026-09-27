@@ -59,6 +59,7 @@ const DEFAULT_VALUES: SettingsSnapshot = {
   swapPlayers: false,
   showCustomPlayers: false,
   theme: 'dark',
+  language: 'en_GB',
 };
 
 const SETTINGS_KEY = 'settings';
@@ -78,6 +79,7 @@ interface SettingsSnapshot {
   firstVisit: boolean;
   showCustomPlayers: boolean;
   theme: string;
+  language: string;
 }
 
 @Injectable({
@@ -100,6 +102,7 @@ export class SettingsService {
   firstVisit = signal<boolean>(DEFAULT_VALUES.firstVisit);
   showCustomPlayers = signal<boolean>(DEFAULT_VALUES.showCustomPlayers);
   theme = signal<string>(DEFAULT_VALUES.theme);
+  language = signal<string>(DEFAULT_VALUES.language);
 
   settingsInitialized = new Subject<void>();
 
@@ -128,6 +131,7 @@ export class SettingsService {
     this.firstVisit.set(saved.firstVisit == null ? true : saved.firstVisit);
     this.showCustomPlayers.set(saved.showCustomPlayers ?? false);
     this.theme.set(saved.theme ?? 'dark');
+    this.language.set(saved.language ?? DEFAULT_VALUES.language);
     this.applyMode();
     this.settingsInitialized.next();
   }
@@ -148,6 +152,7 @@ export class SettingsService {
       firstVisit: this.firstVisit(),
       showCustomPlayers: this.showCustomPlayers(),
       theme: this.theme(),
+      language: this.language(),
     };
     this.persistance.save(SETTINGS_KEY, snapshot);
   }
@@ -328,5 +333,9 @@ export class SettingsService {
     } else {
       this.androidManagementService.setStatusBarDark();
     }
+  }
+
+  setLanguage(value: string) {
+    this.language.set(value);
   }
 }

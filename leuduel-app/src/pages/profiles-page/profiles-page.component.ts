@@ -7,13 +7,14 @@ import { TextButtonComponent } from '../../components/common/text-button/text-bu
 import { PlayerProfile } from '../../models/player-profile.modal';
 import { SoundboardService } from '../../services/soundboard/soundboard.service';
 import { ButtonComponent } from '../../components/common/button/button.component';
+import { TranslatePipe } from '../../pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-profiles-page',
   standalone: true,
   templateUrl: './profiles-page.component.html',
   styleUrls: ['./profiles-page.component.scss'],
-  imports: [PlayerProfileComponent, TextButtonComponent, ButtonComponent],
+  imports: [PlayerProfileComponent, TextButtonComponent, ButtonComponent, TranslatePipe],
 })
 export class ProfilesPageComponent {
   readonly playerStore = inject(PlayerStore);

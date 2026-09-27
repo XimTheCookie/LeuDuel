@@ -4,18 +4,21 @@ import { SoundboardService } from '../../../services/soundboard/soundboard.servi
 import { ModalService } from '../../../services/modal/modal.service';
 import { SettingsService } from '../../../services/settings/settings.service';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
+import { TranslateService } from '../../../services/translate/translate.service';
 
 @Component({
   selector: 'app-select-setting',
   templateUrl: './select-setting.component.html',
   styleUrls: ['./select-setting.component.scss'],
   standalone: true,
-  imports: [],
+  imports: [TranslatePipe],
 })
 export class SelectSettingComponent {
   private readonly soundboardService = inject(SoundboardService);
   private readonly modalService = inject(ModalService);
   private readonly settingsService = inject(SettingsService);
+  private readonly translateService = inject(TranslateService);
   control = input.required<FormControl<number>>();
   config = input.required<{ labels: string[]; helper: string }>();
   label = input<string>('');
@@ -39,7 +42,7 @@ export class SelectSettingComponent {
         size: 'sm',
         opacity: this.settingsService.getModalOpacity(),
       },
-      { info: this.config().helper },
+      { info: this.translateService.translate(this.config().helper) },
     );
   }
 }

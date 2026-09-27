@@ -1,7 +1,14 @@
 <div class="profile-editor">
   <div class="profile-editor__header">
     <span class="profile-editor__title">
-      {{ data.mode === 'main' ? 'My Profile' : data.opponent ? 'Edit Opponent' : 'Add Opponent' }}
+      {{
+        (data.mode === 'main'
+          ? 'profiles-page.my-profile'
+          : data.opponent
+            ? 'profiles-page.edit-opponent'
+            : 'profiles-page.add-opponent'
+        ) | translate
+      }}
     </span>
   </div>
 
@@ -11,17 +18,19 @@
       (clicked)="clearCard()"
       [isDisabled]="!selectedCardUrl()"
       [tone]="!selectedCardUrl() ? 'neutral' : 'negative'"
-      label="Remove"
+      label="common.button.remove"
     />
   </div>
 
   <div class="profile-editor__field">
-    <label class="profile-editor__label">Display name</label>
+    <label class="profile-editor__label">
+      {{ 'profiles-page.display-name' | translate }}
+    </label>
     <input
       class="profile-editor__input"
       type="text"
       [maxLength]="32"
-      placeholder="Enter name…"
+      [placeholder]="'profiles-page.enter-name' | translate"
       [ngModel]="displayName()"
       (ngModelChange)="displayName.set($event)"
       autocomplete="off"
@@ -29,10 +38,17 @@
     />
   </div>
 
-  <div class="profile-editor__section-title">Profile picture</div>
+  <div class="profile-editor__section-title">
+    {{ 'profiles-page.profile-picture' | translate }}
+  </div>
   <app-card-search (cardSelected)="onCardSelected($event)" />
 
   <div class="profile-editor__footer">
-    <app-text-button label="Save" tone="positive" [isDisabled]="!canSave()" (clicked)="save()" />
+    <app-text-button
+      label="common.button.save"
+      tone="positive"
+      [isDisabled]="!canSave()"
+      (clicked)="save()"
+    />
   </div>
 </div>

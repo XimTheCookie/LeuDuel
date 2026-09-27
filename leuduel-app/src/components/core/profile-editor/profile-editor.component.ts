@@ -12,6 +12,7 @@ import {
   ModalGenericComponent,
 } from '../../common/modal-generic/modal-generic.component';
 import { SoundboardService } from '../../../services/soundboard/soundboard.service';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 export interface ProfileEditorData {
   mode: 'main' | 'opponent';
@@ -23,7 +24,13 @@ export interface ProfileEditorData {
   templateUrl: './profile-editor.component.html',
   styleUrls: ['./profile-editor.component.scss'],
   standalone: true,
-  imports: [FormsModule, CardSearchComponent, TextButtonComponent, PlayerProfileComponent],
+  imports: [
+    FormsModule,
+    CardSearchComponent,
+    TextButtonComponent,
+    PlayerProfileComponent,
+    TranslatePipe,
+  ],
 })
 export class ProfileEditorComponent implements OnInit {
   private readonly playerStore = inject(PlayerStore);
