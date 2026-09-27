@@ -18,6 +18,8 @@ export class NumberInputComponent {
   canReset = input<boolean>(false);
   doReset = output<void>();
 
+  hideButtons = input<boolean>(false);
+
   private coolingDown = false;
 
   increment() {

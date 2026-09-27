@@ -37,6 +37,7 @@
 
 .ni-row {
   display: flex;
+  width: 100%;
   align-items: center;
   gap: 0.5rem;
   background: var(--bg-card);
@@ -44,6 +45,15 @@
   border-radius: 10px;
   padding: 0.25rem 0.4rem;
   transition: border-color 150ms ease;
+
+  &--no-btn {
+    & > .ni-btn {
+      display: none;
+    }
+    & > .ni-value {
+      width: 100%;
+    }
+  }
 }
 
 .ni-row--invalid {

@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, output, signal, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TextButtonComponent } from '../text-button/text-button.component';
-import { CardSearchService } from '../../../services/card-search.service';
-import { SoundboardService } from '../../../services/soundboard.service';
+import { CardSearchService } from '../../../services/card-search/card-search.service';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 import { YgoCard } from '../../../models/ygo-card.model';
 
 @Component({

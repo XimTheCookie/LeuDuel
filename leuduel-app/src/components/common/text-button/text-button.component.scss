@@ -1,3 +1,7 @@
+:host:has(> .text-button--bottom) {
+  display: flex;
+}
+
 .text-button {
   font-family: var(--font-title);
   font-size: 0.65rem;
@@ -13,6 +17,11 @@
   box-shadow: 0 0 12px var(--button-glow);
   transition: opacity 0.15s;
   margin: auto;
+
+  &--bottom {
+    margin: unset;
+    margin-top: auto;
+  }
 
   &:disabled {
     opacity: 0.35;

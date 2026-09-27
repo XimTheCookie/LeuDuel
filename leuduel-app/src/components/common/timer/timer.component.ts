@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { TimerService } from '../../../services/timer.service';
+import { TimerService } from '../../../services/timer/timer.service';
 
 @Component({
   selector: 'app-timer',

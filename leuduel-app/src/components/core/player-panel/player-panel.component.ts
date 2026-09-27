@@ -3,8 +3,8 @@ import { LifeAction } from '../../../models/life-action.model';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
 import { DamageButtonComponent } from '../../common/damage-button/damage-button.component';
 import { WinsBarComponent } from '../../common/wins-bar/wins-bar.component';
-import { SettingsService } from '../../../services/settings.service';
-import { ModalService } from '../../../services/modal.service';
+import { SettingsService } from '../../../services/settings/settings.service';
+import { ModalService } from '../../../services/modal/modal.service';
 import { ModifyDamageButtonComponent } from '../modify-damage-button/modify-damage-button.component';
 import { LifePointsAdjustModalComponent } from '../life-points-adjust-modal/life-points-adjust-modal.component';
 import { LifePointsComponent } from '../life-points/life-points.component';
@@ -23,7 +23,9 @@ export class PlayerPanelComponent {
   player = input.required<'player1' | 'player2'>();
   rapidButtons = computed(() => this.settingsService.rapidButtonsConfig());
   numberOfColumns = computed(() => this.settingsService.rapidButtonsColumns());
-  numberOfRows = computed(() => Math.max(3, Math.ceil(this.rapidButtons().length / this.numberOfColumns())));
+  numberOfRows = computed(() =>
+    Math.max(3, Math.ceil(this.rapidButtons().length / this.numberOfColumns())),
+  );
 
   duelStore = inject(DuelStore);
 

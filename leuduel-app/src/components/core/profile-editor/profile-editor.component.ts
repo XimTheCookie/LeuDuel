@@ -1,6 +1,6 @@
 import { Component, computed, Inject, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MODAL_COMPONENT_DATA } from '../../../services/modal.service';
+import { MODAL_COMPONENT_DATA } from '../../../services/modal/modal.service';
 import { PlayerStore } from '../../../stores/player-store/player.store';
 import { CardSearchComponent } from '../../common/card-search/card-search.component';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
@@ -11,7 +11,7 @@ import {
   MODAL_DATA,
   ModalGenericComponent,
 } from '../../common/modal-generic/modal-generic.component';
-import { SoundboardService } from '../../../services/soundboard.service';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 
 export interface ProfileEditorData {
   mode: 'main' | 'opponent';

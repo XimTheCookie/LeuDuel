@@ -7,11 +7,11 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { RandomService } from '../../services/random.service';
+import { RandomService } from '../../services/random/random.service';
 import { RollEvent } from '../../models/roll-event.model';
 import { CoinEvent } from '../../models/coin-event.model';
 import { PlayerCounters } from '../../models/player-counters.model';
-import { PersistanceService } from '../../services/persistance.service';
+import { PersistanceService } from '../../services/settings/persistance.service';
 
 interface ToolsState {
   player1rolls: RollEvent[];

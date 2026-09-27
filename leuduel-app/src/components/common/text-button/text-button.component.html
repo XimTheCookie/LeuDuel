@@ -4,6 +4,7 @@
   [class.text-button--positive]="tone() === 'positive'"
   [class.text-button--negative]="tone() === 'negative'"
   [class.text-button--warning]="tone() === 'warning'"
+  [class.text-button--bottom]="alignBottom()"
   type="button"
   [disabled]="isDisabled()"
   (click)="clickHandler()"

@@ -1,8 +1,8 @@
 import { Component, inject, Inject, signal } from '@angular/core';
-import { MODAL_COMPONENT_DATA } from '../../../services/modal.service';
+import { MODAL_COMPONENT_DATA } from '../../../services/modal/modal.service';
 import { MODAL_DATA, ModalGenericComponent } from '../modal-generic/modal-generic.component';
 import { TextButtonComponent } from '../text-button/text-button.component';
-import { SoundboardService } from '../../../services/soundboard.service';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 
 @Component({
   selector: 'app-info-modal',

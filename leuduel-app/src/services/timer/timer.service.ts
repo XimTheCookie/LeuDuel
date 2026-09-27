@@ -1,5 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { DuelStore } from '../stores/duel-store/duel.store';
+import { DuelStore } from '../../stores/duel-store/duel.store';
 
 @Injectable({
   providedIn: 'root',

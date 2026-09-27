@@ -2,10 +2,10 @@ import { Component, computed, inject, Inject, signal } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NumberInputComponent } from '../../common/number-input/number-input.component';
 import { LifeAction } from '../../../models/life-action.model';
-import { MODAL_COMPONENT_DATA } from '../../../services/modal.service';
+import { MODAL_COMPONENT_DATA } from '../../../services/modal/modal.service';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
-import { SoundboardService } from '../../../services/soundboard.service';
-import { SettingsService } from '../../../services/settings.service';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
+import { SettingsService } from '../../../services/settings/settings.service';
 
 export interface ModifyDamageData {
   action: LifeAction;

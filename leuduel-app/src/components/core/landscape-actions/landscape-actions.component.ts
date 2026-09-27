@@ -1,7 +1,7 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { LifeAction } from '../../../models/life-action.model';
-import { SettingsService } from '../../../services/settings.service';
-import { ModalService } from '../../../services/modal.service';
+import { SettingsService } from '../../../services/settings/settings.service';
+import { ModalService } from '../../../services/modal/modal.service';
 import { DamageButtonComponent } from '../../common/damage-button/damage-button.component';
 import { ModifyDamageButtonComponent } from '../modify-damage-button/modify-damage-button.component';
 

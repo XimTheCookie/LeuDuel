@@ -4,38 +4,37 @@
       <span class="settings-section__title-icon">⚔</span> Duel Settings
     </h2>
     <div class="settings-section__fields">
-      <app-number-input
-        [formControl]="lifePoints"
-        label="Starting Life Points"
-        [maxValue]="9999999"
-        [minValue]="1"
-        [step]="1000"
-        [canReset]="true"
-        (doReset)="lpReset()"
-      />
-      <app-list-picker
-        [formControl]="bestOf"
-        label="Best of"
-        [options]="bestOfOptions"
-        [canReset]="true"
-        (doReset)="resetBestOf()"
-      />
+      <div class="settings-section__fields--row">
+        <app-number-input
+          [formControl]="lifePoints"
+          label="Starting Life Points"
+          [maxValue]="9999999"
+          [minValue]="1"
+          [hideButtons]="true"
+          [step]="1000"
+        />
+        <app-list-picker [formControl]="bestOf" label="Best of" [options]="bestOfOptions" />
+      </div>
+
       <app-time-input
         [formControl]="duration"
         label="Duel Timer"
         [canReset]="true"
         (doReset)="resetTimer()"
       />
-      <app-list-picker
-        [formControl]="showCustomPlayers"
-        label="Custom profiles"
-        [options]="customPlayersOption"
-      />
-      <app-text-button
-        (clicked)="openProfiles()"
-        label="Customize player profiles"
-        tone="neutral"
-      />
+      <div class="settings-section__fields--row">
+        <app-list-picker
+          [formControl]="showCustomPlayers"
+          label="Custom profiles"
+          [options]="customPlayersOption"
+        />
+        <app-text-button
+          [alignBottom]="true"
+          (clicked)="openProfiles()"
+          label="Customize"
+          tone="neutral"
+        />
+      </div>
     </div>
     <div class="settings-section__footer">
       <app-text-button
@@ -60,7 +59,6 @@
           [options]="modalOpacityOptions"
         />
       </div>
-
       <div class="settings-section__fields--row">
         <app-list-picker
           [formControl]="isLandscapeOrientation"

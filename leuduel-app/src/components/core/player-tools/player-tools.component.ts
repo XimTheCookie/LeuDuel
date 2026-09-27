@@ -1,7 +1,7 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { ToolsStore } from '../../../stores/tools-store/tools.store';
-import { SettingsService } from '../../../services/settings.service';
-import { SoundboardService } from '../../../services/soundboard.service';
+import { SettingsService } from '../../../services/settings/settings.service';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 
 @Component({
   selector: 'app-player-tools',

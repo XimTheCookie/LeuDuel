@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CardSearchComponent } from '../../components/common/card-search/card-search.component';
 import { YgoCard } from '../../models/ygo-card.model';
-import { CardSearchService } from '../../services/card-search.service';
+import { CardSearchService } from '../../services/card-search/card-search.service';
 import { InfoModalComponent } from '../../components/common/info-modal/info-modal.component';
-import { SoundboardService } from '../../services/soundboard.service';
-import { SettingsService } from '../../services/settings.service';
-import { ModalService } from '../../services/modal.service';
+import { SoundboardService } from '../../services/soundboard/soundboard.service';
+import { SettingsService } from '../../services/settings/settings.service';
+import { ModalService } from '../../services/modal/modal.service';
 
 @Component({
   selector: 'app-judge-page',

@@ -1,7 +1,7 @@
 import { Component, inject, input, output, signal } from '@angular/core';
 import { LifeAction } from '../../../models/life-action.model';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
-import { SoundboardService } from '../../../services/soundboard.service';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 
 @Component({
   selector: 'app-damage-button',

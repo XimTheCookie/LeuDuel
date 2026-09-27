@@ -8,8 +8,8 @@ import {
   withState,
 } from '@ngrx/signals';
 import { PlayerProfile } from '../../models/player-profile.modal';
-import { PersistanceService } from '../../services/persistance.service';
-import { RandomService } from '../../services/random.service';
+import { PersistanceService } from '../../services/settings/persistance.service';
+import { RandomService } from '../../services/random/random.service';
 
 interface PlayerState {
   main: PlayerProfile | null;

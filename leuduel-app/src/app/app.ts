@@ -2,9 +2,9 @@ import { Component, effect, inject } from '@angular/core';
 import { take } from 'rxjs';
 import { WelcomeModalComponent } from '../components/core/welcome-modal/welcome-modal.component';
 import { DuelPageComponent } from '../pages/duel-page/duel-page.component';
-import { AndroidManagementService } from '../services/android-management.service';
-import { ModalService } from '../services/modal.service';
-import { SettingsService } from '../services/settings.service';
+import { AndroidManagementService } from '../services/android/android-management.service';
+import { ModalService } from '../services/modal/modal.service';
+import { SettingsService } from '../services/settings/settings.service';
 
 @Component({
   imports: [DuelPageComponent],

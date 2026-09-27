@@ -1,8 +1,8 @@
 import { Component, inject, input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SoundboardService } from '../../../services/soundboard.service';
-import { ModalService } from '../../../services/modal.service';
-import { SettingsService } from '../../../services/settings.service';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
+import { ModalService } from '../../../services/modal/modal.service';
+import { SettingsService } from '../../../services/settings/settings.service';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
 
 @Component({

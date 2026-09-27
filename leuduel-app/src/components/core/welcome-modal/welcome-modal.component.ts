@@ -1,10 +1,10 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, Inject, inject, Type } from '@angular/core';
-import { ModalConfig } from '../../../services/modal.service';
-import { SettingsService } from '../../../services/settings.service';
+import { ModalConfig } from '../../../services/modal/modal.service';
+import { SettingsService } from '../../../services/settings/settings.service';
 import { MODAL_DATA } from '../../common/modal-generic/modal-generic.component';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
-import { SoundboardService } from '../../../services/soundboard.service';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 
 @Component({
   selector: 'welcome-modal',

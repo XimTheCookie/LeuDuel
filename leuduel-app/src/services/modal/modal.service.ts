@@ -4,8 +4,8 @@ import { inject, Injectable, InjectionToken, Injector, Type } from '@angular/cor
 import {
   MODAL_DATA,
   ModalGenericComponent,
-} from '../components/common/modal-generic/modal-generic.component';
-import { AndroidNavigationService } from './android-navigation.service';
+} from '../../components/common/modal-generic/modal-generic.component';
+import { AndroidNavigationService } from '../android/android-navigation.service';
 
 export const MODAL_COMPONENT_DATA = new InjectionToken<unknown>('MODAL_COMPONENT_DATA');
 

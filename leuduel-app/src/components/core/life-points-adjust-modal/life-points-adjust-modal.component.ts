@@ -1,12 +1,12 @@
 import { Component, computed, inject, Inject, signal } from '@angular/core';
-import { MODAL_COMPONENT_DATA } from '../../../services/modal.service';
+import { MODAL_COMPONENT_DATA } from '../../../services/modal/modal.service';
 import {
   MODAL_DATA,
   ModalGenericComponent,
 } from '../../common/modal-generic/modal-generic.component';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
-import { SoundboardService } from '../../../services/soundboard.service';
-import { SettingsService } from '../../../services/settings.service';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
+import { SettingsService } from '../../../services/settings/settings.service';
 
 type Op = 'damage' | 'heal';
 

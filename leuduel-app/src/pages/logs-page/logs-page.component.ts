@@ -1,9 +1,9 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { IconComponent } from '../../components/common/icon/icon.component';
 import { LogItemComponent } from '../../components/core/log-item/log-item.component';
-import { SoundboardService } from '../../services/soundboard.service';
+import { SoundboardService } from '../../services/soundboard/soundboard.service';
 import { DuelStore } from '../../stores/duel-store/duel.store';
-import { SettingsService } from '../../services/settings.service';
+import { SettingsService } from '../../services/settings/settings.service';
 
 @Component({
   selector: 'app-logs-page',

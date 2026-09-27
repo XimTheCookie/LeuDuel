@@ -6,10 +6,10 @@ import {
   effect,
   runInInjectionContext,
 } from '@angular/core';
-import { LifeAction } from '../models/life-action.model';
+import { LifeAction } from '../../models/life-action.model';
 import { PersistanceService } from './persistance.service';
 import { Subject } from 'rxjs';
-import { AndroidManagementService } from './android-management.service';
+import { AndroidManagementService } from '../android/android-management.service';
 
 const DEFAULT_VALUES: SettingsSnapshot = {
   startingLifePoints: 8000,

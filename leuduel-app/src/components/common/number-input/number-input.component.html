@@ -8,8 +8,14 @@
         <app-icon icon="reset" size="sm" />
       </button>
     }
-    <div class="ni-row" [class.ni-row--invalid]="formControl().invalid && formControl().touched">
-      <button class="ni-btn" type="button" (click)="decrement()" [disabled]="atMin"><app-icon icon="minus" size="sm" /></button>
+    <div
+      class="ni-row"
+      [class.ni-row--invalid]="formControl().invalid && formControl().touched"
+      [class.ni-row--no-btn]="hideButtons()"
+    >
+      <button class="ni-btn" type="button" (click)="decrement()" [disabled]="atMin">
+        <app-icon icon="minus" size="sm" />
+      </button>
       <input
         class="ni-value"
         type="number"
@@ -19,7 +25,9 @@
         [max]="maxValue()"
         [step]="step()"
       />
-      <button class="ni-btn" type="button" (click)="increment()" [disabled]="atMax"><app-icon icon="plus" size="sm" /></button>
+      <button class="ni-btn" type="button" (click)="increment()" [disabled]="atMax">
+        <app-icon icon="plus" size="sm" />
+      </button>
     </div>
   </div>
 </div>

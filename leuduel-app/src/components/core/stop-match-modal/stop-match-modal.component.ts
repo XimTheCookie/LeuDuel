@@ -1,12 +1,12 @@
 import { Component, computed, inject, Inject } from '@angular/core';
-import { MODAL_COMPONENT_DATA } from '../../../services/modal.service';
+import { MODAL_COMPONENT_DATA } from '../../../services/modal/modal.service';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
 import {
   MODAL_DATA,
   ModalGenericComponent,
 } from '../../common/modal-generic/modal-generic.component';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
-import { SettingsService } from '../../../services/settings.service';
+import { SettingsService } from '../../../services/settings/settings.service';
 import { PlayerProfile } from '../../../models/player-profile.modal';
 import { PlayerProfileComponent } from '../player-profile/player-profile.component';
 

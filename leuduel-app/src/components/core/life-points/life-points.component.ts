@@ -1,8 +1,8 @@
 import { Component, effect, inject, input, signal, untracked } from '@angular/core';
-import { SoundboardService } from '../../../services/soundboard.service';
-import { SettingsService } from '../../../services/settings.service';
-import { BehaviourSettingsService } from '../../../services/behaviour-settings.service';
-import { ModalService } from '../../../services/modal.service';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
+import { SettingsService } from '../../../services/settings/settings.service';
+import { BehaviourSettingsService } from '../../../services/settings/behaviour-settings.service';
+import { ModalService } from '../../../services/modal/modal.service';
 import { LifePointsResetComponent } from '../life-points-reset/life-points-reset.component';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
 

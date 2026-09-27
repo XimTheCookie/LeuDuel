@@ -1,6 +1,6 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { ToolsStore } from '../../../stores/tools-store/tools.store';
-import { SoundboardService } from '../../../services/soundboard.service';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 
 @Component({
   selector: 'app-counter-tools-landscape',

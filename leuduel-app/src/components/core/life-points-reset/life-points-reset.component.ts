@@ -1,14 +1,14 @@
 import { AfterViewInit, Component, computed, Inject, inject, signal } from '@angular/core';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
-import { SettingsService } from '../../../services/settings.service';
+import { SettingsService } from '../../../services/settings/settings.service';
 import { MODAL_DATA } from '../../common/modal-generic/modal-generic.component';
 import { OverlayRef } from '@angular/cdk/overlay';
-import { ModalConfig } from '../../../services/modal.service';
+import { ModalConfig } from '../../../services/modal/modal.service';
 import { ButtonComponent } from '../../common/button/button.component';
 import { Type } from '@angular/core';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
-import { SoundboardService } from '../../../services/soundboard.service';
-import { BehaviourSettingsService } from '../../../services/behaviour-settings.service';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
+import { BehaviourSettingsService } from '../../../services/settings/behaviour-settings.service';
 import { PlayerProfileComponent } from '../player-profile/player-profile.component';
 
 @Component({

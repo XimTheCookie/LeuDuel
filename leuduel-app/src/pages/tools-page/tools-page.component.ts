@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MODAL_DATA } from '../../components/common/modal-generic/modal-generic.component';
 import { PlayerToolsComponent } from '../../components/core/player-tools/player-tools.component';
-import { SettingsService } from '../../services/settings.service';
+import { SettingsService } from '../../services/settings/settings.service';
 
 @Component({
   selector: 'app-tools-page',

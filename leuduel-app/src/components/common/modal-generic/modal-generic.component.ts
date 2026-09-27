@@ -8,7 +8,7 @@ import {
   Type,
 } from '@angular/core';
 import { OverlayRef } from '@angular/cdk/overlay';
-import { ModalConfig } from '../../../services/modal.service';
+import { ModalConfig } from '../../../services/modal/modal.service';
 
 export const MODAL_DATA = new InjectionToken<{
   component: Type<unknown>;

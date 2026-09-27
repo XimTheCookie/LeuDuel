@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { PlayerStore } from '../../stores/player-store/player.store';
-import { ModalService } from '../../services/modal.service';
+import { ModalService } from '../../services/modal/modal.service';
 import { ProfileEditorComponent } from '../../components/core/profile-editor/profile-editor.component';
 import { PlayerProfileComponent } from '../../components/core/player-profile/player-profile.component';
 import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
 import { PlayerProfile } from '../../models/player-profile.modal';
-import { SoundboardService } from '../../services/soundboard.service';
+import { SoundboardService } from '../../services/soundboard/soundboard.service';
 import { ButtonComponent } from '../../components/common/button/button.component';
 
 @Component({

@@ -3,8 +3,8 @@ import { MODAL_DATA } from '../../components/common/modal-generic/modal-generic.
 import { CounterToolsComponent } from '../../components/core/counter-tools/counter-tools.component';
 import { CounterToolsLandscapeComponent } from '../../components/core/counter-tools-landscape/counter-tools-landscape.component';
 import { ToolsStore } from '../../stores/tools-store/tools.store';
-import { SoundboardService } from '../../services/soundboard.service';
-import { SettingsService } from '../../services/settings.service';
+import { SoundboardService } from '../../services/soundboard/soundboard.service';
+import { SettingsService } from '../../services/settings/settings.service';
 
 @Component({
   selector: 'app-counter-page',

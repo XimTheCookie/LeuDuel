@@ -2,10 +2,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Capacitor } from '@capacitor/core';
 import { Browser } from '@capacitor/browser';
-import { API_CONFIG } from '../app/api.config';
+import { API_CONFIG } from '../../app/api.config';
 import { take } from 'rxjs';
-import { YgoCard } from '../models/ygo-card.model';
-import { SoundboardService } from './soundboard.service';
+import { YgoCard } from '../../models/ygo-card.model';
+import { SoundboardService } from '../soundboard/soundboard.service';
 
 export interface CardSearchParams {
   name?: string;

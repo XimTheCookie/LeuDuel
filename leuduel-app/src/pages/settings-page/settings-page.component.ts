@@ -4,10 +4,10 @@ import { NumberInputComponent } from '../../components/common/number-input/numbe
 import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
 import { TimeInputComponent } from '../../components/common/time-input/time-input.component';
 import { ListPickerComponent } from '../../components/common/list-picker/list-picker.component';
-import { SettingsService } from '../../services/settings.service';
-import { ModalService } from '../../services/modal.service';
-import { AndroidManagementService } from '../../services/android-management.service';
-import { SoundboardService } from '../../services/soundboard.service';
+import { SettingsService } from '../../services/settings/settings.service';
+import { ModalService } from '../../services/modal/modal.service';
+import { AndroidManagementService } from '../../services/android/android-management.service';
+import { SoundboardService } from '../../services/soundboard/soundboard.service';
 import { BehaviourSettingsPageComponent } from '../behaviour-settings-page/behaviour-settings-page.component';
 import { ProfilesPageComponent } from '../profiles-page/profiles-page.component';
 
@@ -29,6 +29,54 @@ export class SettingsPageComponent {
   readonly keepAwakeSavedValue = signal(false);
 
   keepAwake = new FormControl<boolean>({ value: false, disabled: true });
+
+  lifePoints = new FormControl<number>(this.settingsService.getStartingLifePoints(), [
+    Validators.required,
+    Validators.min(1),
+    Validators.max(9999999),
+  ]);
+
+  isLandscapeOrientation = new FormControl<boolean>(this.settingsService.landscapeMode());
+
+  swapPlayers = new FormControl<boolean>(this.settingsService.swapPlayers());
+  swapPlayersDisabled = signal(!this.settingsService.landscapeMode());
+
+  theme = new FormControl<string>(this.settingsService.theme());
+
+  showCustomPlayers = new FormControl<boolean>(this.settingsService.showCustomPlayers());
+
+  landscapeMode = computed(() => this.settingsService.landscapeMode());
+
+  bestOf = new FormControl<number>(this.settingsService.getNumberOfGames(), [
+    Validators.required,
+    Validators.min(1),
+    Validators.max(9),
+  ]);
+
+  modalOpacity = new FormControl<number>(this.settingsService.modalOpacity(), [
+    Validators.required,
+    Validators.min(6),
+    Validators.max(10),
+  ]);
+
+  duration = new FormControl<number>(this.settingsService.getDuelDuration(), [
+    Validators.required,
+    Validators.min(300000),
+    Validators.max(86400000),
+  ]);
+
+  numberOfRapidButtons = new FormControl<number>(this.settingsService.getNumberOfRapidButtons(), [
+    Validators.required,
+    Validators.min(1),
+    Validators.max(15),
+  ]);
+
+  rapidButtonsColumns = new FormControl<number>(this.settingsService.getRapidButtonsColumns(), [
+    Validators.required,
+    Validators.min(1),
+    Validators.max(3),
+  ]);
+
   readonly keepAwakeOptions = [
     {
       label: 'Allow sleeping',
@@ -40,32 +88,17 @@ export class SettingsPageComponent {
     },
   ];
 
-  isLandscapeOrientation = new FormControl<boolean>(this.settingsService.landscapeMode());
-  readonly orientationOptions = [
+  readonly customPlayersOption = [
     {
-      label: 'Potrait',
+      label: "Don't use",
       value: false,
     },
     {
-      label: 'Landscape',
+      label: 'Use',
       value: true,
     },
   ];
 
-  swapPlayers = new FormControl<boolean>(this.settingsService.swapPlayers());
-  swapPlayersDisabled = signal(!this.settingsService.landscapeMode());
-  readonly swapPlayerOptions = [
-    {
-      label: 'Not swapped',
-      value: false,
-    },
-    {
-      label: 'Player swapped',
-      value: true,
-    },
-  ];
-
-  theme = new FormControl<string>(this.settingsService.theme());
   readonly themeOptions = [
     {
       label: 'Light',
@@ -81,19 +114,37 @@ export class SettingsPageComponent {
     },
   ];
 
-  showCustomPlayers = new FormControl<boolean>(this.settingsService.showCustomPlayers());
-  readonly customPlayersOption = [
+  readonly swapPlayerOptions = [
     {
-      label: "Don't use custom profiles",
+      label: 'Not swapped',
       value: false,
     },
     {
-      label: 'Use custom profiles',
+      label: 'Player swapped',
       value: true,
     },
   ];
 
-  landscapeMode = computed(() => this.settingsService.landscapeMode());
+  readonly orientationOptions = [
+    {
+      label: 'Potrait',
+      value: false,
+    },
+    {
+      label: 'Landscape',
+      value: true,
+    },
+  ];
+
+  readonly bestOfOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => ({
+    label: n.toString(),
+    value: n,
+  }));
+
+  readonly modalOpacityOptions = [10, 9, 8, 7, 6].map((n) => ({
+    label: n.toString() + '0%',
+    value: n,
+  }));
 
   constructor() {
     if (this.isAndroid) {
@@ -129,113 +180,8 @@ export class SettingsPageComponent {
     this.keepAwakeSavedValue.set(!!this.keepAwake.value);
   }
 
-  lifePoints = new FormControl<number>(this.settingsService.getStartingLifePoints(), [
-    Validators.required,
-    Validators.min(1),
-    Validators.max(9999999),
-  ]);
-
-  bestOf = new FormControl<number>(this.settingsService.getNumberOfGames(), [
-    Validators.required,
-    Validators.min(1),
-    Validators.max(9),
-  ]);
-  readonly bestOfOptions = [
-    {
-      label: '1',
-      value: 1,
-    },
-    {
-      label: '2',
-      value: 2,
-    },
-    {
-      label: '3',
-      value: 3,
-    },
-    {
-      label: '4',
-      value: 4,
-    },
-    {
-      label: '5',
-      value: 5,
-    },
-    {
-      label: '6',
-      value: 6,
-    },
-    {
-      label: '7',
-      value: 7,
-    },
-    {
-      label: '8',
-      value: 8,
-    },
-    {
-      label: '9',
-      value: 9,
-    },
-  ];
-
-  modalOpacity = new FormControl<number>(this.settingsService.modalOpacity(), [
-    Validators.required,
-    Validators.min(6),
-    Validators.max(10),
-  ]);
-
-  readonly modalOpacityOptions = [
-    {
-      label: '100%',
-      value: 10,
-    },
-    {
-      label: '90%',
-      value: 9,
-    },
-    {
-      label: '80%',
-      value: 8,
-    },
-    {
-      label: '70%',
-      value: 7,
-    },
-    {
-      label: '60%',
-      value: 6,
-    },
-  ];
-
-  duration = new FormControl<number>(this.settingsService.getDuelDuration(), [
-    Validators.required,
-    Validators.min(300000),
-    Validators.max(86400000),
-  ]);
-
-  numberOfRapidButtons = new FormControl<number>(this.settingsService.getNumberOfRapidButtons(), [
-    Validators.required,
-    Validators.min(1),
-    Validators.max(15),
-  ]);
-
-  rapidButtonsColumns = new FormControl<number>(this.settingsService.getRapidButtonsColumns(), [
-    Validators.required,
-    Validators.min(1),
-    Validators.max(3),
-  ]);
-
-  lpReset() {
-    this.lifePoints.setValue(this.settingsService.getStartingLifePoints());
-  }
-
-  resetBestOf() {
-    this.bestOf.setValue(this.settingsService.getNumberOfGames());
-  }
-
   resetTimer() {
-    this.duration.setValue(this.settingsService.getDuelDuration());
+    this.duration.setValue(3000000);
   }
 
   duelSettingsUnchanged() {

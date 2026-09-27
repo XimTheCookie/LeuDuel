@@ -11,6 +11,8 @@ export class TextButtonComponent {
   tone = input<'neutral' | 'positive' | 'negative' | 'warning'>('neutral');
   label = input<string>('');
 
+  alignBottom = input<boolean>(false);
+
   clicked = output<void>();
 
   cooldown = input<number>(50);

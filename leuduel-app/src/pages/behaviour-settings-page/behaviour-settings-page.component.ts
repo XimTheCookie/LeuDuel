@@ -3,11 +3,11 @@ import { FormControl } from '@angular/forms';
 import {
   BEHAVIOURS_CONFIG,
   BehaviourSettingsService,
-} from '../../services/behaviour-settings.service';
+} from '../../services/settings/behaviour-settings.service';
 import { SelectSettingComponent } from '../../components/common/select-setting/select-setting.component';
 import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
 import { MODAL_DATA } from '../../components/common/modal-generic/modal-generic.component';
-import { SoundboardService } from '../../services/soundboard.service';
+import { SoundboardService } from '../../services/soundboard/soundboard.service';
 
 @Component({
   selector: 'app-behaviour-settings-page',

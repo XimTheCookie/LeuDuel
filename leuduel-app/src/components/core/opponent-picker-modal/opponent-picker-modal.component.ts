@@ -1,6 +1,9 @@
 import { Component, inject, Inject, signal } from '@angular/core';
-import { MODAL_COMPONENT_DATA } from '../../../services/modal.service';
-import { MODAL_DATA, ModalGenericComponent } from '../../common/modal-generic/modal-generic.component';
+import { MODAL_COMPONENT_DATA } from '../../../services/modal/modal.service';
+import {
+  MODAL_DATA,
+  ModalGenericComponent,
+} from '../../common/modal-generic/modal-generic.component';
 import { PlayerStore } from '../../../stores/player-store/player.store';
 import { TextButtonComponent } from '../../common/text-button/text-button.component';
 import { PlayerProfileComponent } from '../player-profile/player-profile.component';

@@ -1,22 +1,22 @@
 import { AfterViewInit, Component, effect, inject, signal, untracked } from '@angular/core';
 import { LogsPageComponent } from '../../../pages/logs-page/logs-page.component';
 import { SettingsPageComponent } from '../../../pages/settings-page/settings-page.component';
-import { ModalService } from '../../../services/modal.service';
+import { ModalService } from '../../../services/modal/modal.service';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
 import { ButtonComponent } from '../../common/button/button.component';
 import { LifePointsResetComponent } from '../life-points-reset/life-points-reset.component';
 import { StopMatchModalComponent } from '../stop-match-modal/stop-match-modal.component';
 import { ToolsPageComponent } from '../../../pages/tools-page/tools-page.component';
 import { JudgePageComponent } from '../../../pages/judge-page/judge-page.component';
-import { AndroidManagementService } from '../../../services/android-management.service';
-import { SettingsService } from '../../../services/settings.service';
-import { SoundboardService } from '../../../services/soundboard.service';
+import { AndroidManagementService } from '../../../services/android/android-management.service';
+import { SettingsService } from '../../../services/settings/settings.service';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 import { CounterPageComponent } from '../../../pages/counter-page/counter-page.component';
-import { BehaviourSettingsService } from '../../../services/behaviour-settings.service';
-import { TimerService } from '../../../services/timer.service';
+import { BehaviourSettingsService } from '../../../services/settings/behaviour-settings.service';
 import { TimerComponent } from '../../common/timer/timer.component';
 import { OpponentPickerModalComponent } from '../opponent-picker-modal/opponent-picker-modal.component';
 import { take } from 'rxjs';
+import { TimerService } from '../../../services/timer/timer.service';
 
 @Component({
   selector: 'app-duel-controller',
