@@ -1,0 +1,66 @@
+@let nmu = notModalUse();
+@let lm = settingsService.landscapeMode();
+<div class="lpc" [class.lpc--landscape]="lm" [class.lpc--small]="nmu">
+  <!-- quadrante lp -->
+  <div
+    class="lpc__preview"
+    [class.lpc__preview--stuart-little]="nmu && !lm"
+    [class.lpc__preview--sleepy-little]="nmu && lm"
+  >
+    <span class="lpc__preview-lp" [class.fps]="nmu && lm">{{ currentLp() }}</span>
+    <span class="lpc__preview-op" [class.lpc__preview-op--pos]="op() === 'heal'">{{
+      op() === 'heal' ? '+' : '−'
+    }}</span>
+    <span class="lpc__preview-delta">{{ input() }}</span>
+    <span class="lpc__preview-eq">=</span>
+    <span
+      class="lpc__preview-result"
+      [class.fps]="nmu && lm"
+      [class.lpc__preview-result--zero]="preview() === 0"
+      >{{ preview() }}</span
+    >
+  </div>
+
+  <!-- pad numerico e conferma -->
+  <div class="lpc__grid" [class.lpc__grid--small]="nmu">
+    <div class="lpc__pad" [class.lpc__pad--small]="nmu" [class.lpc__pad--ls]="lm">
+      <button class="lpc__key lpc__key--clear" (click)="clear()" type="button">C</button>
+
+      <button class="lpc__key" (click)="pressDigit('7')" type="button">7</button>
+      <button class="lpc__key" (click)="pressDigit('8')" type="button">8</button>
+      <button class="lpc__key" (click)="pressDigit('9')" type="button">9</button>
+
+      <button class="lpc__key lpc__key--half" (click)="halfLp()" type="button">/2</button>
+
+      <button class="lpc__key" (click)="pressDigit('4')" type="button">4</button>
+      <button class="lpc__key" (click)="pressDigit('5')" type="button">5</button>
+      <button class="lpc__key" (click)="pressDigit('6')" type="button">6</button>
+      <button
+        class="lpc__key lpc__key--neg"
+        [class.lpc__key--active]="op() === 'damage'"
+        (click)="setOp('damage')"
+        type="button"
+      >
+        −
+      </button>
+
+      <button class="lpc__key" (click)="pressDigit('1')" type="button">1</button>
+      <button class="lpc__key" (click)="pressDigit('2')" type="button">2</button>
+      <button class="lpc__key" (click)="pressDigit('3')" type="button">3</button>
+      <button
+        class="lpc__key lpc__key--pos"
+        [class.lpc__key--active]="op() === 'heal'"
+        (click)="setOp('heal')"
+        type="button"
+      >
+        +
+      </button>
+      <button class="lpc__key lpc__key--zeros" (click)="pressZeros('000')" type="button">
+        000
+      </button>
+      <button class="lpc__key lpc__key--zeros" (click)="pressZeros('00')" type="button">00</button>
+      <button class="lpc__key lpc__key--zeros" (click)="pressDigit('0')" type="button">0</button>
+    </div>
+    <button class="lpc__confirm" (click)="apply()" type="button">=</button>
+  </div>
+</div>

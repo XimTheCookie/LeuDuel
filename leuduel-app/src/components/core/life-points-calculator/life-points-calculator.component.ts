@@ -1,45 +1,42 @@
-import { Component, computed, inject, Inject, signal } from '@angular/core';
-import { MODAL_COMPONENT_DATA } from '../../../services/modal/modal.service';
-import {
-  MODAL_DATA,
-  ModalGenericComponent,
-} from '../../common/modal-generic/modal-generic.component';
-import { DuelStore } from '../../../stores/duel-store/duel.store';
-import { SoundboardService } from '../../../services/soundboard/soundboard.service';
+import { Component, computed, inject, input, output, signal } from '@angular/core';
 import { SettingsService } from '../../../services/settings/settings.service';
-import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
-import { LifePointsCalculatorComponent } from '../life-points-calculator/life-points-calculator.component';
+import { SoundboardService } from '../../../services/soundboard/soundboard.service';
+import { DuelStore } from '../../../stores/duel-store/duel.store';
 
 type Op = 'damage' | 'heal';
 
 @Component({
-  selector: 'app-life-points-adjust-modal',
-  templateUrl: './life-points-adjust-modal.component.html',
-  styleUrls: ['./life-points-adjust-modal.component.scss'],
+  selector: 'app-life-points-calculator',
+  templateUrl: './life-points-calculator.component.html',
+  styleUrls: ['./life-points-calculator.component.scss'],
   standalone: true,
-  imports: [TranslatePipe, LifePointsCalculatorComponent],
+  imports: [],
 })
-export class LifePointsAdjustModalComponent {
+export class LifePointsCalculatorComponent {
   private readonly soundboardService = inject(SoundboardService);
   readonly settingsService = inject(SettingsService);
   duelStore = inject(DuelStore);
 
-  player: 'player1' | 'player2';
+  player = input.required<'player1' | 'player2'>();
+  applied = output<void>();
+
   input = signal('0');
   op = signal<Op>('damage');
   private coolingDown = false;
   private halveMode = false;
 
   playerName = () => {
-    const player = this.duelStore[this.player]();
+    const player = this.duelStore[this.player()]();
     if (this.settingsService.showCustomPlayers()) {
       return player.profile?.displayName ?? player.name;
     }
     return player.name ?? '';
   };
 
+  notModalUse = computed(() => this.settingsService.useRapidButtons() === false);
+
   currentLp = computed(() =>
-    this.player === 'player1' ? this.duelStore.lifePoints1() : this.duelStore.lifePoints2(),
+    this.player() === 'player1' ? this.duelStore.lifePoints1() : this.duelStore.lifePoints2(),
   );
 
   preview = computed(() => {
@@ -47,13 +44,6 @@ export class LifePointsAdjustModalComponent {
     const lp = this.currentLp();
     return this.op() === 'heal' ? Math.min(99999999, lp + val) : Math.max(0, lp - val);
   });
-
-  constructor(
-    @Inject(MODAL_DATA) private modalData: InstanceType<typeof ModalGenericComponent>['data'],
-    @Inject(MODAL_COMPONENT_DATA) data: { player: 'player1' | 'player2' },
-  ) {
-    this.player = data.player;
-  }
 
   private withCooldown(fn: () => void) {
     if (this.coolingDown) return;
@@ -115,13 +105,11 @@ export class LifePointsAdjustModalComponent {
   apply() {
     const val = parseInt(this.input(), 10) || 0;
     if (val > 0) {
-      this.duelStore.lifeAction(this.player, { change: val, type: this.op() });
+      this.duelStore.lifeAction(this.player(), { change: val, type: this.op() });
     }
     this.soundboardService.confirmationSound();
-    this.close();
-  }
-
-  close() {
-    this.modalData.overlayRef.dispose();
+    this.clear();
+    this.op.set('damage');
+    this.applied.emit();
   }
 }

@@ -47,7 +47,8 @@
         "swap-players": "Swap players",
         "rb-number": "Number of rapid buttons",
         "rb-columns": "Number of columns",
-        "rb-rows": "Number of rows"
+        "rb-rows": "Number of rows",
+        "rb-use": "Use rapid buttons"
       },
       "behaviour": {
         "title": "Behaviour Settings",
@@ -72,6 +73,10 @@
       "orientation": {
         "potrait": "Vertical",
         "landscape": "Horizontal"
+      },
+      "rb-use": {
+        "use": "Use",
+        "dont-use": "Use calculator"
       }
     }
   },

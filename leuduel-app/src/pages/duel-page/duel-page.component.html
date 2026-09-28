@@ -40,10 +40,14 @@
       </div>
     </div>
 
-    <app-landscape-actions
-      class="duel-page__landscape-actions"
-      [selectedPlayer]="selectedPlayer()"
-    />
+    @if (settingsService.useRapidButtons()) {
+      <app-landscape-actions
+        class="duel-page__landscape-actions"
+        [selectedPlayer]="selectedPlayer()"
+      />
+    } @else {
+      <app-life-points-calculator [player]="selectedPlayer()" />
+    }
   </div>
 } @else {
   <div class="duel-page">

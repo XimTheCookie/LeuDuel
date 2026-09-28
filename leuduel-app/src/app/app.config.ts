@@ -1,13 +1,13 @@
+import { provideHttpClient } from '@angular/common/http';
 import {
   ApplicationConfig,
   inject,
   provideAppInitializer,
   provideBrowserGlobalErrorListeners,
 } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
 import { TranslateService } from '../services/translate/translate.service';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [

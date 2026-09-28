@@ -11,6 +11,7 @@ import { SoundboardService } from '../../services/soundboard/soundboard.service'
 import { BehaviourSettingsPageComponent } from '../behaviour-settings-page/behaviour-settings-page.component';
 import { ProfilesPageComponent } from '../profiles-page/profiles-page.component';
 import { TranslatePipe } from '../../pipes/translate/translate.pipe';
+import { IconComponent } from '../../components/common/icon/icon.component';
 
 @Component({
   selector: 'app-settings-page',
@@ -23,6 +24,7 @@ import { TranslatePipe } from '../../pipes/translate/translate.pipe';
     TextButtonComponent,
     ListPickerComponent,
     TranslatePipe,
+    IconComponent,
   ],
 })
 export class SettingsPageComponent {
@@ -86,6 +88,10 @@ export class SettingsPageComponent {
     Validators.max(3),
   ]);
 
+  useRapidButtons = new FormControl<boolean>(this.settingsService.useRapidButtons(), [
+    Validators.required,
+  ]);
+
   readonly keepAwakeOptions = [
     {
       label: 'common.label.no',
@@ -131,6 +137,32 @@ export class SettingsPageComponent {
     {
       label: 'common.label.yes',
       value: true,
+    },
+  ];
+
+  readonly numberOfColumnsOptions = [
+    {
+      label: '1',
+      value: 1,
+    },
+    {
+      label: '2',
+      value: 2,
+    },
+    {
+      label: '3',
+      value: 3,
+    },
+  ];
+
+  readonly useRbOptions = [
+    {
+      label: 'settings.list-value.rb-use.use',
+      value: true,
+    },
+    {
+      label: 'settings.list-value.rb-use.dont-use',
+      value: false,
     },
   ];
 
@@ -237,10 +269,6 @@ export class SettingsPageComponent {
     this.numberOfRapidButtons.setValue(this.settingsService.getNumberOfRapidButtons());
   }
 
-  resetRapidButtonsColumns() {
-    this.rapidButtonsColumns.setValue(this.settingsService.getRapidButtonsColumns());
-  }
-
   guiPreferencesUnchanged() {
     return (
       this.numberOfRapidButtons.value === this.settingsService.getNumberOfRapidButtons() &&
@@ -248,7 +276,8 @@ export class SettingsPageComponent {
       this.isLandscapeOrientation.value === this.settingsService.landscapeMode() &&
       this.modalOpacity.value === this.settingsService.modalOpacity() &&
       this.theme.value === this.settingsService.theme() &&
-      this.swapPlayers.value === this.settingsService.swapPlayers()
+      this.swapPlayers.value === this.settingsService.swapPlayers() &&
+      this.useRapidButtons.value === this.settingsService.useRapidButtons()
     );
   }
 
@@ -258,7 +287,8 @@ export class SettingsPageComponent {
       this.rapidButtonsColumns.valid &&
       this.isLandscapeOrientation.valid &&
       this.modalOpacity.valid &&
-      this.theme.valid
+      this.theme.valid &&
+      this.useRapidButtons.valid
     );
   }
 
@@ -273,6 +303,7 @@ export class SettingsPageComponent {
     this.settingsService.setModalOpacity(this.modalOpacity.value!);
     this.settingsService.setTheme(this.theme.value!);
     this.settingsService.setSwapPlayers(!!this.swapPlayers.value);
+    this.settingsService.setUseRapidButtons(this.useRapidButtons.value!);
   }
 
   openBehaviourSettings() {

@@ -4,59 +4,8 @@
       {{ 'common.label.set-lp-title' | translate: { player: playerName() } }}</span
     >
   }
-  <!-- quadrante lp -->
-  <div class="lpa__preview">
-    <span class="lpa__preview-lp">{{ currentLp() }}</span>
-    <span class="lpa__preview-op" [class.lpa__preview-op--pos]="op() === 'heal'">{{
-      op() === 'heal' ? '+' : '−'
-    }}</span>
-    <span class="lpa__preview-delta">{{ input() }}</span>
-    <span class="lpa__preview-eq">=</span>
-    <span class="lpa__preview-result" [class.lpa__preview-result--zero]="preview() === 0">{{
-      preview()
-    }}</span>
-  </div>
 
-  <!-- pad numerico e conferma -->
-  <div class="lpa__grid">
-    <div class="lpa__pad">
-      <button class="lpa__key lpa__key--clear" (click)="clear()" type="button">C</button>
-
-      <button class="lpa__key" (click)="pressDigit('7')" type="button">7</button>
-      <button class="lpa__key" (click)="pressDigit('8')" type="button">8</button>
-      <button class="lpa__key" (click)="pressDigit('9')" type="button">9</button>
-
-      <button class="lpa__key lpa__key--half" (click)="halfLp()" type="button">/2</button>
-
-      <button class="lpa__key" (click)="pressDigit('4')" type="button">4</button>
-      <button class="lpa__key" (click)="pressDigit('5')" type="button">5</button>
-      <button class="lpa__key" (click)="pressDigit('6')" type="button">6</button>
-      <button
-        class="lpa__key lpa__key--neg"
-        [class.lpa__key--active]="op() === 'damage'"
-        (click)="setOp('damage')"
-        type="button"
-      >
-        −
-      </button>
-
-      <button class="lpa__key" (click)="pressDigit('1')" type="button">1</button>
-      <button class="lpa__key" (click)="pressDigit('2')" type="button">2</button>
-      <button class="lpa__key" (click)="pressDigit('3')" type="button">3</button>
-      <button
-        class="lpa__key lpa__key--pos"
-        [class.lpa__key--active]="op() === 'heal'"
-        (click)="setOp('heal')"
-        type="button"
-      >
-        +
-      </button>
-      <button class="lpa__key lpa__key--zeros" (click)="pressZeros('000')" type="button">
-        000
-      </button>
-      <button class="lpa__key lpa__key--zeros" (click)="pressZeros('00')" type="button">00</button>
-      <button class="lpa__key lpa__key--zeros" (click)="pressDigit('0')" type="button">0</button>
-    </div>
-    <button class="lpa__confirm" (click)="apply()" type="button">=</button>
-  </div>
+  @if (player) {
+    <app-life-points-calculator [player]="player" (applied)="close()" />
+  }
 </div>

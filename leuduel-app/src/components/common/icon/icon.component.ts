@@ -11,14 +11,20 @@ import {
   LucideDices,
   LucideDynamicIcon,
   LucideHeartPulse,
+  LucideInfo,
   LucideMinus,
+  LucidePalette,
   LucidePause,
   LucidePencil,
+  LucidePhone,
   LucidePlay,
   LucidePlus,
   LucideRotateCcw,
   LucideScrollText,
   LucideSettings,
+  LucideSlidersHorizontal,
+  LucideSmartphone,
+  LucideSwords,
   LucideVolume2,
   LucideVolumeOff,
   LucideX,
@@ -86,6 +92,16 @@ export class IconComponent {
         return LucideCoins;
       case 'edit':
         return LucidePencil;
+      case 'swords':
+        return LucideSwords;
+      case 'palette':
+        return LucidePalette;
+      case 'smartphone':
+        return LucideSmartphone;
+      case 'sliders-horizontal':
+        return LucideSlidersHorizontal;
+      case 'info':
+        return LucideInfo;
     }
     return LucideX;
   });

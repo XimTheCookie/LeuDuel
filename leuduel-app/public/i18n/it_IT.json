@@ -47,7 +47,8 @@
         "swap-players": "Scambia giocatori",
         "rb-number": "Numero pulsanti",
         "rb-columns": "Numero colonne",
-        "rb-rows": "Numero righe"
+        "rb-rows": "Numero righe",
+        "rb-use": "Utilizza tasti rapidi"
       },
       "behaviour": {
         "title": "Impostazioni di Comportamento",
@@ -72,6 +73,10 @@
       "orientation": {
         "potrait": "Verticale",
         "landscape": "Orizzontale"
+      },
+      "rb-use": {
+        "use": "Utilizza",
+        "dont-use": "Usa calcolatrice"
       }
     }
   },

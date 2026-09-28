@@ -8,6 +8,7 @@ import { ModalService } from '../../services/modal/modal.service';
 import { DuelStore } from '../../stores/duel-store/duel.store';
 import { LifePointsAdjustModalComponent } from '../../components/core/life-points-adjust-modal/life-points-adjust-modal.component';
 import { WinsBarComponent } from '../../components/common/wins-bar/wins-bar.component';
+import { LifePointsCalculatorComponent } from '../../components/core/life-points-calculator/life-points-calculator.component';
 
 @Component({
   selector: 'app-duel-page',
@@ -19,6 +20,7 @@ import { WinsBarComponent } from '../../components/common/wins-bar/wins-bar.comp
     LandscapeActionsComponent,
     LifePointsComponent,
     WinsBarComponent,
+    LifePointsCalculatorComponent,
   ],
   standalone: true,
 })
@@ -52,6 +54,7 @@ export class DuelPageComponent {
     if (this.selectedPlayer() !== player) {
       this.selectedPlayer.set(player);
     } else {
+      if (!this.settingsService.useRapidButtons()) return;
       this.modalService.open(
         LifePointsAdjustModalComponent,
         { opacity: this.settingsService.getModalOpacity(), size: 'sm' },

@@ -1,7 +1,9 @@
 <div class="settings-page">
   <div class="settings-section">
     <h2 class="settings-section__title">
-      <span class="settings-section__title-icon">⚔</span>
+      <span class="settings-section__title-icon">
+        <app-icon icon="swords" size="sm" />
+      </span>
       {{ 'settings.section.duel.title' | translate }}
     </h2>
     <div class="settings-section__fields">
@@ -53,7 +55,7 @@
 
   <div class="settings-section">
     <h2 class="settings-section__title">
-      <span class="settings-section__title-icon">◈</span>
+      <span class="settings-section__title-icon"> <app-icon icon="palette" size="sm" /></span>
       {{ 'settings.section.gui.title' | translate }}
     </h2>
     <div class="settings-section__fields">
@@ -95,21 +97,20 @@
         [maxValue]="15"
         [minValue]="1"
         [step]="1"
-        [canReset]="true"
-        (doReset)="resetRapidButtons()"
       />
-      <app-number-input
+      <app-list-picker
         [formControl]="rapidButtonsColumns"
         [label]="
           isLandscapeOrientation?.value
             ? 'settings.section.gui.rb-rows'
             : 'settings.section.gui.rb-columns'
         "
-        [maxValue]="3"
-        [minValue]="1"
-        [step]="1"
-        [canReset]="true"
-        (doReset)="resetRapidButtonsColumns()"
+        [options]="numberOfColumnsOptions"
+      />
+      <app-list-picker
+        [formControl]="useRapidButtons"
+        label="settings.section.gui.rb-use"
+        [options]="useRbOptions"
       />
     </div>
     <div class="settings-section__footer">
@@ -127,7 +128,7 @@
   @if (isAndroid) {
     <div class="settings-section">
       <h2 class="settings-section__title">
-        <span class="settings-section__title-icon">◉</span>
+        <span class="settings-section__title-icon"> <app-icon icon="smartphone" size="sm" /></span>
         {{ 'settings.section.android.title' | translate }}
       </h2>
       <div class="settings-section__fields">
@@ -153,7 +154,9 @@
 
   <div class="settings-section">
     <h2 class="settings-section__title">
-      <span class="settings-section__title-icon">⚙</span>
+      <span class="settings-section__title-icon">
+        <app-icon icon="sliders-horizontal" size="sm"
+      /></span>
       {{ 'settings.section.behaviour.title' | translate }}
     </h2>
     <div class="settings-section__fields">
@@ -170,7 +173,7 @@
 
   <div class="settings-section">
     <h2 class="settings-section__title">
-      <span class="settings-section__title-icon">🛈</span>
+      <span class="settings-section__title-icon"> <app-icon icon="info" size="sm" /></span>
       {{ 'settings.section.information.title' | translate }}
     </h2>
     <div class="settings-section__fields">

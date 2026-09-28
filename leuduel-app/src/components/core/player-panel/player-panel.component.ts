@@ -8,13 +8,19 @@ import { ModalService } from '../../../services/modal/modal.service';
 import { ModifyDamageButtonComponent } from '../modify-damage-button/modify-damage-button.component';
 import { LifePointsAdjustModalComponent } from '../life-points-adjust-modal/life-points-adjust-modal.component';
 import { LifePointsComponent } from '../life-points/life-points.component';
+import { LifePointsCalculatorComponent } from '../life-points-calculator/life-points-calculator.component';
 
 @Component({
   selector: 'app-player-panel',
   templateUrl: './player-panel.component.html',
   styleUrl: './player-panel.component.scss',
   standalone: true,
-  imports: [DamageButtonComponent, LifePointsComponent, WinsBarComponent],
+  imports: [
+    DamageButtonComponent,
+    LifePointsComponent,
+    WinsBarComponent,
+    LifePointsCalculatorComponent,
+  ],
 })
 export class PlayerPanelComponent {
   private readonly settingsService = inject(SettingsService);
@@ -26,6 +32,8 @@ export class PlayerPanelComponent {
   numberOfRows = computed(() =>
     Math.max(3, Math.ceil(this.rapidButtons().length / this.numberOfColumns())),
   );
+
+  useRapidButtons = computed(() => this.settingsService.useRapidButtons());
 
   duelStore = inject(DuelStore);
 
@@ -54,6 +62,7 @@ export class PlayerPanelComponent {
   };
 
   modifyLp() {
+    if (!this.settingsService.useRapidButtons()) return;
     this.modalService.open(
       LifePointsAdjustModalComponent,
       {

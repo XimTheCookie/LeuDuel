@@ -51,6 +51,7 @@ const DEFAULT_VALUES: SettingsSnapshot = {
       type: 'divide',
     },
   ],
+  useRapidButtons: true,
   useKeepAwake: true,
   soundsOn: true,
   modalOpacity: 7,
@@ -71,6 +72,7 @@ interface SettingsSnapshot {
   numberOfRapidButtons: number;
   rapidButtonsColumns: number;
   rapidButtonsConfig: LifeAction[];
+  useRapidButtons: boolean;
   useKeepAwake: boolean;
   soundsOn: boolean;
   landscapeMode: boolean;
@@ -94,6 +96,7 @@ export class SettingsService {
   private numberOfRapidButtons = signal<number>(DEFAULT_VALUES.numberOfRapidButtons);
   rapidButtonsColumns = signal<number>(DEFAULT_VALUES.rapidButtonsColumns);
   rapidButtonsConfig = signal<LifeAction[]>(DEFAULT_VALUES.rapidButtonsConfig);
+  useRapidButtons = signal<boolean>(DEFAULT_VALUES.useRapidButtons);
   private useKeepAwake = signal<boolean>(DEFAULT_VALUES.useKeepAwake);
   soundsOn = signal<boolean>(DEFAULT_VALUES.soundsOn);
   landscapeMode = signal<boolean>(false);
@@ -123,6 +126,7 @@ export class SettingsService {
     this.numberOfRapidButtons.set(saved.numberOfRapidButtons);
     this.rapidButtonsColumns.set(saved.rapidButtonsColumns);
     this.rapidButtonsConfig.set(saved.rapidButtonsConfig);
+    this.useRapidButtons.set(saved.useRapidButtons);
     this.useKeepAwake.set(saved.useKeepAwake);
     this.soundsOn.set(saved.soundsOn);
     this.landscapeMode.set(saved.landscapeMode ?? false);
@@ -144,6 +148,7 @@ export class SettingsService {
       numberOfRapidButtons: this.numberOfRapidButtons(),
       rapidButtonsColumns: this.rapidButtonsColumns(),
       rapidButtonsConfig: this.rapidButtonsConfig(),
+      useRapidButtons: this.useRapidButtons(),
       useKeepAwake: this.useKeepAwake(),
       soundsOn: this.soundsOn(),
       landscapeMode: this.landscapeMode(),
@@ -245,6 +250,10 @@ export class SettingsService {
   resetAllRapid() {
     this.resetNumberOfRapidButtons();
     this.resetRapidButtonsColumns();
+  }
+
+  setUseRapidButtons(value: boolean) {
+    this.useRapidButtons.set(value);
   }
 
   setSwapPlayers(value: boolean) {
