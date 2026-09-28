@@ -1,3 +1,4 @@
+@let isLandscape = settingsService.landscapeMode();
 <div class="controller">
   <div class="controller__row">
     <div class="controller__side">
@@ -9,9 +10,11 @@
         size="xs"
         tone="neutral"
       />
+      <app-button icon="dices" size="xs" tone="neutral" (clicked)="openToolsPage()" />
     </div>
     <app-timer />
     <div class="controller__side controller__side--right">
+      <app-button icon="coins" size="xs" tone="neutral" (clicked)="openCountersPage()" />
       <app-button
         (clicked)="openJudgePage()"
         icon="rules"
@@ -23,7 +26,7 @@
   </div>
 
   <div class="controller__actions">
-    <div class="controller__side-actions">
+    <div class="controller__side-actions" [class.controller__side-actions--ls]="isLandscape">
       <app-button
         (clicked)="stopMatch()"
         icon="reset"
@@ -44,20 +47,34 @@
 
     <div class="controller__main-btn">
       @if (duelStore.isDuelPaused()) {
-        <app-button (clicked)="resumeDuel()" icon="play" label="Resume" size="xl" tone="positive" />
+        <app-button
+          (clicked)="resumeDuel()"
+          icon="play"
+          label="Resume"
+          [size]="isLandscape ? 'md' : 'xl'"
+          tone="positive"
+        />
       } @else if (duelStore.isDuelStarted()) {
-        <app-button (clicked)="pauseDuel()" icon="pause" label="Pause" size="xl" tone="warning" />
+        <app-button
+          (clicked)="pauseDuel()"
+          icon="pause"
+          label="Pause"
+          [size]="isLandscape ? 'md' : 'xl'"
+          tone="warning"
+        />
       } @else {
-        <app-button (clicked)="startDuel()" icon="play" label="Play" size="xl" tone="positive" />
+        <app-button
+          (clicked)="startDuel()"
+          icon="play"
+          label="Play"
+          [size]="isLandscape ? 'md' : 'xl'"
+          tone="positive"
+        />
       }
     </div>
 
     <div class="controller__extra-actions">
-      <div class="controller__side-settings">
-        <app-button icon="dices" size="xs" tone="neutral" (clicked)="openToolsPage()" />
-        <app-button icon="coins" size="xs" tone="neutral" (clicked)="openCountersPage()" />
-      </div>
-      <div class="controller__side-settings">
+      <div class="controller__side-settings" [class.controller__side-settings--ls]="isLandscape">
         <app-button
           (clicked)="openSettings()"
           icon="settings"

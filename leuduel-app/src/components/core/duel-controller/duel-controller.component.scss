@@ -22,6 +22,7 @@
 .controller__side {
   display: flex;
   align-items: center;
+  gap: 0.3rem;
 }
 
 .controller__actions {
@@ -43,6 +44,10 @@
   align-items: flex-start;
   gap: 0.3rem;
   flex: 1;
+
+  &--ls {
+    flex-direction: row;
+  }
 }
 
 .controller__side-settings {
@@ -50,6 +55,10 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 0.3rem;
+
+  &--ls {
+    flex-direction: row;
+  }
 }
 
 .controller__extra-actions {

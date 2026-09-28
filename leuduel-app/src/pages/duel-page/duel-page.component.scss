@@ -28,7 +28,6 @@
 .duel-page__lp-col {
   display: flex;
   flex-direction: column;
-  min-height: 0;
 }
 
 .duel-page__lp-wins {
@@ -116,4 +115,9 @@
   flex: 1;
   min-height: 0;
   overflow: hidden;
+}
+
+.duel-page__calculator {
+  flex: 1;
+  padding-top: 0.25rem;
 }
