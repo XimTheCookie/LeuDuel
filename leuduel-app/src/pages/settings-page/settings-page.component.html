@@ -91,26 +91,29 @@
           [options]="swapPlayerOptions"
         />
       </div>
+
+      <div class="settings-section__fields--row">
+        <app-list-picker
+          [formControl]="useRapidButtons"
+          label="settings.section.gui.rb-use"
+          [options]="useRbOptions"
+        />
+        <app-list-picker
+          [formControl]="rapidButtonsColumns"
+          [label]="
+            isLandscapeOrientation?.value
+              ? 'settings.section.gui.rb-rows'
+              : 'settings.section.gui.rb-columns'
+          "
+          [options]="numberOfColumnsOptions"
+        />
+      </div>
       <app-number-input
         [formControl]="numberOfRapidButtons"
         label="settings.section.gui.rb-number"
         [maxValue]="15"
         [minValue]="1"
         [step]="1"
-      />
-      <app-list-picker
-        [formControl]="rapidButtonsColumns"
-        [label]="
-          isLandscapeOrientation?.value
-            ? 'settings.section.gui.rb-rows'
-            : 'settings.section.gui.rb-columns'
-        "
-        [options]="numberOfColumnsOptions"
-      />
-      <app-list-picker
-        [formControl]="useRapidButtons"
-        label="settings.section.gui.rb-use"
-        [options]="useRbOptions"
       />
     </div>
     <div class="settings-section__footer">
