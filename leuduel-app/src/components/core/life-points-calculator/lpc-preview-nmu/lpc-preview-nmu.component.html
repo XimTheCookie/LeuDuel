@@ -1,0 +1,11 @@
+<div class="lpc-preview-nmu" [class.lpc-preview-nmu--sle]="sle()">
+  <span class="lpc-preview-nmu__lp">{{ currentLp() }}</span>
+  <span class="lpc-preview-nmu__op" [class.lpc-preview-nmu__op--pos]="op() === 'heal'">{{
+    op() === 'heal' ? '+' : '−'
+  }}</span>
+  <span class="lpc-preview-nmu__delta">{{ inputVal() }}</span>
+  <span class="lpc-preview-nmu__eq">=</span>
+  <span class="lpc-preview-nmu__result" [class.lpc-preview-nmu__result--zero]="preview() === 0">{{
+    preview()
+  }}</span>
+</div>

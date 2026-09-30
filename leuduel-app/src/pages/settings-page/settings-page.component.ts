@@ -70,6 +70,12 @@ export class SettingsPageComponent {
     Validators.max(10),
   ]);
 
+  background = new FormControl<number>(this.settingsService.background(), [
+    Validators.required,
+    Validators.min(0),
+    Validators.max(1),
+  ]);
+
   duration = new FormControl<number>(this.settingsService.getDuelDuration(), [
     Validators.required,
     Validators.min(300000),
@@ -137,6 +143,25 @@ export class SettingsPageComponent {
     {
       label: 'common.label.yes',
       value: true,
+    },
+  ];
+
+  readonly backgroundOptions = [
+    {
+      label: 'None',
+      value: 0,
+    },
+    {
+      label: '1',
+      value: 1,
+    },
+    {
+      label: '2',
+      value: 2,
+    },
+    {
+      label: '3',
+      value: 3,
     },
   ];
 
@@ -277,7 +302,8 @@ export class SettingsPageComponent {
       this.modalOpacity.value === this.settingsService.modalOpacity() &&
       this.theme.value === this.settingsService.theme() &&
       this.swapPlayers.value === this.settingsService.swapPlayers() &&
-      this.useRapidButtons.value === this.settingsService.useRapidButtons()
+      this.useRapidButtons.value === this.settingsService.useRapidButtons() &&
+      this.background.value === this.settingsService.background()
     );
   }
 
@@ -288,7 +314,8 @@ export class SettingsPageComponent {
       this.isLandscapeOrientation.valid &&
       this.modalOpacity.valid &&
       this.theme.valid &&
-      this.useRapidButtons.valid
+      this.useRapidButtons.valid &&
+      this.background.valid
     );
   }
 
@@ -304,6 +331,7 @@ export class SettingsPageComponent {
     this.settingsService.setTheme(this.theme.value!);
     this.settingsService.setSwapPlayers(!!this.swapPlayers.value);
     this.settingsService.setUseRapidButtons(this.useRapidButtons.value!);
+    this.settingsService.setBackground(this.background.value!);
   }
 
   openBehaviourSettings() {

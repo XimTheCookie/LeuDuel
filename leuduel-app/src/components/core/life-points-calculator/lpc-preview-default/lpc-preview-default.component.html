@@ -1,0 +1,11 @@
+<div class="lpc-preview-default">
+  <span class="lpc-preview-default__lp">{{ currentLp() }}</span>
+  <span class="lpc-preview-default__op" [class.lpc-preview-default__op--pos]="op() === 'heal'">{{
+    op() === 'heal' ? '+' : '−'
+  }}</span>
+  <span class="lpc-preview-default__delta">{{ inputVal() }}</span>
+  <span class="lpc-preview-default__eq">=</span>
+  <span class="lpc-preview-default__result" [class.lpc-preview-default__result--zero]="preview() === 0">{{
+    preview()
+  }}</span>
+</div>

@@ -61,6 +61,7 @@ const DEFAULT_VALUES: SettingsSnapshot = {
   showCustomPlayers: false,
   theme: 'dark',
   language: 'en_GB',
+  background: 0,
 };
 
 const SETTINGS_KEY = 'settings';
@@ -82,6 +83,7 @@ interface SettingsSnapshot {
   showCustomPlayers: boolean;
   theme: string;
   language: string;
+  background: number;
 }
 
 @Injectable({
@@ -106,6 +108,7 @@ export class SettingsService {
   showCustomPlayers = signal<boolean>(DEFAULT_VALUES.showCustomPlayers);
   theme = signal<string>(DEFAULT_VALUES.theme);
   language = signal<string>(DEFAULT_VALUES.language);
+  background = signal<number>(DEFAULT_VALUES.background);
 
   settingsInitialized = new Subject<void>();
 
@@ -136,6 +139,7 @@ export class SettingsService {
     this.showCustomPlayers.set(saved.showCustomPlayers ?? false);
     this.theme.set(saved.theme ?? 'dark');
     this.language.set(saved.language ?? DEFAULT_VALUES.language);
+    this.background.set(saved.background ?? 0);
     this.applyMode();
     this.settingsInitialized.next();
   }
@@ -158,6 +162,7 @@ export class SettingsService {
       showCustomPlayers: this.showCustomPlayers(),
       theme: this.theme(),
       language: this.language(),
+      background: this.background(),
     };
     this.persistance.save(SETTINGS_KEY, snapshot);
   }
@@ -346,5 +351,9 @@ export class SettingsService {
 
   setLanguage(value: string) {
     this.language.set(value);
+  }
+
+  setBackground(value: number) {
+    this.background.set(value);
   }
 }

@@ -2,6 +2,8 @@ import { Component, computed, inject, input, output, signal } from '@angular/cor
 import { SettingsService } from '../../../services/settings/settings.service';
 import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
+import { LpcPreviewDefaultComponent } from './lpc-preview-default/lpc-preview-default.component';
+import { LpcPreviewNmuComponent } from './lpc-preview-nmu/lpc-preview-nmu.component';
 
 type Op = 'damage' | 'heal';
 
@@ -10,7 +12,7 @@ type Op = 'damage' | 'heal';
   templateUrl: './life-points-calculator.component.html',
   styleUrls: ['./life-points-calculator.component.scss'],
   standalone: true,
-  imports: [],
+  imports: [LpcPreviewDefaultComponent, LpcPreviewNmuComponent],
 })
 export class LifePointsCalculatorComponent {
   private readonly soundboardService = inject(SoundboardService);

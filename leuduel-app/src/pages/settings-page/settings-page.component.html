@@ -59,17 +59,24 @@
       {{ 'settings.section.gui.title' | translate }}
     </h2>
     <div class="settings-section__fields">
-      <app-list-picker
-        [formControl]="language"
-        label="settings.section.gui.language"
-        [options]="languageOptions"
-        (valueChanged)="languageChanged()"
-      />
       <div class="settings-section__fields--row">
+        <app-list-picker
+          [formControl]="language"
+          label="settings.section.gui.language"
+          [options]="languageOptions"
+          (valueChanged)="languageChanged()"
+        />
         <app-list-picker
           [formControl]="theme"
           label="settings.section.gui.theme"
           [options]="themeOptions"
+        />
+      </div>
+      <div class="settings-section__fields--row">
+        <app-list-picker
+          [formControl]="background"
+          label="settings.section.gui.wallpaper"
+          [options]="backgroundOptions"
         />
         <app-list-picker
           [formControl]="modalOpacity"

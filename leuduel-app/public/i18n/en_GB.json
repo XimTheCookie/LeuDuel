@@ -44,6 +44,7 @@
         "language": "Language",
         "orientation": "Orientation",
         "opacity": "Window opacity",
+        "wallpaper": "Wallpaper",
         "swap-players": "Swap players",
         "rb-number": "Number of rapid buttons",
         "rb-columns": "Number of columns",

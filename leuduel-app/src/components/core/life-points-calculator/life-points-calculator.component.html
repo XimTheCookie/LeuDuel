@@ -2,22 +2,21 @@
 @let lm = settingsService.landscapeMode();
 <div class="lpc" [class.lpc--landscape]="lm" [class.lpc--small]="nmu">
   <!-- quadrante lp -->
-  @if (!nmu || input() !== '0') {
-    <div
-      class="lpc__preview"
-      [class.lpc__preview--stuart-little]="nmu"
-      [class.lpc__preview--sle]="lm && nmu"
-    >
-      <span class="lpc__preview-lp">{{ currentLp() }}</span>
-      <span class="lpc__preview-op" [class.lpc__preview-op--pos]="op() === 'heal'">{{
-        op() === 'heal' ? '+' : '−'
-      }}</span>
-      <span class="lpc__preview-delta">{{ input() }}</span>
-      <span class="lpc__preview-eq">=</span>
-      <span class="lpc__preview-result" [class.lpc__preview-result--zero]="preview() === 0">{{
-        preview()
-      }}</span>
-    </div>
+  @if (!nmu) {
+    <app-lpc-preview-default
+      [currentLp]="currentLp()"
+      [op]="op()"
+      [inputVal]="input()"
+      [preview]="preview()"
+    />
+  } @else if (input() !== '0') {
+    <app-lpc-preview-nmu
+      [currentLp]="currentLp()"
+      [op]="op()"
+      [inputVal]="input()"
+      [preview]="preview()"
+      [sle]="lm"
+    />
   }
 
   <!-- pad numerico e conferma -->

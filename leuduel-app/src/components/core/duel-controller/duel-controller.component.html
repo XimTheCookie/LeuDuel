@@ -1,7 +1,14 @@
-@let isLandscape = settingsService.landscapeMode();
 <div class="controller">
-  <div class="controller__row">
-    <div class="controller__side">
+  <div class="controller__layout">
+    <div class="controller__grid-left">
+      <app-button
+        (clicked)="openSettings()"
+        icon="settings"
+        label="Settings"
+        [isDisabled]="duelStore.isDuelStarted() || duelStore.isDuelPaused()"
+        size="xs"
+        tone="neutral"
+      />
       <app-button
         (clicked)="viewLog()"
         [isDisabled]="!duelStore.isDuelStarted()"
@@ -10,27 +17,10 @@
         size="xs"
         tone="neutral"
       />
-      <app-button icon="dices" size="xs" tone="neutral" (clicked)="openToolsPage()" />
-    </div>
-    <app-timer />
-    <div class="controller__side controller__side--right">
-      <app-button icon="coins" size="xs" tone="neutral" (clicked)="openCountersPage()" />
-      <app-button
-        (clicked)="openJudgePage()"
-        icon="rules"
-        label="Rulings"
-        tone="neutral"
-        size="xs"
-      />
-    </div>
-  </div>
-
-  <div class="controller__actions">
-    <div class="controller__side-actions" [class.controller__side-actions--ls]="isLandscape">
       <app-button
         (clicked)="stopMatch()"
         icon="reset"
-        label="Stop match"
+        label="Stop"
         [isDisabled]="duelStore.isDuelFinished()"
         size="xs"
         tone="warning"
@@ -45,52 +35,42 @@
       />
     </div>
 
-    <div class="controller__main-btn">
-      @if (duelStore.isDuelPaused()) {
-        <app-button
-          (clicked)="resumeDuel()"
-          icon="play"
-          label="Resume"
-          [size]="isLandscape ? 'md' : 'xl'"
-          tone="positive"
-        />
-      } @else if (duelStore.isDuelStarted()) {
-        <app-button
-          (clicked)="pauseDuel()"
-          icon="pause"
-          label="Pause"
-          [size]="isLandscape ? 'md' : 'xl'"
-          tone="warning"
-        />
-      } @else {
-        <app-button
-          (clicked)="startDuel()"
-          icon="play"
-          label="Play"
-          [size]="isLandscape ? 'md' : 'xl'"
-          tone="positive"
-        />
-      }
+    <div class="controller__center">
+      <app-timer />
+      <div class="controller__main-btn">
+        @if (duelStore.isDuelPaused()) {
+          <app-button
+            (clicked)="resumeDuel()"
+            icon="play"
+            label="Resume"
+            size="md"
+            tone="positive"
+          />
+        } @else if (duelStore.isDuelStarted()) {
+          <app-button (clicked)="pauseDuel()" icon="pause" label="Pause" size="md" tone="warning" />
+        } @else {
+          <app-button (clicked)="startDuel()" icon="play" label="Play" size="md" tone="positive" />
+        }
+      </div>
     </div>
 
-    <div class="controller__extra-actions">
-      <div class="controller__side-settings" [class.controller__side-settings--ls]="isLandscape">
-        <app-button
-          (clicked)="openSettings()"
-          icon="settings"
-          label="Settings"
-          [isDisabled]="duelStore.isDuelStarted() || duelStore.isDuelPaused()"
-          size="xs"
-          tone="neutral"
-        />
-        <app-button
-          (clicked)="toggleSounds()"
-          [icon]="settingsService.soundsOn() ? 'volume' : 'volume-off'"
-          label="Settings"
-          size="xs"
-          [tone]="settingsService.soundsOn() ? 'neutral' : 'negative'"
-        />
-      </div>
+    <div class="controller__grid-right">
+      <app-button icon="coins" size="xs" tone="neutral" (clicked)="openCountersPage()" />
+      <app-button
+        (clicked)="openJudgePage()"
+        icon="rules"
+        label="Rulings"
+        tone="neutral"
+        size="xs"
+      />
+      <app-button icon="dices" size="xs" tone="neutral" (clicked)="openToolsPage()" />
+      <app-button
+        (clicked)="toggleSounds()"
+        [icon]="settingsService.soundsOn() ? 'volume' : 'volume-off'"
+        label="Sound"
+        size="xs"
+        [tone]="settingsService.soundsOn() ? 'neutral' : 'negative'"
+      />
     </div>
   </div>
 </div>
