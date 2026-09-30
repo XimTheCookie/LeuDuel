@@ -1,5 +1,7 @@
 <div
   class="landscape-actions__grid"
+  [class.landscape-actions__grid--bg]="hasDefaultBg()"
+  [class.landscape-actions__grid--custom-bg]="!hasDefaultBg()"
   [class.landscape-actions__grid--cols-one]="numberOfColumns() === 1"
   [class.landscape-actions__grid--cols-two]="numberOfColumns() === 2"
   [class.landscape-actions__grid--cols-three]="numberOfColumns() === 3"

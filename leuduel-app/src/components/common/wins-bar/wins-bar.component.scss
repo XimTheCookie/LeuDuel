@@ -4,9 +4,12 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 0.3rem 0;
-  background: var(--bg-deep);
   border-bottom: 1px solid var(--border-glow);
   border-top: 1px solid var(--border-glow);
+
+  &--bg {
+    background: var(--bg-deep);
+  }
 }
 
 .wins-bar__gem {

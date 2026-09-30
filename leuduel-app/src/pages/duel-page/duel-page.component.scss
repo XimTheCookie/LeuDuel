@@ -59,7 +59,6 @@
   justify-content: center;
   gap: 0.5rem;
   overflow: hidden;
-  background: var(--bg-panel);
   border-right: 1px solid var(--border-subtle);
   cursor: pointer;
   user-select: none;
@@ -70,6 +69,10 @@
   &.duel-page__lp-cell--swap {
     border-right: none;
     border-left: 1px solid var(--border-subtle);
+  }
+
+  &--bg {
+    background: var(--bg-panel);
   }
 }
 .duel-page__lp-cell--right {

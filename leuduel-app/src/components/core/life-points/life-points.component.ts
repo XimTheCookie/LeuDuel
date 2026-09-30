@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, signal, untracked } from '@angular/core';
+import { Component, computed, effect, inject, input, signal, untracked } from '@angular/core';
 import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 import { SettingsService } from '../../../services/settings/settings.service';
 import { BehaviourSettingsService } from '../../../services/settings/behaviour-settings.service';
@@ -21,6 +21,8 @@ export class LifePointsComponent {
   private readonly modalService = inject(ModalService);
 
   private readonly duelStore = inject(DuelStore);
+
+  hasDefaultBg = computed(() => this.settingsService.background() === 0);
 
   lifePoints = input<number>();
   compact = input(false);

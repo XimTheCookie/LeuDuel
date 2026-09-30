@@ -1,4 +1,8 @@
-<div class="player-panel">
+<div
+  class="player-panel"
+  [class.player-panel--bg]="hasDefaultBg()"
+  [class.player-panel--custom-bg]="!hasDefaultBg()"
+>
   <app-wins-bar [wins]="wins" />
   <app-life-points (click)="modifyLp()" [lifePoints]="lifePoints" />
   @if (useRapidButtons()) {

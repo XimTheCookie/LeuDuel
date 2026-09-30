@@ -5,9 +5,12 @@
   user-select: none;
   gap: 0.5rem;
   padding: 0.5rem 1rem 0.25rem;
-  background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-panel) 100%);
   border-bottom: 1px solid var(--border-glow);
   position: relative;
+
+  &--bg {
+    background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-panel) 100%);
+  }
 
   &::after {
     content: '';
@@ -28,7 +31,9 @@
     background: none;
     border-bottom: none;
 
-    &::after { display: none; }
+    &::after {
+      display: none;
+    }
 
     .lp-value {
       font-size: clamp(1rem, 5vw, 3rem);

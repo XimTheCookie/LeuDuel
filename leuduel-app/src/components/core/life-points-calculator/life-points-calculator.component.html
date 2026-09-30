@@ -1,6 +1,11 @@
 @let nmu = notModalUse();
 @let lm = settingsService.landscapeMode();
-<div class="lpc" [class.lpc--landscape]="lm" [class.lpc--small]="nmu">
+<div
+  class="lpc"
+  [class.lpc--landscape]="lm"
+  [class.lpc--small]="nmu"
+  [class.lpc--custom-bg]="useButtonOpacity()"
+>
   <!-- quadrante lp -->
   @if (!nmu) {
     <app-lpc-preview-default

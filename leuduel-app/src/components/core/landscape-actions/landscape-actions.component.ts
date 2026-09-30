@@ -16,6 +16,7 @@ export class LandscapeActionsComponent {
   private readonly settingsService = inject(SettingsService);
   private readonly modalService = inject(ModalService);
 
+  hasDefaultBg = computed(() => this.settingsService.background() === 0);
   selectedPlayer = input.required<'player1' | 'player2'>();
   rapidButtons = computed(() => this.settingsService.rapidButtonsConfig());
   numberOfColumns = computed(() => this.settingsService.rapidButtonsColumns());

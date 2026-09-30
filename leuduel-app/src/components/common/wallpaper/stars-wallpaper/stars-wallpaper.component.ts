@@ -1,4 +1,14 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  OnDestroy,
+  inject,
+  viewChild,
+} from '@angular/core';
+import { SettingsService } from '../../../../services/settings/settings.service';
 
 interface Star {
   x: number;
@@ -15,7 +25,9 @@ interface Star {
   styleUrls: ['./stars-wallpaper.component.scss'],
 })
 export class StarsWallpaperComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('canvas') canvasRef!: ElementRef<HTMLCanvasElement>;
+  private readonly settingsService = inject(SettingsService);
+
+  canvasRef = viewChild.required<ElementRef<HTMLCanvasElement>>('canvas');
 
   private ctx!: CanvasRenderingContext2D;
   private stars: Star[] = [];
@@ -24,8 +36,16 @@ export class StarsWallpaperComponent implements AfterViewInit, OnDestroy {
 
   private readonly STAR_COUNT = 300;
 
+  private get starColor(): string {
+    return this.settingsService.theme() === 'light' ? '30, 42, 74,' : '220, 232, 255,';
+  }
+
+  private get accentColor(): string {
+    return this.settingsService.theme() === 'high-contrast' ? '255, 224, 102,' : '201, 168, 76,';
+  }
+
   ngAfterViewInit() {
-    const canvas = this.canvasRef.nativeElement;
+    const canvas = this.canvasRef().nativeElement;
     this.ctx = canvas.getContext('2d')!;
     this.resize();
     this.generateStars();
@@ -39,14 +59,14 @@ export class StarsWallpaperComponent implements AfterViewInit, OnDestroy {
   }
 
   private resize = () => {
-    const canvas = this.canvasRef.nativeElement;
+    const canvas = this.canvasRef().nativeElement;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     this.generateStars();
   };
 
   private generateStars() {
-    const canvas = this.canvasRef.nativeElement;
+    const canvas = this.canvasRef().nativeElement;
     this.stars = Array.from({ length: this.STAR_COUNT }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
@@ -64,7 +84,7 @@ export class StarsWallpaperComponent implements AfterViewInit, OnDestroy {
   };
 
   private draw() {
-    const canvas = this.canvasRef.nativeElement;
+    const canvas = this.canvasRef().nativeElement;
     const { width, height } = canvas;
 
     this.ctx.clearRect(0, 0, width, height);
@@ -81,7 +101,7 @@ export class StarsWallpaperComponent implements AfterViewInit, OnDestroy {
 
       this.ctx.beginPath();
       this.ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      this.ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+      this.ctx.fillStyle = `rgba(${this.starColor} ${alpha})`;
       this.ctx.fill();
     }
 
@@ -91,7 +111,7 @@ export class StarsWallpaperComponent implements AfterViewInit, OnDestroy {
       const twinkle = Math.sin(this.time * 1.5 + star.twinkleOffset) * 0.4 + 0.6;
       this.ctx.beginPath();
       this.ctx.arc(star.x, star.y, star.radius * 1.4, 0, Math.PI * 2);
-      this.ctx.fillStyle = `rgba(201, 168, 76, ${star.opacity * twinkle})`;
+      this.ctx.fillStyle = `rgba(${this.accentColor} ${star.opacity * twinkle})`;
       this.ctx.fill();
     }
   }

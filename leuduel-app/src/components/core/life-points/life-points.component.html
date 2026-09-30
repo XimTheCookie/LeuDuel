@@ -1,4 +1,10 @@
-<div class="lp-display" [class.lp-display--compact]="compact()" [class.animating]="animating()" [class.gaining]="animating() && gaining()">
+<div
+  class="lp-display"
+  [class.lp-display--bg]="hasDefaultBg()"
+  [class.lp-display--compact]="compact()"
+  [class.animating]="animating()"
+  [class.gaining]="animating() && gaining()"
+>
   @if (playerName()) {
     <span class="lp-player">{{ playerName() }}</span>
   }

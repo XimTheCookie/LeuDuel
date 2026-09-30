@@ -35,6 +35,8 @@ export class PlayerPanelComponent {
 
   useRapidButtons = computed(() => this.settingsService.useRapidButtons());
 
+  hasDefaultBg = computed(() => this.settingsService.background() === 0);
+
   duelStore = inject(DuelStore);
 
   get lifePoints() {

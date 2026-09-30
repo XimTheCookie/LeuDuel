@@ -78,6 +78,12 @@
       "rb-use": {
         "use": "Use",
         "dont-use": "Use calculator"
+      },
+      "wallpaper": {
+        "none": "Default",
+        "stars": "Stars",
+        "flames": "Flames",
+        "lines": "Lines"
       }
     }
   },

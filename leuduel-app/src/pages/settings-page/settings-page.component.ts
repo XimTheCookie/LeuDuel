@@ -73,7 +73,7 @@ export class SettingsPageComponent {
   background = new FormControl<number>(this.settingsService.background(), [
     Validators.required,
     Validators.min(0),
-    Validators.max(1),
+    Validators.max(3),
   ]);
 
   duration = new FormControl<number>(this.settingsService.getDuelDuration(), [
@@ -148,19 +148,19 @@ export class SettingsPageComponent {
 
   readonly backgroundOptions = [
     {
-      label: 'None',
+      label: 'settings.list-value.wallpaper.none',
       value: 0,
     },
     {
-      label: '1',
+      label: 'settings.list-value.wallpaper.stars',
       value: 1,
     },
     {
-      label: '2',
+      label: 'settings.list-value.wallpaper.flames',
       value: 2,
     },
     {
-      label: '3',
+      label: 'settings.list-value.wallpaper.lines',
       value: 3,
     },
   ];

@@ -1,6 +1,14 @@
-@if (background() === 1) {
-  <app-stars-wallpaper />
-}
+<div class="wrapper-container__bg">
+  @if (background() === 1) {
+    <app-stars-wallpaper />
+  }
+  @if (background() === 2) {
+    <app-flames-wallpaper />
+  }
+  @if (background() === 3) {
+    <app-lines-wallpaper />
+  }
+</div>
 <div class="wrapper-container__app">
   <app-duel-page />
 </div>

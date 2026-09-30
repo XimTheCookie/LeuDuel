@@ -1,4 +1,4 @@
-<div class="wins-bar">
+<div class="wins-bar" [class.wins-bar--bg]="hasDefaultBg()">
   @for (i of numberOfGamesArray(); track i) {
     <span class="wins-bar__gem" [class.wins-bar__gem--filled]="i <= wins()"></span>
   }

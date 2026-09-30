@@ -14,6 +14,14 @@
     height: 100%;
     padding-top: 0.25rem;
   }
+
+  &--bg {
+    background: var(--bg-panel);
+  }
+
+  &--custom-bg > div > app-damage-button {
+    opacity: 0.9;
+  }
 }
 
 .actions-grid {

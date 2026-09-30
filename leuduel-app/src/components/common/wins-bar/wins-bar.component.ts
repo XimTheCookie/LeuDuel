@@ -9,6 +9,7 @@ import { SettingsService } from '../../../services/settings/settings.service';
 })
 export class WinsBarComponent {
   private readonly settingsService = inject(SettingsService);
+  hasDefaultBg = computed(() => this.settingsService.background() === 0);
 
   wins = input.required<number>();
 

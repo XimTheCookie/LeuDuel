@@ -47,6 +47,8 @@ export class DuelPageComponent {
   });
   selectedPlayer = signal<'player1' | 'player2'>('player1');
 
+  hasDefaultBg = computed(() => this.settingsService.background() === 0);
+
   wins1 = computed(() => this.duelStore.wins1());
   wins2 = computed(() => this.duelStore.wins2());
 

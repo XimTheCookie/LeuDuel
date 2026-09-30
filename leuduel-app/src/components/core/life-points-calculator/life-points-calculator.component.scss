@@ -8,6 +8,10 @@
   gap: 0.6rem;
   user-select: none;
 
+  &--custom-bg button {
+    opacity: 0.9;
+  }
+
   &--small {
     gap: 0.25rem;
     height: 100%;
@@ -24,7 +28,6 @@
     text-shadow: 0 0 18px var(--gold-glow);
     text-align: center;
   }
-
 
   &__grid {
     display: flex;
@@ -191,4 +194,3 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
-

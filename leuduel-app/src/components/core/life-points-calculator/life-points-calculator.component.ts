@@ -37,6 +37,8 @@ export class LifePointsCalculatorComponent {
 
   notModalUse = computed(() => this.settingsService.useRapidButtons() === false);
 
+  useButtonOpacity = computed(() => this.settingsService.background() !== 0 && this.notModalUse());
+
   currentLp = computed(() =>
     this.player() === 'player1' ? this.duelStore.lifePoints1() : this.duelStore.lifePoints2(),
   );
