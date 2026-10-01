@@ -82,8 +82,9 @@
       "wallpaper": {
         "none": "Default",
         "stars": "Stars",
-        "flames": "Flames",
-        "lines": "Lines"
+        "flames": "Embers",
+        "lines": "Lines",
+        "meteorites": "Meteorites"
       }
     }
   },

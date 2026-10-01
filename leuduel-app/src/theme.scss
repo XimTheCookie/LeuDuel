@@ -37,23 +37,23 @@
 :root {
   --btn-neutral-accent: #8ba4cc;
   --btn-neutral-surface: rgba(13, 21, 38, 0.9);
-  --btn-neutral-border: rgba(99, 132, 199, 0.35);
+  --btn-neutral-border: rgba(99, 132, 199, 0.55);
   --btn-neutral-glow: transparent;
 
   --btn-positive-accent: #4ade80;
-  --btn-positive-surface: rgba(26, 122, 74, 0.2);
-  --btn-positive-border: rgba(74, 222, 128, 0.4);
-  --btn-positive-glow: rgba(74, 222, 128, 0.25);
+  --btn-positive-surface: rgba(26, 122, 74, 0.45);
+  --btn-positive-border: rgba(74, 222, 128, 0.6);
+  --btn-positive-glow: rgba(74, 222, 128, 0.35);
 
   --btn-negative-accent: #f87171;
-  --btn-negative-surface: rgba(192, 57, 43, 0.2);
-  --btn-negative-border: rgba(248, 113, 113, 0.4);
-  --btn-negative-glow: rgba(248, 113, 113, 0.25);
+  --btn-negative-surface: rgba(192, 57, 43, 0.45);
+  --btn-negative-border: rgba(248, 113, 113, 0.6);
+  --btn-negative-glow: rgba(248, 113, 113, 0.35);
 
   --btn-warning-accent: #fbbf24;
-  --btn-warning-surface: rgba(180, 83, 9, 0.2);
-  --btn-warning-border: rgba(251, 191, 36, 0.4);
-  --btn-warning-glow: rgba(251, 191, 36, 0.2);
+  --btn-warning-surface: rgba(180, 83, 9, 0.45);
+  --btn-warning-border: rgba(251, 191, 36, 0.6);
+  --btn-warning-glow: rgba(251, 191, 36, 0.35);
 }
 
 body.high-contrast {
@@ -93,19 +93,19 @@ body.high-contrast {
   --btn-neutral-glow: transparent;
 
   --btn-positive-accent: #00ff88;
-  --btn-positive-surface: rgba(0, 200, 100, 0.2);
-  --btn-positive-border: rgba(0, 255, 136, 0.6);
-  --btn-positive-glow: rgba(0, 255, 136, 0.35);
+  --btn-positive-surface: rgba(0, 200, 100, 0.45);
+  --btn-positive-border: rgba(0, 255, 136, 0.75);
+  --btn-positive-glow: rgba(0, 255, 136, 0.45);
 
   --btn-negative-accent: #ff6666;
-  --btn-negative-surface: rgba(255, 50, 50, 0.2);
-  --btn-negative-border: rgba(255, 102, 102, 0.6);
-  --btn-negative-glow: rgba(255, 102, 102, 0.35);
+  --btn-negative-surface: rgba(255, 50, 50, 0.45);
+  --btn-negative-border: rgba(255, 102, 102, 0.75);
+  --btn-negative-glow: rgba(255, 102, 102, 0.45);
 
   --btn-warning-accent: #ffee00;
-  --btn-warning-surface: rgba(200, 150, 0, 0.2);
-  --btn-warning-border: rgba(255, 238, 0, 0.6);
-  --btn-warning-glow: rgba(255, 238, 0, 0.3);
+  --btn-warning-surface: rgba(200, 150, 0, 0.45);
+  --btn-warning-border: rgba(255, 238, 0, 0.75);
+  --btn-warning-glow: rgba(255, 238, 0, 0.4);
 }
 
 body.light {
@@ -131,17 +131,17 @@ body.light {
   --btn-neutral-glow: transparent;
 
   --btn-positive-accent: #1a7a4a;
-  --btn-positive-surface: rgba(26, 122, 74, 0.22);
-  --btn-positive-border: rgba(26, 122, 74, 0.45);
-  --btn-positive-glow: rgba(26, 122, 74, 0.15);
+  --btn-positive-surface: rgba(26, 122, 74, 0.45);
+  --btn-positive-border: rgba(26, 122, 74, 0.65);
+  --btn-positive-glow: rgba(26, 122, 74, 0.25);
 
   --btn-negative-accent: #c0392b;
-  --btn-negative-surface: rgba(192, 57, 43, 0.22);
-  --btn-negative-border: rgba(192, 57, 43, 0.45);
-  --btn-negative-glow: rgba(192, 57, 43, 0.15);
+  --btn-negative-surface: rgba(192, 57, 43, 0.45);
+  --btn-negative-border: rgba(192, 57, 43, 0.65);
+  --btn-negative-glow: rgba(192, 57, 43, 0.25);
 
   --btn-warning-accent: #b45309;
-  --btn-warning-surface: rgba(180, 83, 9, 0.22);
-  --btn-warning-border: rgba(180, 83, 9, 0.45);
-  --btn-warning-glow: rgba(180, 83, 9, 0.15);
+  --btn-warning-surface: rgba(180, 83, 9, 0.45);
+  --btn-warning-border: rgba(180, 83, 9, 0.65);
+  --btn-warning-glow: rgba(180, 83, 9, 0.25);
 }

@@ -82,8 +82,9 @@
       "wallpaper": {
         "none": "Normale",
         "stars": "Stelle",
-        "flames": "Fiamme",
-        "lines": "Linee"
+        "flames": "Braci",
+        "lines": "Linee",
+        "meteorites": "Meteoriti"
       }
     }
   },

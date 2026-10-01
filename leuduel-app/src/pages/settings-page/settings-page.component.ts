@@ -73,7 +73,7 @@ export class SettingsPageComponent {
   background = new FormControl<number>(this.settingsService.background(), [
     Validators.required,
     Validators.min(0),
-    Validators.max(3),
+    Validators.max(4),
   ]);
 
   duration = new FormControl<number>(this.settingsService.getDuelDuration(), [
@@ -162,6 +162,10 @@ export class SettingsPageComponent {
     {
       label: 'settings.list-value.wallpaper.lines',
       value: 3,
+    },
+    {
+      label: 'settings.list-value.wallpaper.meteorites',
+      value: 4,
     },
   ];
 

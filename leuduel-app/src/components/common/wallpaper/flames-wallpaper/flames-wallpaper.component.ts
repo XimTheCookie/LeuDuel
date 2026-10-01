@@ -1,15 +1,17 @@
 import { Component, AfterViewInit, OnDestroy, viewChild, ElementRef, inject } from '@angular/core';
 import { SettingsService } from '../../../../services/settings/settings.service';
 
-interface Particle {
+interface Ember {
   x: number;
   y: number;
   radius: number;
   opacity: number;
   speedY: number;
-  speedX: number;
+  drift: number;
+  driftOffset: number;
   life: number;
   maxLife: number;
+  colorIndex: number;
 }
 
 @Component({
@@ -23,27 +25,27 @@ export class FlamesWallpaperComponent implements AfterViewInit, OnDestroy {
   canvasRef = viewChild.required<ElementRef<HTMLCanvasElement>>('canvas');
 
   private ctx!: CanvasRenderingContext2D;
-  private particles: Particle[] = [];
+  private embers: Ember[] = [];
   private animationId = 0;
   private time = 0;
 
-  private readonly PARTICLE_COUNT = 200;
+  private readonly EMBER_COUNT = 160;
 
-  private get flameColors(): string[] {
+  private get emberColors(): string[] {
     if (this.settingsService.theme() === 'light') {
-      return ['255, 80, 0,', '255, 140, 0,', '255, 200, 50,'];
+      return ['255, 120, 20,', '255, 170, 40,', '255, 210, 80,', '255, 240, 140,'];
     }
     if (this.settingsService.theme() === 'high-contrast') {
-      return ['255, 50, 0,', '255, 120, 0,', '255, 255, 100,'];
+      return ['255, 60, 0,', '255, 130, 10,', '255, 200, 50,', '255, 255, 120,'];
     }
-    return ['200, 40, 0,', '255, 100, 0,', '255, 180, 30,'];
+    return ['180, 40, 0,', '220, 80, 10,', '255, 140, 20,', '255, 200, 80,'];
   }
 
   ngAfterViewInit() {
     const canvas = this.canvasRef().nativeElement;
     this.ctx = canvas.getContext('2d')!;
     this.resize();
-    this.generateParticles();
+    this.generateEmbers();
     this.animate();
     window.addEventListener('resize', this.resize);
   }
@@ -57,26 +59,28 @@ export class FlamesWallpaperComponent implements AfterViewInit, OnDestroy {
     const canvas = this.canvasRef().nativeElement;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    this.generateParticles();
+    this.generateEmbers();
   };
 
-  private spawnParticle(canvas: HTMLCanvasElement): Particle {
-    const maxLife = canvas.height / (Math.random() * 1.5 + 0.8);
+  private spawnEmber(canvas: HTMLCanvasElement, randomLife = false): Ember {
+    const maxLife = canvas.height / (Math.random() * 0.6 + 0.3);
     return {
       x: Math.random() * canvas.width,
-      y: canvas.height + Math.random() * 20,
-      radius: Math.random() * 6 + 2,
-      opacity: Math.random() * 0.5 + 0.4,
-      speedY: Math.random() * 1.5 + 0.8,
-      speedX: (Math.random() - 0.5) * 0.6,
-      life: Math.random() * maxLife,
+      y: canvas.height + Math.random() * 10,
+      radius: Math.random() * 2.2 + 0.8,
+      opacity: Math.random() * 0.5 + 0.5,
+      speedY: Math.random() * 0.8 + 0.4,
+      drift: (Math.random() - 0.5) * 0.015,
+      driftOffset: Math.random() * Math.PI * 2,
+      life: randomLife ? Math.random() * maxLife : 0,
       maxLife,
+      colorIndex: Math.floor(Math.random() * 4),
     };
   }
 
-  private generateParticles() {
+  private generateEmbers() {
     const canvas = this.canvasRef().nativeElement;
-    this.particles = Array.from({ length: this.PARTICLE_COUNT }, () => this.spawnParticle(canvas));
+    this.embers = Array.from({ length: this.EMBER_COUNT }, () => this.spawnEmber(canvas, true));
   }
 
   private animate = () => {
@@ -88,35 +92,46 @@ export class FlamesWallpaperComponent implements AfterViewInit, OnDestroy {
   private draw() {
     const canvas = this.canvasRef().nativeElement;
     const { width, height } = canvas;
-    const colors = this.flameColors;
+    const colors = this.emberColors;
 
     this.ctx.clearRect(0, 0, width, height);
 
-    for (const p of this.particles) {
-      p.life += 1;
-      p.y -= p.speedY;
-      p.x += p.speedX + Math.sin(this.time + p.y * 0.02) * 0.4;
+    for (const e of this.embers) {
+      e.life += 1;
+      e.y -= e.speedY;
+      e.x += Math.sin(this.time * 0.8 + e.driftOffset + e.y * 0.01) * 0.5 + e.drift;
 
-      if (p.life >= p.maxLife) {
-        Object.assign(p, this.spawnParticle(canvas));
+      if (e.life >= e.maxLife || e.y < -10) {
+        Object.assign(e, this.spawnEmber(canvas));
         continue;
       }
 
-      const progress = p.life / p.maxLife;
-      const alpha = p.opacity * (1 - progress);
-      const radius = p.radius * (1 - progress * 0.5);
+      const progress = e.life / e.maxLife;
+      // fade in quickly, hold, then fade out
+      const fadeIn = Math.min(progress * 8, 1);
+      const fadeOut = progress > 0.7 ? 1 - (progress - 0.7) / 0.3 : 1;
+      const alpha = e.opacity * fadeIn * fadeOut;
 
-      // pick color based on life progress: red → orange → yellow
-      const colorIndex = Math.min(Math.floor(progress * colors.length), colors.length - 1);
-      const color = colors[colorIndex];
+      const color = colors[e.colorIndex];
+      const r = e.radius;
 
-      const gradient = this.ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, radius);
-      gradient.addColorStop(0, `rgba(${color} ${alpha})`);
-      gradient.addColorStop(1, `rgba(${color} 0)`);
-
+      // outer glow
+      const glow = this.ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, r * 3);
+      glow.addColorStop(0, `rgba(${color} ${alpha * 0.35})`);
+      glow.addColorStop(1, `rgba(${color} 0)`);
       this.ctx.beginPath();
-      this.ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-      this.ctx.fillStyle = gradient;
+      this.ctx.arc(e.x, e.y, r * 3, 0, Math.PI * 2);
+      this.ctx.fillStyle = glow;
+      this.ctx.fill();
+
+      // bright core
+      const core = this.ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, r);
+      core.addColorStop(0, `rgba(255, 240, 200, ${alpha})`);
+      core.addColorStop(0.4, `rgba(${color} ${alpha * 0.9})`);
+      core.addColorStop(1, `rgba(${color} 0)`);
+      this.ctx.beginPath();
+      this.ctx.arc(e.x, e.y, r, 0, Math.PI * 2);
+      this.ctx.fillStyle = core;
       this.ctx.fill();
     }
   }

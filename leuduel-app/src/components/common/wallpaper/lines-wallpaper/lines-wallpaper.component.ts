@@ -68,20 +68,20 @@ export class LinesWallpaperComponent implements AfterViewInit, OnDestroy {
   };
 
   private spawnChain(canvas: HTMLCanvasElement, staggerLife = false): Chain {
-    const cx = canvas.width / 2;
-    const cy = canvas.height / 2;
     const angle = Math.random() * Math.PI * 2;
     const speed = Math.random() * 1.5 + 1;
-    const preTravel = staggerLife ? Math.random() * Math.max(canvas.width, canvas.height) * 0.55 : 0;
-    const ox = cx + Math.cos(angle) * preTravel;
-    const oy = cy + Math.sin(angle) * preTravel;
+    const av = (Math.random() - 0.5) * 0.04;
     const opacity = Math.random() * 0.3 + 0.3;
 
-    // pre-build points along the staggered path
+    // spawn at a random position across the screen
+    const ox = Math.random() * canvas.width;
+    const oy = Math.random() * canvas.height;
+
+    const preTravel = staggerLife ? Math.random() * Math.max(canvas.width, canvas.height) * 0.3 : 0;
     const pointCount = staggerLife ? Math.floor(preTravel / speed) + 2 : 2;
+
     const points: Point[] = [];
     let px = ox, py = oy, pa = angle;
-    const av = (Math.random() - 0.5) * 0.04;
     for (let i = 0; i < pointCount; i++) {
       points.push({ x: px, y: py });
       px += Math.cos(pa) * speed;
