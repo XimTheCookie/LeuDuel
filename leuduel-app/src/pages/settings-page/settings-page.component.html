@@ -20,6 +20,7 @@
           [formControl]="bestOf"
           label="settings.section.duel.best-of"
           [options]="bestOfOptions"
+          (valueChanged)="numberOfGamesChanged()"
         />
       </div>
 
@@ -34,6 +35,7 @@
           [formControl]="showCustomPlayers"
           label="settings.section.duel.custom-profiles"
           [options]="customPlayersOption"
+          (valueChanged)="customPlayersChanged()"
         />
         <app-text-button
           [alignBottom]="true"
@@ -43,14 +45,7 @@
         />
       </div>
     </div>
-    <div class="settings-section__footer">
-      <app-text-button
-        (clicked)="saveDuelSettings()"
-        [isDisabled]="!duelSettingsValid() || duelSettingsUnchanged()"
-        label="common.button.save"
-        [tone]="!duelSettingsValid() ? 'warning' : duelSettingsUnchanged() ? 'neutral' : 'positive'"
-      />
-    </div>
+    <div class="settings-section__footer"></div>
   </div>
 
   <div class="settings-section">
@@ -70,6 +65,7 @@
           [formControl]="theme"
           label="settings.section.gui.theme"
           [options]="themeOptions"
+          (valueChanged)="themeChanged()"
         />
       </div>
       <div class="settings-section__fields--row">
@@ -77,11 +73,13 @@
           [formControl]="background"
           label="settings.section.gui.wallpaper"
           [options]="backgroundOptions"
+          (valueChanged)="backgroundChanged()"
         />
         <app-list-picker
           [formControl]="modalOpacity"
           label="settings.section.gui.opacity"
           [options]="modalOpacityOptions"
+          (valueChanged)="modalOpacityChanged()"
         />
       </div>
       <div class="settings-section__fields--row">
@@ -96,6 +94,7 @@
           [formControl]="swapPlayers"
           label="settings.section.gui.swap-players"
           [options]="swapPlayerOptions"
+          (valueChanged)="swapPlayersChanged()"
         />
       </div>
 
@@ -104,6 +103,7 @@
           [formControl]="useRapidButtons"
           label="settings.section.gui.rb-use"
           [options]="useRbOptions"
+          (valueChanged)="useRapidButtonsChanged()"
         />
         <app-list-picker
           [formControl]="rapidButtonsColumns"
@@ -113,6 +113,7 @@
               : 'settings.section.gui.rb-columns'
           "
           [options]="numberOfColumnsOptions"
+          (valueChanged)="rapidButtonsColumnsChanged()"
         />
       </div>
       <app-number-input
@@ -123,16 +124,7 @@
         [step]="1"
       />
     </div>
-    <div class="settings-section__footer">
-      <app-text-button
-        (clicked)="saveGuiPreferences()"
-        [isDisabled]="!guiPreferencesValid() || guiPreferencesUnchanged()"
-        label="common.button.save"
-        [tone]="
-          !guiPreferencesValid() ? 'warning' : guiPreferencesUnchanged() ? 'neutral' : 'positive'
-        "
-      />
-    </div>
+    <div class="settings-section__footer"></div>
   </div>
 
   @if (isAndroid) {
@@ -143,22 +135,14 @@
       </h2>
       <div class="settings-section__fields">
         <app-list-picker
-          [disabled]="keepAwake.disabled"
+          [disabled]="keepAwake.disabled || !keepAwakeSupported()"
           [formControl]="keepAwake"
           label="settings.section.android.keep-awake"
           [options]="keepAwakeOptions"
+          (valueChanged)="saveKeepAwake()"
         />
       </div>
-      @if (keepAwakeSupported()) {
-        <div class="settings-section__footer">
-          <app-text-button
-            (clicked)="saveKeepAwake()"
-            [isDisabled]="keepAwakeUnchanged()"
-            label="common.button.save"
-            [tone]="keepAwakeUnchanged() ? 'neutral' : 'positive'"
-          />
-        </div>
-      }
+      <div class="settings-section__footer"></div>
     </div>
   }
 
@@ -171,14 +155,14 @@
     </h2>
     <div class="settings-section__fields">
       <span class="section-label"> {{ 'settings.section.behaviour.info' | translate }} </span>
-    </div>
-    <div class="settings-section__footer">
+
       <app-text-button
         (clicked)="openBehaviourSettings()"
         label="settings.section.behaviour.open"
         tone="neutral"
       />
     </div>
+    <div class="settings-section__footer"></div>
   </div>
 
   <div class="settings-section">

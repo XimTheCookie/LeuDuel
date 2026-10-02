@@ -95,11 +95,11 @@
   }
 
   &__footer {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0.65rem 1rem;
+    padding: 1rem;
     border-top: 1px solid var(--border-subtle);
-    background: var(--bg-overlay);
+    background: linear-gradient(90deg, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+
+    user-select: none;
   }
 
   &__toggle-row {

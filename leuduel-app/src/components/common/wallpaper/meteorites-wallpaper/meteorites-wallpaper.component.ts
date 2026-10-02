@@ -26,10 +26,10 @@ export class MeteoritesWallpaperComponent implements AfterViewInit, OnDestroy {
   private meteorites: Meteorite[] = [];
   private animationId = 0;
 
-  // angle: ~30° from vertical (top-right to bottom-left feel)
+  // angle: ~30° from vertical (top-right to bottom-left)
   private readonly ANGLE = Math.PI / 6;
-  private readonly DX = Math.cos(this.ANGLE + Math.PI / 2);
-  private readonly DY = Math.sin(this.ANGLE + Math.PI / 2);
+  private readonly DX = -Math.sin(this.ANGLE);  // ~-0.5
+  private readonly DY = Math.cos(this.ANGLE);   // ~0.866
   private readonly COUNT = 22;
   private readonly FADE_SPEED = 0.025;
 
@@ -68,14 +68,14 @@ export class MeteoritesWallpaperComponent implements AfterViewInit, OnDestroy {
     const speed = Math.random() * 4 + 2;
     const opacity = Math.random() * 0.35 + 0.25;
 
-    // spawn anywhere across the top + left edge so they enter from top-right area
+    // spawn across top edge or right edge for full coverage
     const spawnOnTop = Math.random() < 0.6;
     const x = spawnOnTop
-      ? Math.random() * canvas.width * 1.4 - canvas.width * 0.2
-      : -length;
+      ? Math.random() * canvas.width
+      : canvas.width + length;
     const y = spawnOnTop
-      ? -length - Math.random() * canvas.height * 0.5
-      : Math.random() * canvas.height * 0.6;
+      ? -length
+      : Math.random() * canvas.height;
 
     // if staggering, advance position so screen is populated on load
     const travel = stagger ? Math.random() * (canvas.width + canvas.height) * 0.6 : 0;
@@ -124,7 +124,7 @@ export class MeteoritesWallpaperComponent implements AfterViewInit, OnDestroy {
       m.y += this.DY * m.speed;
 
       const offscreen =
-        m.x > canvas.width + margin ||
+        m.x < -margin ||
         m.y > canvas.height + margin;
 
       if (offscreen) m.dying = true;

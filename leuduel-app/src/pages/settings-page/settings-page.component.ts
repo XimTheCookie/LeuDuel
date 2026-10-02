@@ -12,6 +12,8 @@ import { BehaviourSettingsPageComponent } from '../behaviour-settings-page/behav
 import { ProfilesPageComponent } from '../profiles-page/profiles-page.component';
 import { TranslatePipe } from '../../pipes/translate/translate.pipe';
 import { IconComponent } from '../../components/common/icon/icon.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-settings-page',
@@ -239,6 +241,22 @@ export class SettingsPageComponent {
         }
       });
     }
+
+    this.lifePoints.valueChanges
+      .pipe(takeUntilDestroyed(), debounceTime(300))
+      .subscribe(() => this.startingLifePointsChanged());
+
+    this.duration.valueChanges
+      .pipe(takeUntilDestroyed(), debounceTime(300))
+      .subscribe(() => this.duelDurationChanged());
+
+    this.bestOf.valueChanges
+      .pipe(takeUntilDestroyed(), debounceTime(300))
+      .subscribe(() => this.numberOfGamesChanged());
+
+    this.numberOfRapidButtons.valueChanges
+      .pipe(takeUntilDestroyed(), debounceTime(300))
+      .subscribe(() => this.numberOfRapidButtonsChanged());
   }
 
   screenOrientationUpdated() {
@@ -251,12 +269,9 @@ export class SettingsPageComponent {
     }, 150);
   }
 
-  keepAwakeUnchanged() {
-    return this.keepAwake.value === this.keepAwakeSavedValue();
-  }
-
   saveKeepAwake() {
-    this.soundboardService.confirmationSound();
+    if (!this.keepAwake.valid) return;
+    this.soundboardService.clickSound();
     this.settingsService.setKeepAwake(!!this.keepAwake.value);
     this.keepAwakeSavedValue.set(!!this.keepAwake.value);
   }
@@ -265,76 +280,79 @@ export class SettingsPageComponent {
     this.duration.setValue(3000000);
   }
 
-  duelSettingsUnchanged() {
-    return (
-      this.lifePoints.value === this.settingsService.getStartingLifePoints() &&
-      this.duration.value === this.settingsService.getDuelDuration() &&
-      this.bestOf.value === this.settingsService.getNumberOfGames() &&
-      this.showCustomPlayers.value === this.settingsService.showCustomPlayers()
-    );
-  }
-
-  duelSettingsValid() {
-    return (
-      this.lifePoints.valid &&
-      this.duration.valid &&
-      this.bestOf.valid &&
-      this.showCustomPlayers.valid
-    );
-  }
-
-  saveDuelSettings() {
-    if (!this.duelSettingsValid() || this.duelSettingsUnchanged()) {
-      return;
-    }
-    this.soundboardService.confirmationSound();
+  startingLifePointsChanged() {
+    if (!this.lifePoints.valid) return;
+    this.soundboardService.clickSound();
     this.settingsService.setStartingLifePoints(this.lifePoints.value!);
+  }
+
+  duelDurationChanged() {
+    if (!this.duration.valid) return;
+    this.soundboardService.clickSound();
     this.settingsService.setDuelDuration(this.duration.value!);
+  }
+
+  numberOfGamesChanged() {
+    if (!this.bestOf.valid) return;
+    this.soundboardService.clickSound();
     this.settingsService.setNumberOfGames(this.bestOf.value!);
-    this.settingsService.setCustomPlayers(this.showCustomPlayers.value!);
+  }
+
+  customPlayersChanged() {
+    if (!this.showCustomPlayers.valid) return;
+    this.soundboardService.clickSound();
+    this.settingsService.setCustomPlayers(!!this.showCustomPlayers.value);
   }
 
   resetRapidButtons() {
     this.numberOfRapidButtons.setValue(this.settingsService.getNumberOfRapidButtons());
   }
 
-  guiPreferencesUnchanged() {
-    return (
-      this.numberOfRapidButtons.value === this.settingsService.getNumberOfRapidButtons() &&
-      this.rapidButtonsColumns.value === this.settingsService.getRapidButtonsColumns() &&
-      this.isLandscapeOrientation.value === this.settingsService.landscapeMode() &&
-      this.modalOpacity.value === this.settingsService.modalOpacity() &&
-      this.theme.value === this.settingsService.theme() &&
-      this.swapPlayers.value === this.settingsService.swapPlayers() &&
-      this.useRapidButtons.value === this.settingsService.useRapidButtons() &&
-      this.background.value === this.settingsService.background()
-    );
-  }
-
-  guiPreferencesValid() {
-    return (
-      this.numberOfRapidButtons.valid &&
-      this.rapidButtonsColumns.valid &&
-      this.isLandscapeOrientation.valid &&
-      this.modalOpacity.valid &&
-      this.theme.valid &&
-      this.useRapidButtons.valid &&
-      this.background.valid
-    );
-  }
-
-  saveGuiPreferences() {
-    if (this.guiPreferencesUnchanged() || !this.guiPreferencesValid()) {
-      return;
-    }
-    this.soundboardService.confirmationSound();
+  numberOfRapidButtonsChanged() {
+    if (!this.numberOfRapidButtons.valid) return;
+    this.soundboardService.clickSound();
     this.settingsService.setNumberOfRapidButtons(this.numberOfRapidButtons.value!);
+  }
+
+  rapidButtonsColumnsChanged() {
+    if (!this.rapidButtonsColumns.valid) return;
+    this.soundboardService.clickSound();
     this.settingsService.setRapidButtonsColumns(this.rapidButtonsColumns.value!);
-    this.settingsService.setLandscapeMode(this.isLandscapeOrientation.value!);
+  }
+
+  modalOpacityChanged() {
+    if (!this.modalOpacity.valid) return;
+    this.soundboardService.clickSound();
     this.settingsService.setModalOpacity(this.modalOpacity.value!);
+  }
+
+  landscapeModeChanged() {
+    if (!this.isLandscapeOrientation.valid) return;
+    this.soundboardService.clickSound();
+    this.settingsService.setLandscapeMode(this.isLandscapeOrientation.value!);
+  }
+
+  themeChanged() {
+    if (!this.theme.valid) return;
+    this.soundboardService.clickSound();
     this.settingsService.setTheme(this.theme.value!);
+  }
+
+  swapPlayersChanged() {
+    if (!this.swapPlayers.valid) return;
+    this.soundboardService.clickSound();
     this.settingsService.setSwapPlayers(!!this.swapPlayers.value);
+  }
+
+  useRapidButtonsChanged() {
+    if (!this.useRapidButtons.valid) return;
+    this.soundboardService.clickSound();
     this.settingsService.setUseRapidButtons(this.useRapidButtons.value!);
+  }
+
+  backgroundChanged() {
+    if (!this.background.valid) return;
+    this.soundboardService.clickSound();
     this.settingsService.setBackground(this.background.value!);
   }
 
@@ -360,6 +378,7 @@ export class SettingsPageComponent {
 
   languageChanged() {
     if (!this.language.valid) return;
+    this.soundboardService.clickSound();
     this.settingsService.setLanguage(this.language.value!);
   }
 }
