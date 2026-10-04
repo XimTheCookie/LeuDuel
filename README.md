@@ -334,7 +334,8 @@ See [Issues](https://github.com/XimTheCookie/LeuDuel/issues) for current bugs an
 
 If you find this project useful and would like to support me:
 
-<!-- TODO: Add Buy Me a Coffee link -->
+
+* Buy me a coffee: [https://www.buymeacoffee.com/ximthecookie](https://www.buymeacoffee.com/ximthecookie)
 
 ---
 
