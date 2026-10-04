@@ -60,7 +60,7 @@ export class CardSearchService {
         error: (err) => {
           this.error.set(err?.error?.error ?? 'No cards found.');
           this.loading.set(false);
-          this.soundboardService.clickSound();
+          this.soundboardService.counterRemove();
         },
       });
   }

@@ -4,7 +4,7 @@ import { SettingsService } from '../../../../services/settings/settings.service'
 interface Meteorite {
   x: number;
   y: number;
-  length: number;   // tail length
+  length: number; // tail length
   speed: number;
   width: number;
   opacity: number;
@@ -26,18 +26,20 @@ export class MeteoritesWallpaperComponent implements AfterViewInit, OnDestroy {
   private meteorites: Meteorite[] = [];
   private animationId = 0;
 
-  // angle: ~30° from vertical (top-right to bottom-left)
   private readonly ANGLE = Math.PI / 6;
-  private readonly DX = -Math.sin(this.ANGLE);  // ~-0.5
-  private readonly DY = Math.cos(this.ANGLE);   // ~0.866
+  private readonly DX = -Math.sin(this.ANGLE); // ~-0.5
+  private readonly DY = Math.cos(this.ANGLE); // ~0.866
   private readonly COUNT = 22;
   private readonly FADE_SPEED = 0.025;
 
   private get color(): string {
     switch (this.settingsService.theme()) {
-      case 'light': return '30, 50, 100,';
-      case 'high-contrast': return '200, 160, 40,';
-      default: return '140, 170, 220,';
+      case 'light':
+        return '30, 50, 100,';
+      case 'high-contrast':
+        return '200, 160, 40,';
+      default:
+        return '140, 170, 220,';
     }
   }
 
@@ -68,16 +70,10 @@ export class MeteoritesWallpaperComponent implements AfterViewInit, OnDestroy {
     const speed = Math.random() * 4 + 2;
     const opacity = Math.random() * 0.35 + 0.25;
 
-    // spawn across top edge or right edge for full coverage
     const spawnOnTop = Math.random() < 0.6;
-    const x = spawnOnTop
-      ? Math.random() * canvas.width
-      : canvas.width + length;
-    const y = spawnOnTop
-      ? -length
-      : Math.random() * canvas.height;
+    const x = spawnOnTop ? Math.random() * canvas.width : canvas.width + length;
+    const y = spawnOnTop ? -length : Math.random() * canvas.height;
 
-    // if staggering, advance position so screen is populated on load
     const travel = stagger ? Math.random() * (canvas.width + canvas.height) * 0.6 : 0;
 
     return {
@@ -123,9 +119,7 @@ export class MeteoritesWallpaperComponent implements AfterViewInit, OnDestroy {
       m.x += this.DX * m.speed;
       m.y += this.DY * m.speed;
 
-      const offscreen =
-        m.x < -margin ||
-        m.y > canvas.height + margin;
+      const offscreen = m.x < -margin || m.y > canvas.height + margin;
 
       if (offscreen) m.dying = true;
     }
@@ -139,7 +133,6 @@ export class MeteoritesWallpaperComponent implements AfterViewInit, OnDestroy {
     this.ctx.clearRect(0, 0, width, height);
 
     for (const m of this.meteorites) {
-      // tail start (faded) → head (bright)
       const tailX = m.x - this.DX * m.length;
       const tailY = m.y - this.DY * m.length;
 

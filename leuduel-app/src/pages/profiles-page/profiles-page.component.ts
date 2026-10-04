@@ -37,7 +37,7 @@ export class ProfilesPageComponent {
   }
 
   removeOpponent(id: number) {
-    this.soundboardService.counterSound();
+    this.soundboardService.counterRemove();
     this.playerStore.removeOpponent(id);
   }
 }

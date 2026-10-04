@@ -24,8 +24,11 @@ export class SoundboardService {
   alarmSound() {
     this.play('alarm.wav');
   }
-  counterSound() {
-    this.play('counter.wav');
+  counterAdd() {
+    this.play('counter_add.wav');
+  }
+  counterRemove() {
+    this.play('counter_remove.wav');
   }
   lifePointsSound() {
     this.play('lp.wav');

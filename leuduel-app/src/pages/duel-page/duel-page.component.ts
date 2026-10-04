@@ -29,22 +29,6 @@ export class DuelPageComponent {
   private readonly modalService = inject(ModalService);
   private readonly duelStore = inject(DuelStore);
 
-  lifePoints1 = this.duelStore.lifePoints1;
-  lifePoints2 = this.duelStore.lifePoints2;
-  playerName1 = computed(() => {
-    const player = this.duelStore.player1();
-    if (this.settingsService.showCustomPlayers()) {
-      return player.profile?.displayName ?? player.name;
-    }
-    return player.name;
-  });
-  playerName2 = computed(() => {
-    const player = this.duelStore.player2();
-    if (this.settingsService.showCustomPlayers()) {
-      return player.profile?.displayName ?? player.name;
-    }
-    return player.name;
-  });
   selectedPlayer = signal<'player1' | 'player2'>('player1');
 
   hasDefaultBg = computed(() => this.settingsService.background() === 0);

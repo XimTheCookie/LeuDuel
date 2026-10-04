@@ -107,7 +107,6 @@ export class FlamesWallpaperComponent implements AfterViewInit, OnDestroy {
       }
 
       const progress = e.life / e.maxLife;
-      // fade in quickly, hold, then fade out
       const fadeIn = Math.min(progress * 8, 1);
       const fadeOut = progress > 0.7 ? 1 - (progress - 0.7) / 0.3 : 1;
       const alpha = e.opacity * fadeIn * fadeOut;
@@ -115,7 +114,6 @@ export class FlamesWallpaperComponent implements AfterViewInit, OnDestroy {
       const color = colors[e.colorIndex];
       const r = e.radius;
 
-      // outer glow
       const glow = this.ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, r * 3);
       glow.addColorStop(0, `rgba(${color} ${alpha * 0.35})`);
       glow.addColorStop(1, `rgba(${color} 0)`);
@@ -124,7 +122,6 @@ export class FlamesWallpaperComponent implements AfterViewInit, OnDestroy {
       this.ctx.fillStyle = glow;
       this.ctx.fill();
 
-      // bright core
       const core = this.ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, r);
       core.addColorStop(0, `rgba(255, 240, 200, ${alpha})`);
       core.addColorStop(0.4, `rgba(${color} ${alpha * 0.9})`);

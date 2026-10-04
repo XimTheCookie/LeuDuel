@@ -105,7 +105,6 @@ export class StarsWallpaperComponent implements AfterViewInit, OnDestroy {
       this.ctx.fill();
     }
 
-    // occasional gold/blue accent stars
     for (let i = 0; i < this.stars.length; i += 20) {
       const star = this.stars[i];
       const twinkle = Math.sin(this.time * 1.5 + star.twinkleOffset) * 0.4 + 0.6;

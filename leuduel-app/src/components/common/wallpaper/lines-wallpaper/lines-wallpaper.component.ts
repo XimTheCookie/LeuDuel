@@ -7,10 +7,10 @@ interface Point {
 }
 
 interface Chain {
-  points: Point[];        // continuous path of points
-  angle: number;          // current heading
+  points: Point[]; // continuous path of points
+  angle: number; // current heading
   angularVelocity: number; // how fast heading turns each frame
-  totalRotation: number;  // accumulated rotation, capped to avoid circles
+  totalRotation: number; // accumulated rotation, capped to avoid circles
   speed: number;
   tailBuffer: number;
   opacity: number;
@@ -34,14 +34,17 @@ export class LinesWallpaperComponent implements AfterViewInit, OnDestroy {
 
   private readonly CHAIN_COUNT = 18;
   private readonly FADE_SPEED = 0.018;
-  private readonly MAX_ROTATION = Math.PI * 0.75; // prevent looping back
-  private readonly TAIL_INTERVAL = 8;             // add tail point every N frames
+  private readonly MAX_ROTATION = Math.PI * 0.75;
+  private readonly TAIL_INTERVAL = 8;
 
   private get lineColor(): string {
     switch (this.settingsService.theme()) {
-      case 'light': return '15, 25, 50,';
-      case 'high-contrast': return '180, 150, 40,';
-      default: return '100, 130, 190,';
+      case 'light':
+        return '15, 25, 50,';
+      case 'high-contrast':
+        return '180, 150, 40,';
+      default:
+        return '100, 130, 190,';
     }
   }
 
@@ -73,7 +76,6 @@ export class LinesWallpaperComponent implements AfterViewInit, OnDestroy {
     const av = (Math.random() - 0.5) * 0.04;
     const opacity = Math.random() * 0.3 + 0.3;
 
-    // spawn at a random position across the screen
     const ox = Math.random() * canvas.width;
     const oy = Math.random() * canvas.height;
 
@@ -81,7 +83,9 @@ export class LinesWallpaperComponent implements AfterViewInit, OnDestroy {
     const pointCount = staggerLife ? Math.floor(preTravel / speed) + 2 : 2;
 
     const points: Point[] = [];
-    let px = ox, py = oy, pa = angle;
+    let px = ox,
+      py = oy,
+      pa = angle;
     for (let i = 0; i < pointCount; i++) {
       points.push({ x: px, y: py });
       px += Math.cos(pa) * speed;
@@ -131,20 +135,17 @@ export class LinesWallpaperComponent implements AfterViewInit, OnDestroy {
         c.fadeOpacity = Math.min(c.fadeOpacity + this.FADE_SPEED, c.opacity);
       }
 
-      // turn heading, but clamp total rotation to avoid circles
       if (Math.abs(c.totalRotation) < this.MAX_ROTATION) {
         c.angle += c.angularVelocity;
         c.totalRotation += c.angularVelocity;
       }
 
-      // advance head
       const head = c.points[c.points.length - 1];
       c.points.push({
         x: head.x + Math.cos(c.angle) * c.speed,
         y: head.y + Math.sin(c.angle) * c.speed,
       });
 
-      // grow tail inward periodically
       c.tailBuffer++;
       if (c.tailBuffer >= this.TAIL_INTERVAL) {
         c.tailBuffer = 0;
@@ -174,7 +175,6 @@ export class LinesWallpaperComponent implements AfterViewInit, OnDestroy {
       const pts = c.points;
       if (pts.length < 2) continue;
 
-      // draw as a single smooth path with gradient-like alpha via segments
       const total = pts.length;
       for (let i = 1; i < total; i++) {
         const posRatio = i / total;

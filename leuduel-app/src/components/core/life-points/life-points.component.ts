@@ -1,10 +1,20 @@
-import { Component, computed, effect, inject, input, signal, untracked } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  output,
+  signal,
+  untracked,
+} from '@angular/core';
 import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 import { SettingsService } from '../../../services/settings/settings.service';
 import { BehaviourSettingsService } from '../../../services/settings/behaviour-settings.service';
 import { ModalService } from '../../../services/modal/modal.service';
 import { LifePointsResetComponent } from '../life-points-reset/life-points-reset.component';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
+import { ButtonComponent } from '../../common/button/button.component';
 
 const ANIM_DURATION = 1500;
 
@@ -13,6 +23,7 @@ const ANIM_DURATION = 1500;
   templateUrl: './life-points.component.html',
   styleUrls: ['./life-points.component.scss'],
   standalone: true,
+  imports: [ButtonComponent],
 })
 export class LifePointsComponent {
   private readonly settingsService = inject(SettingsService);
@@ -24,14 +35,26 @@ export class LifePointsComponent {
 
   hasDefaultBg = computed(() => this.settingsService.background() === 0);
 
-  lifePoints = input<number>();
   compact = input(false);
-  playerName = input<string>();
+  player = input.required<'player1' | 'player2'>();
+  lifePoints = computed(() =>
+    this.player() === 'player1' ? this.duelStore.lifePoints1() : this.duelStore.lifePoints2(),
+  );
   displayValue = signal<number | undefined>(undefined);
   animating = signal(false);
   gaining = signal(false);
 
+  lpClick = output<void>();
+
   private static zeroHandled = false;
+
+  playerName = computed(() => {
+    const player = this.duelStore[this.player()]();
+    if (this.settingsService.showCustomPlayers()) {
+      return player.profile?.displayName ?? player.name;
+    }
+    return player.name;
+  });
 
   private animFrom = 0;
   private animTarget = 0;
@@ -159,5 +182,26 @@ export class LifePointsComponent {
         this.animating.set(false);
       }
     });
+  }
+
+  unduable = computed(() => {
+    const player = this.duelStore[this.player()]();
+    return (
+      player.lifeChanges.length > 0 &&
+      player.lifeChanges[player.lifeChanges.length - 1].isReset === false
+    );
+  });
+
+  undoLifeAction() {
+    const player = this.duelStore[this.player()]();
+    if (
+      player.lifeChanges.length > 0 &&
+      player.lifeChanges[player.lifeChanges.length - 1].isReset === false
+    ) {
+      this.duelStore.undoLifeChange(
+        this.player(),
+        player.lifeChanges[player.lifeChanges.length - 1].timestamp,
+      );
+    }
   }
 }

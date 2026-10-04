@@ -39,12 +39,6 @@ export class PlayerPanelComponent {
 
   duelStore = inject(DuelStore);
 
-  get lifePoints() {
-    return this.player() === 'player1'
-      ? this.duelStore.lifePoints1()
-      : this.duelStore.lifePoints2();
-  }
-
   get wins() {
     return this.player() === 'player1' ? this.duelStore.wins1() : this.duelStore.wins2();
   }

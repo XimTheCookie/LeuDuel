@@ -5,9 +5,18 @@
   [class.animating]="animating()"
   [class.gaining]="animating() && gaining()"
 >
-  @if (playerName()) {
+  @if (playerName() && compact()) {
     <span class="lp-player">{{ playerName() }}</span>
   }
-  <span class="lp-value">{{ displayValue() ?? lifePoints() }}</span>
+  <span class="lp-value" (click)="lpClick.emit()">{{ displayValue() ?? lifePoints() }}</span>
   <span class="lp-label">LP</span>
+  @if (unduable()) {
+    <app-button
+      size="xs"
+      class="lp-undo"
+      icon="reset"
+      (click)="$event.preventDefault()"
+      (clicked)="undoLifeAction()"
+    />
+  }
 </div>

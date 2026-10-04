@@ -12,11 +12,7 @@
           [class.duel-page__lp-cell--bg]="hasDefaultBg()"
           (click)="onLpClick('player1')"
         >
-          <app-life-points
-            [compact]="true"
-            [lifePoints]="lifePoints1()"
-            [playerName]="playerName1()"
-          />
+          <app-life-points [compact]="true" player="player1" />
         </div>
         <app-duel-controller class="duel-page__controller" />
         <div
@@ -26,11 +22,7 @@
           [class.duel-page__lp-cell--bg]="hasDefaultBg()"
           (click)="onLpClick('player2')"
         >
-          <app-life-points
-            [compact]="true"
-            [lifePoints]="lifePoints2()"
-            [playerName]="playerName2()"
-          />
+          <app-life-points [compact]="true" player="player2" />
         </div>
       </div>
       <div

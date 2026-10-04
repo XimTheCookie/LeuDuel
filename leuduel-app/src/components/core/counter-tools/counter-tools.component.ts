@@ -1,6 +1,5 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { ToolsStore } from '../../../stores/tools-store/tools.store';
-import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 
 @Component({
   selector: 'app-counter-tools',
@@ -9,7 +8,6 @@ import { SoundboardService } from '../../../services/soundboard/soundboard.servi
   standalone: true,
 })
 export class CounterToolsComponent {
-  private soundboardService = inject(SoundboardService);
   toolsStore = inject(ToolsStore);
 
   player = input.required<1 | 2>();
@@ -33,35 +31,27 @@ export class CounterToolsComponent {
   );
 
   mzAdd(i: number) {
-    this.soundboardService.counterSound();
     this.toolsStore.addCounter(this.player(), 'mz', i);
   }
   mzRemove(i: number) {
-    this.soundboardService.clickSound();
     this.toolsStore.removeCounter(this.player(), 'mz', i);
   }
   stzAdd(i: number) {
-    this.soundboardService.counterSound();
     this.toolsStore.addCounter(this.player(), 'stz', i);
   }
   stzRemove(i: number) {
-    this.soundboardService.clickSound();
     this.toolsStore.removeCounter(this.player(), 'stz', i);
   }
   emzAdd(i: 0 | 1) {
-    this.soundboardService.counterSound();
     this.toolsStore.addEmz(i);
   }
   emzRemove(i: 0 | 1) {
-    this.soundboardService.clickSound();
     this.toolsStore.removeEmz(i);
   }
   fzAdd() {
-    this.soundboardService.counterSound();
     this.toolsStore.addFz(this.player() === 1 ? 0 : 1);
   }
   fzRemove() {
-    this.soundboardService.clickSound();
     this.toolsStore.removeFz(this.player() === 1 ? 0 : 1);
   }
 }

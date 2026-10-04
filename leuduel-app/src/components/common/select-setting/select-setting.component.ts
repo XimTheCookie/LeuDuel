@@ -25,7 +25,7 @@ export class SelectSettingComponent {
   defaultValue = input<number>(0);
 
   select(index: number) {
-    this.soundboardService.counterSound();
+    this.soundboardService.counterAdd();
     this.control().setValue(index);
   }
 

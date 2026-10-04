@@ -68,7 +68,7 @@ export class ProfileEditorComponent implements OnInit {
   }
 
   clearCard() {
-    this.soundboardService.counterSound();
+    this.soundboardService.counterRemove();
     this.selectedCardUrl.set(null);
   }
 

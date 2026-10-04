@@ -45,7 +45,7 @@ export class LogsPageComponent {
 
     return all.map((c) => ({
       ...c,
-      undoable: c.timestamp >= (lastResetTs[c._player] ?? 0),
+      undoable: !c.isReset && c.timestamp > (lastResetTs[c._player] ?? 0),
     }));
   });
 
