@@ -269,6 +269,13 @@ export class SettingsPageComponent {
     }, 150);
   }
 
+  screenOrientationChanged() {
+    if (!this.isLandscapeOrientation.valid) return;
+    this.soundboardService.clickSound();
+    this.settingsService.setLandscapeMode(this.isLandscapeOrientation.value!);
+    this.screenOrientationUpdated();
+  }
+
   saveKeepAwake() {
     if (!this.keepAwake.valid) return;
     this.soundboardService.clickSound();

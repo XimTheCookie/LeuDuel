@@ -87,7 +87,7 @@
           [formControl]="isLandscapeOrientation"
           label="settings.section.gui.orientation"
           [options]="orientationOptions"
-          (valueChanged)="screenOrientationUpdated()"
+          (valueChanged)="screenOrientationChanged()"
         />
         <app-list-picker
           [disabled]="swapPlayersDisabled()"
