@@ -61,7 +61,32 @@ Any action is saved immediately to ensure nothing is lost
 
 ## 🖼️ Screenshots
 
-<!-- TODO: Add screenshots/GIFs here -->
+<table>
+    <tr>
+        <td><img src="docs/screenshots/screenshot-000.jpeg" width="250"></td>
+        <td><img src="docs/screenshots/screenshot-001.jpeg" width="250"></td>
+        <td><img src="docs/screenshots/screenshot-002.jpeg" width="250"></td>
+    </tr>
+    <tr>
+        <td><img src="docs/screenshots/screenshot-003.jpeg" width="250"></td>
+        <td><img src="docs/screenshots/screenshot-004.jpeg" width="250"></td>
+        <td><img src="docs/screenshots/screenshot-005.jpeg" width="250"></td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td><img src="docs/screenshots/screenshot-006.jpeg" width="250"></td>
+        <td><img src="docs/screenshots/screenshot-007.jpeg" width="500"></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td><img src="docs/screenshots/screenshot-008.jpeg" width="250"></td>
+        <td><img src="docs/screenshots/screenshot-009.jpeg" width="250"></td>
+        <td><img src="docs/screenshots/screenshot-010.jpeg" width="250"></td>
+    </tr>
+</table>
 
 ---
 
