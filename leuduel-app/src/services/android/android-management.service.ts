@@ -8,27 +8,15 @@ import { StatusBar, Style } from '@capacitor/status-bar';
   providedIn: 'root',
 })
 export class AndroidManagementService {
-
   isAndroid(): boolean {
     return Capacitor.getPlatform() === 'android';
-  }
-
-  private readonly hideStatusBarOnClick = () => StatusBar.hide();
-
-  hideStatusBar(addListener = false) {
-    if (Capacitor.isNativePlatform()) {
-      StatusBar.hide();
-      if (!addListener) return;
-      document.removeEventListener('click', this.hideStatusBarOnClick);
-      document.addEventListener('click', this.hideStatusBarOnClick);
-    }
   }
 
   setStatusBarDark() {
     if (Capacitor.isNativePlatform()) {
       StatusBar.setStyle({ style: Style.Dark });
       StatusBar.setOverlaysWebView({ overlay: true });
-      StatusBar.setBackgroundColor({ color: '#060a12' });
+      StatusBar.setBackgroundColor({ color: '#070808' });
     }
   }
 
