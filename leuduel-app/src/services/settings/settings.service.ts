@@ -1,15 +1,14 @@
 import {
-  Injectable,
+  effect,
   EnvironmentInjector,
   inject,
-  signal,
-  effect,
+  Injectable,
   runInInjectionContext,
+  signal,
 } from '@angular/core';
 import { LifeAction } from '../../models/life-action.model';
-import { PersistanceService } from './persistance.service';
-import { Subject } from 'rxjs';
 import { AndroidManagementService } from '../android/android-management.service';
+import { PersistanceService } from './persistance.service';
 
 const DEFAULT_VALUES: SettingsSnapshot = {
   startingLifePoints: 8000,
@@ -110,8 +109,6 @@ export class SettingsService {
   language = signal<string>(DEFAULT_VALUES.language);
   background = signal<number>(DEFAULT_VALUES.background);
 
-  settingsInitialized = new Subject<void>();
-
   constructor(private persistance: PersistanceService) {
     const injector = inject(EnvironmentInjector);
     this.restore().then(() => runInInjectionContext(injector, () => effect(() => this.persist())));
@@ -120,7 +117,6 @@ export class SettingsService {
   private async restore() {
     const saved = await this.persistance.load<SettingsSnapshot>(SETTINGS_KEY);
     if (!saved) {
-      this.settingsInitialized.next();
       return;
     }
     this.startingLifePoints.set(saved.startingLifePoints);
@@ -141,7 +137,6 @@ export class SettingsService {
     this.language.set(saved.language ?? DEFAULT_VALUES.language);
     this.background.set(saved.background ?? 0);
     this.applyMode();
-    this.settingsInitialized.next();
   }
 
   private persist() {

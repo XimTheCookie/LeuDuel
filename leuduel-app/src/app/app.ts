@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { AfterViewInit, Component, effect, inject } from '@angular/core';
 import { take } from 'rxjs';
 import { WelcomeModalComponent } from '../components/core/welcome-modal/welcome-modal.component';
 import { AndroidManagementService } from '../services/android/android-management.service';
@@ -12,7 +12,7 @@ import { WrapperComponent } from '../components/core/wrapper/wrapper.component';
   styleUrl: './app.scss',
   templateUrl: './app.html',
 })
-export class App {
+export class App implements AfterViewInit {
   private readonly modalService = inject(ModalService);
   private readonly androidManagementService = inject(AndroidManagementService);
   private readonly settingsService = inject(SettingsService);
@@ -21,8 +21,10 @@ export class App {
     effect(() => {
       this.androidManagementService.setOrientation(this.settingsService.landscapeMode());
     });
+  }
 
-    this.settingsService.settingsInitialized.pipe(take(1)).subscribe(() => {
+  ngAfterViewInit(): void {
+    setTimeout(() => {
       if (this.settingsService.firstVisit()) {
         this.modalService.open(WelcomeModalComponent, {
           size: 'sm',
@@ -30,6 +32,6 @@ export class App {
         });
         this.settingsService.setFirstVisitDone();
       }
-    });
+    }, 500);
   }
 }

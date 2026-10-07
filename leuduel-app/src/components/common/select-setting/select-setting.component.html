@@ -6,16 +6,18 @@
     </div>
   }
   <div class="ss-row">
-    @for (item of config().labels; track $index) {
-      <button
-        class="ss-btn"
-        type="button"
-        [class.ss-btn--active]="control().value === $index"
-        (click)="select($index)"
-      >
-        {{ item | translate }}
-      </button>
-    }
+    <div class="ss-row__items">
+      @for (item of config().labels; track $index) {
+        <button
+          class="ss-btn"
+          type="button"
+          [class.ss-btn--active]="control().value === $index"
+          (click)="select($index)"
+        >
+          {{ item | translate }}
+        </button>
+      }
+    </div>
     <button class="ss-btn ss-btn--reset" type="button" (click)="reset()">↺</button>
   </div>
 </div>

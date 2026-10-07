@@ -53,6 +53,13 @@ export class DuelControllerComponent implements AfterViewInit {
       if (isOvertime && !this.wasOvertime()) {
         this.soundboardService.alarmSound();
         this.wasOvertime.set(true);
+        const matchStopBehaviour = untracked(() => this.behaviourSettings.matchStop());
+        if (
+          (matchStopBehaviour === 2 || matchStopBehaviour === 3) &&
+          untracked(() => this.duelStore.isDuelStarted())
+        ) {
+          this.suggestMatchStop();
+        }
       } else if (!isOvertime) {
         this.wasOvertime.set(false);
       }
@@ -64,8 +71,9 @@ export class DuelControllerComponent implements AfterViewInit {
       const winsPlayer2 = this.duelStore.wins2();
       if (winsPlayer1 === 0 && winsPlayer2 === 0) return;
       if (winsPlayer1 >= bestOf / 2 || winsPlayer2 >= bestOf / 2) {
+        const matchStopBehaviour = untracked(() => this.behaviourSettings.matchStop());
         if (
-          this.behaviourSettings.matchStop() === 1 &&
+          (matchStopBehaviour === 1 || matchStopBehaviour === 3) &&
           untracked(() => this.duelStore.isDuelStarted())
         ) {
           this.suggestMatchStop();
@@ -82,15 +90,8 @@ export class DuelControllerComponent implements AfterViewInit {
 
   private suggestMatchStop() {
     setTimeout(() => {
-      const bestOf = this.settingsService.getNumberOfGames();
-      const winsPlayer1 = this.duelStore.wins1();
-      const winsPlayer2 = this.duelStore.wins2();
-      if (winsPlayer1 === 0 && winsPlayer2 === 0) return;
-      if (winsPlayer1 >= bestOf / 2 || winsPlayer2 >= bestOf / 2) {
-        if (this.behaviourSettings.matchStop() === 1 && this.duelStore.isDuelStarted()) {
-          this.stopMatch();
-        }
-      }
+      if (this.modalService.hasOpenModal || !this.duelStore.isDuelStarted()) return;
+      this.stopMatch();
     }, 1000);
   }
 

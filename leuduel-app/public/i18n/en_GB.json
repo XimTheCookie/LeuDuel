@@ -120,9 +120,11 @@
       "title": "Match stop",
       "label": {
         "manual": "Manual",
-        "winner-found": "Winner found"
+        "winner-found": "Winner found",
+        "timer-ends": "Timer ends",
+        "both": "Both"
       },
-      "info": "Defines when the match stop.<ul><li><b>Manual</b>: Match stop prompt opens when triggered explicitly.</li><li><b>Winner found</b>: Match stop prompt opens when a winner is found.</li></ul>"
+      "info": "Defines when the match stop.<ul><li><b>Manual</b>: Match stop prompt opens when triggered explicitly.</li><li><b>Winner found</b>: Match stop prompt opens when a winner is found.</li><li><b>Timer ends</b>: Match stop prompt opens when the timer ends.</li><li><b>Both</b>: Match stop prompt opens when either the timer ends or a winner is found.</li></ul>"
     },
     "on-startup": {
       "title": "On startup",

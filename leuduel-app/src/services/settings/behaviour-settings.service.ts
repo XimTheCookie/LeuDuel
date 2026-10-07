@@ -29,7 +29,7 @@ export const BEHAVIOURS_CONFIG = {
   winnerSelect: {
     labels: [
       'behaviour-settings.winner-selection.label.manual',
-      'behaviour-settings.game-reset.label.manual',
+      'behaviour-settings.winner-selection.label.auto',
     ],
     helper: 'behaviour-settings.winner-selection.info',
   },
@@ -37,6 +37,8 @@ export const BEHAVIOURS_CONFIG = {
     labels: [
       'behaviour-settings.match-stop.label.manual',
       'behaviour-settings.match-stop.label.winner-found',
+      'behaviour-settings.match-stop.label.timer-ends',
+      'behaviour-settings.match-stop.label.both',
     ],
     helper: 'behaviour-settings.match-stop.info',
   },

@@ -13,15 +13,11 @@
   </div>
 
   <div class="welcome__actions">
-    <app-text-button
-      label="settings.list-value.orientation.potrait"
-      tone="neutral"
-      (clicked)="selectMode(false)"
-    />
-    <app-text-button
-      label="settings.list-value.orientation.landscape"
-      tone="neutral"
-      (clicked)="selectMode(true)"
+    <app-list-picker
+      [formControl]="theme"
+      label="settings.section.gui.theme"
+      [options]="themeOptions"
+      (valueChanged)="onThemeChanged()"
     />
   </div>
 </div>

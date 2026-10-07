@@ -3,7 +3,8 @@ import { Component, Inject, inject, Type } from '@angular/core';
 import { ModalConfig } from '../../../services/modal/modal.service';
 import { SettingsService } from '../../../services/settings/settings.service';
 import { MODAL_DATA } from '../../common/modal-generic/modal-generic.component';
-import { TextButtonComponent } from '../../common/text-button/text-button.component';
+import { FormControl } from '@angular/forms';
+import { ListPickerComponent } from '../../common/list-picker/list-picker.component';
 import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
@@ -12,11 +13,19 @@ import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
   templateUrl: './welcome-modal.component.html',
   styleUrls: ['./welcome-modal.component.scss'],
   standalone: true,
-  imports: [TextButtonComponent, TranslatePipe],
+  imports: [ListPickerComponent, TranslatePipe],
 })
 export class WelcomeModalComponent {
   private readonly soundboardService = inject(SoundboardService);
   private readonly settingsService = inject(SettingsService);
+
+  theme = new FormControl<string>(this.settingsService.theme());
+
+  readonly themeOptions = [
+    { label: 'settings.list-value.theme.light', value: 'light' },
+    { label: 'settings.list-value.theme.dark', value: 'dark' },
+    { label: 'settings.list-value.theme.high-contrast', value: 'high-contrast' },
+  ];
 
   constructor(
     @Inject(MODAL_DATA)
@@ -27,9 +36,9 @@ export class WelcomeModalComponent {
     },
   ) {}
 
-  selectMode(landscape: boolean) {
+  onThemeChanged() {
     this.soundboardService.clickSound();
-    this.settingsService.setLandscapeMode(landscape);
+    this.settingsService.setTheme(this.theme.value!);
     this.modalData.overlayRef.dispose();
   }
 }

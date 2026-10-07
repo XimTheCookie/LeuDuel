@@ -120,9 +120,11 @@
       "title": "Fine Match",
       "label": {
         "manual": "Manuale",
-        "winner-found": "Vincitore trovato"
+        "winner-found": "Vincitore trovato",
+        "timer-ends": "Fine timer",
+        "both": "Entrambi"
       },
-      "info": "Come ci si comporta quando il match finisce.<ul><li><b>Manuale</b>: La finestra di fine match deve essere aperta dal giocatore.</li><li><b>Vincitore trovato</b>: La finestra di fine match si apre appena un possibile vincitore è disponibile.</li></ul>"
+      "info": "Come ci si comporta quando il match finisce.<ul><li><b>Manuale</b>: La finestra di fine match deve essere aperta dal giocatore.</li><li><b>Vincitore trovato</b>: La finestra di fine match si apre appena un possibile vincitore è disponibile.</li><li><b>Fine timer</b>: La finestra di fine match si apre quando il timer scade.</li><li><b>Entrambi</b>: La finestra di fine match si apre quando il timer scade o quando un possibile vincitore è disponibile.</li></ul>"
     },
     "on-startup": {
       "title": "Sull'avvio",
