@@ -36,16 +36,23 @@ export class DuelPageComponent {
   wins1 = computed(() => this.duelStore.wins1());
   wins2 = computed(() => this.duelStore.wins2());
 
+  onLpSelect(player: 'player1' | 'player2') {
+    if (this.selectedPlayer() !== player) {
+      this.selectedPlayer.set(player);
+    }
+  }
+
   onLpClick(player: 'player1' | 'player2') {
     if (this.selectedPlayer() !== player) {
       this.selectedPlayer.set(player);
-    } else {
-      if (!this.settingsService.useRapidButtons()) return;
-      this.modalService.open(
-        LifePointsAdjustModalComponent,
-        { opacity: this.settingsService.getModalOpacity(), size: 'sm' },
-        { player },
-      );
+      return;
     }
+
+    if (!this.settingsService.useRapidButtons()) return;
+    this.modalService.open(
+      LifePointsAdjustModalComponent,
+      { opacity: this.settingsService.getModalOpacity(), size: 'sm' },
+      { player },
+    );
   }
 }

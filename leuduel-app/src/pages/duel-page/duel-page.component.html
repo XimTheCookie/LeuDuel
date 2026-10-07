@@ -10,9 +10,14 @@
           [class.duel-page__lp-cell--selected]="selectedPlayer() === 'player1'"
           [class.duel-page__lp-cell--swap]="settingsService.swapPlayers()"
           [class.duel-page__lp-cell--bg]="hasDefaultBg()"
-          (click)="onLpClick('player1')"
+          (click)="onLpSelect('player1')"
         >
-          <app-life-points [compact]="true" player="player1" />
+          <app-life-points
+            (lpClick)="onLpClick('player1')"
+            class="w-full"
+            [compact]="true"
+            player="player1"
+          />
         </div>
         <app-duel-controller class="duel-page__controller" />
         <div
@@ -20,9 +25,14 @@
           [class.duel-page__lp-cell--selected]="selectedPlayer() === 'player2'"
           [class.duel-page__lp-cell--swap]="settingsService.swapPlayers()"
           [class.duel-page__lp-cell--bg]="hasDefaultBg()"
-          (click)="onLpClick('player2')"
+          (click)="onLpSelect('player2')"
         >
-          <app-life-points [compact]="true" player="player2" />
+          <app-life-points
+            (lpClick)="onLpClick('player2')"
+            class="w-full"
+            [compact]="true"
+            player="player2"
+          />
         </div>
       </div>
       <div
