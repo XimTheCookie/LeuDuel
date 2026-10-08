@@ -62,7 +62,8 @@
       },
       "information": {
         "title": "Informazioni",
-        "author": "Creato da {{author}}"
+        "author": "Creato da {{author}}",
+        "help": "Puoi trovare tutte le informazioni sull'app nella pagina GitHub."
       }
     },
     "list-value": {

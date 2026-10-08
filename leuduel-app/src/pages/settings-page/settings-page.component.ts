@@ -14,6 +14,8 @@ import { TranslatePipe } from '../../pipes/translate/translate.pipe';
 import { IconComponent } from '../../components/common/icon/icon.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
+import { APP_VERSION } from '../../app/app.config';
+import { ButtonComponent } from '../../components/common/button/button.component';
 
 @Component({
   selector: 'app-settings-page',
@@ -27,9 +29,12 @@ import { debounceTime } from 'rxjs';
     ListPickerComponent,
     TranslatePipe,
     IconComponent,
+    ButtonComponent,
   ],
 })
 export class SettingsPageComponent {
+  version = APP_VERSION;
+
   private readonly soundboardService = inject(SoundboardService);
   private readonly modalService = inject(ModalService);
   private readonly settingsService = inject(SettingsService);

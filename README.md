@@ -154,14 +154,9 @@ Duelist profiles can associate to a card image for personalization, but the appl
 
 ### Audio Sources
 
-<!-- TODO: Document sources and licenses for: alarm.wav, click.wav, coin_flip.wav, confirm.wav, counter_add.wav, counter_remove.wav, dice_roll.wav, lp_change.wav, lp_set.wav, lp_zero.wav, lp.wav -->
-
-| Asset | Source | License | Attribution |
-| ----- | ------ | ------- | ----------- |
+> Audio resources are currently self made LMMS and thereàs definitely room for improvements.
 
 ### Yu-Gi-Oh! Related Material
-
-<!-- TODO: Document any YGO-related names, artwork, or trademarks used and their respective permissions/disclaimers -->
 
 > This project is not affiliated with, endorsed by, or sponsored by Konami or any Yu-Gi-Oh! rights holders.
 
@@ -267,18 +262,7 @@ docker compose -f docker-compose.android.yml up --build --remove-orphans
 
 ## 🚀 Android Release Build
 
-> TODO: Release build is not yet implemented. The following items are pending:
-
-* [ ] Release Gradle configuration
-* [ ] Release signing
-* [ ] Keystore management
-* [ ] Environment/configuration management
-* [ ] Versioning
-* [ ] APK generation
-* [ ] AAB generation
-* [ ] Release verification
-* [ ] Google Play submission
-* [ ] F-Droid compatibility/build requirements
+* Google play release is in progress.
 
 > **Security:** Never commit release keystores, signing passwords, API keys, or other secrets to the repository.
 

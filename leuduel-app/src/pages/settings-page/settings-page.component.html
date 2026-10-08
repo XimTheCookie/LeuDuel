@@ -37,11 +37,12 @@
           [options]="customPlayersOption"
           (valueChanged)="customPlayersChanged()"
         />
-        <app-text-button
-          [alignBottom]="true"
+        <app-button
+          class="mt-auto"
+          size="xs"
           (clicked)="openProfiles()"
-          label="settings.section.duel.custom-profiles-modify"
           tone="neutral"
+          icon="settings"
         />
       </div>
     </div>
@@ -177,14 +178,18 @@
     </div>
     <div class="settings-section__fields">
       <span class="section-label section-label--col">
-        <span>leuDuel v1.0</span>
+        <span>leuDuel v{{ version }}</span>
         <span>
           {{
             'settings.section.information.author' | translate: { author: 'XimTheCookie (Xim_)' }
           }}</span
         >
+        <span>
+          {{ 'settings.section.information.help' | translate }}
+        </span>
         <a class="section-label--link" (click)="openGitHub()">GitHub</a>
       </span>
     </div>
+    <div class="settings-section__footer"></div>
   </div>
 </div>

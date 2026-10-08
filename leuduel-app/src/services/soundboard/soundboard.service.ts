@@ -30,9 +30,6 @@ export class SoundboardService {
   counterRemove() {
     this.play('counter_remove.wav');
   }
-  lifePointsSound() {
-    this.play('lp.wav');
-  }
   lifePointsChange() {
     this.play('lp_change.wav');
   }

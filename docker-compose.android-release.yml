@@ -1,0 +1,34 @@
+services:
+  android-release:
+    build:
+      context: .
+      dockerfile: docker/android-build/Dockerfile
+    volumes:
+      - ./leuduel-app:/workspace/leuduel-app
+      - ./output:/output
+      - android-build-gradle:/root/.gradle
+      - leuduel-android-node-modules:/workspace/leuduel-app/node_modules
+      - ${KEYSTORE_HOST_PATH}:/secrets/leuduel-upload.jks:ro
+    working_dir: /workspace/leuduel-app
+    environment:
+      - ANDROID_HOME=/opt/android-sdk
+      - JAVA_HOME=/opt/java/openjdk
+      - KEYSTORE_PATH=/secrets/leuduel-upload.jks
+      - KEYSTORE_PASSWORD=${KEYSTORE_PASSWORD}
+      - KEY_ALIAS=${KEY_ALIAS}
+      - KEY_PASSWORD=${KEY_PASSWORD}
+    command: >
+      sh -c "
+        npm ci &&
+        ng build --configuration production &&
+        npx cap sync android &&
+        cd android &&
+        chmod +x gradlew &&
+        ./gradlew bundleRelease &&
+        cp app/build/outputs/bundle/release/app-release.aab /output/leuduel-release.aab &&
+        echo 'AAB ready at ./output/leuduel-release.aab'
+      "
+
+volumes:
+  android-build-gradle:
+  leuduel-android-node-modules:

@@ -1,0 +1,15 @@
+services:
+  keytool:
+    build:
+      context: .
+      dockerfile: docker/android-build/Dockerfile
+    volumes:
+      - ./keys:/output
+    entrypoint: keytool
+    command: >
+      -genkey -v
+      -keystore /output/leuduel-upload.jks
+      -alias leuduel
+      -keyalg RSA
+      -keysize 2048
+      -validity 10000

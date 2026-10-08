@@ -2,3 +2,7 @@
 *.apk
 *.aab
 
+# Signing
+*.jks
+keys/
+release.env

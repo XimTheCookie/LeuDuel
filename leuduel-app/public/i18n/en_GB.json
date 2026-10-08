@@ -62,7 +62,8 @@
       },
       "information": {
         "title": "Information",
-        "author": "By {{author}}"
+        "author": "By {{author}}",
+        "help": "You can find all the information about the app on the GitHub page."
       }
     },
     "list-value": {
