@@ -53,6 +53,6 @@ Upload it on Google Play Console under **Release → Production → Create new r
 
 ## Versioning
 
-1. Bump `versionCode` and `versionName` in `leuduel-app/android/app/build.gradle`
+1. Bump `versionCode` and `versionName` in `leuduel-app/android/app/build.gradle` and `APP_VERSION` in `leuduel-app/src/app/app.config.ts`
 2. Run `build-android-release.bat`
 3. Upload `output/leuduel-release.aab` to Google Play Console
