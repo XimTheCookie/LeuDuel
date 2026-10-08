@@ -135,7 +135,7 @@
       </h2>
       <div class="settings-section__fields">
         <app-list-picker
-          [disabled]="keepAwake.disabled || !keepAwakeSupported()"
+          [disabled]="!keepAwakeSupported()"
           [formControl]="keepAwake"
           label="settings.section.android.keep-awake"
           [options]="keepAwakeOptions"
