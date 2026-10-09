@@ -33,3 +33,10 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.bs-list-item {
+  display: flex;
+  align-items: end;
+  gap: 0.5rem;
+  justify-content: center;
+}

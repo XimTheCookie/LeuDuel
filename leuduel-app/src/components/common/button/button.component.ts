@@ -10,7 +10,7 @@ import { IconComponent } from '../icon/icon.component';
 })
 export class ButtonComponent {
   isDisabled = input<boolean>(false);
-  size = input<'xs' | 'sm' | 'md' | 'xl'>('md');
+  size = input<'2xs' | 'xs' | 'sm' | 'md' | 'xl'>('md');
   tone = input<'neutral' | 'positive' | 'negative' | 'warning'>('neutral');
   icon = input<string>();
   label = input<string>('');

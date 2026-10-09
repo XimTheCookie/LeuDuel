@@ -8,46 +8,52 @@ import {
 } from '@angular/core';
 import { PersistanceService } from './persistance.service';
 import { Subject } from 'rxjs';
+import { BehaviourOption } from '../../models/behavior-option.model';
 
-export const BEHAVIOURS_CONFIG = {
+export const BEHAVIOURS_CONFIG: Record<string, BehaviourOption> = {
   counterReset: {
-    labels: [
-      'behaviour-settings.counter-reset.label.never',
-      'behaviour-settings.counter-reset.label.game',
-      'behaviour-settings.counter-reset.label.match',
-    ],
     helper: 'behaviour-settings.counter-reset.info',
+    label: 'behaviour-settings.counter-reset.title',
+    values: [
+      { label: 'behaviour-settings.counter-reset.label.never', value: 0 },
+      { label: 'behaviour-settings.counter-reset.label.game', value: 1 },
+      { label: 'behaviour-settings.counter-reset.label.match', value: 2 },
+    ],
   },
   gameReset: {
-    labels: [
-      'behaviour-settings.game-reset.label.manual',
-      'behaviour-settings.game-reset.label.lp-zero',
-      'behaviour-settings.game-reset.label.lp-zero-auto',
-    ],
     helper: 'behaviour-settings.game-reset.info',
+    label: 'behaviour-settings.game-reset.title',
+    values: [
+      { label: 'behaviour-settings.game-reset.label.manual', value: 0 },
+      { label: 'behaviour-settings.game-reset.label.lp-zero', value: 1 },
+      { label: 'behaviour-settings.game-reset.label.lp-zero-auto', value: 2 },
+    ],
   },
   winnerSelect: {
-    labels: [
-      'behaviour-settings.winner-selection.label.manual',
-      'behaviour-settings.winner-selection.label.auto',
-    ],
     helper: 'behaviour-settings.winner-selection.info',
+    label: 'behaviour-settings.winner-selection.title',
+    values: [
+      { label: 'behaviour-settings.winner-selection.label.manual', value: 0 },
+      { label: 'behaviour-settings.winner-selection.label.auto', value: 1 },
+    ],
   },
   matchStop: {
-    labels: [
-      'behaviour-settings.match-stop.label.manual',
-      'behaviour-settings.match-stop.label.winner-found',
-      'behaviour-settings.match-stop.label.timer-ends',
-      'behaviour-settings.match-stop.label.both',
-    ],
     helper: 'behaviour-settings.match-stop.info',
+    label: 'behaviour-settings.match-stop.title',
+    values: [
+      { label: 'behaviour-settings.match-stop.label.manual', value: 0 },
+      { label: 'behaviour-settings.match-stop.label.winner-found', value: 1 },
+      { label: 'behaviour-settings.match-stop.label.timer-ends', value: 2 },
+      { label: 'behaviour-settings.match-stop.label.both', value: 3 },
+    ],
   },
   onStartup: {
-    labels: [
-      'behaviour-settings.on-startup.label.restore',
-      'behaviour-settings.on-startup.label.reset',
-    ],
     helper: 'behaviour-settings.on-startup.info',
+    label: 'behaviour-settings.on-startup.title',
+    values: [
+      { label: 'behaviour-settings.on-startup.label.restore', value: 0 },
+      { label: 'behaviour-settings.on-startup.label.reset', value: 1 },
+    ],
   },
 };
 

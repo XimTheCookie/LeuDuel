@@ -94,6 +94,14 @@
     }
   }
 
+  &__fields--row-alt {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--bg-panel-alt);
+    margin: 0.9rem 1rem;
+  }
+
   &__footer {
     padding: 1rem;
     border-top: 1px solid var(--border-subtle);

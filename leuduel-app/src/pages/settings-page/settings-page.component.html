@@ -30,7 +30,7 @@
         [canReset]="true"
         (doReset)="resetTimer()"
       />
-      <div class="settings-section__fields--row">
+      <div class="settings-section__fields--row-alt">
         <app-list-picker
           [formControl]="showCustomPlayers"
           label="settings.section.duel.custom-profiles"
@@ -39,7 +39,7 @@
         />
         <app-button
           class="mt-auto"
-          size="xs"
+          size="2xs"
           (clicked)="openProfiles()"
           tone="neutral"
           icon="settings"

@@ -4,36 +4,17 @@
   </h2>
 
   <div class="bs-list">
-    <app-select-setting
-      [control]="counterReset"
-      [config]="configs.counterReset"
-      label="behaviour-settings.counter-reset.title"
-      [defaultValue]="1"
-    />
-    <app-select-setting
-      [control]="gameReset"
-      [config]="configs.gameReset"
-      label="behaviour-settings.game-reset.title"
-      [defaultValue]="0"
-    />
-    <app-select-setting
-      [control]="winnerSelect"
-      [config]="configs.winnerSelect"
-      label="behaviour-settings.winner-selection.title"
-      [defaultValue]="0"
-    />
-    <app-select-setting
-      [control]="matchStop"
-      [config]="configs.matchStop"
-      label="behaviour-settings.match-stop.title"
-      [defaultValue]="0"
-    />
-    <app-select-setting
-      [control]="onStartup"
-      [config]="configs.onStartup"
-      label="behaviour-settings.on-startup.title"
-      [defaultValue]="0"
-    />
+    @for (configKey of allConfigKeys; track configKey) {
+      @let config = getOptionConfig(configKey);
+      <div class="bs-list-item">
+        <app-list-picker
+          [formControl]="getFormControlForConfig(configKey)"
+          [label]="config.label"
+          [options]="config.values"
+        />
+        <app-button (clicked)="info(config.helper)" icon="info" size="2xs" tone="neutral" />
+      </div>
+    }
   </div>
 
   <div class="bs-footer">

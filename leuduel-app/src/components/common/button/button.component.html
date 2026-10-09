@@ -1,5 +1,6 @@
 <button
   class="default-button flex items-center justify-center"
+  [class.default-button--2xs]="size() === '2xs'"
   [class.default-button--xs]="size() === 'xs'"
   [class.default-button--sm]="size() === 'sm'"
   [class.default-button--md]="size() === 'md'"
