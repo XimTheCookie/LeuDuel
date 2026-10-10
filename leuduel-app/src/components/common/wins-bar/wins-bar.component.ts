@@ -14,7 +14,7 @@ export class WinsBarComponent {
   wins = input.required<number>();
 
   numberOfGamesArray = computed<number[]>(() => {
-    const n = this.settingsService.getNumberOfGames();
+    const n = Math.ceil(this.settingsService.getNumberOfGames() / 2);
     return Array.from({ length: n }, (_, i) => i + 1);
   });
 }

@@ -213,7 +213,7 @@ export class SettingsPageComponent {
     },
   ];
 
-  readonly bestOfOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => ({
+  readonly bestOfOptions = [1, 3, 5, 7, 9].map((n) => ({
     label: n.toString(),
     value: n,
   }));
