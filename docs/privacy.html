@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LeuDuel – Privacy Policy</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #222; line-height: 1.6; }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.2rem; margin-top: 2rem; }
+    a { color: #1a73e8; }
+  </style>
+</head>
+<body>
+
+  <h1>Privacy Policy – LeuDuel</h1>
+  <p><strong>Last updated:</strong> 10/10/2025</p>
+
+  <p>
+    LeuDuel is a free, open-source Yu-Gi-Oh! duel companion app for Android, developed as a hobby project.
+    This privacy policy explains how the app handles user data.
+  </p>
+
+  <h2>1. Data We Do Not Collect</h2>
+  <p>
+    LeuDuel does <strong>not</strong> collect, transmit, or store any personal or sensitive user data on any server.
+    The developer has no access to any information from your device.
+  </p>
+
+  <h2>2. Data Stored Locally on Your Device</h2>
+  <p>The following data is stored exclusively on your device using Capacitor Preferences (key-value storage) and never leaves it:</p>
+  <ul>
+    <li>Application preferences and settings</li>
+    <li>Duel state (life points, timers, win counters)</li>
+    <li>Duelist profiles (custom names and associated card images)</li>
+  </ul>
+  <p>This data can be cleared at any time by uninstalling the app or clearing app data from your device settings.</p>
+
+  <h2>3. Data Sent to Third Parties</h2>
+  <p>
+    The only external network communication occurs when you use the <strong>Card Search</strong> feature.
+    In that case, the card name or search query you type is sent to the <strong>YGO Pro API</strong>
+    (<a href="https://ygoprodeck.com" target="_blank" rel="noopener">ygoprodeck.com</a>) to retrieve card information.
+  </p>
+  <ul>
+    <li><strong>Data sent:</strong> card name / search query only</li>
+    <li><strong>Data received:</strong> card name, type, description, and image URLs</li>
+    <li><strong>No personal or device-identifying information</strong> is ever included in these requests</li>
+    <li>Card data is fetched on demand and <strong>not persisted locally</strong></li>
+    <li>Card images are loaded directly from the YGO Pro API and not stored by the app</li>
+  </ul>
+  <p>
+    Please refer to the YGO Pro API terms and privacy policy at
+    <a href="https://ygoprodeck.com/api-guide/" target="_blank" rel="noopener">https://ygoprodeck.com/api-guide/</a>.
+  </p>
+
+  <h2>4. Permissions</h2>
+  <p>The app may request the following Android permissions:</p>
+  <ul>
+    <li><strong>WAKE_LOCK</strong> – to keep the screen on during a duel (Keep Awake feature)</li>
+    <li><strong>INTERNET</strong> – solely for the Card Search feature described above</li>
+  </ul>
+  <p>No other sensitive permissions are requested.</p>
+
+  <h2>5. Children's Privacy</h2>
+  <p>
+    LeuDuel is not directed at children under the age of 13.
+    The app does not knowingly collect any personal information from children.
+  </p>
+
+  <h2>6. Changes to This Policy</h2>
+  <p>
+    This policy may be updated to reflect changes in the app. The "Last updated" date at the top of this page will be revised accordingly.
+    Continued use of the app after any changes constitutes acceptance of the updated policy.
+  </p>
+
+  <h2>7. Contact</h2>
+  <p>
+    For questions or concerns about this privacy policy, please open an issue on GitHub or reach out on Discord:
+  </p>
+  <ul>
+    <li><a href="https://github.com/XimTheCookie/LeuDuel/issues" target="_blank" rel="noopener">GitHub Issues</a></li>
+    <li><a href="https://discord.gg/cPk4MKHQmp" target="_blank" rel="noopener">Discord</a></li>
+  </ul>
+
+</body>
+</html>
