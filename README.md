@@ -70,14 +70,13 @@ Any action is saved immediately to ensure nothing is lost
 </table>
 <table>
     <tr>
-        <td><img src="docs/screenshots/screenshot-006.jpeg" width="250"></td>
-        <td><img src="docs/screenshots/screenshot-007.jpeg" width="500"></td>
+        <td><img src="docs/screenshots/screenshot-006.jpeg" width="500"></td>
     </tr>
 </table>
 
 <table>
     <tr>
-        <td><img src="docs/screenshots/screenshot-008.jpeg" width="500"></td>
+        <td><img src="docs/screenshots/screenshot-007.jpeg" width="500"></td>
     </tr>
 </table>
 
@@ -269,7 +268,11 @@ Planned. Not yet published.
 
 Planned. Not yet published.
 
+
 ---
+
+---
+
 
 # 🤝 Contributing
 
