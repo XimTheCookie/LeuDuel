@@ -1,0 +1,9 @@
+<div class="rp" [class.rp--done]="done()">
+  @for (col of cols; track col) {
+    <div class="rp__col">
+      @for (row of rows; track row) {
+        <div class="rp__cell" [class.rp__cell--on]="grid()[col][row]"></div>
+      }
+    </div>
+  }
+</div>

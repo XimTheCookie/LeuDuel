@@ -17,6 +17,7 @@ import { TimerComponent } from '../../common/timer/timer.component';
 import { OpponentPickerModalComponent } from '../opponent-picker-modal/opponent-picker-modal.component';
 import { take } from 'rxjs';
 import { TimerService } from '../../../services/timer/timer.service';
+import { PlayerRandomizerPageComponent } from '../../../pages/player-randomizer-page/player-randomizer-page.component';
 
 @Component({
   selector: 'app-duel-controller',
@@ -146,15 +147,30 @@ export class DuelControllerComponent implements AfterViewInit {
   }
 
   startDuel() {
-    if (this.settingsService.showCustomPlayers()) {
-      this.modalService.open(
-        OpponentPickerModalComponent,
-        { size: 'sm', opacity: this.settingsService.getModalOpacity() },
-        (opponentId?: number) => this.handleStart(opponentId),
-      );
-    } else {
-      this.handleStart();
+    if (!this.settingsService.showCustomPlayers()) {
+      this.startDuelOv();
+      return;
     }
+
+    this.modalService.open(
+      OpponentPickerModalComponent,
+      { size: 'sm', opacity: this.settingsService.getModalOpacity() },
+      (opponentId?: number) => this.startDuelOv(opponentId),
+    );
+  }
+
+  private startDuelOv(opponentId?: number) {
+    if (!this.settingsService.pickRandomPlayer()) {
+      this.handleStart(opponentId);
+      return;
+    }
+
+    this.modalService.open(PlayerRandomizerPageComponent, {
+      size: 'full',
+      opacity: this.settingsService.getModalOpacity(),
+      hideClose: true,
+      closeEvent: () => this.handleStart(opponentId),
+    });
   }
 
   handleStart(opponentId?: number) {

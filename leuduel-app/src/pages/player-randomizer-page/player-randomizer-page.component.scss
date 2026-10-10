@@ -1,0 +1,122 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.pr-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  background: var(--bg-deep);
+
+  &--landscape {
+    flex-direction: row;
+
+    .pr-page__zone {
+      flex: 1;
+      min-width: 0;
+      min-height: unset;
+    }
+
+    .pr-page__divider {
+      flex-direction: column;
+      flex-shrink: 0;
+      width: calc(100% / 15);
+      height: 100%;
+      padding: 0.5rem 0.3rem;
+      border-top: none;
+      border-bottom: none;
+      border-left: 1px solid var(--border-glow);
+      border-right: 1px solid var(--border-glow);
+
+      &::before {
+        background: linear-gradient(180deg, transparent 0%, var(--gold-dim) 50%, transparent 100%);
+      }
+    }
+
+    .pr-page__controls {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(7, 1fr);
+      width: 100%;
+      height: 100%;
+    }
+
+    .pr-page__close {
+      padding: 0;
+    }
+  }
+}
+
+.pr-page__zone {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.pr-page__divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.3rem;
+  background: var(--bg-deep);
+  border-top: 1px solid var(--border-glow);
+  border-bottom: 1px solid var(--border-glow);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, var(--gold-dim) 50%, transparent 100%);
+    pointer-events: none;
+  }
+}
+
+.pr-page__controls {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.pr-page__close {
+  padding: 0.65rem 0;
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 600;
+  background: var(--bg-card);
+  border: 1px solid rgba(99, 132, 199, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  flex: 1;
+
+  &:active {
+    background: var(--bg-card-hover);
+    transform: scale(0.97);
+  }
+}
+
+.pr-page__close {
+  min-height: calc(1.25rem * 1.2 + 0.65rem * 2);
+  color: var(--gold);
+  border-color: rgba(201, 168, 76, 0.35);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px var(--gold-glow);
+
+  &:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    text-shadow: 0 0 12px var(--gold-glow);
+  }
+}

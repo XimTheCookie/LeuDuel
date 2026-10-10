@@ -105,6 +105,21 @@ export class SettingsPageComponent {
     Validators.required,
   ]);
 
+  pickRandomPlayer = new FormControl<boolean>(this.settingsService.pickRandomPlayer(), [
+    Validators.required,
+  ]);
+
+  readonly pickRandomPlayerOptions = [
+    {
+      label: 'common.label.no',
+      value: false,
+    },
+    {
+      label: 'common.label.yes',
+      value: true,
+    },
+  ];
+
   readonly keepAwakeOptions = [
     {
       label: 'common.label.no',
@@ -308,6 +323,12 @@ export class SettingsPageComponent {
     if (!this.bestOf.valid) return;
     this.soundboardService.clickSound();
     this.settingsService.setNumberOfGames(this.bestOf.value!);
+  }
+
+  pickRandomPlayerChanged() {
+    if (!this.pickRandomPlayer.valid) return;
+    this.soundboardService.clickSound();
+    this.settingsService.setPickRandomPlayer(!!this.pickRandomPlayer.value);
   }
 
   customPlayersChanged() {

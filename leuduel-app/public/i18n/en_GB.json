@@ -36,7 +36,8 @@
         "best-of": "Best of",
         "timer": "Duel timer",
         "custom-profiles": "Custom profiles",
-        "custom-profiles-modify": "Customize"
+        "custom-profiles-modify": "Customize",
+        "pick-random-player": "Pick random player"
       },
       "gui": {
         "title": "GUI Settings",

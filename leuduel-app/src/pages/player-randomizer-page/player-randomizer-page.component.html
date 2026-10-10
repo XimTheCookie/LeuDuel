@@ -1,0 +1,21 @@
+<div class="pr-page" [class.pr-page--landscape]="settingsService.landscapeMode()">
+  <div class="pr-page__zone" [class.mirror]="!settingsService.landscapeMode()">
+    <app-player-randomizer-panel #player2Randomizer (completed)="onCompleted()" />
+  </div>
+
+  <div class="pr-page__divider">
+    <div class="pr-page__controls">
+      <div></div>
+      <div></div>
+      <div></div>
+      <button class="pr-page__close" (click)="close()">✕</button>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <div class="pr-page__zone">
+    <app-player-randomizer-panel #player1Randomizer (completed)="onCompleted()" />
+  </div>
+</div>

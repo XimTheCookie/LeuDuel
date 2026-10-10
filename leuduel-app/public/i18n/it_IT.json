@@ -36,7 +36,8 @@
         "best-of": "Al meglio di",
         "timer": "Timer duello",
         "custom-profiles": "Profili custom",
-        "custom-profiles-modify": "Personalizza"
+        "custom-profiles-modify": "Personalizza",
+        "pick-random-player": "Scegli giocatore casuale"
       },
       "gui": {
         "title": "Impostazioni Interfaccia",

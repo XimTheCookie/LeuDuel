@@ -45,6 +45,12 @@
           icon="settings"
         />
       </div>
+      <app-list-picker
+        [formControl]="pickRandomPlayer"
+        label="settings.section.duel.pick-random-player"
+        [options]="pickRandomPlayerOptions"
+        (valueChanged)="pickRandomPlayerChanged()"
+      />
     </div>
     <div class="settings-section__footer"></div>
   </div>
@@ -63,10 +69,10 @@
           (valueChanged)="languageChanged()"
         />
         <app-list-picker
-          [formControl]="theme"
-          label="settings.section.gui.theme"
-          [options]="themeOptions"
-          (valueChanged)="themeChanged()"
+          [formControl]="modalOpacity"
+          label="settings.section.gui.opacity"
+          [options]="modalOpacityOptions"
+          (valueChanged)="modalOpacityChanged()"
         />
       </div>
       <div class="settings-section__fields--row">
@@ -77,10 +83,10 @@
           (valueChanged)="backgroundChanged()"
         />
         <app-list-picker
-          [formControl]="modalOpacity"
-          label="settings.section.gui.opacity"
-          [options]="modalOpacityOptions"
-          (valueChanged)="modalOpacityChanged()"
+          [formControl]="theme"
+          label="settings.section.gui.theme"
+          [options]="themeOptions"
+          (valueChanged)="themeChanged()"
         />
       </div>
       <div class="settings-section__fields--row">

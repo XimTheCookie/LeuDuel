@@ -61,6 +61,7 @@ const DEFAULT_VALUES: SettingsSnapshot = {
   theme: 'dark',
   language: 'en_GB',
   background: 0,
+  pickRandomPlayer: false,
 };
 
 const SETTINGS_KEY = 'settings';
@@ -83,6 +84,7 @@ interface SettingsSnapshot {
   theme: string;
   language: string;
   background: number;
+  pickRandomPlayer: boolean;
 }
 
 @Injectable({
@@ -108,6 +110,7 @@ export class SettingsService {
   theme = signal<string>(DEFAULT_VALUES.theme);
   language = signal<string>(DEFAULT_VALUES.language);
   background = signal<number>(DEFAULT_VALUES.background);
+  pickRandomPlayer = signal<boolean>(DEFAULT_VALUES.pickRandomPlayer);
 
   constructor(private persistance: PersistanceService) {
     const injector = inject(EnvironmentInjector);
@@ -136,6 +139,7 @@ export class SettingsService {
     this.theme.set(saved.theme ?? 'dark');
     this.language.set(saved.language ?? DEFAULT_VALUES.language);
     this.background.set(saved.background ?? 0);
+    this.pickRandomPlayer.set(saved.pickRandomPlayer ?? false);
     this.applyMode();
   }
 
@@ -158,6 +162,7 @@ export class SettingsService {
       theme: this.theme(),
       language: this.language(),
       background: this.background(),
+      pickRandomPlayer: this.pickRandomPlayer(),
     };
     this.persistance.save(SETTINGS_KEY, snapshot);
   }
@@ -350,5 +355,9 @@ export class SettingsService {
 
   setBackground(value: number) {
     this.background.set(value);
+  }
+
+  setPickRandomPlayer(value: boolean) {
+    this.pickRandomPlayer.set(value);
   }
 }
