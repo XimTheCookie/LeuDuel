@@ -7,15 +7,10 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](#license)
 [![Android](https://img.shields.io/badge/platform-Android-green.svg)](#supported-platforms)
 [![F-Droid](https://img.shields.io/badge/F--Droid-planned-green.svg)](#distribution)
-[![Google Play](https://img.shields.io/badge/Google%20Play-planned-green.svg)](#distribution)
+[![Google Play](https://img.shields.io/badge/Google%20Play-ongoing-blue.svg)](#distribution)
 
 ---
 
-## 📱 About
-
-<!-- TODO: Write about section -->
-
----
 
 ## ✨ Features
 
@@ -154,7 +149,7 @@ Duelist profiles can associate to a card image for personalization, but the appl
 
 ### Audio Sources
 
-> Audio resources are currently self made LMMS and thereàs definitely room for improvements.
+> Audio resources are currently self made LMMS and there's definitely room for improvements.
 
 ### Yu-Gi-Oh! Related Material
 
@@ -315,10 +310,6 @@ Please include:
 ## Feature Requests
 
 Open an issue on GitHub or reach out on Discord.
-
-## Pull Requests
-
-Contributors are encouraged to use the provided Dev Containers for a consistent development environment.
 
 ---
 
