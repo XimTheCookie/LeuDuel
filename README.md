@@ -77,9 +77,7 @@ Any action is saved immediately to ensure nothing is lost
 
 <table>
     <tr>
-        <td><img src="docs/screenshots/screenshot-008.jpeg" width="250"></td>
-        <td><img src="docs/screenshots/screenshot-009.jpeg" width="250"></td>
-        <td><img src="docs/screenshots/screenshot-010.jpeg" width="250"></td>
+        <td><img src="docs/screenshots/screenshot-008.jpeg" width="500"></td>
     </tr>
 </table>
 
