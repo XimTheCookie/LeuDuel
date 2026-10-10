@@ -15,7 +15,8 @@
       "heal": "Cura",
       "divide": "Dividi",
       "multiply": "Moltiplica",
-      "set": "Imposta"
+      "set": "Imposta",
+      "winner": "Vincitore"
     },
     "button": {
       "save": "Salva modifiche",

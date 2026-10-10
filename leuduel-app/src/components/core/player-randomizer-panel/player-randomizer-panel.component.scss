@@ -12,6 +12,7 @@
   --gap: calc(var(--side) * 0.02);
   --cell: calc((var(--side) - var(--gap) * 10) / 9);
 
+  position: relative;
   display: flex;
   gap: var(--gap);
   padding: var(--gap);
@@ -20,7 +21,9 @@
   box-sizing: border-box;
   transition: transform 0.2s ease-out;
   border: 1px solid var(--border-glow);
-  box-shadow: 0 0 18px rgba(201, 168, 76, 0.12), inset 0 0 18px rgba(201, 168, 76, 0.05);
+  box-shadow:
+    0 0 18px rgba(201, 168, 76, 0.12),
+    inset 0 0 18px rgba(201, 168, 76, 0.05);
   background: var(--bg-panel);
 }
 
@@ -33,27 +36,71 @@
 .rp__cell {
   width: var(--cell);
   height: var(--cell);
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: var(--btn-neutral-surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--btn-neutral-border);
   border-radius: 2px;
-  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  opacity: 0.2;
+  transition:
+    background 0.05s,
+    border-color 0.05s,
+    box-shadow 0.05s,
+    opacity 0.05s;
   flex-shrink: 0;
 
   &--on {
+    opacity: 1;
+    background: var(--btn-neutral-surface);
+    border-color: var(--btn-neutral-border);
+    box-shadow: 0 0 8px var(--btn-neutral-glow);
+  }
+}
+
+.rp--done {
+  transform: scale(1.05);
+  border-color: var(--gold-glow);
+  box-shadow:
+    0 0 28px var(--btn-neutral-glow),
+    inset 0 0 18px var(--btn-neutral-surface);
+
+  .rp__cell {
     background: var(--gold-dim);
     border-color: var(--gold-glow);
     box-shadow: 0 0 8px var(--gold-glow);
   }
 }
 
-.rp--done {
-  transform: scale(1.05);
-  border-color: var(--btn-neutral-border);
-  box-shadow: 0 0 28px var(--btn-neutral-glow), inset 0 0 18px var(--btn-neutral-surface);
+.rp__winner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  animation: winner-scrim 0.5s ease-out;
+  pointer-events: none;
 
-  .rp__cell {
-    background: var(--btn-neutral-surface);
-    border-color: var(--btn-neutral-border);
-    box-shadow: 0 0 8px var(--btn-neutral-glow);
+  span {
+    font-family: var(--font-mono);
+    font-size: calc(var(--side) * 0.12);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--gold-light);
+    text-shadow:
+      0 0 4px #000,
+      0 0 16px var(--gold-glow),
+      0 0 40px var(--gold-glow);
+    animation: winner-pop 0.3s ease-out;
   }
+}
+
+@keyframes winner-scrim {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes winner-pop {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
 }

@@ -15,7 +15,8 @@
       "heal": "Heal",
       "divide": "Divide",
       "multiply": "Multiply",
-      "set": "Set"
+      "set": "Set",
+      "winner": "Winner"
     },
     "button": {
       "save": "Save changes",

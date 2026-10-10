@@ -6,4 +6,9 @@
       }
     </div>
   }
+  @if (done()) {
+    <div class="rp__winner">
+      <span>{{ 'common.label.winner' | translate }}</span>
+    </div>
+  }
 </div>

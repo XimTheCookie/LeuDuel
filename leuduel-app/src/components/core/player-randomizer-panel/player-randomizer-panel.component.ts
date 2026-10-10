@@ -1,5 +1,6 @@
 import { Component, inject, output, signal } from '@angular/core';
 import { RandomService } from '../../../services/random/random.service';
+import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 const COLS = 9;
 const ROWS = 9;
@@ -9,7 +10,7 @@ const ROWS = 9;
   templateUrl: './player-randomizer-panel.component.html',
   styleUrls: ['./player-randomizer-panel.component.scss'],
   standalone: true,
-  imports: [],
+  imports: [TranslatePipe],
 })
 export class PlayerRandomizerPanelComponent {
   private readonly randomService = inject(RandomService);

@@ -63,7 +63,7 @@ export class PlayerRandomizerPageComponent implements AfterViewInit, OnDestroy {
 
     this.triggerEvent(player, event);
 
-    this.timeout = setTimeout(() => this.randomize(), 10);
+    this.timeout = setTimeout(() => this.randomize(), 2);
   }
 
   triggerEvent(player: 1 | 2, type: 'add' | 'remove') {
