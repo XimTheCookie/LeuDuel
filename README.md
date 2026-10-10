@@ -273,23 +273,6 @@ Planned. Not yet published.
 
 ---
 
-# 🤖 AI-Assisted Development
-
-Development of this project has been assisted by AI-based development tools.
-
-AI assistance was used primarily for:
-
-* Code generation
-* Code refactoring
-* Development assistance
-* Build/pipeline configuration
-
-AI-generated code is reviewed and integrated by the project developer as part of the normal development process.
-
-AI tools were **not used to generate or source the project's artwork, audio, or other creative assets**.
-
----
-
 # 🤝 Contributing
 
 Contributions are welcome!
@@ -299,13 +282,10 @@ Contributions are welcome!
 You can report bugs by contacting me on Discord or opening an issue here on github, feel free to blame me for anything!
 
 Please include:
-
 * Steps to reproduce
 * Expected behavior
 * Actual behavior
 * Relevant information or screenshots if possible
-
-(See contacts below...)
 
 ## Feature Requests
 
@@ -315,7 +295,7 @@ Open an issue on GitHub or reach out on Discord.
 
 # 🐛 Known Issues
 
-* -
+* - currently none
 
 See [Issues](https://github.com/XimTheCookie/LeuDuel/issues) for current bugs and feature requests.
 
