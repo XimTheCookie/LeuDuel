@@ -193,7 +193,10 @@
         <span>
           {{ 'settings.section.information.help' | translate }}
         </span>
-        <a class="section-label--link" (click)="openGitHub()">GitHub</a>
+        <div class="section-label--link-row">
+          <a class="section-label--link" (click)="openGitHub()">GitHub</a>
+          <a class="section-label--link" (click)="openPrivacy()">Privacy</a>
+        </div>
       </span>
     </div>
     <div class="settings-section__footer"></div>

@@ -6,15 +6,34 @@
 }
 
 .profile__image {
+  position: relative;
   width: 3.5rem;
-  height: auto;
+  height: 3.5rem;
   border-radius: 4px;
   flex-shrink: 0;
-  object-fit: cover;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-glow);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 
   &--smaller {
     width: 3rem;
+    height: 3rem;
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
   }

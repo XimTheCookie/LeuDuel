@@ -8,7 +8,7 @@ export class TranslateService {
   private readonly settingsService = inject(SettingsService);
 
   // i18n is in public/i18n/LANG.json
-  private readonly supportedLanguages = ['en_GB', 'it_IT'];
+  private readonly supportedLanguages = ['en_GB', 'it_IT', 'fr_FR', 'es_ES', 'de_DE', 'pl_PL'];
   private readonly fallBackLanguage = 'en_GB';
   private translations: Record<string, Record<string, unknown>> = {};
 

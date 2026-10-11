@@ -247,6 +247,22 @@ export class SettingsPageComponent {
       label: 'Italiano',
       value: 'it_IT',
     },
+    {
+      label: 'Español',
+      value: 'es_ES',
+    },
+    {
+      label: 'Français',
+      value: 'fr_FR',
+    },
+    {
+      label: 'Polski',
+      value: 'pl_PL',
+    },
+    {
+      label: 'Deutsch',
+      value: 'de_DE',
+    },
   ];
 
   constructor() {
@@ -407,6 +423,10 @@ export class SettingsPageComponent {
 
   openGitHub() {
     window.open('https://github.com/XimTheCookie/LeuDuel', '_blank');
+  }
+
+  openPrivacy() {
+    window.open('https://ximthecookie.github.io/LeuDuel/privacy.html', '_blank');
   }
 
   languageChanged() {

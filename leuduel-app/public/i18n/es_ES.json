@@ -1,0 +1,193 @@
+{
+  "common": {
+    "label": {
+      "yes": "Sí",
+      "no": "No",
+      "info": "Información",
+      "roll-dice": "Lanzar D{{num}}",
+      "flip-coin": "Lanzar moneda",
+      "heads": "Cara",
+      "heads-alt": "C",
+      "tails": "Cruz",
+      "tails-alt": "X",
+      "set-lp-title": "Establecer LP de {{player}}",
+      "damage": "Daño",
+      "heal": "Curar",
+      "divide": "Dividir",
+      "multiply": "Multiplicar",
+      "set": "Establecer",
+      "winner": "Ganador"
+    },
+    "button": {
+      "save": "Guardar cambios",
+      "close": "Cerrar",
+      "confirm": "Confirmar",
+      "remove": "Eliminar",
+      "search": "Buscar",
+      "cancel": "Cancelar",
+      "start": "Iniciar",
+      "stop": "Detener"
+    }
+  },
+  "settings": {
+    "section": {
+      "duel": {
+        "title": "Ajustes del duelo",
+        "start-lp": "LP iniciales",
+        "best-of": "Mejor de",
+        "timer": "Temporizador del duelo",
+        "custom-profiles": "Perfiles personalizados",
+        "custom-profiles-modify": "Personalizar",
+        "pick-random-player": "Elegir jugador aleatorio"
+      },
+      "gui": {
+        "title": "Ajustes de la interfaz",
+        "theme": "Tema",
+        "language": "Idioma",
+        "orientation": "Orientación",
+        "opacity": "Opacidad de la ventana",
+        "wallpaper": "Fondo",
+        "swap-players": "Intercambiar jugadores",
+        "rb-number": "Número de botones rápidos",
+        "rb-columns": "Número de columnas",
+        "rb-rows": "Número de filas",
+        "rb-use": "Usar botones rápidos"
+      },
+      "behaviour": {
+        "title": "Ajustes de comportamiento",
+        "info": "Personaliza los comportamientos de la aplicación",
+        "open": "Abrir ajustes"
+      },
+      "android": {
+        "title": "Ajustes de Android",
+        "keep-awake": "Mantener activo (duelo)"
+      },
+      "information": {
+        "title": "Información",
+        "author": "Por {{author}}",
+        "help": "Puedes encontrar toda la información sobre la aplicación en la página de GitHub."
+      }
+    },
+    "list-value": {
+      "theme": {
+        "light": "Claro",
+        "dark": "Oscuro",
+        "high-contrast": "Alto contraste"
+      },
+      "orientation": {
+        "potrait": "Vertical",
+        "landscape": "Horizontal"
+      },
+      "rb-use": {
+        "use": "Usar",
+        "dont-use": "Usar calculadora"
+      },
+      "wallpaper": {
+        "none": "Ordinario",
+        "stars": "Estrellas",
+        "flames": "Brasas",
+        "lines": "Líneas",
+        "meteorites": "Meteoritos"
+      }
+    }
+  },
+  "behaviour-settings": {
+    "title": "Ajustes de comportamiento",
+    "counter-reset": {
+      "title": "Reinicio de contadores",
+      "label": {
+        "never": "Nunca",
+        "game": "Partida",
+        "match": "Encuentro"
+      },
+      "info": "<ul><li><b>Nunca</b>: los contadores nunca se reinician automáticamente.</li><li><b>Partida</b>: los contadores se reinician cada vez que se restablecen los LP.</li><li><b>Encuentro</b>: los contadores se reinician al inicio o al final de una partida.</li></ul>"
+    },
+    "game-reset": {
+      "title": "Reinicio de partida",
+      "label": {
+        "manual": "Manual",
+        "lp-zero": "LP a cero",
+        "lp-zero-auto": "LP a cero (automático)"
+      },
+      "info": "Define cuándo se muestra el modal de reinicio de LP.<ul><li><b>Manual</b>: el modal solo se abre cuando se activa explícitamente.</li><li><b>LP a cero</b>: el modal se abre automáticamente cuando los LP de cualquier jugador llegan a cero.</li><li><b>LP a cero (automático)</b>: lo mismo que arriba, pero el modal se confirma automáticamente sin abrirse, restableciendo los LP de inmediato.</li></ul>"
+    },
+    "winner-selection": {
+      "title": "Selección del ganador",
+      "label": {
+        "manual": "Manual",
+        "auto": "Automático"
+      },
+      "info": "Define cómo se asigna el ganador en el modal de reinicio de LP.<ul><li><b>Manual</b>: el ganador es elegido por el usuario.</li><li><b>Automático</b>: el ganador se sugiere automáticamente. Si <i>Reinicio de partida</i> también está configurado en <i>LP a cero (automático)</i>, el ganador se elige y confirma sin ninguna interacción.</li></ul>"
+    },
+    "match-stop": {
+      "title": "Detener la partida",
+      "label": {
+        "manual": "Manual",
+        "winner-found": "Ganador encontrado",
+        "timer-ends": "Fin del temporizador",
+        "both": "Ambos"
+      },
+      "info": "Define cuándo se detiene la partida.<ul><li><b>Manual</b>: se abre el aviso de fin de partida cuando se activa explícitamente.</li><li><b>Ganador encontrado</b>: se abre el aviso cuando se encuentra un ganador.</li><li><b>Fin del temporizador</b>: se abre el aviso cuando termina el temporizador.</li><li><b>Ambos</b>: se abre el aviso cuando termina el temporizador o se encuentra un ganador.</li></ul>"
+    },
+    "on-startup": {
+      "title": "Al iniciar",
+      "label": {
+        "restore": "Restaurar partida",
+        "reset": "Reiniciar partida"
+      },
+      "info": "Define qué ocurre cuando se inicia la aplicación.<ul><li><b>Restaurar partida</b>: si había alguna partida en curso, se restaura.</li><li><b>Reiniciar partida</b>: la partida se reinicia.</li></ul>"
+    }
+  },
+  "profiles-page": {
+    "my-profile": "Mi perfil",
+    "opponents": "Oponentes",
+    "no-opponents": "Aún no hay oponentes.",
+    "edit-profile": "Editar perfil",
+    "edit-opponent": "Editar oponente",
+    "add-opponent": "Añadir oponente",
+    "display-name": "Nombre visible",
+    "profile-picture": "Foto de perfil",
+    "enter-name": "Introduce un nombre..."
+  },
+  "card-search": {
+    "placeholder": "Buscar cartas...",
+    "searching": "Buscando..."
+  },
+  "judge-page": {
+    "title": "Búsqueda de cartas",
+    "try": "Prueba",
+    "or": "o",
+    "info": "Todas las opciones de búsqueda:<ul><li><b>atk</b>: ataque de la carta monstruo.</li><li><b>def</b>: defensa de la carta monstruo.</li><li><b>attribute</b>: atributo de la carta monstruo.</li><li><b>race</b>: tipo de la carta monstruo (Dragón, Lanzador de conjuros, etc).</li><li><b>type</b>: tipo de la carta monstruo (Monstruo Normal, Monstruo Sincron, Monstruo de Fusión, Monstruo de Efecto de Unión, Monstruo Volteador).</li><li><b>level</b>: nivel de la carta monstruo.</li><li><b>scale</b>: escala de la carta monstruo Péndulo.</li><li><b>archetype</b>: arquetipo.</li></ul>"
+  },
+  "pick-opponent": {
+    "title": "Elige un oponente",
+    "no-opponents": "No hay oponentes guardados."
+  },
+  "damage-button": {
+    "title": "Botón de modificación",
+    "value": "Valor",
+    "action-type": "Tipo de acción",
+    "info": "(Las configuraciones se comparten)"
+  },
+  "logs": {
+    "title": "Registros",
+    "events": "{{count}} eventos",
+    "no-events": "Aún no hay eventos",
+    "lp-reset": "Reinicio de LP",
+    "undo": "Deshacer evento"
+  },
+  "stop-match": {
+    "title": "¿Detener la partida?",
+    "outcome": "Resultado",
+    "draw": "Empate / doble derrota"
+  },
+  "welcome": {
+    "title": "Bienvenido",
+    "subtitle": "¿Cómo te gustaría usar la aplicación?"
+  },
+  "lp-reset": {
+    "title": "¿Nuevo duelo?",
+    "timer-reminder": "El temporizador sigue en marcha.",
+    "assign-victory": "Asignar victoria"
+  }
+}

@@ -1,11 +1,15 @@
 @if (showAvatar()) {
-  <img
+  <div
     class="profile__image"
     [class.profile__image--smaller]="small()"
-    [src]="profile().card ?? 'card.png'"
-    [alt]="profile().displayName"
-    loading="lazy"
-  />
+    [style.backgroundImage]="'url(' + (profile().card ?? 'card.png') + ')'"
+  >
+    <img
+      [src]="profile().card ?? 'card.png'"
+      [alt]="profile().displayName"
+      loading="lazy"
+    />
+  </div>
 }
 @if (showName()) {
   <span class="profile__name">{{ profile().displayName }}</span>

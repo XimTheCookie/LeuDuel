@@ -1,0 +1,193 @@
+{
+  "common": {
+    "label": {
+      "yes": "Oui",
+      "no": "Non",
+      "info": "Infos",
+      "roll-dice": "Lancer les D{{num}}",
+      "flip-coin": "Lancer une pièce",
+      "heads": "Face",
+      "heads-alt": "F",
+      "tails": "Pile",
+      "tails-alt": "P",
+      "set-lp-title": "Définir les LP de {{player}}",
+      "damage": "Dégâts",
+      "heal": "Soins",
+      "divide": "Diviser",
+      "multiply": "Multiplier",
+      "set": "Définir",
+      "winner": "Vainqueur"
+    },
+    "button": {
+      "save": "Enregistrer les modifications",
+      "close": "Fermer",
+      "confirm": "Confirmer",
+      "remove": "Supprimer",
+      "search": "Rechercher",
+      "cancel": "Annuler",
+      "start": "Démarrer",
+      "stop": "Arrêter"
+    }
+  },
+  "settings": {
+    "section": {
+      "duel": {
+        "title": "Paramètres du duel",
+        "start-lp": "LP de départ",
+        "best-of": "Meilleur de",
+        "timer": "Minuteur du duel",
+        "custom-profiles": "Profils personnalisés",
+        "custom-profiles-modify": "Personnaliser",
+        "pick-random-player": "Choisir un joueur aléatoire"
+      },
+      "gui": {
+        "title": "Paramètres de l'interface",
+        "theme": "Thème",
+        "language": "Langue",
+        "orientation": "Orientation",
+        "opacity": "Opacité de la fenêtre",
+        "wallpaper": "Fond d'écran",
+        "swap-players": "Échanger les joueurs",
+        "rb-number": "Nombre de boutons rapides",
+        "rb-columns": "Nombre de colonnes",
+        "rb-rows": "Nombre de lignes",
+        "rb-use": "Utiliser les boutons rapides"
+      },
+      "behaviour": {
+        "title": "Paramètres du comportement",
+        "info": "Personnaliser le comportement de l'application",
+        "open": "Ouvrir les paramètres"
+      },
+      "android": {
+        "title": "Paramètres Android",
+        "keep-awake": "Garder actif (duel)"
+      },
+      "information": {
+        "title": "Informations",
+        "author": "Par {{author}}",
+        "help": "Vous pouvez trouver toutes les informations sur l'application sur la page GitHub."
+      }
+    },
+    "list-value": {
+      "theme": {
+        "light": "Clair",
+        "dark": "Sombre",
+        "high-contrast": "Contraste élevé"
+      },
+      "orientation": {
+        "potrait": "Verticale",
+        "landscape": "Horizontale"
+      },
+      "rb-use": {
+        "use": "Utiliser",
+        "dont-use": "Utiliser la calculatrice"
+      },
+      "wallpaper": {
+        "none": "Par défaut",
+        "stars": "Étoiles",
+        "flames": "Braises",
+        "lines": "Lignes",
+        "meteorites": "Météorites"
+      }
+    }
+  },
+  "behaviour-settings": {
+    "title": "Paramètres du comportement",
+    "counter-reset": {
+      "title": "Réinitialisation des compteurs",
+      "label": {
+        "never": "Jamais",
+        "game": "Partie",
+        "match": "Match"
+      },
+      "info": "<ul><li><b>Jamais</b> : les compteurs ne sont jamais réinitialisés automatiquement.</li><li><b>Partie</b> : les compteurs sont réinitialisés chaque fois que les LP sont réinitialisés.</li><li><b>Match</b> : les compteurs sont réinitialisés au début ou à la fin d'un match.</li></ul>"
+    },
+    "game-reset": {
+      "title": "Réinitialisation de la partie",
+      "label": {
+        "manual": "Manuel",
+        "lp-zero": "LP à zéro",
+        "lp-zero-auto": "LP à zéro (auto)"
+      },
+      "info": "Définit quand la fenêtre de réinitialisation des LP s'affiche.<ul><li><b>Manuel</b> : la fenêtre ne s'ouvre que lorsqu'elle est déclenchée explicitement.</li><li><b>LP à zéro</b> : la fenêtre s'ouvre automatiquement dès qu'un joueur atteint zéro LP.</li><li><b>LP à zéro (auto)</b> : identique au cas précédent, mais la fenêtre est validée automatiquement sans s'ouvrir, réinitialisant immédiatement les LP.</li></ul>"
+    },
+    "winner-selection": {
+      "title": "Sélection du gagnant",
+      "label": {
+        "manual": "Manuel",
+        "auto": "Auto"
+      },
+      "info": "Définit comment le gagnant est attribué dans la fenêtre de réinitialisation des LP.<ul><li><b>Manuel</b> : le gagnant est sélectionné par l'utilisateur.</li><li><b>Auto</b> : le gagnant est suggéré automatiquement. Si <i>Réinitialisation de la partie</i> est également réglé sur <i>LP à zéro (auto)</i>, le gagnant est sélectionné et confirmé sans aucune interaction.</li></ul>"
+    },
+    "match-stop": {
+      "title": "Arrêt du match",
+      "label": {
+        "manual": "Manuel",
+        "winner-found": "Gagnant trouvé",
+        "timer-ends": "Fin du minuteur",
+        "both": "Les deux"
+      },
+      "info": "Définit quand le match s'arrête.<ul><li><b>Manuel</b> : la fenêtre d'arrêt du match s'ouvre lorsque l'utilisateur le déclenche explicitement.</li><li><b>Gagnant trouvé</b> : la fenêtre d'arrêt du match s'ouvre lorsqu'un gagnant est trouvé.</li><li><b>Fin du minuteur</b> : la fenêtre d'arrêt du match s'ouvre lorsque le minuteur se termine.</li><li><b>Les deux</b> : la fenêtre d'arrêt du match s'ouvre lorsque le minuteur se termine ou qu'un gagnant est trouvé.</li></ul>"
+    },
+    "on-startup": {
+      "title": "Au démarrage",
+      "label": {
+        "restore": "Restaurer la partie",
+        "reset": "Réinitialiser la partie"
+      },
+      "info": "Définit ce qui se passe au démarrage de l'application.<ul><li><b>Restaurer la partie</b> : si une partie était en cours, elle est restaurée.</li><li><b>Réinitialiser la partie</b> : la partie est réinitialisée.</li></ul>"
+    }
+  },
+  "profiles-page": {
+    "my-profile": "Mon profil",
+    "opponents": "Adversaires",
+    "no-opponents": "Aucun adversaire pour le moment.",
+    "edit-profile": "Modifier le profil",
+    "edit-opponent": "Modifier l'adversaire",
+    "add-opponent": "Ajouter un adversaire",
+    "display-name": "Nom d'affichage",
+    "profile-picture": "Photo de profil",
+    "enter-name": "Entrez le nom..."
+  },
+  "card-search": {
+    "placeholder": "Rechercher des cartes...",
+    "searching": "Recherche..."
+  },
+  "judge-page": {
+    "title": "Recherche de cartes",
+    "try": "Essayer",
+    "or": "ou",
+    "info": "Toutes les options de recherche :<ul><li><b>atk</b> : ATK de la carte monstre.</li><li><b>def</b> : DEF de la carte monstre.</li><li><b>attribute</b> : Attribut de la carte monstre.</li><li><b>race</b> : Type de la carte monstre (Dragon, Lanceur de sorts, etc.).</li><li><b>type</b> : Type de la carte monstre (Monstre Normal, Monstre Synchro, Monstre Fusion, Monstre à Effet d'Union, Monstre Flip).</li><li><b>level</b> : Niveau du monstre.</li><li><b>scale</b> : Échelle de la carte monstre Pendule.</li><li><b>archetype</b> : Archétype.</li></ul>"
+  },
+  "pick-opponent": {
+    "title": "Choisir un adversaire",
+    "no-opponents": "Aucun adversaire enregistré."
+  },
+  "damage-button": {
+    "title": "Modifier le bouton",
+    "value": "Valeur",
+    "action-type": "Type d'action",
+    "info": "(Les configurations sont partagées)"
+  },
+  "logs": {
+    "title": "Journaux",
+    "events": "{{count}} événements",
+    "no-events": "Aucun événement pour le moment",
+    "lp-reset": "Réinitialisation des LP",
+    "undo": "Annuler l'événement"
+  },
+  "stop-match": {
+    "title": "Arrêter le match ?",
+    "outcome": "Résultat",
+    "draw": "Match nul / Double défaite"
+  },
+  "welcome": {
+    "title": "Bienvenue",
+    "subtitle": "Comment aimeriez-vous utiliser l'application ?"
+  },
+  "lp-reset": {
+    "title": "Nouveau duel ?",
+    "timer-reminder": "Le minuteur continue de tourner.",
+    "assign-victory": "Attribuer la victoire"
+  }
+}

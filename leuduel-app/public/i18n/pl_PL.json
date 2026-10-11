@@ -1,0 +1,193 @@
+{
+  "common": {
+    "label": {
+      "yes": "Tak",
+      "no": "Nie",
+      "info": "Informacje",
+      "roll-dice": "Rzuć D{{num}}",
+      "flip-coin": "Rzuć monetą",
+      "heads": "Orzeł",
+      "heads-alt": "O",
+      "tails": "Reszka",
+      "tails-alt": "R",
+      "set-lp-title": "Ustaw {{player}} PK",
+      "damage": "Obrażenia",
+      "heal": "Leczenie",
+      "divide": "Podziel",
+      "multiply": "Pomnóż",
+      "set": "Ustaw",
+      "winner": "Zwycięzca"
+    },
+    "button": {
+      "save": "Zapisz zmiany",
+      "close": "Zamknij",
+      "confirm": "Potwierdź",
+      "remove": "Usuń",
+      "search": "Szukaj",
+      "cancel": "Anuluj",
+      "start": "Start",
+      "stop": "Stop"
+    }
+  },
+  "settings": {
+    "section": {
+      "duel": {
+        "title": "Ustawienia pojedynku",
+        "start-lp": "Początkowe PK",
+        "best-of": "Najlepszy z",
+        "timer": "Licznik pojedynku",
+        "custom-profiles": "Profile niestandardowe",
+        "custom-profiles-modify": "Dostosuj",
+        "pick-random-player": "Wybierz losowego gracza"
+      },
+      "gui": {
+        "title": "Ustawienia GUI",
+        "theme": "Motyw",
+        "language": "Język",
+        "orientation": "Orientacja",
+        "opacity": "Przezroczystość okna",
+        "wallpaper": "Tapeta",
+        "swap-players": "Zamień graczy",
+        "rb-number": "Liczba szybkich przycisków",
+        "rb-columns": "Liczba kolumn",
+        "rb-rows": "Liczba wierszy",
+        "rb-use": "Użyj szybkich przycisków"
+      },
+      "behaviour": {
+        "title": "Ustawienia zachowania",
+        "info": "Dostosuj zachowania aplikacji",
+        "open": "Otwórz ustawienia"
+      },
+      "android": {
+        "title": "Ustawienia Androida",
+        "keep-awake": "Utrzymuj aktywne (pojedynek)"
+      },
+      "information": {
+        "title": "Informacje",
+        "author": "Autor: {{author}}",
+        "help": "Wszystkie informacje o aplikacji znajdziesz na stronie GitHub."
+      }
+    },
+    "list-value": {
+      "theme": {
+        "light": "Jasny",
+        "dark": "Ciemny",
+        "high-contrast": "Wysoki kontrast"
+      },
+      "orientation": {
+        "potrait": "Pionowa",
+        "landscape": "Pozioma"
+      },
+      "rb-use": {
+        "use": "Użyj",
+        "dont-use": "Użyj kalkulatora"
+      },
+      "wallpaper": {
+        "none": "Domyślne",
+        "stars": "Gwiazdy",
+        "flames": "Żarzące się węgle",
+        "lines": "Linie",
+        "meteorites": "Meteoryty"
+      }
+    }
+  },
+  "behaviour-settings": {
+    "title": "Ustawienia zachowania",
+    "counter-reset": {
+      "title": "Reset liczników",
+      "label": {
+        "never": "Nigdy",
+        "game": "Gra",
+        "match": "Mecz"
+      },
+      "info": "<ul><li><b>Nigdy</b>: liczniki nigdy nie resetują się automatycznie.</li><li><b>Gra</b>: liczniki resetują się za każdym razem, gdy resetowane są PK.</li><li><b>Mecz</b>: liczniki resetują się na początku lub na końcu meczu.</li></ul>"
+    },
+    "game-reset": {
+      "title": "Reset gry",
+      "label": {
+        "manual": "Ręczny",
+        "lp-zero": "PK zero",
+        "lp-zero-auto": "PK zero (automatycznie)"
+      },
+      "info": "Określa, kiedy wyświetlane jest okno resetu PK.<ul><li><b>Ręczny</b>: okno otwiera się tylko wtedy, gdy zostanie wywołane ręcznie.</li><li><b>PK zero</b>: okno otwiera się automatycznie, gdy punkty życia dowolnego gracza osiągną zero.</li><li><b>PK zero (automatycznie)</b>: to samo co powyżej, ale okno jest automatycznie potwierdzane bez otwierania, a PK są natychmiast resetowane.</li></ul>"
+    },
+    "winner-selection": {
+      "title": "Wybór zwycięzcy",
+      "label": {
+        "manual": "Ręcznie",
+        "auto": "Automatycznie"
+      },
+      "info": "Określa, jak zwycięzca jest przypisywany w oknie resetu PK.<ul><li><b>Ręcznie</b>: zwycięzcę wybiera użytkownik.</li><li><b>Automatycznie</b>: zwycięzca jest sugerowany automatycznie. Jeśli <i>Reset gry</i> jest także ustawiony na <i>PK zero (automatycznie)</i>, zwycięzca jest wybrany i potwierdzony bez żadnej interakcji.</li></ul>"
+    },
+    "match-stop": {
+      "title": "Zatrzymanie meczu",
+      "label": {
+        "manual": "Ręcznie",
+        "winner-found": "Zwycięzca wyłoniony",
+        "timer-ends": "Koniec czasu",
+        "both": "Oba"
+      },
+      "info": "Określa, kiedy zatrzymywany jest mecz.<ul><li><b>Ręcznie</b>: okno zatrzymania meczu otwiera się po ręcznym wywołaniu.</li><li><b>Zwycięzca wyłoniony</b>: okno zatrzymania meczu otwiera się po wyłonieniu zwycięzcy.</li><li><b>Koniec czasu</b>: okno zatrzymania meczu otwiera się po upływie czasu.</li><li><b>Oba</b>: okno zatrzymania meczu otwiera się, gdy minie czas lub zostanie wyłoniony zwycięzca.</li></ul>"
+    },
+    "on-startup": {
+      "title": "Przy starcie",
+      "label": {
+        "restore": "Przywróć grę",
+        "reset": "Zresetuj grę"
+      },
+      "info": "Określa, co dzieje się po uruchomieniu aplikacji.<ul><li><b>Przywróć grę</b>: jeśli jakaś gra była w toku, zostanie przywrócona.</li><li><b>Zresetuj grę</b>: gra zostanie zresetowana.</li></ul>"
+    }
+  },
+  "profiles-page": {
+    "my-profile": "Mój profil",
+    "opponents": "Przeciwnicy",
+    "no-opponents": "Brak przeciwników.",
+    "edit-profile": "Edytuj profil",
+    "edit-opponent": "Edytuj przeciwnika",
+    "add-opponent": "Dodaj przeciwnika",
+    "display-name": "Nazwa wyświetlana",
+    "profile-picture": "Zdjęcie profilowe",
+    "enter-name": "Wprowadź nazwę..."
+  },
+  "card-search": {
+    "placeholder": "Szukaj kart...",
+    "searching": "Wyszukiwanie..."
+  },
+  "judge-page": {
+    "title": "Wyszukiwanie kart",
+    "try": "Spróbuj",
+    "or": "lub",
+    "info": "Wszystkie opcje wyszukiwania:<ul><li><b>atk</b>: Atak karty potwora.</li><li><b>def</b>: Obrona karty potwora.</li><li><b>attribute</b>: Atrybut karty potwora.</li><li><b>race</b>: Typ karty potwora (Smok, Czarnoksiężnik itd.).</li><li><b>type</b>: Typ karty potwora (Normalny potwor, Synchro potwor, Fusion potwor, Potwor efektu Unii, Potwor Flip).</li><li><b>level</b>: Poziom karty potwora.</li><li><b>scale</b>: Skala karty potwora Pendulum.</li><li><b>archetype</b>: Archetyp.</li></ul>"
+  },
+  "pick-opponent": {
+    "title": "Wybierz przeciwnika",
+    "no-opponents": "Brak zapisanych przeciwników."
+  },
+  "damage-button": {
+    "title": "Modyfikuj przycisk",
+    "value": "Wartość",
+    "action-type": "Typ działania",
+    "info": "(Konfiguracje są współdzielone)"
+  },
+  "logs": {
+    "title": "Dzienniki",
+    "events": "{{count}} zdarzeń",
+    "no-events": "Brak zdarzeń",
+    "lp-reset": "Reset PK",
+    "undo": "Cofnij zdarzenie"
+  },
+  "stop-match": {
+    "title": "Zatrzymać mecz?",
+    "outcome": "Wynik",
+    "draw": "Remis / podwójna porażka"
+  },
+  "welcome": {
+    "title": "Witamy",
+    "subtitle": "Jak chcesz korzystać z aplikacji?"
+  },
+  "lp-reset": {
+    "title": "Nowy pojedynek?",
+    "timer-reminder": "Licznik nadal działa.",
+    "assign-victory": "Przypisz zwycięstwo"
+  }
+}

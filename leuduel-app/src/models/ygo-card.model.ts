@@ -11,6 +11,6 @@ export interface YgoCard {
   attribute?: string;
   archetype?: string;
   scale?: number;
-  card_images: { id: number; image_url_small: string }[];
+  card_images: { id: number; image_url_small: string; image_url_cropped: string }[];
   misc_info?: { konami_id?: number }[];
 }

@@ -1,0 +1,193 @@
+{
+  "common": {
+    "label": {
+      "yes": "Ja",
+      "no": "Nein",
+      "info": "Info",
+      "roll-dice": "Würfel D{{num}}",
+      "flip-coin": "Münze werfen",
+      "heads": "Kopf",
+      "heads-alt": "K",
+      "tails": "Zahl",
+      "tails-alt": "Z",
+      "set-lp-title": "{{player}} LP setzen",
+      "damage": "Schaden",
+      "heal": "Heilen",
+      "divide": "Teilen",
+      "multiply": "Multiplizieren",
+      "set": "Festlegen",
+      "winner": "Gewinner"
+    },
+    "button": {
+      "save": "Änderungen speichern",
+      "close": "Schließen",
+      "confirm": "Bestätigen",
+      "remove": "Entfernen",
+      "search": "Suchen",
+      "cancel": "Abbrechen",
+      "start": "Starten",
+      "stop": "Stoppen"
+    }
+  },
+  "settings": {
+    "section": {
+      "duel": {
+        "title": "Duell-Einstellungen",
+        "start-lp": "Start-LP",
+        "best-of": "Best-of",
+        "timer": "Duell-Timer",
+        "custom-profiles": "Benutzerdefinierte Profile",
+        "custom-profiles-modify": "Anpassen",
+        "pick-random-player": "Zufälligen Spieler auswählen"
+      },
+      "gui": {
+        "title": "GUI-Einstellungen",
+        "theme": "Thema",
+        "language": "Sprache",
+        "orientation": "Ausrichtung",
+        "opacity": "Fensteropazität",
+        "wallpaper": "Hintergrundbild",
+        "swap-players": "Spieler tauschen",
+        "rb-number": "Anzahl der Schnellbuttons",
+        "rb-columns": "Anzahl der Spalten",
+        "rb-rows": "Anzahl der Zeilen",
+        "rb-use": "Schnellbuttons verwenden"
+      },
+      "behaviour": {
+        "title": "Verhaltens-Einstellungen",
+        "info": "Anwendung verhalten anpassen",
+        "open": "Einstellungen öffnen"
+      },
+      "android": {
+        "title": "Android-Einstellungen",
+        "keep-awake": "Wach halten (Duell)"
+      },
+      "information": {
+        "title": "Information",
+        "author": "Von {{author}}",
+        "help": "Alle Informationen zur App findest du auf der GitHub-Seite."
+      }
+    },
+    "list-value": {
+      "theme": {
+        "light": "Hell",
+        "dark": "Dunkel",
+        "high-contrast": "Hoher Kontrast"
+      },
+      "orientation": {
+        "potrait": "Vertikal",
+        "landscape": "Horizontal"
+      },
+      "rb-use": {
+        "use": "Verwenden",
+        "dont-use": "Taschenrechner verwenden"
+      },
+      "wallpaper": {
+        "none": "Standard",
+        "stars": "Sterne",
+        "flames": "Glut",
+        "lines": "Linien",
+        "meteorites": "Meteoriten"
+      }
+    }
+  },
+  "behaviour-settings": {
+    "title": "Verhaltens-Einstellungen",
+    "counter-reset": {
+      "title": "Zähler zurücksetzen",
+      "label": {
+        "never": "Nie",
+        "game": "Spiel",
+        "match": "Match"
+      },
+      "info": "<ul><li><b>Nie</b>: Zähler werden niemals automatisch zurückgesetzt.</li><li><b>Spiel</b>: Zähler werden zurückgesetzt, sobald LP zurückgesetzt werden.</li><li><b>Match</b>: Zähler werden zu Beginn oder Ende eines Matches zurückgesetzt.</li></ul>"
+    },
+    "game-reset": {
+      "title": "Spiel zurücksetzen",
+      "label": {
+        "manual": "Manuell",
+        "lp-zero": "LP Null",
+        "lp-zero-auto": "LP Null (automatisch)"
+      },
+      "info": "Legt fest, wann das LP-Reset-Fenster angezeigt wird.<ul><li><b>Manuell</b>: Das Fenster öffnet sich nur, wenn es ausdrücklich ausgelöst wird.</li><li><b>LP Null</b>: Das Fenster öffnet sich automatisch, sobald die LP eines Spielers null erreicht.</li><li><b>LP Null (automatisch)</b>: Wie oben, aber das Fenster wird automatisch bestätigt, ohne zu öffnen, und LP werden sofort zurückgesetzt.</li></ul>"
+    },
+    "winner-selection": {
+      "title": "Gewinner auswählen",
+      "label": {
+        "manual": "Manuell",
+        "auto": "Automatisch"
+      },
+      "info": "Definiert, wie der Gewinner im LP-Reset-Fenster zugewiesen wird.<ul><li><b>Manuell</b>: Der Gewinner wird vom Benutzer ausgewählt.</li><li><b>Automatisch</b>: Der Gewinner wird automatisch vorgeschlagen. Wenn <i>Spiel zurücksetzen</i> ebenfalls auf <i>LP Null (automatisch)</i> gesetzt ist, wird der Gewinner ohne Interaktion ausgewählt und bestätigt.</li></ul>"
+    },
+    "match-stop": {
+      "title": "Match stoppen",
+      "label": {
+        "manual": "Manuell",
+        "winner-found": "Gewinner gefunden",
+        "timer-ends": "Timer endet",
+        "both": "Beides"
+      },
+      "info": "Definiert, wann der Match gestoppt wird.<ul><li><b>Manuell</b>: Die Match-Stoppaufforderung öffnet sich, wenn sie ausdrücklich ausgelöst wird.</li><li><b>Gewinner gefunden</b>: Die Match-Stoppaufforderung öffnet sich, wenn ein Gewinner gefunden wurde.</li><li><b>Timer endet</b>: Die Match-Stoppaufforderung öffnet sich, wenn der Timer endet.</li><li><b>Beides</b>: Die Match-Stoppaufforderung öffnet sich, wenn entweder der Timer endet oder ein Gewinner gefunden wurde.</li></ul>"
+    },
+    "on-startup": {
+      "title": "Beim Start",
+      "label": {
+        "restore": "Spiel wiederherstellen",
+        "reset": "Spiel zurücksetzen"
+      },
+      "info": "Definiert, was passiert, wenn die App startet.<ul><li><b>Spiel wiederherstellen</b>: Wenn ein Spiel bereits im Gange war, wird es wiederhergestellt.</li><li><b>Spiel zurücksetzen</b>: Das Spiel wird zurückgesetzt.</li></ul>"
+    }
+  },
+  "profiles-page": {
+    "my-profile": "Mein Profil",
+    "opponents": "Gegner",
+    "no-opponents": "Noch keine Gegner.",
+    "edit-profile": "Profil bearbeiten",
+    "edit-opponent": "Gegner bearbeiten",
+    "add-opponent": "Gegner hinzufügen",
+    "display-name": "Anzeigename",
+    "profile-picture": "Profilbild",
+    "enter-name": "Name eingeben..."
+  },
+  "card-search": {
+    "placeholder": "Karten suchen...",
+    "searching": "Suche..."
+  },
+  "judge-page": {
+    "title": "Kartensuche",
+    "try": "Versuchen",
+    "or": "oder",
+    "info": "Alle Suchoptionen:<ul><li><b>atk</b>: Angriff der Monsterkarte.</li><li><b>def</b>: Verteidigung der Monsterkarte.</li><li><b>attribute</b>: Attribut der Monsterkarte.</li><li><b>race</b>: Typ der Monsterkarte (Drache, Hexenmeister usw.).</li><li><b>type</b>: Typ der Monsterkarte (Normalmonster, Synchro-Monster, Fusionsmonster, Union-Effektmonster, Flip-Monster).</li><li><b>level</b>: Level der Monsterkarte.</li><li><b>scale</b>: Skala der Pendelmonsterkarte.</li><li><b>archetype</b>: Archetyp.</li></ul>"
+  },
+  "pick-opponent": {
+    "title": "Einen Gegner auswählen",
+    "no-opponents": "Keine gespeicherten Gegner."
+  },
+  "damage-button": {
+    "title": "Schaltfläche ändern",
+    "value": "Wert",
+    "action-type": "Aktionstyp",
+    "info": "(Konfigurationen werden geteilt)"
+  },
+  "logs": {
+    "title": "Protokolle",
+    "events": "{{count}} Ereignisse",
+    "no-events": "Noch keine Ereignisse",
+    "lp-reset": "LP zurücksetzen",
+    "undo": "Ereignis rückgängig machen"
+  },
+  "stop-match": {
+    "title": "Match stoppen?",
+    "outcome": "Ergebnis",
+    "draw": "Unentschieden / Doppelverlust"
+  },
+  "welcome": {
+    "title": "Willkommen",
+    "subtitle": "Wie möchtest du die App nutzen?"
+  },
+  "lp-reset": {
+    "title": "Neues Duell?",
+    "timer-reminder": "Der Timer läuft noch.",
+    "assign-victory": "Sieg zuweisen"
+  }
+}

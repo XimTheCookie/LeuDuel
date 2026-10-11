@@ -64,7 +64,7 @@ export class ProfileEditorComponent implements OnInit {
 
   onCardSelected(card: YgoCard) {
     this.soundboardService.clickSound();
-    this.selectedCardUrl.set(card.card_images?.[0]?.image_url_small ?? null);
+    this.selectedCardUrl.set(card.card_images?.[0]?.image_url_cropped ?? null);
   }
 
   clearCard() {
