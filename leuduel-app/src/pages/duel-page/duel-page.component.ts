@@ -49,10 +49,6 @@ export class DuelPageComponent {
     }
 
     if (!this.settingsService.useRapidButtons()) return;
-    this.modalService.open(
-      LifePointsAdjustModalComponent,
-      { opacity: this.settingsService.getModalOpacity(), size: 'sm' },
-      { player },
-    );
+    this.modalService.open(LifePointsAdjustModalComponent, { size: 'sm' }, { player });
   }
 }

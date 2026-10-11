@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CardSearchComponent } from '../../components/common/card-search/card-search.component';
-import { YgoCard } from '../../models/ygo-card.model';
-import { CardSearchService } from '../../services/card-search/card-search.service';
 import { InfoModalComponent } from '../../components/common/info-modal/info-modal.component';
-import { SoundboardService } from '../../services/soundboard/soundboard.service';
-import { SettingsService } from '../../services/settings/settings.service';
-import { ModalService } from '../../services/modal/modal.service';
+import { YgoCard } from '../../models/ygo-card.model';
 import { TranslatePipe } from '../../pipes/translate/translate.pipe';
+import { CardSearchService } from '../../services/card-search/card-search.service';
+import { ModalService } from '../../services/modal/modal.service';
+import { SoundboardService } from '../../services/soundboard/soundboard.service';
 import { TranslateService } from '../../services/translate/translate.service';
 
 @Component({
@@ -19,7 +18,6 @@ import { TranslateService } from '../../services/translate/translate.service';
 export class JudgePageComponent {
   private readonly soundboardService = inject(SoundboardService);
   private readonly modalService = inject(ModalService);
-  private readonly settingsService = inject(SettingsService);
   private readonly cardSearchService = inject(CardSearchService);
   private readonly translateService = inject(TranslateService);
 
@@ -33,7 +31,6 @@ export class JudgePageComponent {
       InfoModalComponent,
       {
         size: 'sm',
-        opacity: this.settingsService.getModalOpacity(),
       },
       {
         info: this.translateService.translate('judge-page.info'),

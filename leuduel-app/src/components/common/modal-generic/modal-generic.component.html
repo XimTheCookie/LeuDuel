@@ -1,8 +1,4 @@
-<div
-  class="modal-wrapper"
-  [class]="'modal-' + data.config.size"
-  [style.opacity]="data.config.opacity ?? 1"
->
+<div class="modal-wrapper" [class]="'modal-' + data.config.size" [style.opacity]="opacity()">
   @if (!data.config.hideClose) {
     <button class="modal-close" (click)="close()">✕</button>
   }

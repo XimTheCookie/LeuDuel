@@ -13,7 +13,6 @@ export interface ModalConfig {
   size: 'full' | 'md' | 'sm';
   mirror?: boolean;
   closeEvent?: () => void;
-  opacity?: number;
   hideClose?: boolean;
   custom?: any;
 }

@@ -161,7 +161,6 @@ export class LifePointsComponent {
           // auto-prompt
           this.modalService.open(LifePointsResetComponent, {
             size: 'sm',
-            opacity: this.settingsService.getModalOpacity(),
           });
         }
       },

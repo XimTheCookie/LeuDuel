@@ -28,7 +28,6 @@ export class App implements AfterViewInit {
       if (this.settingsService.firstVisit()) {
         this.modalService.open(WelcomeModalComponent, {
           size: 'sm',
-          opacity: this.settingsService.getModalOpacity(),
         });
         this.settingsService.setFirstVisitDone();
       }

@@ -409,7 +409,6 @@ export class SettingsPageComponent {
     this.soundboardService.clickSound();
     this.modalService.open(BehaviourSettingsPageComponent, {
       size: 'md',
-      opacity: this.settingsService.getModalOpacity(),
     });
   }
 
@@ -417,7 +416,6 @@ export class SettingsPageComponent {
     this.soundboardService.clickSound();
     this.modalService.open(ProfilesPageComponent, {
       size: 'full',
-      opacity: this.settingsService.getModalOpacity(),
     });
   }
 

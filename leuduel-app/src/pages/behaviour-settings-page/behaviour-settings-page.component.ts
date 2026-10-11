@@ -1,19 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ButtonComponent } from '../../components/common/button/button.component';
+import { InfoModalComponent } from '../../components/common/info-modal/info-modal.component';
+import { ListPickerComponent } from '../../components/common/list-picker/list-picker.component';
+import { MODAL_DATA } from '../../components/common/modal-generic/modal-generic.component';
+import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
+import { TranslatePipe } from '../../pipes/translate/translate.pipe';
+import { ModalService } from '../../services/modal/modal.service';
 import {
   BEHAVIOURS_CONFIG,
   BehaviourSettingsService,
 } from '../../services/settings/behaviour-settings.service';
-import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
-import { MODAL_DATA } from '../../components/common/modal-generic/modal-generic.component';
 import { SoundboardService } from '../../services/soundboard/soundboard.service';
-import { TranslatePipe } from '../../pipes/translate/translate.pipe';
-import { ListPickerComponent } from '../../components/common/list-picker/list-picker.component';
-import { InfoModalComponent } from '../../components/common/info-modal/info-modal.component';
 import { TranslateService } from '../../services/translate/translate.service';
-import { ModalService } from '../../services/modal/modal.service';
-import { SettingsService } from '../../services/settings/settings.service';
-import { ButtonComponent } from '../../components/common/button/button.component';
 
 @Component({
   selector: 'app-behaviour-settings-page',
@@ -28,7 +27,6 @@ export class BehaviourSettingsPageComponent {
   private readonly modalData = inject(MODAL_DATA);
   private readonly translateService = inject(TranslateService);
   private readonly modalService = inject(ModalService);
-  private readonly settingsService = inject(SettingsService);
 
   readonly configs = BEHAVIOURS_CONFIG;
 
@@ -99,7 +97,6 @@ export class BehaviourSettingsPageComponent {
       InfoModalComponent,
       {
         size: 'sm',
-        opacity: this.settingsService.getModalOpacity(),
       },
       { info: this.translateService.translate(helper) },
     );

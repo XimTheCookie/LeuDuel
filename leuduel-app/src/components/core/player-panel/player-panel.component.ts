@@ -62,7 +62,6 @@ export class PlayerPanelComponent {
     this.modalService.open(
       LifePointsAdjustModalComponent,
       {
-        opacity: this.settingsService.getModalOpacity(),
         size: 'sm',
         mirror: this.player() === 'player2',
       },

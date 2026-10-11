@@ -131,14 +131,10 @@ export class DuelControllerComponent implements AfterViewInit {
   }
 
   stopMatch() {
-    this.modalService.open(
-      StopMatchModalComponent,
-      { size: 'sm', opacity: this.settingsService.getModalOpacity() },
-      () => {
-        this.handleStopMatch();
-        this.soundboardService.confirmationSound();
-      },
-    );
+    this.modalService.open(StopMatchModalComponent, { size: 'sm' }, () => {
+      this.handleStopMatch();
+      this.soundboardService.confirmationSound();
+    });
   }
 
   private handleStopMatch() {
@@ -152,10 +148,8 @@ export class DuelControllerComponent implements AfterViewInit {
       return;
     }
 
-    this.modalService.open(
-      OpponentPickerModalComponent,
-      { size: 'sm', opacity: this.settingsService.getModalOpacity() },
-      (opponentId?: number) => this.startDuelOv(opponentId),
+    this.modalService.open(OpponentPickerModalComponent, { size: 'sm' }, (opponentId?: number) =>
+      this.startDuelOv(opponentId),
     );
   }
 
@@ -167,7 +161,6 @@ export class DuelControllerComponent implements AfterViewInit {
 
     this.modalService.open(PlayerRandomizerPageComponent, {
       size: 'full',
-      opacity: this.settingsService.getModalOpacity(),
       hideClose: true,
       closeEvent: () => this.handleStart(opponentId),
     });
@@ -184,7 +177,6 @@ export class DuelControllerComponent implements AfterViewInit {
   resetLifePoints() {
     this.modalService.open(LifePointsResetComponent, {
       size: 'sm',
-      opacity: this.settingsService.getModalOpacity(),
     });
   }
 
@@ -192,21 +184,18 @@ export class DuelControllerComponent implements AfterViewInit {
     this.modalService.open(SettingsPageComponent, {
       size: 'full',
       closeEvent: () => this.handleStopMatch(),
-      opacity: this.settingsService.getModalOpacity(),
     });
   }
 
   viewLog() {
     this.modalService.open(LogsPageComponent, {
       size: 'md',
-      opacity: this.settingsService.getModalOpacity(),
     });
   }
 
   openToolsPage() {
     this.modalService.open(ToolsPageComponent, {
       size: 'full',
-      opacity: this.settingsService.getModalOpacity(),
       hideClose: true,
     });
   }
@@ -214,7 +203,6 @@ export class DuelControllerComponent implements AfterViewInit {
   openCountersPage() {
     this.modalService.open(CounterPageComponent, {
       size: 'full',
-      opacity: this.settingsService.getModalOpacity(),
       hideClose: true,
     });
   }
@@ -222,7 +210,6 @@ export class DuelControllerComponent implements AfterViewInit {
   openJudgePage() {
     this.modalService.open(JudgePageComponent, {
       size: 'full',
-      opacity: this.settingsService.getModalOpacity(),
     });
   }
 

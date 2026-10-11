@@ -6,9 +6,12 @@ import {
   ViewChild,
   ViewContainerRef,
   Type,
+  inject,
+  computed,
 } from '@angular/core';
 import { OverlayRef } from '@angular/cdk/overlay';
 import { ModalConfig } from '../../../services/modal/modal.service';
+import { SettingsService } from '../../../services/settings/settings.service';
 
 export const MODAL_DATA = new InjectionToken<{
   component: Type<unknown>;
@@ -23,6 +26,10 @@ export const MODAL_DATA = new InjectionToken<{
   styleUrls: ['./modal-generic.component.scss'],
 })
 export class ModalGenericComponent implements OnInit {
+  private readonly settingsService = inject(SettingsService);
+
+  opacity = computed(() => this.settingsService.getModalOpacity());
+
   @ViewChild('content', { read: ViewContainerRef, static: true })
   contentRef!: ViewContainerRef;
 

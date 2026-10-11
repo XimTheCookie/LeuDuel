@@ -1,4 +1,5 @@
 import {
+  computed,
   effect,
   EnvironmentInjector,
   inject,
@@ -53,7 +54,7 @@ const DEFAULT_VALUES: SettingsSnapshot = {
   useRapidButtons: true,
   useKeepAwake: true,
   soundsOn: true,
-  modalOpacity: 7,
+  modalOpacity: 10,
   firstVisit: true,
   landscapeMode: false,
   swapPlayers: false,
@@ -303,9 +304,7 @@ export class SettingsService {
     this.modalOpacity.set(value);
   }
 
-  getModalOpacity() {
-    return (this.modalOpacity() ?? 7) / 10;
-  }
+  getModalOpacity = computed(() => (this.modalOpacity() ?? 10) / 10);
 
   resetRapidButtonsConfig() {
     this.rapidButtonsConfig.set(DEFAULT_VALUES.rapidButtonsConfig);
