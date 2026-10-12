@@ -83,11 +83,12 @@
         "dont-use": "Use calculator"
       },
       "wallpaper": {
+        "warning": "Notice: wallpapers may cause frame drops on low-end devices and increase battery drain!",
         "none": "Default",
-        "stars": "Stars",
-        "flames": "Embers",
+        "snow": "Snow",
+        "embers": "Embers",
         "lines": "Lines",
-        "meteorites": "Meteorites"
+        "rain": "Rain"
       }
     }
   },

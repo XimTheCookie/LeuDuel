@@ -174,11 +174,11 @@ export class SettingsPageComponent {
       value: 0,
     },
     {
-      label: 'settings.list-value.wallpaper.stars',
+      label: 'settings.list-value.wallpaper.snow',
       value: 1,
     },
     {
-      label: 'settings.list-value.wallpaper.flames',
+      label: 'settings.list-value.wallpaper.embers',
       value: 2,
     },
     {
@@ -186,7 +186,7 @@ export class SettingsPageComponent {
       value: 3,
     },
     {
-      label: 'settings.list-value.wallpaper.meteorites',
+      label: 'settings.list-value.wallpaper.rain',
       value: 4,
     },
   ];

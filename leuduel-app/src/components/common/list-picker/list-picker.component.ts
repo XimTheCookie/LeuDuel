@@ -14,6 +14,7 @@ export class ListPickerComponent {
   formControl = input.required<FormControl<string | number | boolean | null>>();
   options = input.required<{ label: string; value: string | number | boolean | null }[]>();
   label = input<string>('');
+  infoLabel = input<string | undefined>();
   canReset = input<boolean>(false);
   disabled = input<boolean>(false);
   doReset = output<void>();

@@ -15,11 +15,17 @@ interface Ember {
 }
 
 @Component({
-  selector: 'app-flames-wallpaper',
-  templateUrl: './flames-wallpaper.component.html',
-  styleUrls: ['./flames-wallpaper.component.scss'],
+  selector: 'app-embers-wallpaper',
+  template: `<canvas #canvas></canvas>`,
+  styles: `
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+  `,
+  standalone: true,
 })
-export class FlamesWallpaperComponent implements AfterViewInit, OnDestroy {
+export class EmbersWallpaperComponent implements AfterViewInit, OnDestroy {
   private readonly settingsService = inject(SettingsService);
 
   canvasRef = viewChild.required<ElementRef<HTMLCanvasElement>>('canvas');
@@ -29,7 +35,9 @@ export class FlamesWallpaperComponent implements AfterViewInit, OnDestroy {
   private animationId = 0;
   private time = 0;
 
-  private readonly EMBER_COUNT = 160;
+  optimize = false;
+  private readonly EMBER_COUNT = this.optimize ? 80 : 160;
+  private frameCount = 0;
 
   private get emberColors(): string[] {
     if (this.settingsService.theme() === 'light') {
@@ -85,7 +93,9 @@ export class FlamesWallpaperComponent implements AfterViewInit, OnDestroy {
 
   private animate = () => {
     this.animationId = requestAnimationFrame(this.animate);
+    this.frameCount++;
     this.time += 0.02;
+    if (this.optimize && this.frameCount % 2 !== 0) return;
     this.draw();
   };
 
@@ -114,21 +124,19 @@ export class FlamesWallpaperComponent implements AfterViewInit, OnDestroy {
       const color = colors[e.colorIndex];
       const r = e.radius;
 
-      const glow = this.ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, r * 3);
-      glow.addColorStop(0, `rgba(${color} ${alpha * 0.35})`);
-      glow.addColorStop(1, `rgba(${color} 0)`);
-      this.ctx.beginPath();
-      this.ctx.arc(e.x, e.y, r * 3, 0, Math.PI * 2);
-      this.ctx.fillStyle = glow;
-      this.ctx.fill();
+      if (!this.optimize) {
+        const glow = this.ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, r * 3);
+        glow.addColorStop(0, `rgba(${color} ${alpha * 0.35})`);
+        glow.addColorStop(1, `rgba(${color} 0)`);
+        this.ctx.beginPath();
+        this.ctx.arc(e.x, e.y, r * 3, 0, Math.PI * 2);
+        this.ctx.fillStyle = glow;
+        this.ctx.fill();
+      }
 
-      const core = this.ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, r);
-      core.addColorStop(0, `rgba(255, 240, 200, ${alpha})`);
-      core.addColorStop(0.4, `rgba(${color} ${alpha * 0.9})`);
-      core.addColorStop(1, `rgba(${color} 0)`);
       this.ctx.beginPath();
       this.ctx.arc(e.x, e.y, r, 0, Math.PI * 2);
-      this.ctx.fillStyle = core;
+      this.ctx.fillStyle = `rgba(${color} ${alpha})`;
       this.ctx.fill();
     }
   }

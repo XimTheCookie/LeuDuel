@@ -83,11 +83,12 @@
         "dont-use": "Usa calcolatrice"
       },
       "wallpaper": {
+        "warning": "Avviso: gli sfondi potrebbero causare cali di frame su dispositivi poco potenti e aumentare il consumo della batteria!",
         "none": "Normale",
-        "stars": "Stelle",
-        "flames": "Braci",
+        "snow": "Neve",
+        "embers": "Braci",
         "lines": "Linee",
-        "meteorites": "Meteoriti"
+        "rain": "Pioggia"
       }
     }
   },

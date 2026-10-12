@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, OnDestroy, viewChild, ElementRef, inject } from '@angular/core';
 import { SettingsService } from '../../../../services/settings/settings.service';
 
-interface Meteorite {
+interface Raindrop {
   x: number;
   y: number;
   length: number; // tail length
@@ -13,23 +13,31 @@ interface Meteorite {
 }
 
 @Component({
-  selector: 'app-meteorites-wallpaper',
-  templateUrl: './meteorites-wallpaper.component.html',
-  styleUrls: ['./meteorites-wallpaper.component.scss'],
+  selector: 'app-rain-wallpaper',
+  template: `<canvas #canvas></canvas>`,
+  styles: `
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+  `,
+  standalone: true,
 })
-export class MeteoritesWallpaperComponent implements AfterViewInit, OnDestroy {
+export class RainWallpaperComponent implements AfterViewInit, OnDestroy {
   private readonly settingsService = inject(SettingsService);
 
   canvasRef = viewChild.required<ElementRef<HTMLCanvasElement>>('canvas');
 
   private ctx!: CanvasRenderingContext2D;
-  private meteorites: Meteorite[] = [];
+  private rain: Raindrop[] = [];
   private animationId = 0;
 
   private readonly ANGLE = Math.PI / 6;
   private readonly DX = -Math.sin(this.ANGLE); // ~-0.5
   private readonly DY = Math.cos(this.ANGLE); // ~0.866
-  private readonly COUNT = 22;
+  optimize = false;
+  private readonly COUNT = this.optimize ? 11 : 22;
+  private frameCount = 0;
   private readonly FADE_SPEED = 0.025;
 
   private get color(): string {
@@ -61,11 +69,11 @@ export class MeteoritesWallpaperComponent implements AfterViewInit, OnDestroy {
     const canvas = this.canvasRef().nativeElement;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    this.meteorites = [];
+    this.rain = [];
     this.spawnAll();
   };
 
-  private spawn(canvas: HTMLCanvasElement, stagger = false): Meteorite {
+  private spawn(canvas: HTMLCanvasElement, stagger = false): Raindrop {
     const length = Math.random() * 120 + 40;
     const speed = Math.random() * 4 + 2;
     const opacity = Math.random() * 0.35 + 0.25;
@@ -90,11 +98,13 @@ export class MeteoritesWallpaperComponent implements AfterViewInit, OnDestroy {
 
   private spawnAll() {
     const canvas = this.canvasRef().nativeElement;
-    this.meteorites = Array.from({ length: this.COUNT }, () => this.spawn(canvas, true));
+    this.rain = Array.from({ length: this.COUNT }, () => this.spawn(canvas, true));
   }
 
   private animate = () => {
     this.animationId = requestAnimationFrame(this.animate);
+    this.frameCount++;
+    if (this.optimize && this.frameCount % 2 !== 0) return;
     this.update();
     this.draw();
   };
@@ -103,12 +113,12 @@ export class MeteoritesWallpaperComponent implements AfterViewInit, OnDestroy {
     const canvas = this.canvasRef().nativeElement;
     const margin = 80;
 
-    for (let i = 0; i < this.meteorites.length; i++) {
-      const m = this.meteorites[i];
+    for (let i = 0; i < this.rain.length; i++) {
+      const m = this.rain[i];
 
       if (m.dying) {
         m.fadeOpacity -= this.FADE_SPEED;
-        if (m.fadeOpacity <= 0) this.meteorites[i] = this.spawn(canvas, false);
+        if (m.fadeOpacity <= 0) this.rain[i] = this.spawn(canvas, false);
         continue;
       }
 
@@ -132,7 +142,7 @@ export class MeteoritesWallpaperComponent implements AfterViewInit, OnDestroy {
 
     this.ctx.clearRect(0, 0, width, height);
 
-    for (const m of this.meteorites) {
+    for (const m of this.rain) {
       const tailX = m.x - this.DX * m.length;
       const tailY = m.y - this.DY * m.length;
 
@@ -149,11 +159,12 @@ export class MeteoritesWallpaperComponent implements AfterViewInit, OnDestroy {
       this.ctx.lineCap = 'round';
       this.ctx.stroke();
 
-      // bright head dot
-      this.ctx.beginPath();
-      this.ctx.arc(m.x, m.y, m.width * 0.9, 0, Math.PI * 2);
-      this.ctx.fillStyle = `rgba(${color} ${m.fadeOpacity})`;
-      this.ctx.fill();
+      if (!this.optimize) {
+        this.ctx.beginPath();
+        this.ctx.arc(m.x, m.y, m.width * 0.9, 0, Math.PI * 2);
+        this.ctx.fillStyle = `rgba(${color} ${m.fadeOpacity})`;
+        this.ctx.fill();
+      }
     }
   }
 }

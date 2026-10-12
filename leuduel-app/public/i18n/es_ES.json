@@ -83,11 +83,12 @@
         "dont-use": "Usar calculadora"
       },
       "wallpaper": {
-        "none": "Ordinario",
-        "stars": "Estrellas",
-        "flames": "Brasas",
+        "warning": "Aviso: los fondos pueden provocar caídas de fotogramas en dispositivos de gama baja y aumentar el consumo de batería.",
+        "none": "Estándar",
+        "snow": "Nieve",
+        "embers": "Brasas",
         "lines": "Líneas",
-        "meteorites": "Meteoritos"
+        "rain": "Lluvia"
       }
     }
   },

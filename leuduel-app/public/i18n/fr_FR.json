@@ -83,11 +83,12 @@
         "dont-use": "Utiliser la calculatrice"
       },
       "wallpaper": {
+        "warning": "Attention: les fonds d'écran peuvent provoquer des baisses de FPS sur les appareils peu puissants et augmenter la consommation de batterie !",
         "none": "Par défaut",
-        "stars": "Étoiles",
-        "flames": "Braises",
+        "snow": "Neige",
+        "embers": "Braises",
         "lines": "Lignes",
-        "meteorites": "Météorites"
+        "rain": "Pluie"
       }
     }
   },

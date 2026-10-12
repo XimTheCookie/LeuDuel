@@ -83,11 +83,12 @@
         "dont-use": "Użyj kalkulatora"
       },
       "wallpaper": {
+        "warning": "Uwaga: tapety mogą powodować spadki fps na słabszych urządzeniach i zwiększać zużycie baterii!",
         "none": "Domyślne",
-        "stars": "Gwiazdy",
-        "flames": "Żarzące się węgle",
+        "snow": "Śnieg",
+        "embers": "Żarzące węgle",
         "lines": "Linie",
-        "meteorites": "Meteoryty"
+        "rain": "Deszcz"
       }
     }
   },

@@ -1,10 +1,10 @@
 import { Component, inject, computed, signal } from '@angular/core';
 import { DuelPageComponent } from '../../../pages/duel-page/duel-page.component';
 import { SettingsService } from '../../../services/settings/settings.service';
-import { StarsWallpaperComponent } from '../../common/wallpaper/stars-wallpaper/stars-wallpaper.component';
-import { FlamesWallpaperComponent } from '../../common/wallpaper/flames-wallpaper/flames-wallpaper.component';
 import { LinesWallpaperComponent } from '../../common/wallpaper/lines-wallpaper/lines-wallpaper.component';
-import { MeteoritesWallpaperComponent } from '../../common/wallpaper/meteorites-wallpaper/meteorites-wallpaper.component';
+import { SnowWallpaperComponent } from '../../common/wallpaper/snow-wallpaper/snow-wallpaper.component';
+import { EmbersWallpaperComponent } from '../../common/wallpaper/embers-wallpaper/embers-wallpaper.component';
+import { RainWallpaperComponent } from '../../common/wallpaper/rain-wallpaper/rain-wallpaper.component';
 
 @Component({
   selector: 'app-wrapper',
@@ -12,10 +12,10 @@ import { MeteoritesWallpaperComponent } from '../../common/wallpaper/meteorites-
   styleUrls: ['./wrapper.component.scss'],
   imports: [
     DuelPageComponent,
-    StarsWallpaperComponent,
-    FlamesWallpaperComponent,
     LinesWallpaperComponent,
-    MeteoritesWallpaperComponent,
+    SnowWallpaperComponent,
+    EmbersWallpaperComponent,
+    RainWallpaperComponent,
   ],
 })
 export class WrapperComponent {

@@ -9,7 +9,7 @@ import { provideRouter } from '@angular/router';
 import { TranslateService } from '../services/translate/translate.service';
 import { routes } from './app.routes';
 
-export const APP_VERSION = '1.0.7';
+export const APP_VERSION = '1.0.8';
 
 export const appConfig: ApplicationConfig = {
   providers: [

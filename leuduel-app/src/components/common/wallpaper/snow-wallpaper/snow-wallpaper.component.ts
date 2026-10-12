@@ -10,33 +10,41 @@ import {
 } from '@angular/core';
 import { SettingsService } from '../../../../services/settings/settings.service';
 
-interface Star {
+interface Snowflake {
   x: number;
   y: number;
   radius: number;
   opacity: number;
   speed: number;
-  twinkleOffset: number;
+  offset: number;
 }
 
 @Component({
-  selector: 'app-stars-wallpaper',
-  templateUrl: './stars-wallpaper.component.html',
-  styleUrls: ['./stars-wallpaper.component.scss'],
+  selector: 'app-snow-wallpaper',
+  template: `<canvas #canvas></canvas>`,
+  styles: `
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+  `,
+  standalone: true,
 })
-export class StarsWallpaperComponent implements AfterViewInit, OnDestroy {
+export class SnowWallpaperComponent implements AfterViewInit, OnDestroy {
   private readonly settingsService = inject(SettingsService);
 
   canvasRef = viewChild.required<ElementRef<HTMLCanvasElement>>('canvas');
 
   private ctx!: CanvasRenderingContext2D;
-  private stars: Star[] = [];
+  private snowflakes: Snowflake[] = [];
   private animationId = 0;
   private time = 0;
 
-  private readonly STAR_COUNT = 300;
+  optimize = false;
+  private readonly SF_COUNT = this.optimize ? 150 : 300;
+  private frameCount = 0;
 
-  private get starColor(): string {
+  private get snowflakeColor(): string {
     return this.settingsService.theme() === 'light' ? '30, 42, 74,' : '220, 232, 255,';
   }
 
@@ -48,7 +56,7 @@ export class StarsWallpaperComponent implements AfterViewInit, OnDestroy {
     const canvas = this.canvasRef().nativeElement;
     this.ctx = canvas.getContext('2d')!;
     this.resize();
-    this.generateStars();
+    this.generateSnowFlakes();
     this.animate();
     window.addEventListener('resize', this.resize);
   }
@@ -62,24 +70,26 @@ export class StarsWallpaperComponent implements AfterViewInit, OnDestroy {
     const canvas = this.canvasRef().nativeElement;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    this.generateStars();
+    this.generateSnowFlakes();
   };
 
-  private generateStars() {
+  private generateSnowFlakes() {
     const canvas = this.canvasRef().nativeElement;
-    this.stars = Array.from({ length: this.STAR_COUNT }, () => ({
+    this.snowflakes = Array.from({ length: this.SF_COUNT }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       radius: Math.random() * 1.5 + 0.3,
       opacity: Math.random() * 0.6 + 0.3,
       speed: Math.random() * 0.15 + 0.02,
-      twinkleOffset: Math.random() * Math.PI * 2,
+      offset: Math.random() * Math.PI * 2,
     }));
   }
 
   private animate = () => {
     this.animationId = requestAnimationFrame(this.animate);
+    this.frameCount++;
     this.time += 0.01;
+    if (this.optimize && this.frameCount % 2 !== 0) return;
     this.draw();
   };
 
@@ -89,28 +99,28 @@ export class StarsWallpaperComponent implements AfterViewInit, OnDestroy {
 
     this.ctx.clearRect(0, 0, width, height);
 
-    for (const star of this.stars) {
-      star.y += star.speed;
-      if (star.y > height) {
-        star.y = 0;
-        star.x = Math.random() * width;
+    for (const snowflake of this.snowflakes) {
+      snowflake.y += snowflake.speed;
+      if (snowflake.y > height) {
+        snowflake.y = 0;
+        snowflake.x = Math.random() * width;
       }
 
-      const twinkle = Math.sin(this.time * 2 + star.twinkleOffset) * 0.3 + 0.7;
-      const alpha = star.opacity * twinkle;
+      const twinkle = Math.sin(this.time * 2 + snowflake.offset) * 0.3 + 0.7;
+      const alpha = snowflake.opacity * twinkle;
 
       this.ctx.beginPath();
-      this.ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      this.ctx.fillStyle = `rgba(${this.starColor} ${alpha})`;
+      this.ctx.arc(snowflake.x, snowflake.y, snowflake.radius, 0, Math.PI * 2);
+      this.ctx.fillStyle = `rgba(${this.snowflakeColor} ${alpha})`;
       this.ctx.fill();
     }
 
-    for (let i = 0; i < this.stars.length; i += 20) {
-      const star = this.stars[i];
-      const twinkle = Math.sin(this.time * 1.5 + star.twinkleOffset) * 0.4 + 0.6;
+    for (let i = 0; i < this.snowflakes.length; i += 20) {
+      const snowflake = this.snowflakes[i];
+      const twinkle = Math.sin(this.time * 1.5 + snowflake.offset) * 0.4 + 0.6;
       this.ctx.beginPath();
-      this.ctx.arc(star.x, star.y, star.radius * 1.4, 0, Math.PI * 2);
-      this.ctx.fillStyle = `rgba(${this.accentColor} ${star.opacity * twinkle})`;
+      this.ctx.arc(snowflake.x, snowflake.y, snowflake.radius * 1.4, 0, Math.PI * 2);
+      this.ctx.fillStyle = `rgba(${this.accentColor} ${snowflake.opacity * twinkle})`;
       this.ctx.fill();
     }
   }

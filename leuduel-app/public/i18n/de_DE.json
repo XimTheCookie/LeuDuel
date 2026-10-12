@@ -83,11 +83,12 @@
         "dont-use": "Taschenrechner verwenden"
       },
       "wallpaper": {
+        "warning": "Achtung: Hintergründe können auf leistungsschwachen Geräten zu Bildabbrüchen führen und den Akku stärker entladen!",
         "none": "Standard",
-        "stars": "Sterne",
-        "flames": "Glut",
+        "snow": "Schnee",
+        "embers": "Glut",
         "lines": "Linien",
-        "meteorites": "Meteoriten"
+        "rain": "Regen"
       }
     }
   },

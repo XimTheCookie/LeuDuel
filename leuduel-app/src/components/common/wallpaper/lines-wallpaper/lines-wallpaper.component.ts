@@ -20,8 +20,14 @@ interface Chain {
 
 @Component({
   selector: 'app-lines-wallpaper',
-  templateUrl: './lines-wallpaper.component.html',
-  styleUrls: ['./lines-wallpaper.component.scss'],
+  template: `<canvas #canvas></canvas>`,
+  styles: `
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+  `,
+  standalone: true,
 })
 export class LinesWallpaperComponent implements AfterViewInit, OnDestroy {
   private readonly settingsService = inject(SettingsService);
@@ -32,10 +38,12 @@ export class LinesWallpaperComponent implements AfterViewInit, OnDestroy {
   private chains: Chain[] = [];
   private animationId = 0;
 
-  private readonly CHAIN_COUNT = 18;
+  private readonly optimize = (navigator.hardwareConcurrency ?? 4) <= 2;
+  private readonly CHAIN_COUNT = this.optimize ? 9 : 18;
   private readonly FADE_SPEED = 0.018;
   private readonly MAX_ROTATION = Math.PI * 0.75;
   private readonly TAIL_INTERVAL = 8;
+  private frameCount = 0;
 
   private get lineColor(): string {
     switch (this.settingsService.theme()) {
@@ -113,6 +121,8 @@ export class LinesWallpaperComponent implements AfterViewInit, OnDestroy {
 
   private animate = () => {
     this.animationId = requestAnimationFrame(this.animate);
+    this.frameCount++;
+    if (this.optimize && this.frameCount % 2 !== 0) return;
     this.update();
     this.draw();
   };
@@ -171,23 +181,30 @@ export class LinesWallpaperComponent implements AfterViewInit, OnDestroy {
 
     this.ctx.clearRect(0, 0, width, height);
 
+    this.ctx.lineCap = 'round';
+
     for (const c of this.chains) {
       const pts = c.points;
       if (pts.length < 2) continue;
 
-      const total = pts.length;
-      for (let i = 1; i < total; i++) {
-        const posRatio = i / total;
-        const alpha = c.fadeOpacity * (0.15 + posRatio * 0.85);
-        const lineWidth = 0.6 + posRatio * 1.6;
-
+      if (this.optimize) {
         this.ctx.beginPath();
-        this.ctx.moveTo(pts[i - 1].x, pts[i - 1].y);
-        this.ctx.lineTo(pts[i].x, pts[i].y);
-        this.ctx.strokeStyle = `rgba(${color} ${alpha})`;
-        this.ctx.lineWidth = lineWidth;
-        this.ctx.lineCap = 'round';
+        this.ctx.moveTo(pts[0].x, pts[0].y);
+        for (let i = 1; i < pts.length; i++) this.ctx.lineTo(pts[i].x, pts[i].y);
+        this.ctx.strokeStyle = `rgba(${color} ${c.fadeOpacity * 0.7})`;
+        this.ctx.lineWidth = 1.2;
         this.ctx.stroke();
+      } else {
+        const total = pts.length;
+        for (let i = 1; i < total; i++) {
+          const posRatio = i / total;
+          this.ctx.beginPath();
+          this.ctx.moveTo(pts[i - 1].x, pts[i - 1].y);
+          this.ctx.lineTo(pts[i].x, pts[i].y);
+          this.ctx.strokeStyle = `rgba(${color} ${c.fadeOpacity * (0.15 + posRatio * 0.85)})`;
+          this.ctx.lineWidth = 0.6 + posRatio * 1.6;
+          this.ctx.stroke();
+        }
       }
     }
   }

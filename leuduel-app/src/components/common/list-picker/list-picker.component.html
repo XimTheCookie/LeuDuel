@@ -29,6 +29,10 @@
         (touchend)="onHandleTouchEnd()"
       ></div>
     </div>
+    @let il = infoLabel();
+    @if (il) {
+      <p class="lp-info">{{ il | translate }}</p>
+    }
     <div class="lp-sheet__list">
       @for (option of options(); track option) {
         <button
