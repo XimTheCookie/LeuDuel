@@ -16,7 +16,8 @@
       "divide": "Teilen",
       "multiply": "Multiplizieren",
       "set": "Festlegen",
-      "winner": "Gewinner"
+      "winner": "Gewinner",
+      "exit": "Drücke erneut, um leuDuel zu verlassen"
     },
     "button": {
       "save": "Änderungen speichern",

@@ -16,7 +16,8 @@
       "divide": "Dividi",
       "multiply": "Moltiplica",
       "set": "Imposta",
-      "winner": "Vincitore"
+      "winner": "Vincitore",
+      "exit": "Premi di nuovo per uscire da leuDuel"
     },
     "button": {
       "save": "Salva modifiche",

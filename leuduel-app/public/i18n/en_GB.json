@@ -16,7 +16,8 @@
       "divide": "Divide",
       "multiply": "Multiply",
       "set": "Set",
-      "winner": "Winner"
+      "winner": "Winner",
+      "exit": "Press again to exit leuDuel"
     },
     "button": {
       "save": "Save changes",

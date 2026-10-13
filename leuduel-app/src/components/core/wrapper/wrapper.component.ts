@@ -6,6 +6,8 @@ import { SnowWallpaperComponent } from '../../common/wallpaper/snow-wallpaper/sn
 import { EmbersWallpaperComponent } from '../../common/wallpaper/embers-wallpaper/embers-wallpaper.component';
 import { RainWallpaperComponent } from '../../common/wallpaper/rain-wallpaper/rain-wallpaper.component';
 
+import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
+
 @Component({
   selector: 'app-wrapper',
   templateUrl: './wrapper.component.html',
@@ -16,6 +18,7 @@ import { RainWallpaperComponent } from '../../common/wallpaper/rain-wallpaper/ra
     SnowWallpaperComponent,
     EmbersWallpaperComponent,
     RainWallpaperComponent,
+    SnackbarComponent,
   ],
 })
 export class WrapperComponent {

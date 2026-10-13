@@ -1,11 +1,14 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { inject, Injectable, OnDestroy } from '@angular/core';
 import { Capacitor, PluginListenerHandle } from '@capacitor/core';
 import { App as CapacitorApp } from '@capacitor/app';
+import { SnackbarService } from '../snackbar/snackbar.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AndroidNavigationService implements OnDestroy {
+  private readonly snackbarService = inject(SnackbarService);
+
   private handlers: (() => void)[] = [];
   private listener?: PluginListenerHandle;
   private lastBackPress = 0;
@@ -17,10 +20,11 @@ export class AndroidNavigationService implements OnDestroy {
           this.handlers[this.handlers.length - 1]();
         } else {
           const now = Date.now();
-          if (now - this.lastBackPress < 2000) {
+          if (now - this.lastBackPress < 2500) {
             CapacitorApp.exitApp();
           } else {
             this.lastBackPress = now;
+            this.snackbarService.showNeutral('common.label.exit');
           }
         }
       }).then((l) => (this.listener = l));
