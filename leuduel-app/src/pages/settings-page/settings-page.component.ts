@@ -1,21 +1,26 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { NumberInputComponent } from '../../components/common/number-input/number-input.component';
-import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
-import { TimeInputComponent } from '../../components/common/time-input/time-input.component';
-import { ListPickerComponent } from '../../components/common/list-picker/list-picker.component';
-import { SettingsService } from '../../services/settings/settings.service';
-import { ModalService } from '../../services/modal/modal.service';
-import { AndroidManagementService } from '../../services/android/android-management.service';
-import { SoundboardService } from '../../services/soundboard/soundboard.service';
-import { BehaviourSettingsPageComponent } from '../behaviour-settings-page/behaviour-settings-page.component';
-import { ProfilesPageComponent } from '../profiles-page/profiles-page.component';
-import { TranslatePipe } from '../../pipes/translate/translate.pipe';
-import { IconComponent } from '../../components/common/icon/icon.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import { APP_VERSION } from '../../app/app.config';
 import { ButtonComponent } from '../../components/common/button/button.component';
+import { IconComponent } from '../../components/common/icon/icon.component';
+import { ListPickerComponent } from '../../components/common/list-picker/list-picker.component';
+import { NumberInputComponent } from '../../components/common/number-input/number-input.component';
+import { TextButtonComponent } from '../../components/common/text-button/text-button.component';
+import { TimeInputComponent } from '../../components/common/time-input/time-input.component';
+import { TranslatePipe } from '../../pipes/translate/translate.pipe';
+import { AndroidManagementService } from '../../services/android/android-management.service';
+import { ModalService } from '../../services/modal/modal.service';
+import {
+  BEHAVIOURS_CONFIG,
+  BehaviourSettingsService,
+} from '../../services/settings/behaviour-settings.service';
+import { SettingsService } from '../../services/settings/settings.service';
+import { SoundboardService } from '../../services/soundboard/soundboard.service';
+import { TranslateService } from '../../services/translate/translate.service';
+import { ProfilesPageComponent } from '../profiles-page/profiles-page.component';
+import { InfoModalComponent } from '../../components/common/info-modal/info-modal.component';
 
 @Component({
   selector: 'app-settings-page',
@@ -44,6 +49,31 @@ export class SettingsPageComponent {
   readonly keepAwakeSupported = signal(false);
   readonly keepAwakeSavedValue = signal(false);
 
+  private readonly behaviourSettingsService = inject(BehaviourSettingsService);
+  private readonly translateService = inject(TranslateService);
+
+  /** Behaviour configs */
+  readonly behaviourConfigs = BEHAVIOURS_CONFIG;
+
+  allConfigKeys = Object.keys(this.behaviourConfigs) as (keyof typeof BEHAVIOURS_CONFIG)[];
+
+  counterReset = new FormControl<number>(this.behaviourSettingsService.counterReset(), {
+    nonNullable: true,
+  });
+  gameReset = new FormControl<number>(this.behaviourSettingsService.gameReset(), {
+    nonNullable: true,
+  });
+  winnerSelect = new FormControl<number>(this.behaviourSettingsService.winnerSelect(), {
+    nonNullable: true,
+  });
+  matchStop = new FormControl<number>(this.behaviourSettingsService.matchStop(), {
+    nonNullable: true,
+  });
+  onStartup = new FormControl<number>(this.behaviourSettingsService.onStartup(), {
+    nonNullable: true,
+  });
+
+  /** Settings */
   keepAwake = new FormControl<boolean>({ value: false, disabled: true });
 
   lifePoints = new FormControl<number>(this.settingsService.getStartingLifePoints(), [
@@ -405,13 +435,6 @@ export class SettingsPageComponent {
     this.settingsService.setBackground(this.background.value!);
   }
 
-  openBehaviourSettings() {
-    this.soundboardService.clickSound();
-    this.modalService.open(BehaviourSettingsPageComponent, {
-      size: 'md',
-    });
-  }
-
   openProfiles() {
     this.soundboardService.clickSound();
     this.modalService.open(ProfilesPageComponent, {
@@ -431,5 +454,68 @@ export class SettingsPageComponent {
     if (!this.language.valid) return;
     this.soundboardService.clickSound();
     this.settingsService.setLanguage(this.language.value!);
+  }
+
+  getOptionConfig(configKey: string) {
+    return this.behaviourConfigs[configKey];
+  }
+
+  getFormControlForConfig(configKey: string) {
+    switch (configKey) {
+      case 'counterReset':
+        return this.counterReset;
+      case 'gameReset':
+        return this.gameReset;
+      case 'winnerSelect':
+        return this.winnerSelect;
+      case 'matchStop':
+        return this.matchStop;
+      case 'onStartup':
+        return this.onStartup;
+      default:
+        throw new Error(`Unknown config key: ${configKey}`);
+    }
+  }
+
+  settingsChanged() {
+    return (
+      this.counterReset.value !== this.behaviourSettingsService.counterReset() ||
+      this.gameReset.value !== this.behaviourSettingsService.gameReset() ||
+      this.winnerSelect.value !== this.behaviourSettingsService.winnerSelect() ||
+      this.onStartup.value !== this.behaviourSettingsService.onStartup() ||
+      this.matchStop.value !== this.behaviourSettingsService.matchStop()
+    );
+  }
+
+  settingsValid() {
+    return (
+      this.counterReset.valid &&
+      this.gameReset.valid &&
+      this.winnerSelect.valid &&
+      this.onStartup.valid &&
+      this.matchStop.valid
+    );
+  }
+
+  confirm() {
+    if (!this.settingsChanged() || !this.settingsValid()) return;
+    this.soundboardService.confirmationSound();
+    this.behaviourSettingsService.counterReset.set(this.counterReset.value);
+    this.behaviourSettingsService.gameReset.set(this.gameReset.value);
+    this.behaviourSettingsService.winnerSelect.set(this.winnerSelect.value);
+    this.behaviourSettingsService.matchStop.set(this.matchStop.value);
+    this.behaviourSettingsService.onStartup.set(this.onStartup.value);
+  }
+
+  info(helper: string) {
+    if (!helper) return;
+    this.soundboardService.clickSound();
+    this.modalService.open(
+      InfoModalComponent,
+      {
+        size: 'sm',
+      },
+      { info: this.translateService.translate(helper) },
+    );
   }
 }

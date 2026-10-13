@@ -80,6 +80,17 @@
     }
   }
 
+  &__fields--alt {
+    display: flex;
+    align-items: end;
+    gap: 0.5rem;
+    justify-content: center;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
   &__fields--row {
     display: flex;
 
@@ -98,8 +109,6 @@
     display: flex;
     justify-content: center;
     gap: 0.5rem;
-    background: var(--bg-panel-alt);
-    margin: 0.9rem 1rem;
   }
 
   &__footer {

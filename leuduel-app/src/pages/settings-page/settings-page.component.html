@@ -164,10 +164,23 @@
     <div class="settings-section__fields">
       <span class="section-label"> {{ 'settings.section.behaviour.info' | translate }} </span>
 
+      @for (configKey of allConfigKeys; track configKey) {
+        @let config = getOptionConfig(configKey);
+        <div class="settings-section__fields--alt">
+          <app-list-picker
+            [formControl]="getFormControlForConfig(configKey)"
+            [label]="config.label"
+            [options]="config.values"
+          />
+          <app-button (clicked)="info(config.helper)" icon="info" size="2xs" tone="neutral" />
+        </div>
+      }
       <app-text-button
-        (clicked)="openBehaviourSettings()"
-        label="settings.section.behaviour.open"
-        tone="neutral"
+        class="ml-auto"
+        label="common.button.confirm"
+        [isDisabled]="!settingsValid() || !settingsChanged()"
+        [tone]="settingsValid() ? (settingsChanged() ? 'positive' : 'neutral') : 'negative'"
+        (clicked)="confirm()"
       />
     </div>
     <div class="settings-section__footer"></div>
