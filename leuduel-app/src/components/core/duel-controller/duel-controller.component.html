@@ -1,7 +1,8 @@
 <div class="controller">
-  <div class="controller__layout">
+  <div class="controller__layout" id="leu-ctn-controller">
     <div class="controller__grid-left">
       <app-button
+        id="leu-btn-settings"
         (clicked)="openSettings()"
         icon="settings"
         label="Settings"
@@ -10,6 +11,7 @@
         tone="neutral"
       />
       <app-button
+        id="leu-btn-logs"
         (clicked)="viewLog()"
         [isDisabled]="!duelStore.isDuelStarted()"
         icon="log"
@@ -18,6 +20,7 @@
         tone="neutral"
       />
       <app-button
+        id="leu-btn-stop"
         (clicked)="stopMatch()"
         icon="reset"
         label="Stop"
@@ -26,6 +29,7 @@
         tone="warning"
       />
       <app-button
+        id="leu-btn-reset"
         (clicked)="resetLifePoints()"
         icon="heart-reset"
         label="Reset LP"
@@ -37,7 +41,7 @@
 
     <div class="controller__center">
       <app-timer />
-      <div class="controller__main-btn">
+      <div class="controller__main-btn" id="leu-btn-match">
         @if (duelStore.isDuelPaused()) {
           <app-button
             (clicked)="resumeDuel()"
@@ -54,17 +58,31 @@
       </div>
     </div>
 
-    <div class="controller__grid-right">
-      <app-button icon="coins" size="xs" tone="neutral" (clicked)="openCountersPage()" />
+    <div class="controller__grid-right" id="leu-ctn-utils">
       <app-button
+        icon="coins"
+        size="xs"
+        tone="neutral"
+        id="leu-btn-counters"
+        (clicked)="openCountersPage()"
+      />
+      <app-button
+        id="leu-btn-rules"
         (clicked)="openJudgePage()"
         icon="rules"
         label="Rulings"
         tone="neutral"
         size="xs"
       />
-      <app-button icon="dices" size="xs" tone="neutral" (clicked)="openToolsPage()" />
       <app-button
+        id="leu-btn-tools"
+        icon="dices"
+        size="xs"
+        tone="neutral"
+        (clicked)="openToolsPage()"
+      />
+      <app-button
+        id="leu-btn-sounds"
         (clicked)="toggleSounds()"
         [icon]="settingsService.soundsOn() ? 'volume' : 'volume-off'"
         label="Sound"

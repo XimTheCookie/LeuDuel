@@ -27,7 +27,10 @@
       "search": "Rechercher",
       "cancel": "Annuler",
       "start": "Démarrer",
-      "stop": "Arrêter"
+      "stop": "Arrêter",
+      "next": "Suivant",
+      "back": "Précédent",
+      "guide": "Guide"
     }
   },
   "settings": {
@@ -179,13 +182,13 @@
     "undo": "Annuler l'événement"
   },
   "stop-match": {
-    "title": "Arrêter le match ?",
+    "title": "Arrêter le match?",
     "outcome": "Résultat",
     "draw": "Match nul / Double défaite"
   },
   "welcome": {
     "title": "Bienvenue",
-    "subtitle": "Comment aimeriez-vous utiliser l'application ?"
+    "subtitle": "Comment aimeriez-vous utiliser leuDuel?"
   },
   "lp-reset": {
     "title": "Nouveau duel ?",

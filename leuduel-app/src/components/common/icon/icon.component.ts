@@ -7,6 +7,7 @@ import {
   LucideBan,
   LucideBookOpen,
   LucideCheck,
+  LucideCircleQuestionMark,
   LucideCoins,
   LucideDices,
   LucideDynamicIcon,
@@ -100,6 +101,8 @@ export class IconComponent {
         return LucideSmartphone;
       case 'sliders-horizontal':
         return LucideSlidersHorizontal;
+      case 'circle-question-mark':
+        return LucideCircleQuestionMark;
       case 'info':
         return LucideInfo;
     }

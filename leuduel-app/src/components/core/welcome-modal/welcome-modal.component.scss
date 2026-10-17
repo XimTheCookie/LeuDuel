@@ -55,6 +55,12 @@
     flex-shrink: 0;
   }
 
+  &__pickers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
   &__actions {
     display: flex;
     justify-content: center;

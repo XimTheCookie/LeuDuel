@@ -27,7 +27,10 @@
       "search": "Cerca",
       "cancel": "Annulla",
       "start": "Avvia",
-      "stop": "Interrompi"
+      "stop": "Interrompi",
+      "next": "Avanti",
+      "back": "Indietro",
+      "guide": "Guida"
     }
   },
   "settings": {
@@ -185,7 +188,7 @@
   },
   "welcome": {
     "title": "Benvenuto",
-    "subtitle": "Come ti piacerebbe l'applicazione?"
+    "subtitle": "Come ti piacerebbe leuDuel?"
   },
   "lp-reset": {
     "title": "Nuovo duello?",

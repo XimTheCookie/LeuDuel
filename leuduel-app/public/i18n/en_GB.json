@@ -27,7 +27,10 @@
       "search": "Search",
       "cancel": "Cancel",
       "start": "Start",
-      "stop": "Stop"
+      "stop": "Stop",
+      "next": "Next",
+      "back": "Back",
+      "guide": "Guide"
     }
   },
   "settings": {
@@ -185,7 +188,7 @@
   },
   "welcome": {
     "title": "Welcome",
-    "subtitle": "How would you like the app?"
+    "subtitle": "How would you like leuDuel?"
   },
   "lp-reset": {
     "title": "New duel?",

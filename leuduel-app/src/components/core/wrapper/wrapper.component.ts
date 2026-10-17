@@ -7,6 +7,9 @@ import { EmbersWallpaperComponent } from '../../common/wallpaper/embers-wallpape
 import { RainWallpaperComponent } from '../../common/wallpaper/rain-wallpaper/rain-wallpaper.component';
 
 import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
+import { TutorialComponent } from '../../common/tutorial/tutorial.component';
+import { TutorialService } from '../../../services/tutorial/tutorial.service';
+import { ModalService } from '../../../services/modal/modal.service';
 
 @Component({
   selector: 'app-wrapper',
@@ -19,10 +22,13 @@ import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
     EmbersWallpaperComponent,
     RainWallpaperComponent,
     SnackbarComponent,
+    TutorialComponent,
   ],
 })
 export class WrapperComponent {
   settingsService = inject(SettingsService);
+  tutorialService = inject(TutorialService);
+  modalService = inject(ModalService);
   background = computed(() => this.settingsService.background());
 
   documentVisible = signal<boolean>(true);

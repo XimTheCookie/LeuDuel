@@ -1,4 +1,4 @@
-<div class="timer" [class.timer--overtime]="timerService.isOvertime()">
+<div class="timer" id="leu-lbl-timer" [class.timer--overtime]="timerService.isOvertime()">
   {{ timerService.isOvertime() ? '-' : ''
   }}{{
     (timerService.isOvertime() ? -timerService.remainingTime() : timerService.remainingTime())

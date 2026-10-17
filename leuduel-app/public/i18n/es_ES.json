@@ -27,7 +27,10 @@
       "search": "Buscar",
       "cancel": "Cancelar",
       "start": "Iniciar",
-      "stop": "Detener"
+      "stop": "Detener",
+      "next": "Siguiente",
+      "back": "Anterior",
+      "guide": "Guía"
     }
   },
   "settings": {
@@ -185,7 +188,7 @@
   },
   "welcome": {
     "title": "Bienvenido",
-    "subtitle": "¿Cómo te gustaría usar la aplicación?"
+    "subtitle": "¿Cómo te gustaría usar leuDuel?"
   },
   "lp-reset": {
     "title": "¿Nuevo duelo?",

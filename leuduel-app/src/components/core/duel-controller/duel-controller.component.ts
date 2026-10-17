@@ -18,6 +18,7 @@ import { OpponentPickerModalComponent } from '../opponent-picker-modal/opponent-
 import { take } from 'rxjs';
 import { TimerService } from '../../../services/timer/timer.service';
 import { PlayerRandomizerPageComponent } from '../../../pages/player-randomizer-page/player-randomizer-page.component';
+import { TutorialService } from '../../../services/tutorial/tutorial.service';
 
 @Component({
   selector: 'app-duel-controller',
@@ -39,6 +40,8 @@ export class DuelControllerComponent implements AfterViewInit {
 
   startupStop = signal<boolean>(false);
   private duelActionCooldown = false;
+
+  private readonly tutorialService = inject(TutorialService);
 
   constructor() {
     effect(() => {
@@ -183,6 +186,9 @@ export class DuelControllerComponent implements AfterViewInit {
   openSettings() {
     this.modalService.open(SettingsPageComponent, {
       size: 'full',
+      custom: {
+        startTutorial: () => this.startTutorial(),
+      },
       closeEvent: () => this.handleStopMatch(),
     });
   }
@@ -216,5 +222,9 @@ export class DuelControllerComponent implements AfterViewInit {
   toggleSounds() {
     this.settingsService.toggleSounds();
     this.soundboardService.clickSound();
+  }
+
+  private startTutorial() {
+    this.tutorialService.startTutorial();
   }
 }

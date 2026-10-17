@@ -12,6 +12,8 @@ import {
 import { OverlayRef } from '@angular/cdk/overlay';
 import { ModalConfig } from '../../../services/modal/modal.service';
 import { SettingsService } from '../../../services/settings/settings.service';
+import { TutorialService } from '../../../services/tutorial/tutorial.service';
+import { TutorialComponent } from '../tutorial/tutorial.component';
 
 export const MODAL_DATA = new InjectionToken<{
   component: Type<unknown>;
@@ -24,9 +26,11 @@ export const MODAL_DATA = new InjectionToken<{
   standalone: true,
   templateUrl: './modal-generic.component.html',
   styleUrls: ['./modal-generic.component.scss'],
+  imports: [TutorialComponent],
 })
 export class ModalGenericComponent implements OnInit {
   private readonly settingsService = inject(SettingsService);
+  readonly tutorial = inject(TutorialService);
 
   opacity = computed(() => this.settingsService.getModalOpacity());
 

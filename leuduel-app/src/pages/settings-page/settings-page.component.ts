@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, Inject, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs';
@@ -11,7 +11,7 @@ import { TextButtonComponent } from '../../components/common/text-button/text-bu
 import { TimeInputComponent } from '../../components/common/time-input/time-input.component';
 import { TranslatePipe } from '../../pipes/translate/translate.pipe';
 import { AndroidManagementService } from '../../services/android/android-management.service';
-import { ModalService } from '../../services/modal/modal.service';
+import { ModalConfig, ModalService } from '../../services/modal/modal.service';
 import {
   BEHAVIOURS_CONFIG,
   BehaviourSettingsService,
@@ -21,6 +21,10 @@ import { SoundboardService } from '../../services/soundboard/soundboard.service'
 import { TranslateService } from '../../services/translate/translate.service';
 import { ProfilesPageComponent } from '../profiles-page/profiles-page.component';
 import { InfoModalComponent } from '../../components/common/info-modal/info-modal.component';
+import {
+  MODAL_DATA,
+  ModalGenericComponent,
+} from '../../components/common/modal-generic/modal-generic.component';
 
 @Component({
   selector: 'app-settings-page',
@@ -295,7 +299,9 @@ export class SettingsPageComponent {
     },
   ];
 
-  constructor() {
+  constructor(
+    @Inject(MODAL_DATA) private modalData: InstanceType<typeof ModalGenericComponent>['data'],
+  ) {
     if (this.isAndroid) {
       this.androidService.isKeepAwakeAllowed().then((supported) => {
         this.keepAwakeSupported.set(supported);
@@ -517,5 +523,13 @@ export class SettingsPageComponent {
       },
       { info: this.translateService.translate(helper) },
     );
+  }
+
+  startTutorial() {
+    const event = this.modalData.config?.custom?.startTutorial;
+    if (event) {
+      this.modalData.overlayRef.dispose();
+      event();
+    }
   }
 }

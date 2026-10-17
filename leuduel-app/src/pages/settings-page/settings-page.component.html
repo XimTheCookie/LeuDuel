@@ -1,5 +1,5 @@
-<div class="settings-page">
-  <div class="settings-section">
+<div class="settings-page" id="leu-ctn-settingspage">
+  <div class="settings-section" id="leu-ctn-duelsettings">
     <h2 class="settings-section__title">
       <span class="settings-section__title-icon">
         <app-icon icon="swords" size="sm" />
@@ -9,6 +9,7 @@
     <div class="settings-section__fields">
       <div class="settings-section__fields--row">
         <app-number-input
+          id="leu-ctn-lp"
           [formControl]="lifePoints"
           label="settings.section.duel.start-lp"
           [maxValue]="9999999"
@@ -17,6 +18,7 @@
           [step]="1000"
         />
         <app-list-picker
+          id="leu-ctn-bo"
           [formControl]="bestOf"
           label="settings.section.duel.best-of"
           [options]="bestOfOptions"
@@ -25,12 +27,13 @@
       </div>
 
       <app-time-input
+        id="leu-ctn-duration"
         [formControl]="duration"
         label="settings.section.duel.timer"
         [canReset]="true"
         (doReset)="resetTimer()"
       />
-      <div class="settings-section__fields--row-alt">
+      <div class="settings-section__fields--row-alt" id="leu-ctn-cprofiles">
         <app-list-picker
           [formControl]="showCustomPlayers"
           label="settings.section.duel.custom-profiles"
@@ -46,6 +49,7 @@
         />
       </div>
       <app-list-picker
+        id="leu-btn-randompicker"
         [formControl]="pickRandomPlayer"
         label="settings.section.duel.pick-random-player"
         [options]="pickRandomPlayerOptions"
@@ -55,7 +59,7 @@
     <div class="settings-section__footer"></div>
   </div>
 
-  <div class="settings-section">
+  <div class="settings-section" id="leu-ctn-uisettings">
     <h2 class="settings-section__title">
       <span class="settings-section__title-icon"> <app-icon icon="palette" size="sm" /></span>
       {{ 'settings.section.gui.title' | translate }}
@@ -90,7 +94,7 @@
           (valueChanged)="themeChanged()"
         />
       </div>
-      <div class="settings-section__fields--row">
+      <div class="settings-section__fields--row" id="leu-ctn-lsm">
         <app-list-picker
           [formControl]="isLandscapeOrientation"
           label="settings.section.gui.orientation"
@@ -106,7 +110,7 @@
         />
       </div>
 
-      <div class="settings-section__fields--row">
+      <div class="settings-section__fields--row" id="leu-ctn-rbs">
         <app-list-picker
           [formControl]="useRapidButtons"
           label="settings.section.gui.rb-use"
@@ -114,6 +118,7 @@
           (valueChanged)="useRapidButtonsChanged()"
         />
         <app-list-picker
+          class="leu-ctn-rbs-0"
           [formControl]="rapidButtonsColumns"
           [label]="
             isLandscapeOrientation?.value
@@ -125,6 +130,7 @@
         />
       </div>
       <app-number-input
+        class="leu-ctn-rbs-0"
         [formControl]="numberOfRapidButtons"
         label="settings.section.gui.rb-number"
         [maxValue]="15"
@@ -136,7 +142,7 @@
   </div>
 
   @if (isAndroid) {
-    <div class="settings-section">
+    <div class="settings-section" id="leu-ctn-android">
       <h2 class="settings-section__title">
         <span class="settings-section__title-icon"> <app-icon icon="smartphone" size="sm" /></span>
         {{ 'settings.section.android.title' | translate }}
@@ -154,7 +160,7 @@
     </div>
   }
 
-  <div class="settings-section">
+  <div class="settings-section" id="leu-ctn-besettings">
     <h2 class="settings-section__title">
       <span class="settings-section__title-icon">
         <app-icon icon="sliders-horizontal" size="sm"
@@ -212,6 +218,14 @@
           <a class="section-label--link" (click)="openPrivacy()">Privacy</a>
         </div>
       </span>
+    </div>
+    <div class="settings-section__fields">
+      <app-text-button
+        id="leu-btn-tutorial"
+        label="common.button.guide"
+        tone="neutral"
+        (clicked)="startTutorial()"
+      />
     </div>
     <div class="settings-section__footer"></div>
   </div>

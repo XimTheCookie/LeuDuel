@@ -27,7 +27,10 @@
       "search": "Szukaj",
       "cancel": "Anuluj",
       "start": "Start",
-      "stop": "Stop"
+      "stop": "Stop",
+      "next": "Następny",
+      "back": "Poprzedni",
+      "guide": "Instrukcja"
     }
   },
   "settings": {
@@ -185,7 +188,7 @@
   },
   "welcome": {
     "title": "Witamy",
-    "subtitle": "Jak chcesz korzystać z aplikacji?"
+    "subtitle": "Jak chcesz korzystać leuDuel?"
   },
   "lp-reset": {
     "title": "Nowy pojedynek?",

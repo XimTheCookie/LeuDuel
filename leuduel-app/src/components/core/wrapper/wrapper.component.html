@@ -20,3 +20,6 @@
   <app-duel-page />
 </div>
 <app-snackbar />
+@if (tutorialService.tutorialMode() && modalService.hasOpenModal === false) {
+  <app-tutorial />
+}

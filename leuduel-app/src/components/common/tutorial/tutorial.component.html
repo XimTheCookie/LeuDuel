@@ -1,0 +1,22 @@
+<div class="tutorial-panel" [class]="positionClass()">
+  <button class="tutorial-close" (click)="tutorial.stopTutorial()">✕</button>
+  <p class="tutorial-message">{{ tutorial.currentStep()?.message ?? '' | translate }}</p>
+  <div class="tutorial-actions">
+    @if (tutorial.currentStepIndex() !== 0) {
+      <app-text-button
+        [cooldown]="200"
+        tone="neutral"
+        label="common.button.back"
+        (clicked)="tutorial.prevStep()"
+      />
+    }
+
+    @let ls = tutorial.isLastStep();
+    <app-text-button
+      [cooldown]="200"
+      [tone]="ls ? 'warning' : 'positive'"
+      [label]="ls ? 'common.button.close' : 'common.button.next'"
+      (clicked)="ls ? tutorial.stopTutorial() : tutorial.nextStep()"
+    />
+  </div>
+</div>

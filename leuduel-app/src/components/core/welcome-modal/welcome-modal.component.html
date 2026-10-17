@@ -8,16 +8,26 @@
     </p>
   </div>
 
-  <div class="welcome__divider">
-    <span class="welcome__divider-gem"></span>
-  </div>
-
-  <div class="welcome__actions">
+  <div class="welcome__pickers">
+    <app-list-picker
+      [formControl]="language"
+      label="settings.section.gui.language"
+      [options]="languageOptions"
+      (valueChanged)="onLanguageChanged()"
+    />
     <app-list-picker
       [formControl]="theme"
       label="settings.section.gui.theme"
       [options]="themeOptions"
       (valueChanged)="onThemeChanged()"
     />
+  </div>
+  <div class="welcome__divider">
+    <span class="welcome__divider-gem"></span>
+  </div>
+
+  <div class="welcome__actions">
+    <app-text-button label="common.button.guide" tone="positive" (clicked)="viewGuide()" />
+    <app-text-button label="common.button.close" tone="neutral" (clicked)="close()" />
   </div>
 </div>

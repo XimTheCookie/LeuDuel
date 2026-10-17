@@ -43,3 +43,27 @@ app-root::before {
     justify-content: center;
   }
 }
+
+.t-highlight {
+  outline: 0.25rem yellow solid !important;
+  animation: t-highlight-pulse 900ms ease-in-out infinite;
+}
+
+@keyframes t-highlight-pulse {
+  0%,
+  100% {
+    outline-offset: 0rem;
+    box-shadow: 0 0 0 0 rgba(255, 255, 0, 0);
+  }
+
+  50% {
+    outline-offset: 0.25rem;
+    box-shadow: 0 0 0 0.35rem rgba(255, 255, 0, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-highlight {
+    animation: none;
+  }
+}
