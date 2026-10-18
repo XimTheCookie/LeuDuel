@@ -24,96 +24,95 @@ export class TutorialService {
   private steps = computed<TutorialStep[]>(() => {
     const steps: TutorialStep[] = [
       {
-        message: `leuDuel comes with many features. Feel free to stop the tutorial at any time.`,
+        message: 'tutorial.step.000a',
         positionV: 'center',
         positionH: 'center',
       },
       {
-        message: `This section is used to modify players' LP. You can customise buttons by holding them, or change this section entirely in settings.`,
+        message: 'tutorial.step.000b',
         positionV: 'end',
         positionH: 'center',
       },
       {
-        message: `This is player's life points count, tapping on it opens the LP Calculator.`,
+        message: 'tutorial.step.000c',
         targetClasses: 'leu-lbl-lp',
         positionV: 'end',
         positionH: 'center',
       },
       {
-        message: `These icons are used to display player's win count.`,
+        message: 'tutorial.step.000d',
         targetClasses: 'leu-ico-win',
         positionV: 'end',
         positionH: 'center',
       },
       {
-        message: `This section allows you to control the match and perform most actions.`,
+        message: 'tutorial.step.000e',
         targetId: 'leu-ctn-controller',
         positionV: 'end',
         positionH: 'center',
       },
       {
-        message: `This is the match timer. It continues past zero once it expires, but it can also stop the match if you prefer.`,
+        message: 'tutorial.step.000f',
         targetId: 'leu-lbl-timer',
         positionV: 'end',
-        positionH: 'end',
+        positionH: 'center',
       },
       {
-        message: `The match button controls if the match is started or paused, this button cannot stop the match.
-        On match start, additional prompts may be required depending on your preferences.`,
+        message: 'tutorial.step.000g',
         targetId: 'leu-btn-match',
         positionV: 'end',
-        positionH: 'end',
+        positionH: 'center',
       },
       {
-        message: `Counter page allows you to manage counters on the field layout, they are normally reset on game start.`,
+        message: 'tutorial.step.000h',
         targetId: 'leu-btn-counters',
         positionV: 'end',
-        positionH: 'end',
+        positionH: 'start',
       },
       {
-        message: `Toolbox includes dice roll and coin flip, previous rolls results are also displayed.`,
+        message: 'tutorial.step.000i',
         targetId: 'leu-btn-tools',
         positionV: 'end',
-        positionH: 'end',
+        positionH: 'start',
       },
       {
-        message: `In ruling page you can look up for cards to quickly search for rulings or other infos. Advanced search options are described in the page.`,
+        message: 'tutorial.step.000j',
         targetId: 'leu-btn-rules',
         positionV: 'end',
-        positionH: 'end',
+        positionH: 'start',
       },
       {
-        message: `You can mute app sounds at any time using this button.`,
+        message: 'tutorial.step.000k',
         targetId: 'leu-btn-sounds',
         positionV: 'end',
-        positionH: 'end',
+        positionH: 'start',
       },
       {
-        message: `During a match, logs page lists all the Life Points changes that happened, you are free to undo any of them for the current game.`,
+        message: 'tutorial.step.000l',
         targetId: 'leu-btn-logs',
         positionV: 'end',
         positionH: 'end',
       },
       {
-        message: `You can use the game reset button to reset player's life points and assign a victory to one.`,
+        message: 'tutorial.step.000m',
         targetId: 'leu-btn-reset',
         positionV: 'end',
         positionH: 'end',
       },
       {
-        message: `During a match, you can use the stop button to stop the match entirely. leuDuel will suggest a potential winner based on win counts — this is purely informative.`,
+        message: 'tutorial.step.000n',
         targetId: 'leu-btn-stop',
         positionV: 'end',
         positionH: 'end',
       },
       {
-        message: `Outside a match, the stop button will simply reset wins and life points.`,
+        message: 'tutorial.step.000o',
         targetId: 'leu-btn-stop',
         positionV: 'end',
         positionH: 'end',
       },
       {
-        message: `Finally, the settings button — not available during an active match.`,
+        message: 'tutorial.step.000p',
         targetId: 'leu-btn-settings',
         positionV: 'end',
         positionH: 'end',
@@ -122,7 +121,7 @@ export class TutorialService {
         },
       },
       {
-        message: `The settings page includes some options to customize leuDuel.`,
+        message: 'tutorial.step.000q',
         positionV: 'center',
         positionH: 'center',
         enterEvent: () => {
@@ -130,7 +129,7 @@ export class TutorialService {
         },
       },
       {
-        message: `Duel settings contains all the match-related settings.`,
+        message: 'tutorial.step.000r',
         targetId: 'leu-ctn-duelsettings',
         positionV: 'center',
         positionH: 'center',
@@ -141,7 +140,7 @@ export class TutorialService {
         },
       },
       {
-        message: `You can customize life points amount on game start.`,
+        message: 'tutorial.step.000s',
         targetId: 'leu-ctn-lp',
         positionV: 'center',
         positionH: 'center',
@@ -150,7 +149,7 @@ export class TutorialService {
         },
       },
       {
-        message: `You can customize number of games in a match, this changes the amount of win indicators and when the winner player is picked.`,
+        message: 'tutorial.step.000t',
         targetId: 'leu-ctn-bo',
         positionV: 'center',
         positionH: 'center',
@@ -159,8 +158,7 @@ export class TutorialService {
         },
       },
       {
-        message: `Duel duration defines the timer for your match, notice that it doesnt end the match automatically.
-        You can change it using hour, minute and seconds units.`,
+        message: 'tutorial.step.000u',
         targetId: 'leu-ctn-duration',
         positionV: 'center',
         positionH: 'center',
@@ -169,8 +167,7 @@ export class TutorialService {
         },
       },
       {
-        message: `Custom profile allows you to pick a card art and a custom name for you and your opponents.
-      When enabled, you will be prompt to pick your opponent on match start and these details will be displayed during the match.`,
+        message: 'tutorial.step.000v',
         targetId: 'leu-ctn-cprofiles',
         positionV: 'center',
         positionH: 'center',
@@ -179,7 +176,7 @@ export class TutorialService {
         },
       },
       {
-        message: `When pick random player is enabled, an extra window will appear on match start to randomly select a player using some fun randomisers. You can still close the window before a result is picked.`,
+        message: 'tutorial.step.000w',
         targetId: 'leu-btn-randompicker',
         positionV: 'center',
         positionH: 'center',
@@ -188,7 +185,7 @@ export class TutorialService {
         },
       },
       {
-        message: `Gui settings contains settings about app interface, themes and accessibility.`,
+        message: 'tutorial.step.000x',
         targetId: 'leu-ctn-uisettings',
         positionV: 'center',
         positionH: 'center',
@@ -199,7 +196,7 @@ export class TutorialService {
         },
       },
       {
-        message: `If you prefer you can set the app to landscape mode, when enabled you can swap the two players around the screen.`,
+        message: 'tutorial.step.000y',
         targetId: 'leu-ctn-lsm',
         positionV: 'center',
         positionH: 'center',
@@ -208,7 +205,7 @@ export class TutorialService {
         },
       },
       {
-        message: `You can replace rapid buttons with the calculator (but clicking on LP will no longer open it).`,
+        message: 'tutorial.step.000z',
         targetId: 'leu-ctn-rbs',
         positionV: 'center',
         positionH: 'center',
@@ -217,7 +214,7 @@ export class TutorialService {
         },
       },
       {
-        message: `But if you prefer using rapid buttons, you can customize their amount depending on your device and preferences.`,
+        message: 'tutorial.step.00a0',
         targetClasses: 'leu-ctn-rbs-0',
         positionV: 'center',
         positionH: 'center',
@@ -229,7 +226,7 @@ export class TutorialService {
 
     if (this.androidManagementService.isAndroid()) {
       steps.push({
-        message: `Android settings contains settings specific to your Android device, if applicable.`,
+        message: 'tutorial.step.00b0',
         targetId: 'leu-ctn-android',
         positionV: 'center',
         positionH: 'center',
@@ -243,7 +240,7 @@ export class TutorialService {
 
     steps.push(
       {
-        message: `Behaviours settings are some special settings to customize some automation during the match.`,
+        message: 'tutorial.step.00c0',
         targetId: 'leu-ctn-besettings',
         positionV: 'center',
         positionH: 'center',
@@ -254,7 +251,7 @@ export class TutorialService {
         },
       },
       {
-        message: `Each one has an extensive info to it, they can be really useful.`,
+        message: 'tutorial.step.00d0',
         targetId: 'leu-ctn-besettings',
         positionV: 'center',
         positionH: 'center',
@@ -265,8 +262,7 @@ export class TutorialService {
         },
       },
       {
-        message: `And that's it, feel free to rewatch this small guide using the button at the end of the settings page.
-      Have fun with leuDuel!`,
+        message: 'tutorial.step.00e0',
         targetId: 'leu-btn-tutorial',
         positionV: 'center',
         positionH: 'center',

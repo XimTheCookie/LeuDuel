@@ -1,6 +1,6 @@
 <div class="tutorial-panel" [class]="positionClass()">
   <button class="tutorial-close" (click)="tutorial.stopTutorial()">✕</button>
-  <p class="tutorial-message">{{ tutorial.currentStep()?.message ?? '' | translate }}</p>
+  <p class="tutorial-message" [innerHTML]="tutorial.currentStep()?.message ?? '' | translate"></p>
   <div class="tutorial-actions">
     @if (tutorial.currentStepIndex() !== 0) {
       <app-text-button
