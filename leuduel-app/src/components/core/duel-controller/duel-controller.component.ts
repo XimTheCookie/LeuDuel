@@ -134,10 +134,15 @@ export class DuelControllerComponent implements AfterViewInit {
   }
 
   stopMatch() {
-    this.modalService.open(StopMatchModalComponent, { size: 'sm' }, () => {
+    if (this.duelStore.isDuelStarted()) {
+      this.modalService.open(StopMatchModalComponent, { size: 'sm' }, () => {
+        this.handleStopMatch();
+        this.soundboardService.confirmationSound();
+      });
+    } else {
       this.handleStopMatch();
       this.soundboardService.confirmationSound();
-    });
+    }
   }
 
   private handleStopMatch() {
