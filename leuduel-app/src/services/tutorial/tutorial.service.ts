@@ -95,13 +95,19 @@ export class TutorialService {
         positionH: 'end',
       },
       {
-        message: `During a match, you can use the game reset button to reset player's life points and assign a victory to one.`,
+        message: `You can use the game reset button to reset player's life points and assign a victory to one.`,
         targetId: 'leu-btn-reset',
         positionV: 'end',
         positionH: 'end',
       },
       {
         message: `During a match, you can use the stop button to stop the match entirely. leuDuel will suggest a potential winner based on win counts — this is purely informative.`,
+        targetId: 'leu-btn-stop',
+        positionV: 'end',
+        positionH: 'end',
+      },
+      {
+        message: `Outside a match, the stop button will simply reset wins and life points.`,
         targetId: 'leu-btn-stop',
         positionV: 'end',
         positionH: 'end',
