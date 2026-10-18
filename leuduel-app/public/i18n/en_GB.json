@@ -30,7 +30,8 @@
       "stop": "Stop",
       "next": "Next",
       "back": "Back",
-      "guide": "Guide"
+      "guide": "Guide",
+      "reset": "Reset"
     }
   },
   "settings": {
@@ -194,5 +195,14 @@
     "title": "New duel?",
     "timer-reminder": "Timer is still ticking.",
     "assign-victory": "Assign Victory"
+  },
+  "counter-page": {
+    "adjust": {
+      "fb": "Set counters",
+      "mz": "Set Monster Zone counters",
+      "stz": "Set S/T Zone counters",
+      "emz": "Set Extra Monster Zone counters",
+      "fz": "Set Field Zone counters"
+    }
   }
 }

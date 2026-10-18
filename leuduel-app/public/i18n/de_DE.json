@@ -30,7 +30,8 @@
       "stop": "Stoppen",
       "next": "Nächstes",
       "back": "Zurück",
-      "guide": "Anleitung"
+      "guide": "Anleitung",
+      "reset": "Zurücksetzen"
     }
   },
   "settings": {
@@ -194,5 +195,14 @@
     "title": "Neues Duell?",
     "timer-reminder": "Der Timer läuft noch.",
     "assign-victory": "Sieg zuweisen"
+  },
+  "counter-page": {
+    "adjust": {
+      "fb": "Zähler setzen",
+      "mz": "Zähler der Monsterzone setzen",
+      "stz": "Zähler der Zauber-/Fallenzone setzen",
+      "emz": "Zähler der Extra-Monsterzone setzen",
+      "fz": "Zähler der Feldzone setzen"
+    }
   }
 }

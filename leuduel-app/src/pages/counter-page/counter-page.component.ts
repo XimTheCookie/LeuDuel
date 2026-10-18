@@ -4,6 +4,9 @@ import { CounterToolsLandscapeComponent } from '../../components/core/counter-to
 import { CounterToolsComponent } from '../../components/core/counter-tools/counter-tools.component';
 import { SettingsService } from '../../services/settings/settings.service';
 import { ToolsStore } from '../../stores/tools-store/tools.store';
+import { ModalService } from '../../services/modal/modal.service';
+import { CounterAdjustModalComponent } from '../../components/core/counter-adjust-modal/counter-adjust-modal.component';
+import { CounterEvent } from '../../models/counter-event.model';
 
 @Component({
   selector: 'app-counter-page',
@@ -16,23 +19,29 @@ export class CounterPageComponent {
   private readonly modalData = inject(MODAL_DATA);
   readonly toolsStore = inject(ToolsStore);
   readonly settingsService = inject(SettingsService);
+  readonly modalService = inject(ModalService);
 
   emz() {
     return this.toolsStore.emz();
   }
 
-  onEmzPress(i: 0 | 1, event: MouseEvent | TouchEvent) {
-    event.preventDefault();
-    if (event instanceof MouseEvent && event.button === 2) {
-      this.toolsStore.removeEmz(i);
-    } else {
-      this.toolsStore.addEmz(i);
-    }
+  onEmzPress(i: 0 | 1) {
+    const event: CounterEvent = {
+      type: 'emz',
+      player: 1,
+      index: i,
+    };
+    this.setCounters(event);
   }
 
-  onEmzContextMenu(i: 0 | 1, event: MouseEvent) {
-    event.preventDefault();
-    this.toolsStore.removeEmz(i);
+  setCounters(event: CounterEvent) {
+    this.modalService.open(CounterAdjustModalComponent, {
+      size: 'sm',
+      hideClose: !this.settingsService.landscapeMode(),
+      custom: {
+        event,
+      },
+    });
   }
 
   close() {

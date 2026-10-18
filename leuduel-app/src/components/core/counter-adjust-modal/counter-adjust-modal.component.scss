@@ -1,0 +1,46 @@
+:host {
+  display: block;
+}
+
+.cam {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1rem 0.25rem;
+
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
+    }
+  }
+
+  &__divider-gem {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    box-shadow: 0 0 8px var(--gold-glow);
+    flex-shrink: 0;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+  }
+}

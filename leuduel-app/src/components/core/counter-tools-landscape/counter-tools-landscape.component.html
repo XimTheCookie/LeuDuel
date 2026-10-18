@@ -3,33 +3,18 @@
     <div class="ctl__field">
       <div class="ctl__btn"></div>
       @for (mz of playerMzReversed(); let i = $index; track i) {
-        <button
-          class="ctl__btn"
-          type="button"
-          (click)="mzAdd(reversedMzIndex(i))"
-          (contextmenu)="mzRemove(reversedMzIndex(i)); $event.preventDefault()"
-        >
+        <button class="ctl__btn" type="button" (click)="mzSet(reversedMzIndex(i))">
           {{ mz }}
         </button>
       }
-      <button
-        class="ctl__btn"
-        type="button"
-        (click)="fzAdd()"
-        (contextmenu)="fzRemove(); $event.preventDefault()"
-      >
+      <button class="ctl__btn" type="button" (click)="fzSet()">
         {{ playerFz() }}
       </button>
     </div>
     <div class="ctl__field">
       <div class="ctl__btn"></div>
       @for (stz of playerStzReversed(); let i = $index; track i) {
-        <button
-          class="ctl__btn"
-          type="button"
-          (click)="stzAdd(reversedStzIndex(i))"
-          (contextmenu)="stzRemove(reversedStzIndex(i)); $event.preventDefault()"
-        >
+        <button class="ctl__btn" type="button" (click)="stzSet(reversedStzIndex(i))">
           {{ stz }}
         </button>
       }
@@ -39,33 +24,18 @@
     <div class="ctl__field">
       <div class="ctl__btn"></div>
       @for (stz of playerStz(); let i = $index; track i) {
-        <button
-          class="ctl__btn"
-          type="button"
-          (click)="stzAdd(i)"
-          (contextmenu)="stzRemove(i); $event.preventDefault()"
-        >
+        <button class="ctl__btn" type="button" (click)="stzSet(i)">
           {{ stz }}
         </button>
       }
       <div class="ctl__btn"></div>
     </div>
     <div class="ctl__field">
-      <button
-        class="ctl__btn"
-        type="button"
-        (click)="fzAdd()"
-        (contextmenu)="fzRemove(); $event.preventDefault()"
-      >
+      <button class="ctl__btn" type="button" (click)="fzSet()">
         {{ playerFz() }}
       </button>
       @for (mz of playerMz(); let i = $index; track i) {
-        <button
-          class="ctl__btn"
-          type="button"
-          (click)="mzAdd(i)"
-          (contextmenu)="mzRemove(i); $event.preventDefault()"
-        >
+        <button class="ctl__btn" type="button" (click)="mzSet(i)">
           {{ mz }}
         </button>
       }

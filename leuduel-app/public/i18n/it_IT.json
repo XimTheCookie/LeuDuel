@@ -30,7 +30,8 @@
       "stop": "Interrompi",
       "next": "Avanti",
       "back": "Indietro",
-      "guide": "Guida"
+      "guide": "Guida",
+      "reset": "Reset"
     }
   },
   "settings": {
@@ -194,5 +195,14 @@
     "title": "Nuovo duello?",
     "timer-reminder": "Il timer è ancora in corso.",
     "assign-victory": "Assegna vittoria"
+  },
+  "counter-page": {
+    "adjust": {
+      "fb": "Imposta segnalini",
+      "mz": "Imposta segnalini zona mostri",
+      "stz": "Imposta segnalini zona magie/trappole",
+      "emz": "Imposta segnalini zona mostri extra",
+      "fz": "Imposta segnalini zona terreno"
+    }
   }
 }

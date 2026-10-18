@@ -30,7 +30,8 @@
       "stop": "Arrêter",
       "next": "Suivant",
       "back": "Précédent",
-      "guide": "Guide"
+      "guide": "Guide",
+      "reset": "Remettre"
     }
   },
   "settings": {
@@ -194,5 +195,14 @@
     "title": "Nouveau duel ?",
     "timer-reminder": "Le minuteur continue de tourner.",
     "assign-victory": "Attribuer la victoire"
+  },
+  "counter-page": {
+    "adjust": {
+      "fb": "Définir les compteurs",
+      "mz": "Définir les compteurs de la zone monstre",
+      "stz": "Définir les compteurs de la zone magie/piège",
+      "emz": "Définir les compteurs de la zone monstre extra",
+      "fz": "Définir les compteurs de la zone terrain"
+    }
   }
 }

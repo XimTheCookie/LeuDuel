@@ -30,7 +30,8 @@
       "stop": "Stop",
       "next": "Następny",
       "back": "Poprzedni",
-      "guide": "Instrukcja"
+      "guide": "Instrukcja",
+      "reset": "Nastawić"
     }
   },
   "settings": {
@@ -194,5 +195,14 @@
     "title": "Nowy pojedynek?",
     "timer-reminder": "Licznik nadal działa.",
     "assign-victory": "Przypisz zwycięstwo"
+  },
+  "counter-page": {
+    "adjust": {
+      "fb": "Ustaw liczniki",
+      "mz": "Ustaw liczniki strefy potworów",
+      "stz": "Ustaw liczniki strefy zaklęć/pułapek",
+      "emz": "Ustaw liczniki strefy dodatkowych potworów",
+      "fz": "Ustaw liczniki strefy pola"
+    }
   }
 }

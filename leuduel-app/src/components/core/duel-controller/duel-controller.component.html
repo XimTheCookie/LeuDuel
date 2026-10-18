@@ -19,21 +19,23 @@
         size="xs"
         tone="neutral"
       />
+
+      <!-- [isDisabled]="duelStore.isDuelFinished()" -->
       <app-button
         id="leu-btn-stop"
         (clicked)="stopMatch()"
         icon="reset"
         label="Stop"
-        [isDisabled]="duelStore.isDuelFinished()"
         size="xs"
         tone="warning"
       />
+
+      <!-- [isDisabled]="!duelStore.isDuelStarted()" -->
       <app-button
         id="leu-btn-reset"
         (clicked)="resetLifePoints()"
         icon="heart-reset"
         label="Reset LP"
-        [isDisabled]="!duelStore.isDuelStarted()"
         size="xs"
         tone="negative"
       />

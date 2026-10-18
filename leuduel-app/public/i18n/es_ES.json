@@ -30,7 +30,8 @@
       "stop": "Detener",
       "next": "Siguiente",
       "back": "Anterior",
-      "guide": "Guía"
+      "guide": "Guía",
+      "reset": "Reajustar"
     }
   },
   "settings": {
@@ -194,5 +195,14 @@
     "title": "¿Nuevo duelo?",
     "timer-reminder": "El temporizador sigue en marcha.",
     "assign-victory": "Asignar victoria"
+  },
+  "counter-page": {
+    "adjust": {
+      "fb": "Establecer contadores",
+      "mz": "Establecer contadores de zona de monstruos",
+      "stz": "Establecer contadores de zona de magia/trampa",
+      "emz": "Establecer contadores de zona de monstruos extra",
+      "fz": "Establecer contadores de zona de campo"
+    }
   }
 }

@@ -1,4 +1,5 @@
-import { Component, input, output } from '@angular/core';
+import { Component, DestroyRef, effect, inject, input, output, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { IconComponent } from '../icon/icon.component';
 import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
@@ -11,6 +12,8 @@ import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
   imports: [ReactiveFormsModule, IconComponent, TranslatePipe],
 })
 export class NumberInputComponent {
+  private readonly destroyRef = inject(DestroyRef);
+
   formControl = input.required<FormControl<number | null>>();
   label = input<string>('');
   step = input<number>(1);
@@ -18,19 +21,35 @@ export class NumberInputComponent {
   minValue = input<number | null>(null);
   canReset = input<boolean>(false);
   doReset = output<void>();
-
   hideButtons = input<boolean>(false);
+
+  incrementClicked = output<void>();
+  decrementClicked = output<void>();
+
+  private readonly currentValue = signal<number | null>(null);
+
+  constructor() {
+    effect(() => {
+      const fc = this.formControl();
+      this.currentValue.set(fc.value);
+      fc.valueChanges
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((v) => this.currentValue.set(v));
+    });
+  }
 
   private coolingDown = false;
 
   increment() {
     if (this.coolingDown) return;
+    this.incrementClicked.emit();
     this.triggerCooldown();
     this.setValue((this.formControl().value ?? 0) + this.step());
   }
 
   decrement() {
     if (this.coolingDown) return;
+    this.decrementClicked.emit();
     this.triggerCooldown();
     this.setValue((this.formControl().value ?? 0) - this.step());
   }
@@ -56,11 +75,11 @@ export class NumberInputComponent {
 
   get atMin() {
     const min = this.minValue();
-    return min !== null && (this.formControl().value ?? 0) <= min;
+    return min !== null && (this.currentValue() ?? 0) <= min;
   }
 
   get atMax() {
     const max = this.maxValue();
-    return max !== null && (this.formControl().value ?? 0) >= max;
+    return max !== null && (this.currentValue() ?? 0) >= max;
   }
 }

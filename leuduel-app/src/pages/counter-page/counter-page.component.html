@@ -1,9 +1,13 @@
 <div class="counter-page" [class.counter-page--landscape]="settingsService.landscapeMode()">
   <div class="counter-page__zone" [class.mirror]="!settingsService.landscapeMode()">
     @if (settingsService.landscapeMode()) {
-      <app-counter-tools-landscape class="w-full h-full" [player]="2" />
+      <app-counter-tools-landscape
+        (counterEvent)="setCounters($event)"
+        class="w-full h-full"
+        [player]="2"
+      />
     } @else {
-      <app-counter-tools class="w-full" [player]="2" />
+      <app-counter-tools (counterEvent)="setCounters($event)" class="w-full" [player]="2" />
     }
   </div>
 
@@ -11,19 +15,11 @@
     <div class="counter-page__emz">
       <div class="counter-page__emz-btn"></div>
       <div></div>
-      <button
-        class="counter-page__emz-btn"
-        (click)="onEmzPress(0, $event)"
-        (contextmenu)="onEmzContextMenu(0, $event)"
-      >
+      <button class="counter-page__emz-btn" (click)="onEmzPress(0)">
         {{ emz()[0] }}
       </button>
       <button class="counter-page__close" (click)="close()">✕</button>
-      <button
-        class="counter-page__emz-btn"
-        (click)="onEmzPress(1, $event)"
-        (contextmenu)="onEmzContextMenu(1, $event)"
-      >
+      <button class="counter-page__emz-btn" (click)="onEmzPress(1)">
         {{ emz()[1] }}
       </button>
       <div></div>
@@ -33,9 +29,13 @@
 
   <div class="counter-page__zone">
     @if (settingsService.landscapeMode()) {
-      <app-counter-tools-landscape class="w-full h-full" [player]="1" />
+      <app-counter-tools-landscape
+        (counterEvent)="setCounters($event)"
+        class="w-full h-full"
+        [player]="1"
+      />
     } @else {
-      <app-counter-tools class="w-full" [player]="1" />
+      <app-counter-tools (counterEvent)="setCounters($event)" class="w-full" [player]="1" />
     }
   </div>
 </div>

@@ -1,0 +1,80 @@
+<div class="cam">
+  @if (!settingsService.landscapeMode()) {
+    <div class="mirror cam__section">
+      <app-number-input
+        [formControl]="counterValue"
+        [label]="label()"
+        [step]="1"
+        [minValue]="0"
+        [maxValue]="99"
+        (decrementClicked)="onDecrement()"
+        (incrementClicked)="onIncrement()"
+      />
+
+      <div class="cam__actions">
+        <app-button
+          icon="reset"
+          size="xs"
+          tone="neutral"
+          (clicked)="resetValue()"
+          [isDisabled]="resetDisabled()"
+        />
+        <app-button icon="x" size="xs" tone="neutral" (clicked)="close()" />
+        <app-button
+          icon="check"
+          size="xs"
+          [tone]="counterValue.valid ? 'positive' : 'negative'"
+          (clicked)="submitValue()"
+        />
+      </div>
+    </div>
+
+    <div class="cam__divider">
+      <span class="cam__divider-gem"></span>
+    </div>
+  }
+
+  <div class="cam__section">
+    <app-number-input
+      [formControl]="counterValue"
+      [label]="label()"
+      [step]="1"
+      [minValue]="0"
+      [maxValue]="99"
+      (decrementClicked)="onDecrement()"
+      (incrementClicked)="onIncrement()"
+    />
+
+    <div class="cam__actions">
+      @if (settingsService.landscapeMode()) {
+        <app-text-button
+          tone="neutral"
+          label="common.button.reset"
+          (clicked)="resetValue()"
+          [isDisabled]="resetDisabled()"
+        />
+        <app-text-button label="common.button.close" tone="neutral" (clicked)="close()" />
+        <app-text-button
+          [tone]="counterValue.valid ? 'positive' : 'negative'"
+          label="common.button.confirm"
+          (clicked)="submitValue()"
+        />
+      } @else {
+        <app-button
+          icon="reset"
+          size="xs"
+          tone="neutral"
+          (clicked)="resetValue()"
+          [isDisabled]="resetDisabled()"
+        />
+        <app-button icon="x" size="xs" tone="neutral" (clicked)="close()" />
+        <app-button
+          icon="check"
+          size="xs"
+          [tone]="counterValue.valid ? 'positive' : 'negative'"
+          (clicked)="submitValue()"
+        />
+      }
+    </div>
+  </div>
+</div>

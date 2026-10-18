@@ -1,5 +1,6 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 import { ToolsStore } from '../../../stores/tools-store/tools.store';
+import { CounterEvent } from '../../../models/counter-event.model';
 
 @Component({
   selector: 'app-counter-tools',
@@ -9,6 +10,7 @@ import { ToolsStore } from '../../../stores/tools-store/tools.store';
 })
 export class CounterToolsComponent {
   toolsStore = inject(ToolsStore);
+  counterEvent = output<CounterEvent>();
 
   player = input.required<1 | 2>();
 
@@ -30,28 +32,32 @@ export class CounterToolsComponent {
     this.player() === 1 ? this.toolsStore.fz()[0] : this.toolsStore.fz()[1],
   );
 
-  mzAdd(i: number) {
-    this.toolsStore.addCounter(this.player(), 'mz', i);
+  mzSet(i: number) {
+    const event: CounterEvent = {
+      index: i,
+      player: this.player(),
+      type: 'mz',
+    };
+    this.submitEvent(event);
   }
-  mzRemove(i: number) {
-    this.toolsStore.removeCounter(this.player(), 'mz', i);
+  stzSet(i: number) {
+    const event: CounterEvent = {
+      index: i,
+      player: this.player(),
+      type: 'stz',
+    };
+    this.submitEvent(event);
   }
-  stzAdd(i: number) {
-    this.toolsStore.addCounter(this.player(), 'stz', i);
+  fzSet() {
+    const event: CounterEvent = {
+      index: this.player() - 1,
+      player: this.player(),
+      type: 'fz',
+    };
+    this.submitEvent(event);
   }
-  stzRemove(i: number) {
-    this.toolsStore.removeCounter(this.player(), 'stz', i);
-  }
-  emzAdd(i: 0 | 1) {
-    this.toolsStore.addEmz(i);
-  }
-  emzRemove(i: 0 | 1) {
-    this.toolsStore.removeEmz(i);
-  }
-  fzAdd() {
-    this.toolsStore.addFz(this.player() === 1 ? 0 : 1);
-  }
-  fzRemove() {
-    this.toolsStore.removeFz(this.player() === 1 ? 0 : 1);
+
+  private submitEvent(event: CounterEvent) {
+    this.counterEvent.emit(event);
   }
 }

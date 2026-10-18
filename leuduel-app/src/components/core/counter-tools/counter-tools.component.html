@@ -1,20 +1,10 @@
 <div class="ct">
   <div class="ct__field">
-    <button
-      class="ct__btn"
-      type="button"
-      (click)="fzAdd()"
-      (contextmenu)="fzRemove(); $event.preventDefault()"
-    >
+    <button class="ct__btn" type="button" (click)="fzSet()">
       {{ playerFz() }}
     </button>
     @for (mz of playerMz(); let i = $index; track i) {
-      <button
-        class="ct__btn"
-        type="button"
-        (click)="mzAdd(i)"
-        (contextmenu)="mzRemove(i); $event.preventDefault()"
-      >
+      <button class="ct__btn" type="button" (click)="mzSet(i)">
         {{ mz }}
       </button>
     }
@@ -23,12 +13,7 @@
   <div class="ct__field">
     <div class="ct__btn"></div>
     @for (stz of playerStz(); let i = $index; track i) {
-      <button
-        class="ct__btn"
-        type="button"
-        (click)="stzAdd(i)"
-        (contextmenu)="stzRemove(i); $event.preventDefault()"
-      >
+      <button class="ct__btn" type="button" (click)="stzSet(i)">
         {{ stz }}
       </button>
     }
