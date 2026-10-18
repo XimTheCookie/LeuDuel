@@ -332,12 +332,17 @@ export class TutorialService {
   }
 
   private openSettings() {
-    this.settingsModalRef = this.modalService.open(SettingsPageComponent, {
-      size: 'full',
-      closeEvent: () => {
-        this.settingsModalRef = null;
+    this.settingsModalRef = this.modalService.open(
+      SettingsPageComponent,
+      {
+        size: 'full',
+        closeEvent: () => {
+          this.settingsModalRef = null;
+        },
       },
-    });
+      undefined,
+      false,
+    );
   }
 
   private closeSettings() {

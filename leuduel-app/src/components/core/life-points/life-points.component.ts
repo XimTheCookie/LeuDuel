@@ -1,5 +1,6 @@
 import {
   Component,
+  OnDestroy,
   computed,
   effect,
   inject,
@@ -25,7 +26,7 @@ const ANIM_DURATION = 1500;
   standalone: true,
   imports: [ButtonComponent],
 })
-export class LifePointsComponent {
+export class LifePointsComponent implements OnDestroy {
   private readonly settingsService = inject(SettingsService);
   private readonly soundboardService = inject(SoundboardService);
   private readonly behaviourService = inject(BehaviourSettingsService);
@@ -62,9 +63,16 @@ export class LifePointsComponent {
   private rafId = 0;
   private changeAudio: HTMLAudioElement | null = null;
   private ready = false;
+  private readonly onVisibilityChange = () => {
+    if (document.visibilityState === 'hidden' && this.changeAudio && !this.changeAudio.paused) {
+      this.changeAudio?.pause();
+      this.changeAudio = null;
+    }
+  };
 
   constructor() {
     setTimeout(() => (this.ready = true), 250);
+    document.addEventListener('visibilitychange', this.onVisibilityChange);
 
     effect(() => {
       const next = this.lifePoints();
@@ -181,6 +189,10 @@ export class LifePointsComponent {
         this.animating.set(false);
       }
     });
+  }
+
+  ngOnDestroy() {
+    document.removeEventListener('visibilitychange', this.onVisibilityChange);
   }
 
   unduable = computed(() => {

@@ -1,8 +1,9 @@
-import { Component, computed, inject } from '@angular/core';
+import { AfterViewInit, Component, computed, inject } from '@angular/core';
 import { TutorialService } from '../../../services/tutorial/tutorial.service';
 import { SettingsService } from '../../../services/settings/settings.service';
 import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 import { TextButtonComponent } from '../text-button/text-button.component';
+import { AndroidNavigationService } from '../../../services/android/android-navigation.service';
 
 @Component({
   selector: 'app-tutorial',
@@ -10,9 +11,10 @@ import { TextButtonComponent } from '../text-button/text-button.component';
   styleUrls: ['./tutorial.component.scss'],
   imports: [TranslatePipe, TextButtonComponent],
 })
-export class TutorialComponent {
+export class TutorialComponent implements AfterViewInit {
   readonly tutorial = inject(TutorialService);
   readonly settings = inject(SettingsService);
+  private readonly androidNavigationService = inject(AndroidNavigationService);
 
   readonly positionClass = computed(() => {
     const landscape = this.settings.landscapeMode();
@@ -23,4 +25,17 @@ export class TutorialComponent {
     }
     return `tutorial-panel--${step.positionV}`;
   });
+
+  ngAfterViewInit(): void {
+    this.androidNavigationService.register(() => {
+      this.goBack();
+    });
+  }
+
+  goBack() {
+    if (this.tutorial.currentStepIndex() === 0) {
+      return;
+    }
+    this.tutorial.prevStep();
+  }
 }

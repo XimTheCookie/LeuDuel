@@ -43,7 +43,12 @@ export class ModalService {
     return this.openCount > 0;
   }
 
-  open<T>(component: Type<T>, config: ModalConfig, componentData?: unknown): ModalRef {
+  open<T>(
+    component: Type<T>,
+    config: ModalConfig,
+    componentData?: unknown,
+    useListener: boolean = true,
+  ): ModalRef {
     const { width, height } = SIZE_STYLES[config.size];
     const overlayRef = this.overlay.create({
       width,
@@ -68,8 +73,11 @@ export class ModalService {
     setTimeout(() => overlayRef.updatePosition());
     overlayRef.backdropClick().subscribe(() => overlayRef.dispose());
 
-    const unregister = this.androidNavigationService.register(() => overlayRef.dispose());
-    overlayRef.detachments().subscribe(unregister);
+    if (useListener) {
+      const unregister = this.androidNavigationService.register(() => overlayRef.dispose());
+      overlayRef.detachments().subscribe(unregister);
+    }
+
     this.openCount++;
     overlayRef.detachments().subscribe(() => this.openCount--);
 
