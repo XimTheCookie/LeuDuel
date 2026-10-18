@@ -204,5 +204,40 @@
       "emz": "Ustaw liczniki strefy dodatkowych potworów",
       "fz": "Ustaw liczniki strefy pola"
     }
+  },
+  "tutorial": {
+    "step": {
+      "000a": "leuDuel oferuje wiele funkcji.<br>Możesz zatrzymać samouczek w dowolnym momencie.",
+      "000b": "Ta sekcja służy do modyfikowania punktów życia graczy.<br>Możesz dostosować przyciski, przytrzymując je, lub całkowicie zmienić tę sekcję w ustawieniach.",
+      "000c": "To jest licznik punktów życia gracza. Kliknięcie go otwiera Kalkulator PK.",
+      "000d": "Te ikony służą do wyświetlania liczby zwycięstw gracza.",
+      "000e": "Ta sekcja pozwala kontrolować mecz i wykonywać większość działań.",
+      "000f": "To jest timer meczu.<br>Kontynuuje po osiągnięciu zera po wygaśnięciu, ale może również zatrzymać mecz, jeśli wolisz.",
+      "000g": "Przycisk meczu kontroluje, czy mecz jest uruchomiony czy wstrzymany; ten przycisk nie może zatrzymać meczu.<br>Przy starcie meczu mogą być wymagane dodatkowe potwierdzenia w zależności od Twoich preferencji.",
+      "000h": "Strona liczników pozwala zarządzać licznikami na układzie pola. Są one normalnie resetowane na początku gry.",
+      "000i": "Skrzynka narzędziowa zawiera rzut kością i rzut monetą. Wyświetlane są również poprzednie wyniki.",
+      "000j": "Na stronie zasad możesz wyszukiwać karty, aby szybko znaleźć zasady lub inne informacje.<br>Zaawansowane opcje wyszukiwania są opisane na stronie.",
+      "000k": "Możesz wyciszać dźwięki aplikacji w dowolnym momencie za pomocą tego przycisku.",
+      "000l": "Podczas meczu strona dzienników wyświetla wszystkie zmiany Punktów Życia, które nastąpiły. Możesz cofnąć dowolne z nich dla bieżącej gry.",
+      "000m": "Możesz użyć przycisku resetu gry, aby zresetować punkty życia graczy i przyznać zwycięstwo jednemu z nich.",
+      "000n": "Podczas meczu możesz użyć przycisku zatrzymania, aby całkowicie zakończyć mecz.<br>leuDuel zasugeruje potencjalnego zwycięzcę na podstawie liczby zwycięstw - jest to wyłącznie informacyjne.",
+      "000o": "Poza meczem przycisk zatrzymania po prostu zresetuje zwycięstwa i punkty życia.",
+      "000p": "Na koniec przycisk ustawień - niedostępny podczas aktywnego meczu.",
+      "000q": "Strona ustawień zawiera kilka opcji do dostosowania leuDuel.",
+      "000r": "Ustawienia pojedynku zawierają wszystkie ustawienia związane z meczem.",
+      "000s": "Możesz dostosować ilość punktów życia na początku gry.",
+      "000t": "Możesz dostosować liczbę gier w meczu. Zmienia to liczbę wskaźników zwycięstwa i moment wyboru gracza-zwycięzcy.",
+      "000u": "Czas trwania pojedynku określa timer dla Twojego meczu. Zauważ, że nie kończy meczu automatycznie.<br>Możesz go zmieniać używając jednostek godzin, minut i sekund.",
+      "000v": "Profil niestandardowy pozwala wybrać grafikę karty i niestandardową nazwę dla siebie i swoich przeciwników.<br>Po włączeniu zostaniesz poproszony o wybór przeciwnika na początku meczu, a te szczegóły będą wyświetlane podczas meczu.",
+      "000w": "Gdy 'Wybierz losowego gracza' jest włączone, na początku meczu pojawi się dodatkowe okno do losowego wyboru gracza za pomocą zabawnych losowników.<br>Możesz nadal zamknąć okno przed wybraniem wyniku.",
+      "000x": "Ustawienia GUI zawierają ustawienia dotyczące interfejsu aplikacji, motywów i dostępności.",
+      "000y": "Jeśli wolisz, możesz ustawić aplikację w trybie poziomym. Po włączeniu możesz zamieniać dwóch graczy na ekranie.",
+      "000z": "Możesz zastąpić szybkie przyciski kalkulatorem (ale kliknięcie na PK nie będzie go już otwierać).",
+      "00a0": "Ale jeśli wolisz używać szybkich przycisków, możesz dostosować ich ilość w zależności od urządzenia i preferencji.",
+      "00b0": "Ustawienia Androida zawierają ustawienia specyficzne dla Twojego urządzenia z Androidem, jeśli dotyczy.",
+      "00c0": "Ustawienia zachowania to specjalne ustawienia do dostosowania niektórych automatyzacji podczas meczu.",
+      "00d0": "Każde z nich ma szczegółowe informacje - mogą być naprawdę przydatne.",
+      "00e0": "I to tyle!<br>Możesz ponownie obejrzeć ten mały przewodnik za pomocą przycisku na końcu strony ustawień.<br>Baw się dobrze z leuDuel!"
+    }
   }
 }

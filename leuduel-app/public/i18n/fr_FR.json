@@ -204,5 +204,40 @@
       "emz": "Définir les compteurs de la zone monstre extra",
       "fz": "Définir les compteurs de la zone terrain"
     }
+  },
+  "tutorial": {
+    "step": {
+      "000a": "leuDuel propose de nombreuses fonctionnalités.<br>N'hésitez pas à arrêter le tutoriel à tout moment.",
+      "000b": "Cette section sert à modifier les points de vie des joueurs.<br>Vous pouvez personnaliser les boutons en les maintenant appuyés, ou modifier entièrement cette section dans les paramètres.",
+      "000c": "Ceci est le compteur de points de vie du joueur. Appuyer dessus ouvre la Calculatrice de LP.",
+      "000d": "Ces icônes affichent le nombre de victoires du joueur.",
+      "000e": "Cette section vous permet de contrôler le match et d'effectuer la plupart des actions.",
+      "000f": "Ceci est le minuteur du match.<br>Il continue après zéro une fois expiré, mais il peut aussi arrêter le match si vous le préférez.",
+      "000g": "Le bouton de match contrôle si le match est démarré ou en pause ; ce bouton ne peut pas arrêter le match.<br>Au démarrage du match, des confirmations supplémentaires peuvent être requises selon vos préférences.",
+      "000h": "La page des compteurs vous permet de gérer les compteurs sur le terrain. Ils sont normalement réinitialisés au début de la partie.",
+      "000i": "La boîte à outils inclut le lancer de dés et le lancer de pièce. Les résultats précédents sont également affichés.",
+      "000j": "Dans la page des règles, vous pouvez rechercher des cartes pour trouver rapidement des règles ou d'autres informations.<br>Les options de recherche avancée sont décrites dans la page.",
+      "000k": "Vous pouvez couper les sons de l'application à tout moment avec ce bouton.",
+      "000l": "Pendant un match, la page des journaux liste tous les changements de Points de Vie survenus. Vous pouvez annuler n'importe lequel d'entre eux pour la partie en cours.",
+      "000m": "Vous pouvez utiliser le bouton de réinitialisation de partie pour réinitialiser les points de vie des joueurs et attribuer une victoire à l'un d'eux.",
+      "000n": "Pendant un match, vous pouvez utiliser le bouton d'arrêt pour terminer entièrement le match.<br>leuDuel suggérera un gagnant potentiel basé sur le nombre de victoires - c'est purement informatif.",
+      "000o": "En dehors d'un match, le bouton d'arrêt réinitialisera simplement les victoires et les points de vie.",
+      "000p": "Enfin, le bouton des paramètres - non disponible pendant un match actif.",
+      "000q": "La page des paramètres inclut quelques options pour personnaliser leuDuel.",
+      "000r": "Les paramètres du duel contiennent tous les paramètres liés au match.",
+      "000s": "Vous pouvez personnaliser le nombre de points de vie au début de la partie.",
+      "000t": "Vous pouvez personnaliser le nombre de parties dans un match. Cela modifie le nombre d'indicateurs de victoire et le moment où le joueur gagnant est choisi.",
+      "000u": "La durée du duel définit le minuteur pour votre match. Notez qu'il ne termine pas le match automatiquement.<br>Vous pouvez le modifier en utilisant les unités heures, minutes et secondes.",
+      "000v": "Le profil personnalisé vous permet de choisir une illustration de carte et un nom personnalisé pour vous et vos adversaires.<br>Lorsqu'il est activé, vous serez invité à choisir votre adversaire au démarrage du match et ces détails seront affichés pendant le match.",
+      "000w": "Lorsque 'Choisir un joueur aléatoire' est activé, une fenêtre supplémentaire apparaîtra au démarrage du match pour sélectionner aléatoirement un joueur à l'aide de quelques amusants générateurs aléatoires.<br>Vous pouvez toujours fermer la fenêtre avant qu'un résultat soit choisi.",
+      "000x": "Les paramètres de l'interface contiennent des paramètres sur l'interface de l'application, les thèmes et l'accessibilité.",
+      "000y": "Si vous préférez, vous pouvez régler l'application en mode paysage. Lorsqu'il est activé, vous pouvez échanger les deux joueurs sur l'écran.",
+      "000z": "Vous pouvez remplacer les boutons rapides par la calculatrice (mais cliquer sur les LP ne l'ouvrira plus).",
+      "00a0": "Mais si vous préférez utiliser les boutons rapides, vous pouvez personnaliser leur nombre selon votre appareil et vos préférences.",
+      "00b0": "Les paramètres Android contiennent des paramètres spécifiques à votre appareil Android, le cas échéant.",
+      "00c0": "Les paramètres de comportement sont des paramètres spéciaux pour personnaliser certaines automatisations pendant le match.",
+      "00d0": "Chacun dispose d'informations détaillées - ils peuvent être vraiment utiles.",
+      "00e0": "Et voilà!<br>N'hésitez pas à revoir ce petit guide en utilisant le bouton en bas de la page des paramètres.<br>Amusez-vous bien avec leuDuel!"
+    }
   }
 }

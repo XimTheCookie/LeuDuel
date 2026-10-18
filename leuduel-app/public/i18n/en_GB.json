@@ -220,9 +220,9 @@
       "000k": "You can mute app sounds at any time using this button.",
       "000l": "During a match, logs page lists all the Life Points changes that happened, you are free to undo any of them for the current game.",
       "000m": "You can use the game reset button to reset player's life points and assign a victory to one.",
-      "000n": "During a match, you can use the stop button to stop the match entirely.<br>leuDuel will suggest a potential winner based on win counts — this is purely informative.",
+      "000n": "During a match, you can use the stop button to stop the match entirely.<br>leuDuel will suggest a potential winner based on win counts - this is purely informative.",
       "000o": "Outside a match, the stop button will simply reset wins and life points.",
-      "000p": "Finally, the settings button — not available during an active match.",
+      "000p": "Finally, the settings button - not available during an active match.",
       "000q": "The settings page includes some options to customize leuDuel.",
       "000r": "Duel settings contains all the match-related settings.",
       "000s": "You can customize life points amount on game start.",
@@ -237,7 +237,7 @@
       "00b0": "Android settings contains settings specific to your Android device, if applicable.",
       "00c0": "Behaviours settings are some special settings to customize some automation during the match.",
       "00d0": "Each one has an extensive info to it, they can be really useful.",
-      "00e0": "And that's it, feel free to rewatch this small guide using the button at the end of the settings page.<br>Have fun with leuDuel!"
+      "00e0": "And that's it!<br>feel free to rewatch this small guide using the button at the end of the settings page.<br>Have fun with leuDuel!"
     }
   }
 }

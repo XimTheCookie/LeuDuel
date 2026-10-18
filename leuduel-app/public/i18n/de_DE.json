@@ -204,5 +204,40 @@
       "emz": "Zähler der Extra-Monsterzone setzen",
       "fz": "Zähler der Feldzone setzen"
     }
+  },
+  "tutorial": {
+    "step": {
+      "000a": "leuDuel bietet viele Funktionen.<br>Du kannst das Tutorial jederzeit beenden.",
+      "000b": "Dieser Bereich dient zur Änderung der Lebenspunkte der Spieler.<br>Du kannst Schaltflächen durch langes Drücken anpassen oder diesen Bereich in den Einstellungen vollständig ändern.",
+      "000c": "Dies ist die Lebenspunkteanzeige des Spielers. Ein Tippen darauf öffnet den LP-Rechner.",
+      "000d": "Diese Symbole zeigen die Sieganzahl des Spielers an.",
+      "000e": "Dieser Bereich ermöglicht es dir, das Match zu steuern und die meisten Aktionen durchzuführen.",
+      "000f": "Dies ist der Match-Timer.<br>Er läuft nach Ablauf weiter, kann aber auch das Match beenden, wenn du das bevorzugst.",
+      "000g": "Die Match-Schaltfläche steuert, ob das Match gestartet oder pausiert ist. Diese Schaltfläche kann das Match nicht beenden.<br>Beim Matchstart können je nach deinen Einstellungen zusätzliche Abfragen erforderlich sein.",
+      "000h": "Die Zählerseite ermöglicht es dir, Zähler im Feldlayout zu verwalten. Sie werden normalerweise beim Spielstart zurückgesetzt.",
+      "000i": "Die Werkzeugkiste enthält Würfelwurf und Münzwurf. Vorherige Ergebnisse werden ebenfalls angezeigt.",
+      "000j": "Auf der Regelseite kannst du Karten nachschlagen, um schnell nach Regeln oder anderen Infos zu suchen.<br>Erweiterte Suchoptionen sind auf der Seite beschrieben.",
+      "000k": "Du kannst die App-Töne jederzeit mit dieser Schaltfläche stummschalten.",
+      "000l": "Während eines Matches listet die Protokollseite alle Lebenspunktänderungen auf. Du kannst jede davon für das aktuelle Spiel rückgängig machen.",
+      "000m": "Du kannst die Spiel-Reset-Schaltfläche verwenden, um die Lebenspunkte der Spieler zurückzusetzen und einem einen Sieg zuzuweisen.",
+      "000n": "Während eines Matches kannst du die Stopp-Schaltfläche verwenden, um das Match vollständig zu beenden.<br>leuDuel schlägt einen möglichen Gewinner basierend auf der Sieganzahl vor - dies ist rein informativ.",
+      "000o": "Außerhalb eines Matches setzt die Stopp-Schaltfläche einfach Siege und Lebenspunkte zurück.",
+      "000p": "Schließlich die Einstellungsschaltfläche - während eines aktiven Matches nicht verfügbar.",
+      "000q": "Die Einstellungsseite enthält einige Optionen zur Anpassung von leuDuel.",
+      "000r": "Duell-Einstellungen enthält alle matchbezogenen Einstellungen.",
+      "000s": "Du kannst die Lebenspunktanzahl beim Spielstart anpassen.",
+      "000t": "Du kannst die Anzahl der Spiele in einem Match anpassen. Dies ändert die Anzahl der Sieganzeigen und wann der Gewinnspieler ausgewählt wird.",
+      "000u": "Die Duelldauer definiert den Timer für dein Match. Beachte, dass er das Match nicht automatisch beendet.<br>Du kannst ihn in Stunden-, Minuten- und Sekundeneinheiten ändern.",
+      "000v": "Das benutzerdefinierte Profil ermöglicht es dir, ein Kartenkunstwerk und einen benutzerdefinierten Namen für dich und deine Gegner auszuwählen.<br>Wenn aktiviert, wirst du beim Matchstart aufgefordert, deinen Gegner auszuwählen, und diese Details werden während des Matches angezeigt.",
+      "000w": "Wenn 'Zufälligen Spieler auswählen' aktiviert ist, erscheint beim Matchstart ein zusätzliches Fenster, um mit einigen unterhaltsamen Zufallsgeneratoren einen Spieler zufällig auszuwählen.<br>Du kannst das Fenster noch schließen, bevor ein Ergebnis ausgewählt wird.",
+      "000x": "GUI-Einstellungen enthält Einstellungen zur App-Oberfläche, Themen und Barrierefreiheit.",
+      "000y": "Wenn du möchtest, kannst du die App in den Querformatmodus setzen. Wenn aktiviert, kannst du die beiden Spieler auf dem Bildschirm tauschen.",
+      "000z": "Du kannst Schnellschaltflächen durch den Rechner ersetzen (aber das Klicken auf LP öffnet ihn dann nicht mehr).",
+      "00a0": "Wenn du jedoch Schnellschaltflächen bevorzugst, kannst du deren Anzahl je nach Gerät und Vorlieben anpassen.",
+      "00b0": "Android-Einstellungen enthält Einstellungen speziell für dein Android-Gerät, falls zutreffend.",
+      "00c0": "Verhaltenseinstellungen sind spezielle Einstellungen zur Anpassung einiger Automatisierungen während des Matches.",
+      "00d0": "Jede hat eine ausführliche Info dazu - sie können wirklich nützlich sein.",
+      "00e0": "Das war's!<br>Du kannst diesen kleinen Leitfaden jederzeit über die Schaltfläche am Ende der Einstellungsseite erneut ansehen.<br>Viel Spaß mit leuDuel!"
+    }
   }
 }

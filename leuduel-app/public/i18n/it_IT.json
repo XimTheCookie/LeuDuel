@@ -204,5 +204,40 @@
       "emz": "Imposta segnalini zona mostri extra",
       "fz": "Imposta segnalini zona terreno"
     }
+  },
+  "tutorial": {
+    "step": {
+      "000a": "leuDuel offre molte funzionalità.<br>Puoi interrompere il tutorial in qualsiasi momento.",
+      "000b": "Questa sezione serve a modificare i LP dei giocatori.<br>Puoi personalizzare i pulsanti tenendoli premuti, oppure modificare questa sezione nelle impostazioni.",
+      "000c": "Questo è il contatore dei LP del giocatore. Toccarlo ne apre il calcolatore.",
+      "000d": "Queste icone mostrano le vittorie del giocatore.",
+      "000e": "Questa sezione ti permette di controllare il match ed eseguire la maggior parte delle azioni.",
+      "000f": "Questo è il timer del match.<br>Continua oltre lo zero una volta scaduto, ma può anche fermare il match se preferisci.",
+      "000g": "Il pulsante match controlla se il match è avviato o in pausa; questo pulsante non può fermare il match.<br>All'avvio del match, potrebbero essere richieste azioni aggiuntive in base alle tue preferenze.",
+      "000h": "La pagina dei segnalini ti permette di gestirli direttamente sul layout del campo. Vengono normalmente resettati all'inizio della partita.",
+      "000i": "La cassetta degli attrezzi include il lancio di dadi e il lancio della moneta. Vengono mostrati anche i risultati precedenti.",
+      "000j": "Nella pagina delle regole puoi cercare carte per trovare rapidamente regolamenti o altre informazioni.<br>Le opzioni di ricerca avanzata sono descritte nella pagina.",
+      "000k": "Puoi silenziare i suoni dell'app in qualsiasi momento usando questo pulsante.",
+      "000l": "Durante un match, la pagina del registro elenca tutte le variazioni di LP avvenute.<br> Puoi annullare liberamente quelle del game corrente.",
+      "000m": "Puoi usare il pulsante di reset partita per reimpostare i LP dei giocatori e assegnare vittorie.",
+      "000n": "Durante un match, puoi usare il pulsante di stop per terminare completamente il match.<br>leuDuel suggerirà un possibile vincitore basandosi sul conteggio delle vittorie - è puramente informativo.",
+      "000o": "Fuori da un match, il pulsante di stop reimposterà semplicemente le vittorie e i LP.",
+      "000p": "Infine, il pulsante delle impostazioni - non disponibile durante un match attivo.",
+      "000q": "La pagina delle impostazioni include alcune opzioni per personalizzare leuDuel.",
+      "000r": "Le impostazioni duello contengono tutte le impostazioni relative al match.",
+      "000s": "Puoi personalizzare la quantità di LP all'inizio della partita.",
+      "000t": "Puoi personalizzare il numero di partite in un match. Questo cambia il numero di indicatori di vittoria e quando viene scelto il giocatore vincitore.",
+      "000u": "Il timer duello definisce la durata del match. Nota che non termina il match automaticamente.<br>Puoi modificarlo usando le unità ore, minuti e secondi.",
+      "000v": "I profili custom ti permettono di scegliere l'art di una carta e un nome personalizzato per te ed i tuoi avversari.<br>Quando abilitato, ti verrà chiesto di scegliere il tuo avversario all'avvio del match.",
+      "000w": "Quando 'Scegli giocatore casuale' è abilitato, una finestra extra apparirà all'avvio del match per selezionare casualmente un giocatore usando alcuni randomizzatori.<br>Puoi ancora chiudere la finestra prima che venga scelto un risultato.",
+      "000x": "Le impostazioni interfaccia contengono preferenze sull'aspetto dell'app, temi e accessibilità.",
+      "000y": "Se preferisci puoi impostare l'app in modalità orizzontale. Quando abilitata, puoi scambiare i due giocatori sullo schermo.",
+      "000z": "Puoi sostituire i tasti rapidi con la calcolatrice (ma cliccare su LP non la aprirà più).",
+      "00a0": "Ma se preferisci usare i tasti rapidi, puoi personalizzarne il numero in base al tuo dispositivo e alle tue preferenze.",
+      "00b0": "Le impostazioni Android contengono impostazioni specifiche per il tuo dispositivo Android, se applicabile.",
+      "00c0": "Le impostazioni di comportamento sono impostazioni speciali per personalizzare alcune automazioni durante il match.",
+      "00d0": "Ognuna ha informazioni dettagliate - possono essere molto utili.",
+      "00e0": "E questo è tutto!<br>Puoi rivedere questa piccola guida usando il pulsante in fondo alla pagina delle impostazioni.<br>Divertiti con leuDuel!"
+    }
   }
 }

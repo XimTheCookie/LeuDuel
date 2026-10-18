@@ -204,5 +204,40 @@
       "emz": "Establecer contadores de zona de monstruos extra",
       "fz": "Establecer contadores de zona de campo"
     }
+  },
+  "tutorial": {
+    "step": {
+      "000a": "leuDuel viene con muchas funciones.<br>Puedes detener el tutorial en cualquier momento.",
+      "000b": "Esta sección se usa para modificar los puntos de vida de los jugadores.<br>Puedes personalizar los botones manteniéndolos pulsados, o cambiar esta sección completamente en los ajustes.",
+      "000c": "Este es el contador de puntos de vida del jugador. Tocarlo abre la Calculadora de LP.",
+      "000d": "Estos iconos muestran el recuento de victorias del jugador.",
+      "000e": "Esta sección te permite controlar la partida y realizar la mayoría de las acciones.",
+      "000f": "Este es el temporizador de la partida.<br>Continúa pasado el cero una vez que expira, pero también puede detener la partida si lo prefieres.",
+      "000g": "El botón de partida controla si la partida está iniciada o pausada; este botón no puede detener la partida.<br>Al iniciar la partida, pueden requerirse confirmaciones adicionales según tus preferencias.",
+      "000h": "La página de contadores te permite gestionar contadores en el diseño del campo. Normalmente se reinician al inicio de la partida.",
+      "000i": "La caja de herramientas incluye tirada de dados y lanzamiento de moneda. También se muestran los resultados anteriores.",
+      "000j": "En la página de reglas puedes buscar cartas para encontrar rápidamente reglas u otra información.<br>Las opciones de búsqueda avanzada se describen en la página.",
+      "000k": "Puedes silenciar los sonidos de la app en cualquier momento usando este botón.",
+      "000l": "Durante una partida, la página de registros lista todos los cambios de Puntos de Vida ocurridos. Puedes deshacer cualquiera de ellos para la partida actual.",
+      "000m": "Puedes usar el botón de reinicio de partida para restablecer los puntos de vida de los jugadores y asignar una victoria a uno.",
+      "000n": "Durante una partida, puedes usar el botón de detener para terminar la partida por completo.<br>leuDuel sugerirá un posible ganador basándose en el recuento de victorias - esto es puramente informativo.",
+      "000o": "Fuera de una partida, el botón de detener simplemente reiniciará las victorias y los puntos de vida.",
+      "000p": "Por último, el botón de ajustes - no disponible durante una partida activa.",
+      "000q": "La página de ajustes incluye algunas opciones para personalizar leuDuel.",
+      "000r": "Los ajustes del duelo contienen todos los ajustes relacionados con la partida.",
+      "000s": "Puedes personalizar la cantidad de puntos de vida al inicio de la partida.",
+      "000t": "Puedes personalizar el número de partidas en un encuentro. Esto cambia la cantidad de indicadores de victoria y cuándo se elige al jugador ganador.",
+      "000u": "La duración del duelo define el temporizador para tu partida. Ten en cuenta que no termina la partida automáticamente.<br>Puedes cambiarlo usando unidades de horas, minutos y segundos.",
+      "000v": "El perfil personalizado te permite elegir un arte de carta y un nombre personalizado para ti y tus oponentes.<br>Cuando está activado, se te pedirá que elijas a tu oponente al inicio de la partida y estos detalles se mostrarán durante la partida.",
+      "000w": "Cuando 'Elegir jugador aleatorio' está activado, aparecerá una ventana extra al inicio de la partida para seleccionar aleatoriamente un jugador usando algunos divertidos aleatorizadores.<br>Aún puedes cerrar la ventana antes de que se elija un resultado.",
+      "000x": "Los ajustes de interfaz contienen ajustes sobre la interfaz de la app, temas y accesibilidad.",
+      "000y": "Si lo prefieres, puedes configurar la app en modo horizontal. Cuando está activado, puedes intercambiar los dos jugadores en la pantalla.",
+      "000z": "Puedes reemplazar los botones rápidos con la calculadora (pero hacer clic en LP ya no la abrirá).",
+      "00a0": "Pero si prefieres usar botones rápidos, puedes personalizar su cantidad según tu dispositivo y preferencias.",
+      "00b0": "Los ajustes de Android contienen ajustes específicos para tu dispositivo Android, si aplica.",
+      "00c0": "Los ajustes de comportamiento son ajustes especiales para personalizar algunas automatizaciones durante la partida.",
+      "00d0": "Cada uno tiene una información detallada - pueden ser muy útiles.",
+      "00e0": "¡Y eso es todo!<br>Puedes volver a ver esta pequeña guía usando el botón al final de la página de ajustes.<br>¡Diviértete con leuDuel!"
+    }
   }
 }
