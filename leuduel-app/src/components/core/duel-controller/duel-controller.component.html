@@ -6,6 +6,7 @@
         (clicked)="openSettings()"
         icon="settings"
         label="Settings"
+        [cooldown]="200"
         [isDisabled]="duelStore.isDuelStarted() || duelStore.isDuelPaused()"
         size="xs"
         tone="neutral"
@@ -16,6 +17,7 @@
         [isDisabled]="!duelStore.isDuelStarted()"
         icon="log"
         label="Log"
+        [cooldown]="200"
         size="xs"
         tone="neutral"
       />
@@ -25,6 +27,7 @@
         (clicked)="stopMatch()"
         icon="reset"
         label="Stop"
+        [cooldown]="200"
         size="xs"
         tone="warning"
       />
@@ -34,6 +37,7 @@
         (clicked)="resetLifePoints()"
         icon="heart-reset"
         label="Reset LP"
+        [cooldown]="200"
         size="xs"
         tone="negative"
       />
