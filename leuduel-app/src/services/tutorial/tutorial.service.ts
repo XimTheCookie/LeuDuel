@@ -10,6 +10,7 @@ interface TutorialStep {
   positionV: 'center' | 'start' | 'end';
   positionH: 'center' | 'start' | 'end';
   enterEvent?: () => void;
+  beforeReEnter?: () => void;
 }
 
 @Injectable({
@@ -116,7 +117,7 @@ export class TutorialService {
         targetId: 'leu-btn-settings',
         positionV: 'end',
         positionH: 'end',
-        enterEvent: () => {
+        beforeReEnter: () => {
           this.closeSettings();
         },
       },
@@ -304,10 +305,10 @@ export class TutorialService {
   prevStep() {
     this.removeHighlights();
     if (this.currentStepIndex() > 0) {
-      this.currentStepIndex.update((index) => index - 1);
-      if (this.steps()[this.currentStepIndex()].enterEvent) {
-        this.steps()[this.currentStepIndex()].enterEvent?.();
-      }
+      const prevIndex = this.currentStepIndex() - 1;
+      this.steps()[prevIndex].beforeReEnter?.();
+      this.currentStepIndex.set(prevIndex);
+      this.steps()[prevIndex].enterEvent?.();
     }
   }
 
@@ -332,6 +333,7 @@ export class TutorialService {
   }
 
   private openSettings() {
+    if (this.settingsModalRef) return;
     this.settingsModalRef = this.modalService.open(
       SettingsPageComponent,
       {

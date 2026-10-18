@@ -94,7 +94,7 @@ export class DuelControllerComponent implements AfterViewInit {
 
   private suggestMatchStop() {
     setTimeout(() => {
-      if (this.modalService.hasOpenModal || !this.duelStore.isDuelStarted()) return;
+      if (this.modalService.hasOpenModal() || !this.duelStore.isDuelStarted()) return;
       this.stopMatch();
     }, 1000);
   }

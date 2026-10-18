@@ -1,6 +1,14 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { inject, Injectable, InjectionToken, Injector, Type } from '@angular/core';
+import {
+  computed,
+  inject,
+  Injectable,
+  InjectionToken,
+  Injector,
+  signal,
+  Type,
+} from '@angular/core';
 import {
   MODAL_DATA,
   ModalGenericComponent,
@@ -37,11 +45,9 @@ export class ModalService {
     private injector: Injector,
   ) {}
 
-  private openCount = 0;
+  private openCount = signal<number>(0);
 
-  get hasOpenModal(): boolean {
-    return this.openCount > 0;
-  }
+  hasOpenModal = computed(() => this.openCount() > 0);
 
   open<T>(
     component: Type<T>,
@@ -78,8 +84,8 @@ export class ModalService {
       overlayRef.detachments().subscribe(unregister);
     }
 
-    this.openCount++;
-    overlayRef.detachments().subscribe(() => this.openCount--);
+    this.openCount.update((val) => val + 1);
+    overlayRef.detachments().subscribe(() => this.openCount.update((val) => Math.max(val - 1, 0)));
 
     return { close: () => overlayRef.dispose(), overlayRef };
   }

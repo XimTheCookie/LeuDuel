@@ -165,7 +165,7 @@ export class LifePointsComponent implements OnDestroy {
             change: this.settingsService.getStartingLifePoints(),
             lifeReset: true,
           });
-        } else if (!this.modalService.hasOpenModal) {
+        } else if (!this.modalService.hasOpenModal()) {
           // auto-prompt
           this.modalService.open(LifePointsResetComponent, {
             size: 'sm',
