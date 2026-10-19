@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, computed, inject } from '@angular/core';
+import { AfterViewInit, Component, computed, inject, OnDestroy } from '@angular/core';
 import { TutorialService } from '../../../services/tutorial/tutorial.service';
 import { SettingsService } from '../../../services/settings/settings.service';
 import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
@@ -11,7 +11,7 @@ import { AndroidNavigationService } from '../../../services/android/android-navi
   styleUrls: ['./tutorial.component.scss'],
   imports: [TranslatePipe, TextButtonComponent],
 })
-export class TutorialComponent implements AfterViewInit {
+export class TutorialComponent implements AfterViewInit, OnDestroy {
   readonly tutorial = inject(TutorialService);
   readonly settings = inject(SettingsService);
   private readonly androidNavigationService = inject(AndroidNavigationService);
@@ -26,10 +26,14 @@ export class TutorialComponent implements AfterViewInit {
     return `tutorial-panel--${step.positionV}`;
   });
 
+  private unregister?: () => void;
+
   ngAfterViewInit(): void {
-    this.androidNavigationService.register(() => {
-      this.goBack();
-    });
+    this.unregister = this.androidNavigationService.register(() => this.goBack());
+  }
+
+  ngOnDestroy(): void {
+    this.unregister?.();
   }
 
   goBack() {

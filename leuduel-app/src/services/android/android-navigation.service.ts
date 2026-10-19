@@ -15,19 +15,23 @@ export class AndroidNavigationService implements OnDestroy {
 
   constructor() {
     if (Capacitor.isNativePlatform()) {
-      CapacitorApp.addListener('backButton', () => {
-        if (this.handlers.length > 0) {
-          this.handlers[this.handlers.length - 1]();
-        } else {
-          const now = Date.now();
-          if (now - this.lastBackPress < 2500) {
-            CapacitorApp.exitApp();
-          } else {
-            this.lastBackPress = now;
-            this.snackbarService.showNeutral('common.label.exit');
-          }
-        }
-      }).then((l) => (this.listener = l));
+      CapacitorApp.addListener('backButton', () => this.backEvent()).then(
+        (l) => (this.listener = l),
+      );
+    }
+  }
+
+  private backEvent() {
+    if (this.handlers.length > 0) {
+      this.handlers[this.handlers.length - 1]();
+    } else {
+      const now = Date.now();
+      if (now - this.lastBackPress < 2500) {
+        CapacitorApp.exitApp();
+      } else {
+        this.lastBackPress = now;
+        this.snackbarService.showNeutral('common.label.exit');
+      }
     }
   }
 
