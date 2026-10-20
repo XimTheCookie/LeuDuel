@@ -23,6 +23,8 @@ export class NumberInputComponent {
   doReset = output<void>();
   hideButtons = input<boolean>(false);
 
+  inputReadonly = input<boolean>(false);
+
   incrementClicked = output<void>();
   decrementClicked = output<void>();
 

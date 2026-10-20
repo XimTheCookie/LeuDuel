@@ -5,6 +5,7 @@
         [formControl]="counterValue"
         [label]="label()"
         [step]="1"
+        [inputReadonly]="true"
         [minValue]="0"
         [maxValue]="99"
         (decrementClicked)="onDecrement()"
@@ -15,7 +16,7 @@
         <app-button
           icon="reset"
           size="xs"
-          tone="neutral"
+          tone="negative"
           (clicked)="resetValue()"
           [isDisabled]="resetDisabled()"
         />
@@ -48,7 +49,7 @@
     <div class="cam__actions">
       @if (settingsService.landscapeMode()) {
         <app-text-button
-          tone="neutral"
+          tone="negative"
           label="common.button.reset"
           (clicked)="resetValue()"
           [isDisabled]="resetDisabled()"
@@ -63,7 +64,7 @@
         <app-button
           icon="reset"
           size="xs"
-          tone="neutral"
+          tone="negative"
           (clicked)="resetValue()"
           [isDisabled]="resetDisabled()"
         />

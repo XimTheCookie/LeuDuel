@@ -20,6 +20,7 @@
         class="ni-value"
         type="number"
         inputmode="numeric"
+        [readonly]="inputReadonly()"
         [formControl]="formControl()"
         [min]="minValue()"
         [max]="maxValue()"
