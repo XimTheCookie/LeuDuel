@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](#license)
 [![Android](https://img.shields.io/badge/platform-Android-green.svg)](#supported-platforms)
 [![F-Droid](https://img.shields.io/badge/F--Droid-planned-green.svg)](#distribution)
-[![Google Play](https://img.shields.io/badge/Google%20Play-ongoing-blue.svg)](#distribution)
+[![Google Play](https://img.shields.io/badge/Google%20Play-testing-green.svg)](#distribution)
 
 ---
 
@@ -28,6 +28,7 @@
 * D6 Dice Roll
 * Coin flip
 * Card search for quick ruling (YGO PRO API)
+* Player picker
 
 ### Features customization
 * Mute mode
@@ -99,7 +100,7 @@ Requires Android 7.0 (API level 24) or higher.
 The application is intended to be distributed through:
 
 * **F-Droid:** Planned
-* **Google Play:** Planned
+* **Google Play:** Testing
 * **Apple App Store:** Not planned
 
 ---
@@ -266,7 +267,7 @@ Planned. Not yet published.
 
 ## Google Play
 
-Planned. Not yet published.
+Planned. Currently testing is in progress.
 
 
 ---
@@ -304,9 +305,8 @@ See [Issues](https://github.com/XimTheCookie/LeuDuel/issues) for current bugs an
 
 # 🗺️ Roadmap
 
-* [ ] Complete Android release build
-* [ ] F-Droid release
 * [ ] Google Play release
+* [ ] F-Droid release
 * [ ] iOS support
 
 ---
