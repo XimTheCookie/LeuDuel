@@ -93,7 +93,9 @@
         "snow": "Neve",
         "embers": "Braci",
         "lines": "Linee",
-        "rain": "Pioggia"
+        "rain": "Pioggia",
+        "aurora": "Aurora",
+        "bubbles": "Bolle"
       }
     }
   },

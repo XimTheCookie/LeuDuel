@@ -5,6 +5,8 @@ import { LinesWallpaperComponent } from '../../common/wallpaper/lines-wallpaper/
 import { SnowWallpaperComponent } from '../../common/wallpaper/snow-wallpaper/snow-wallpaper.component';
 import { EmbersWallpaperComponent } from '../../common/wallpaper/embers-wallpaper/embers-wallpaper.component';
 import { RainWallpaperComponent } from '../../common/wallpaper/rain-wallpaper/rain-wallpaper.component';
+import { AuroraWallpaperComponent } from '../../common/wallpaper/aurora-wallpaper/aurora-wallpaper.component';
+import { BubblesWallpaperComponent } from '../../common/wallpaper/bubbles-wallpaper/bubbles-wallpaper.component';
 
 import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
 import { TutorialComponent } from '../../common/tutorial/tutorial.component';
@@ -21,6 +23,8 @@ import { ModalService } from '../../../services/modal/modal.service';
     SnowWallpaperComponent,
     EmbersWallpaperComponent,
     RainWallpaperComponent,
+    AuroraWallpaperComponent,
+    BubblesWallpaperComponent,
     SnackbarComponent,
     TutorialComponent,
   ],

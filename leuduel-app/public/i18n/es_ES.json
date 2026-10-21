@@ -93,7 +93,9 @@
         "snow": "Nieve",
         "embers": "Brasas",
         "lines": "Líneas",
-        "rain": "Lluvia"
+        "rain": "Lluvia",
+        "aurora": "Aurora",
+        "bubbles": "Burbujas"
       }
     }
   },

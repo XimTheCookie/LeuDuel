@@ -114,7 +114,7 @@ export class SettingsPageComponent {
   background = new FormControl<number>(this.settingsService.background(), [
     Validators.required,
     Validators.min(0),
-    Validators.max(4),
+    Validators.max(6),
   ]);
 
   duration = new FormControl<number>(this.settingsService.getDuelDuration(), [
@@ -222,6 +222,14 @@ export class SettingsPageComponent {
     {
       label: 'settings.list-value.wallpaper.rain',
       value: 4,
+    },
+    {
+      label: 'settings.list-value.wallpaper.aurora',
+      value: 5,
+    },
+    {
+      label: 'settings.list-value.wallpaper.bubbles',
+      value: 6,
     },
   ];
 

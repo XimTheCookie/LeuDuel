@@ -93,7 +93,9 @@
         "snow": "Snow",
         "embers": "Embers",
         "lines": "Lines",
-        "rain": "Rain"
+        "rain": "Rain",
+        "aurora": "Aurora",
+        "bubbles": "Bubbles"
       }
     }
   },

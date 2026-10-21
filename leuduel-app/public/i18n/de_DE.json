@@ -93,7 +93,9 @@
         "snow": "Schnee",
         "embers": "Glut",
         "lines": "Linien",
-        "rain": "Regen"
+        "rain": "Regen",
+        "aurora": "Polarlicht",
+        "bubbles": "Blasen"
       }
     }
   },

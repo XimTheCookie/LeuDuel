@@ -93,7 +93,9 @@
         "snow": "Śnieg",
         "embers": "Żarzące węgle",
         "lines": "Linie",
-        "rain": "Deszcz"
+        "rain": "Deszcz",
+        "aurora": "Zorza",
+        "bubbles": "Bańki"
       }
     }
   },
