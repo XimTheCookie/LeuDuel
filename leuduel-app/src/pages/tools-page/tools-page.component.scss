@@ -38,14 +38,14 @@
       }
     }
 
-    .tools-page__emz {
+    .tools-page__tls {
       grid-template-columns: 1fr;
       grid-template-rows: repeat(7, 1fr);
       width: 100%;
       height: 100%;
     }
 
-    .tools-page__emz-btn,
+    .tools-page__tls-btn,
     .tools-page__close {
       padding: 0;
     }
@@ -79,7 +79,7 @@
   }
 }
 
-.tools-page__emz {
+.tools-page__tls {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 0.25rem;
@@ -88,7 +88,7 @@
   z-index: 1;
 }
 
-.tools-page__emz-btn,
+.tools-page__tls-btn,
 .tools-page__close {
   padding: 0.65rem 0;
   font-family: var(--font-mono);
@@ -107,8 +107,9 @@
   }
 }
 
-.tools-page__emz-btn {
-  color: var(--text-primary);
+.tools-page__tls-btn {
+  color: var(--gold-light);
+  display: flex;
 }
 
 .tools-page__close {

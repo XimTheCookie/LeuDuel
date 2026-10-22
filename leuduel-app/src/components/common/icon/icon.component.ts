@@ -17,7 +17,7 @@ import {
   LucidePalette,
   LucidePause,
   LucidePencil,
-  LucidePhone,
+  LucideShuffle,
   LucidePlay,
   LucidePlus,
   LucideRotateCcw,
@@ -103,6 +103,8 @@ export class IconComponent {
         return LucideSlidersHorizontal;
       case 'circle-question-mark':
         return LucideCircleQuestionMark;
+      case 'shuffle':
+        return LucideShuffle;
       case 'info':
         return LucideInfo;
     }
