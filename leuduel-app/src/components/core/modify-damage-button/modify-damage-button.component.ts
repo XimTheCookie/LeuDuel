@@ -10,6 +10,7 @@ import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 
 export interface ModifyDamageData {
   action: LifeAction;
+  mirror?: boolean;
   onSave: (action: LifeAction) => void;
 }
 
@@ -33,6 +34,8 @@ export class ModifyDamageButtonComponent {
   private readonly soundboardService = inject(SoundboardService);
   readonly actionTypes = ACTION_TYPES;
 
+  mirror = signal(false);
+
   landscapeMode = computed(() => this.settingsService.landscapeMode());
 
   buttonValueController = new FormControl<number | null>(1, [
@@ -46,6 +49,11 @@ export class ModifyDamageButtonComponent {
   constructor(@Inject(MODAL_COMPONENT_DATA) public data: ModifyDamageData) {
     this.buttonValueController.setValue(data.action.change);
     this.selectedType.set(data.action.type);
+    if (data?.mirror) this.mirror.set(data.mirror);
+  }
+
+  onReset() {
+    this.buttonValueController.setValue(1000);
   }
 
   selectType(type: LifeAction['type']) {

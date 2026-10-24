@@ -25,21 +25,21 @@
       <app-button
         id="leu-btn-stop"
         (clicked)="stopMatch()"
-        icon="reset"
+        [icon]="duelStore.isDuelStarted() ? 'octagon-minus' : 'circle-minus'"
         label="Stop"
         [cooldown]="200"
         size="xs"
-        tone="warning"
+        tone="negative"
       />
 
       <app-button
         id="leu-btn-reset"
         (clicked)="resetLifePoints()"
-        icon="heart-reset"
+        icon="astroid"
         label="Reset LP"
         [cooldown]="200"
         size="xs"
-        tone="negative"
+        tone="warning"
       />
     </div>
 

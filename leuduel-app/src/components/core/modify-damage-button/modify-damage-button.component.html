@@ -7,8 +7,11 @@
 
   <div class="modify-form__section">
     <app-number-input
+      [canReset]="true"
+      (doReset)="onReset()"
       label="damage-button.value"
       [formControl]="buttonValueController"
+      [inputReadonly]="mirror()"
       [minValue]="1"
       [maxValue]="99999"
       [step]="100"

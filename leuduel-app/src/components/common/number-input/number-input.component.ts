@@ -3,13 +3,14 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { IconComponent } from '../icon/icon.component';
 import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-number-input',
   templateUrl: './number-input.component.html',
   styleUrls: ['./number-input.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, IconComponent, TranslatePipe],
+  imports: [ReactiveFormsModule, IconComponent, TranslatePipe, ButtonComponent],
 })
 export class NumberInputComponent {
   private readonly destroyRef = inject(DestroyRef);

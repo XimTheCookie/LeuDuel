@@ -4,9 +4,7 @@
   }
   <div [class.has-reset]="canReset()">
     @if (canReset()) {
-      <button class="ni-btn" type="button" (click)="reset()">
-        <app-icon icon="reset" size="sm" />
-      </button>
+      <app-button icon="reset" (clicked)="reset()" size="xs" />
     }
     <div
       class="ni-row"

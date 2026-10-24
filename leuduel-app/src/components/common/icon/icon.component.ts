@@ -29,7 +29,45 @@ import {
   LucideVolume2,
   LucideVolumeOff,
   LucideX,
+  LucideOctagonMinus,
+  LucideCircleMinus,
+  LucideAstroid,
+  LucideSquaresExclude,
 } from '@lucide/angular';
+
+const ICON_MAP: Record<string, any> = {
+  play: LucidePlay,
+  pause: LucidePause,
+  log: LucideScrollText,
+  rules: LucideBookOpen,
+  reset: LucideRotateCcw,
+  settings: LucideSettings,
+  check: LucideCheck,
+  plus: LucidePlus,
+  minus: LucideMinus,
+  'heart-reset': LucideHeartPulse,
+  x: LucideX,
+  'arrow-down': LucideArrowDown,
+  astroid: LucideAstroid,
+  'arrow-up': LucideArrowUp,
+  'arrow-left': LucideArrowLeft,
+  'octagon-minus': LucideOctagonMinus,
+  'circle-minus': LucideCircleMinus,
+  'arrow-right': LucideArrowRight,
+  ban: LucideBan,
+  dices: LucideDices,
+  volume: LucideVolume2,
+  'volume-off': LucideVolumeOff,
+  coins: LucideCoins,
+  edit: LucidePencil,
+  swords: LucideSwords,
+  palette: LucidePalette,
+  smartphone: LucideSmartphone,
+  'sliders-horizontal': LucideSlidersHorizontal,
+  'circle-question-mark': LucideCircleQuestionMark,
+  shuffle: LucideShuffle,
+  info: LucideInfo,
+};
 
 @Component({
   selector: 'app-icon',
@@ -40,74 +78,20 @@ import {
 })
 export class IconComponent {
   icon = input<string>();
-  size = input<'sm' | 'md' | 'lg'>('md');
+  size = input<'xs' | 'sm' | 'md' | 'lg'>('md');
 
-  readonly sizeMap = { sm: '1rem', md: '1.25rem', lg: '1.75rem' };
-  get sizeValue() {
+  filled = input<boolean>(false);
+
+  readonly sizeMap = { xs: '0.708rem', sm: '1rem', md: '1.25rem', lg: '1.75rem' };
+  sizeValue = computed(() => {
     return this.sizeMap[this.size()];
-  }
+  });
 
   iconValue = computed(() => {
     const icon = this.icon();
     if (!icon) return null;
-    switch (icon) {
-      case 'play':
-        return LucidePlay;
-      case 'pause':
-        return LucidePause;
-      case 'log':
-        return LucideScrollText;
-      case 'rules':
-        return LucideBookOpen;
-      case 'reset':
-        return LucideRotateCcw;
-      case 'settings':
-        return LucideSettings;
-      case 'check':
-        return LucideCheck;
-      case 'plus':
-        return LucidePlus;
-      case 'minus':
-        return LucideMinus;
-      case 'heart-reset':
-        return LucideHeartPulse;
-      case 'x':
-        return LucideX;
-      case 'arrow-down':
-        return LucideArrowDown;
-      case 'arrow-up':
-        return LucideArrowUp;
-      case 'arrow-left':
-        return LucideArrowLeft;
-      case 'arrow-right':
-        return LucideArrowRight;
-      case 'ban':
-        return LucideBan;
-      case 'dices':
-        return LucideDices;
-      case 'volume':
-        return LucideVolume2;
-      case 'volume-off':
-        return LucideVolumeOff;
-      case 'coins':
-        return LucideCoins;
-      case 'edit':
-        return LucidePencil;
-      case 'swords':
-        return LucideSwords;
-      case 'palette':
-        return LucidePalette;
-      case 'smartphone':
-        return LucideSmartphone;
-      case 'sliders-horizontal':
-        return LucideSlidersHorizontal;
-      case 'circle-question-mark':
-        return LucideCircleQuestionMark;
-      case 'shuffle':
-        return LucideShuffle;
-      case 'info':
-        return LucideInfo;
-    }
-    return LucideX;
+    const value = ICON_MAP[icon];
+    if (value) return value;
+    return LucideSquaresExclude;
   });
 }

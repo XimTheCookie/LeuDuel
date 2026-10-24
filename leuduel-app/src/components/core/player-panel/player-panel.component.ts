@@ -44,15 +44,20 @@ export class PlayerPanelComponent {
   }
 
   doModify = (index: number) => {
+    const isMirror = this.player() === 'player2';
     const modalRef = this.modalService.open(
       ModifyDamageButtonComponent,
-      { size: 'sm', mirror: this.player() === 'player2' },
+      {
+        size: 'sm',
+        mirror: isMirror,
+      },
       {
         action: { ...this.rapidButtons()[index] },
         onSave: (updated: LifeAction) => {
           this.settingsService.updateRapidButton(index, updated);
           modalRef.close();
         },
+        mirror: isMirror,
       },
     );
   };
