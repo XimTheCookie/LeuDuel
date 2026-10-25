@@ -31,7 +31,8 @@
       "next": "Next",
       "back": "Back",
       "guide": "Guide",
-      "reset": "Reset"
+      "reset": "Reset",
+      "select": "Select"
     }
   },
   "settings": {
@@ -206,6 +207,13 @@
       "emz": "Set Extra Monster Zone counters",
       "fz": "Set Field Zone counters"
     }
+  },
+  "condition-page": {
+    "title": "{{playerName}} - Duel conditions",
+    "no-conditions": "No conditions applied.",
+    "add-condition": "Add Condition",
+    "target-card": "Target/Declared card name",
+    "card-name": "Card name..."
   },
   "tutorial": {
     "step": {

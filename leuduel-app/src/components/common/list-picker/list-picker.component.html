@@ -9,7 +9,7 @@
       </button>
     }
     <button class="lp-trigger" type="button" (click)="open()" [disabled]="disabled()">
-      <span>{{ optionLabel ?? '—' | translate }}</span>
+      <span>{{ optionLabel() | translate }}</span>
       <span class="lp-arrow">▾</span>
     </button>
   </div>

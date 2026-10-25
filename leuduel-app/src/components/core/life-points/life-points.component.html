@@ -5,6 +5,13 @@
   [class.animating]="animating()"
   [class.gaining]="animating() && gaining()"
 >
+  <app-button
+    size="xs"
+    class="lp-display__player-condition"
+    icon="clipboard-list"
+    (click)="$event.preventDefault()"
+    (clicked)="openConditionPage()"
+  />
   @if (playerName() && compact()) {
     <span class="lp-player">{{ playerName() }}</span>
   }

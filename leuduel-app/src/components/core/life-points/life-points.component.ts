@@ -16,6 +16,7 @@ import { ModalService } from '../../../services/modal/modal.service';
 import { LifePointsResetComponent } from '../life-points-reset/life-points-reset.component';
 import { DuelStore } from '../../../stores/duel-store/duel.store';
 import { ButtonComponent } from '../../common/button/button.component';
+import { ConditionPageComponent } from '../../../pages/condition-page/condition-page.component';
 
 const ANIM_DURATION = 1500;
 
@@ -214,5 +215,14 @@ export class LifePointsComponent implements OnDestroy {
         player.lifeChanges[player.lifeChanges.length - 1].timestamp,
       );
     }
+  }
+
+  openConditionPage() {
+    this.modalService.open(ConditionPageComponent, {
+      size: 'md',
+      custom: {
+        player: this.player(),
+      },
+    });
   }
 }

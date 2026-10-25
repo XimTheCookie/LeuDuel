@@ -18,10 +18,13 @@ import { SettingsService } from '../../services/settings/settings.service';
 import { ToolsStore } from '../tools-store/tools.store';
 import { PlayerStore } from '../player-store/player.store';
 import { PlayerProfile } from '../../models/player-profile.modal';
+import { DuelConditionService } from '../../services/duel-condition/duel-condition.service';
+import { CardCondition } from '../../models/card-condition.model';
 
 const initialState: DuelState = {
   player1: { name: 'Player 1', lifePoints: 8000, lifeChanges: [], wins: 0 },
   player2: { name: 'Player 2', lifePoints: 8000, lifeChanges: [], wins: 0 },
+  conditions: [],
   status: DuelStatus.FINISHED,
   timer: { startTime: 0, elapsedTime: 0, duration: 3000000 },
   createdAt: Date.now(),
@@ -47,6 +50,7 @@ export const DuelStore = signalStore(
       store,
       settingsService = inject(SettingsService),
       behaviourService = inject(BehaviourSettingsService),
+      duelConditionsService = inject(DuelConditionService),
       toolsStore = inject(ToolsStore),
       playerStore = inject(PlayerStore),
     ) => {
@@ -73,6 +77,7 @@ export const DuelStore = signalStore(
               lifeChanges: [],
               wins: 0,
             },
+            conditions: [],
             status: DuelStatus.FINISHED,
             timer: {
               startTime: Date.now(),
@@ -112,6 +117,7 @@ export const DuelStore = signalStore(
               wins: 0,
               profile: player2,
             },
+            conditions: [],
             status: DuelStatus.ONGOING,
             timer: {
               startTime: Date.now(),
@@ -202,6 +208,7 @@ export const DuelStore = signalStore(
             if (behaviourService.counterReset() === 1) {
               toolsStore.resetCounters();
             }
+            patchState(store, { conditions: [] });
           }
           const change: LifeChange = {
             player: playerState.name,
@@ -220,6 +227,31 @@ export const DuelStore = signalStore(
               lifeChanges:
                 store.status() === DuelStatus.FINISHED ? [] : [...currentLifeChanges, change],
             },
+          });
+        },
+        addCardCondition: (id: number, player: 'player1' | 'player2', cardName?: string) => {
+          const cardCondition = duelConditionsService.getConditionCard(id);
+          if (!cardCondition) return;
+          const targetCard = cardCondition.cardRequired ? (cardName ?? '') : '';
+
+          const existing = store.conditions();
+          if (existing.some((c) => c.id === id && c.cardName === targetCard)) return;
+
+          const cc: CardCondition = {
+            id,
+            name: cardCondition.name,
+            cardName: targetCard,
+            targets: cardCondition.target === 'both' ? 'both' : player,
+            conditions: duelConditionsService.getConditionsByCard(id),
+          };
+          patchState(store, { conditions: [...existing, cc] });
+        },
+        removeCardCondition: (id: number, cardName?: string) => {
+          const targetCard = cardName ?? '';
+          patchState(store, {
+            conditions: store.conditions().filter(
+              (c) => !(c.id === id && c.cardName === targetCard),
+            ),
           });
         },
       };

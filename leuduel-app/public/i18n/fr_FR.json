@@ -31,7 +31,8 @@
       "next": "Suivant",
       "back": "Précédent",
       "guide": "Guide",
-      "reset": "Remettre"
+      "reset": "Remettre",
+      "select": "Sélectionner"
     }
   },
   "settings": {
@@ -206,6 +207,13 @@
       "emz": "Définir les compteurs de la zone monstre extra",
       "fz": "Définir les compteurs de la zone terrain"
     }
+  },
+  "condition-page": {
+    "title": "{{playerName}} - Conditions de duel",
+    "no-conditions": "Aucune condition appliquée.",
+    "add-condition": "Ajouter une condition",
+    "target-card": "Nom de la carte ciblée/déclarée",
+    "card-name": "Nom de la carte..."
   },
   "tutorial": {
     "step": {

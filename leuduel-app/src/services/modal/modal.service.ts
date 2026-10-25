@@ -77,7 +77,10 @@ export class ModalService {
 
     overlayRef.attach(new ComponentPortal(ModalGenericComponent, null, injector));
     setTimeout(() => overlayRef.updatePosition());
-    overlayRef.backdropClick().subscribe(() => overlayRef.dispose());
+    overlayRef.backdropClick().subscribe(() => {
+      overlayRef.dispose();
+      config.closeEvent?.();
+    });
 
     if (useListener) {
       const unregister = this.androidNavigationService.register(() => overlayRef.dispose());

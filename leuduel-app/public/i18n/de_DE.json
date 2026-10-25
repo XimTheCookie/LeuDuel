@@ -31,7 +31,8 @@
       "next": "Nächstes",
       "back": "Zurück",
       "guide": "Anleitung",
-      "reset": "Zurücksetzen"
+      "reset": "Zurücksetzen",
+      "select": "Auswählen"
     }
   },
   "settings": {
@@ -206,6 +207,13 @@
       "emz": "Zähler der Extra-Monsterzone setzen",
       "fz": "Zähler der Feldzone setzen"
     }
+  },
+  "condition-page": {
+    "title": "{{playerName}} - Duellbedingungen",
+    "no-conditions": "Keine Bedingungen aktiv.",
+    "add-condition": "Bedingung hinzufügen",
+    "target-card": "Ziel-/Deklarierter Kartenname",
+    "card-name": "Kartenname..."
   },
   "tutorial": {
     "step": {

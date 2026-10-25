@@ -1,0 +1,22 @@
+<div class="cn-modal">
+  <span class="cn-modal__label">
+    {{ 'condition-page.target-card' | translate }}
+  </span>
+  <input
+    class="cn-modal__input"
+    type="text"
+    [placeholder]="'condition-page.card-name' | translate"
+    [ngModel]="cardName()"
+    (ngModelChange)="cardName.set($event)"
+    (keydown.enter)="confirm()"
+    autofocus
+  />
+  <div class="cn-modal__actions">
+    <app-text-button
+      label="common.button.confirm"
+      tone="positive"
+      [isDisabled]="!cardName().trim()"
+      (clicked)="confirm()"
+    />
+  </div>
+</div>

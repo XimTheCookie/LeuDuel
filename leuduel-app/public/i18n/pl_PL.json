@@ -31,7 +31,8 @@
       "next": "Następny",
       "back": "Poprzedni",
       "guide": "Instrukcja",
-      "reset": "Nastawić"
+      "reset": "Nastawić",
+      "select": "Dobrać"
     }
   },
   "settings": {
@@ -206,6 +207,13 @@
       "emz": "Ustaw liczniki strefy dodatkowych potworów",
       "fz": "Ustaw liczniki strefy pola"
     }
+  },
+  "condition-page": {
+    "title": "{{playerName}} - Warunki pojedynku",
+    "no-conditions": "Brak aktywnych warunków.",
+    "add-condition": "Dodaj warunek",
+    "target-card": "Nazwa karty celu/zadeklarowanej",
+    "card-name": "Nazwa karty..."
   },
   "tutorial": {
     "step": {

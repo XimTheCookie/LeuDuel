@@ -31,7 +31,8 @@
       "next": "Avanti",
       "back": "Indietro",
       "guide": "Guida",
-      "reset": "Reset"
+      "reset": "Reset",
+      "select": "Seleziona"
     }
   },
   "settings": {
@@ -206,6 +207,13 @@
       "emz": "Imposta segnalini zona mostri extra",
       "fz": "Imposta segnalini zona terreno"
     }
+  },
+  "condition-page": {
+    "title": "{{playerName}} - Condizioni di duello",
+    "no-conditions": "Nessuna condizione.",
+    "add-condition": "Aggiungi condizione",
+    "target-card": "Nome carta dichiarata/bersagliata",
+    "card-name": "Nome carta..."
   },
   "tutorial": {
     "step": {

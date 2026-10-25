@@ -31,7 +31,8 @@
       "next": "Siguiente",
       "back": "Anterior",
       "guide": "Guía",
-      "reset": "Reajustar"
+      "reset": "Reajustar",
+      "select": "Seleccionar"
     }
   },
   "settings": {
@@ -206,6 +207,13 @@
       "emz": "Establecer contadores de zona de monstruos extra",
       "fz": "Establecer contadores de zona de campo"
     }
+  },
+  "condition-page": {
+    "title": "{{playerName}} - Condiciones de duelo",
+    "no-conditions": "Sin condiciones aplicadas.",
+    "add-condition": "Añadir condición",
+    "target-card": "Nombre de carta objetivo/declarada",
+    "card-name": "Nombre de carta..."
   },
   "tutorial": {
     "step": {

@@ -1,0 +1,36 @@
+.cn-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem 1rem;
+}
+
+.cn-modal__label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.cn-modal__input {
+  width: 100%;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.35rem;
+  color: var(--text-base, #fff);
+  font-size: 0.9rem;
+  padding: 0.5rem 0.6rem;
+  outline: none;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: var(--gold);
+  }
+}
+
+.cn-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+}

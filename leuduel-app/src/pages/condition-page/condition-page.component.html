@@ -1,0 +1,57 @@
+<div class="condition-page">
+  <div class="condition-page__header">
+    <span class="condition-page__title">
+      {{ 'condition-page.title' | translate: { playerName: playerName() } }}
+    </span>
+  </div>
+
+  <div #conditionList class="condition-page__body">
+    <div class="condition-page__list">
+      @for (entry of conditions(); track entry.id + entry.cardName) {
+        <div class="condition-entry">
+          <div class="condition-entry__info">
+            <span class="condition-entry__card-name">{{ entry.name }}</span>
+            @if (entry.cardName) {
+              <span class="condition-entry__target">[{{ entry.cardName }}]</span>
+            }
+            <ul class="condition-entry__effects">
+              @for (cond of entry.conditions; track $index) {
+                <li [class.positive]="cond.positive" [class.negative]="!cond.positive">
+                  <app-icon
+                    size="xs"
+                    class="condition-icon"
+                    [class.positive]="cond.positive"
+                    [class.negative]="!cond.positive"
+                    [icon]="cond.positive ? 'circle-arrow-up' : 'circle-arrow-down'"
+                  />
+                  {{ cond.description }}
+                </li>
+              }
+            </ul>
+          </div>
+          <app-button
+            icon="x"
+            size="xs"
+            tone="negative"
+            (clicked)="remove(entry.id, entry.cardName)"
+          />
+        </div>
+      } @empty {
+        <div class="condition-page__empty">
+          <span>
+            {{ 'condition-page.no-conditions' | translate }}
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="condition-page__footer">
+    <app-list-picker
+      [formControl]="cardControl"
+      [options]="cardOptions()"
+      label="condition-page.add-condition"
+      (valueChanged)="confirmAdd()"
+    />
+  </div>
+</div>

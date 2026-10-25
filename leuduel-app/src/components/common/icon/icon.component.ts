@@ -33,6 +33,9 @@ import {
   LucideCircleMinus,
   LucideAstroid,
   LucideSquaresExclude,
+  LucideClipboardList,
+  LucideCircleArrowUp,
+  LucideCircleArrowDown,
 } from '@lucide/angular';
 
 const ICON_MAP: Record<string, any> = {
@@ -67,6 +70,9 @@ const ICON_MAP: Record<string, any> = {
   'circle-question-mark': LucideCircleQuestionMark,
   shuffle: LucideShuffle,
   info: LucideInfo,
+  'clipboard-list': LucideClipboardList,
+  'circle-arrow-up': LucideCircleArrowUp,
+  'circle-arrow-down': LucideCircleArrowDown,
 };
 
 @Component({

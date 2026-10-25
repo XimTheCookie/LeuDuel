@@ -1,4 +1,5 @@
-import { Component, input, output, signal, ElementRef, viewChild } from '@angular/core';
+import { Component, computed, effect, input, output, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { IconComponent } from '../icon/icon.component';
 import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
@@ -25,9 +26,18 @@ export class ListPickerComponent {
   private dragStartY = 0;
   dragDelta = signal(0);
 
-  get optionLabel() {
-    return this.options().find((o) => o.value === this.formControl().value)?.label ?? '';
-  }
+  private controlValue = signal<string | number | boolean | null>(null);
+  private _effectRef = effect(() => {
+    const ctrl = this.formControl();
+    const sub = ctrl.valueChanges.subscribe((v) => this.controlValue.set(v));
+    this.controlValue.set(ctrl.value);
+    return () => sub.unsubscribe();
+  });
+
+  readonly optionLabel = computed(
+    () =>
+      this.options().find((o) => o.value === this.controlValue())?.label ?? 'common.button.select',
+  );
 
   open() {
     this.isOpen.set(true);
