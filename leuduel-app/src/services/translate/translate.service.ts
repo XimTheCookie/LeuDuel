@@ -19,7 +19,6 @@ export class TranslateService {
 
   async loadLanguage(lang: string): Promise<void> {
     if (this.translations[lang]) return;
-    console.log('loading ', lang);
     const res = await fetch(`/i18n/${lang}.json`);
     this.translations[lang] = await res.json();
   }
