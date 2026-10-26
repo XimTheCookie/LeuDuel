@@ -1,9 +1,11 @@
 import {
   computed,
   effect,
+  EffectRef,
   EnvironmentInjector,
   inject,
   Injectable,
+  output,
   runInInjectionContext,
   signal,
 } from '@angular/core';
@@ -113,9 +115,13 @@ export class SettingsService {
   background = signal<number>(DEFAULT_VALUES.background);
   pickRandomPlayer = signal<boolean>(DEFAULT_VALUES.pickRandomPlayer);
 
+  readonly ready: Promise<void | EffectRef>;
+
   constructor(private persistance: PersistanceService) {
     const injector = inject(EnvironmentInjector);
-    this.restore().then(() => runInInjectionContext(injector, () => effect(() => this.persist())));
+    this.ready = this.restore().then(() =>
+      runInInjectionContext(injector, () => effect(() => this.persist())),
+    );
   }
 
   private async restore() {

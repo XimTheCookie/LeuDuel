@@ -7,18 +7,21 @@ import { SettingsService } from '../settings/settings.service';
 export class TranslateService {
   private readonly settingsService = inject(SettingsService);
 
-  // i18n is in public/i18n/LANG.json
-  private readonly supportedLanguages = ['en_GB', 'it_IT', 'fr_FR', 'es_ES', 'de_DE', 'pl_PL'];
   private readonly fallBackLanguage = 'en_GB';
   private translations: Record<string, Record<string, unknown>> = {};
 
   async loadTranslations(): Promise<void> {
-    await Promise.all(
-      this.supportedLanguages.map(async (lang) => {
-        const res = await fetch(`/i18n/${lang}.json`);
-        this.translations[lang] = await res.json();
-      }),
-    );
+    await this.settingsService.ready;
+    const lang = this.settingsService.language();
+    const toLoad = lang === this.fallBackLanguage ? [lang] : [lang, this.fallBackLanguage];
+    await Promise.all(toLoad.map((l) => this.loadLanguage(l)));
+  }
+
+  async loadLanguage(lang: string): Promise<void> {
+    if (this.translations[lang]) return;
+    console.log('loading ', lang);
+    const res = await fetch(`/i18n/${lang}.json`);
+    this.translations[lang] = await res.json();
   }
 
   translate(key: string, placeholders?: Record<string, string>): string {

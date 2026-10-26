@@ -145,6 +145,15 @@
         "reset": "Spiel zurücksetzen"
       },
       "info": "Definiert, was passiert, wenn die App startet.<ul><li><b>Spiel wiederherstellen</b>: Wenn ein Spiel bereits im Gange war, wird es wiederhergestellt.</li><li><b>Spiel zurücksetzen</b>: Das Spiel wird zurückgesetzt.</li></ul>"
+    },
+    "condition-reset": {
+      "title": "Bedingungen zurücksetzen",
+      "label": {
+        "never": "Nie",
+        "game": "Spiel",
+        "match": "Match"
+      },
+      "info": "<ul><li><b>Nie</b>: Duellbedingungen werden niemals automatisch zurückgesetzt.</li><li><b>Spiel</b>: Duellbedingungen werden zurückgesetzt, sobald LP zurückgesetzt werden.</li><li><b>Match</b>: Duellbedingungen werden zu Beginn oder Ende eines Matches zurückgesetzt.</li></ul>"
     }
   },
   "profiles-page": {

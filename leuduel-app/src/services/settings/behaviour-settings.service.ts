@@ -55,6 +55,15 @@ export const BEHAVIOURS_CONFIG: Record<string, BehaviourOption> = {
       { label: 'behaviour-settings.on-startup.label.reset', value: 1 },
     ],
   },
+  conditionReset: {
+    helper: 'behaviour-settings.condition-reset.info',
+    label: 'behaviour-settings.condition-reset.title',
+    values: [
+      { label: 'behaviour-settings.condition-reset.label.never', value: 0 },
+      { label: 'behaviour-settings.condition-reset.label.game', value: 1 },
+      { label: 'behaviour-settings.condition-reset.label.match', value: 2 },
+    ],
+  },
 };
 
 const DEFAULT_VALUES: BehaviourSettingsSnapshot = {
@@ -63,6 +72,7 @@ const DEFAULT_VALUES: BehaviourSettingsSnapshot = {
   winnerSelect: 0,
   matchStop: 0,
   onStartup: 0,
+  conditionReset: 1,
 };
 
 const SETTINGS_KEY = 'behaviour-settings';
@@ -73,6 +83,7 @@ interface BehaviourSettingsSnapshot {
   winnerSelect: number;
   matchStop: number;
   onStartup: number;
+  conditionReset: number;
 }
 
 /**
@@ -91,6 +102,7 @@ export class BehaviourSettingsService {
   winnerSelect = signal<number>(DEFAULT_VALUES.winnerSelect);
   matchStop = signal<number>(DEFAULT_VALUES.matchStop);
   onStartup = signal<number>(DEFAULT_VALUES.onStartup);
+  conditionReset = signal<number>(DEFAULT_VALUES.conditionReset);
 
   settingsInitialized = new Subject<void>();
 
@@ -107,6 +119,7 @@ export class BehaviourSettingsService {
     this.winnerSelect.set(saved.winnerSelect);
     this.matchStop.set(saved.matchStop);
     this.onStartup.set(saved.onStartup);
+    this.conditionReset.set(saved.conditionReset);
 
     this.settingsInitialized.next();
   }
@@ -118,6 +131,7 @@ export class BehaviourSettingsService {
       winnerSelect: this.winnerSelect(),
       matchStop: this.matchStop(),
       onStartup: this.onStartup(),
+      conditionReset: this.conditionReset(),
     };
     this.persistance.save(SETTINGS_KEY, snapshot);
   }

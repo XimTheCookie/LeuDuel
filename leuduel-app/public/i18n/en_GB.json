@@ -145,6 +145,15 @@
         "reset": "Reset game"
       },
       "info": "Defines what happens when the app starts.<ul><li><b>Restore game</b>: If any game was in progress, its restored.</li><li><b>Reset game</b>: Game is reset.</li></ul>"
+    },
+    "condition-reset": {
+      "title": "Condition reset",
+      "label": {
+        "never": "Never",
+        "game": "Game",
+        "match": "Match"
+      },
+      "info": "<ul><li><b>Never</b>: duel conditions are never reset automatically.</li><li><b>Game</b>: duel conditions reset whenever LP are reset.</li><li><b>Match</b>: duel conditions reset at the start or end of a match.</li></ul>"
     }
   },
   "profiles-page": {

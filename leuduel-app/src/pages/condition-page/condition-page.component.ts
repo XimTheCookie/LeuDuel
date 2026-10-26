@@ -9,6 +9,7 @@ import { ModalService } from '../../services/modal/modal.service';
 import { DuelStore } from '../../stores/duel-store/duel.store';
 import { TranslatePipe } from '../../pipes/translate/translate.pipe';
 import { IconComponent } from '../../components/common/icon/icon.component';
+import { SoundboardService } from '../../services/soundboard/soundboard.service';
 
 @Component({
   selector: 'app-condition-page',
@@ -22,6 +23,7 @@ export class ConditionPageComponent {
   private readonly modalService = inject(ModalService);
   readonly duelStore = inject(DuelStore);
   readonly conditionService = inject(DuelConditionService);
+  private readonly soundboardService = inject(SoundboardService);
 
   readonly player = computed<'player1' | 'player2'>(
     () => this.modalData.config.custom?.player ?? 'player1',
@@ -61,6 +63,7 @@ export class ConditionPageComponent {
     const card = this.conditionService.getConditionCard(id);
 
     if (card?.cardRequired) {
+      this.soundboardService.counterAdd();
       this.modalService.open(
         ConditionCardNameModalComponent,
         {
@@ -81,6 +84,7 @@ export class ConditionPageComponent {
 
   private addCondition(id: number, cardName?: string) {
     this.duelStore.addCardCondition(id, this.player(), cardName);
+    this.soundboardService.confirmationSound();
     this.cleanupPicker();
     setTimeout(() =>
       this.conditionList()?.nativeElement.scrollTo({
@@ -91,6 +95,7 @@ export class ConditionPageComponent {
   }
 
   remove(id: number, cardName: string) {
+    this.soundboardService.counterRemove();
     this.duelStore.removeCardCondition(id, cardName || undefined);
   }
 

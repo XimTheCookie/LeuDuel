@@ -145,6 +145,15 @@
         "reset": "Reimposta partita"
       },
       "info": "Cosa succede all'avvio dell'applciazione.<ul><li><b>Ripristina partita</b>: Se c'era una partita in corso, è ripristinata.</li><li><b>Reimposta partita</b>: La partita viene resettata.</li></ul>"
+    },
+    "condition-reset": {
+      "title": "Reset condizioni",
+      "label": {
+        "never": "Mai",
+        "game": "Partita",
+        "match": "Match"
+      },
+      "info": "<ul><li><b>Mai</b>: le condizioni del duello non vengono mai resettate automaticamente.</li><li><b>Partita</b>: le condizioni del duello vengono resettate quando i LP sono resettati..</li><li><b>Match</b>: le condizioni del duello vengono resettate a inizio/fine match.</li></ul>"
     }
   },
   "profiles-page": {

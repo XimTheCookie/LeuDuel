@@ -145,6 +145,15 @@
         "reset": "Zresetuj grę"
       },
       "info": "Określa, co dzieje się po uruchomieniu aplikacji.<ul><li><b>Przywróć grę</b>: jeśli jakaś gra była w toku, zostanie przywrócona.</li><li><b>Zresetuj grę</b>: gra zostanie zresetowana.</li></ul>"
+    },
+    "condition-reset": {
+      "title": "Reset warunków",
+      "label": {
+        "never": "Nigdy",
+        "game": "Gra",
+        "match": "Mecz"
+      },
+      "info": "<ul><li><b>Nigdy</b>: warunki pojedynku nigdy nie resetują się automatycznie.</li><li><b>Gra</b>: warunki pojedynku resetują się za każdym razem, gdy resetowane są PK.</li><li><b>Mecz</b>: warunki pojedynku resetują się na początku lub na końcu meczu.</li></ul>"
     }
   },
   "profiles-page": {

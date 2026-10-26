@@ -64,6 +64,9 @@ export const DuelStore = signalStore(
 
       return {
         reset(): void {
+          if (behaviourService.conditionReset() > 0) {
+            patchState(store, { conditions: [] });
+          }
           patchState(store, {
             player1: {
               name: 'Player 1',
@@ -77,7 +80,6 @@ export const DuelStore = signalStore(
               lifeChanges: [],
               wins: 0,
             },
-            conditions: [],
             status: DuelStatus.FINISHED,
             timer: {
               startTime: Date.now(),
@@ -101,6 +103,9 @@ export const DuelStore = signalStore(
               player2 = playerStore.opponents()[0];
             }
           }
+          if (behaviourService.conditionReset() > 0) {
+            patchState(store, { conditions: [] });
+          }
 
           patchState(store, {
             player1: {
@@ -117,7 +122,6 @@ export const DuelStore = signalStore(
               wins: 0,
               profile: player2,
             },
-            conditions: [],
             status: DuelStatus.ONGOING,
             timer: {
               startTime: Date.now(),
@@ -208,7 +212,10 @@ export const DuelStore = signalStore(
             if (behaviourService.counterReset() === 1) {
               toolsStore.resetCounters();
             }
-            patchState(store, { conditions: [] });
+
+            if (behaviourService.conditionReset() === 1) {
+              patchState(store, { conditions: [] });
+            }
           }
           const change: LifeChange = {
             player: playerState.name,
@@ -249,9 +256,9 @@ export const DuelStore = signalStore(
         removeCardCondition: (id: number, cardName?: string) => {
           const targetCard = cardName ?? '';
           patchState(store, {
-            conditions: store.conditions().filter(
-              (c) => !(c.id === id && c.cardName === targetCard),
-            ),
+            conditions: store
+              .conditions()
+              .filter((c) => !(c.id === id && c.cardName === targetCard)),
           });
         },
       };

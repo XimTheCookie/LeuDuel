@@ -145,6 +145,15 @@
         "reset": "Reiniciar partida"
       },
       "info": "Define qué ocurre cuando se inicia la aplicación.<ul><li><b>Restaurar partida</b>: si había alguna partida en curso, se restaura.</li><li><b>Reiniciar partida</b>: la partida se reinicia.</li></ul>"
+    },
+    "condition-reset": {
+      "title": "Reinicio de condiciones",
+      "label": {
+        "never": "Nunca",
+        "game": "Partida",
+        "match": "Encuentro"
+      },
+      "info": "<ul><li><b>Nunca</b>: las condiciones del duelo nunca se reinician automáticamente.</li><li><b>Partida</b>: las condiciones del duelo se reinician cada vez que se restablecen los LP.</li><li><b>Encuentro</b>: las condiciones del duelo se reinician al inicio o al final de un encuentro.</li></ul>"
     }
   },
   "profiles-page": {

@@ -76,6 +76,9 @@ export class SettingsPageComponent {
   onStartup = new FormControl<number>(this.behaviourSettingsService.onStartup(), {
     nonNullable: true,
   });
+  conditionReset = new FormControl<number>(this.behaviourSettingsService.conditionReset(), {
+    nonNullable: true,
+  });
 
   /** Settings */
   keepAwake = new FormControl<boolean>({ value: false, disabled: true });
@@ -464,9 +467,10 @@ export class SettingsPageComponent {
     window.open('https://ximthecookie.github.io/LeuDuel/privacy.html', '_blank');
   }
 
-  languageChanged() {
+  async languageChanged() {
     if (!this.language.valid) return;
     this.soundboardService.clickSound();
+    await this.translateService.loadLanguage(this.language.value!);
     this.settingsService.setLanguage(this.language.value!);
   }
 
@@ -486,6 +490,8 @@ export class SettingsPageComponent {
         return this.matchStop;
       case 'onStartup':
         return this.onStartup;
+      case 'conditionReset':
+        return this.conditionReset;
       default:
         throw new Error(`Unknown config key: ${configKey}`);
     }
@@ -497,7 +503,8 @@ export class SettingsPageComponent {
       this.gameReset.value !== this.behaviourSettingsService.gameReset() ||
       this.winnerSelect.value !== this.behaviourSettingsService.winnerSelect() ||
       this.onStartup.value !== this.behaviourSettingsService.onStartup() ||
-      this.matchStop.value !== this.behaviourSettingsService.matchStop()
+      this.matchStop.value !== this.behaviourSettingsService.matchStop() ||
+      this.conditionReset.value !== this.behaviourSettingsService.conditionReset()
     );
   }
 
@@ -507,7 +514,8 @@ export class SettingsPageComponent {
       this.gameReset.valid &&
       this.winnerSelect.valid &&
       this.onStartup.valid &&
-      this.matchStop.valid
+      this.matchStop.valid &&
+      this.conditionReset.valid
     );
   }
 
@@ -519,6 +527,7 @@ export class SettingsPageComponent {
     this.behaviourSettingsService.winnerSelect.set(this.winnerSelect.value);
     this.behaviourSettingsService.matchStop.set(this.matchStop.value);
     this.behaviourSettingsService.onStartup.set(this.onStartup.value);
+    this.behaviourSettingsService.conditionReset.set(this.conditionReset.value);
   }
 
   info(helper: string) {

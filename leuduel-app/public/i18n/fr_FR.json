@@ -145,6 +145,15 @@
         "reset": "Réinitialiser la partie"
       },
       "info": "Définit ce qui se passe au démarrage de l'application.<ul><li><b>Restaurer la partie</b> : si une partie était en cours, elle est restaurée.</li><li><b>Réinitialiser la partie</b> : la partie est réinitialisée.</li></ul>"
+    },
+    "condition-reset": {
+      "title": "Réinitialisation des conditions",
+      "label": {
+        "never": "Jamais",
+        "game": "Partie",
+        "match": "Match"
+      },
+      "info": "<ul><li><b>Jamais</b> : les conditions du duel ne sont jamais réinitialisées automatiquement.</li><li><b>Partie</b> : les conditions du duel sont réinitialisées chaque fois que les LP sont réinitialisés.</li><li><b>Match</b> : les conditions du duel sont réinitialisées au début ou à la fin d'un match.</li></ul>"
     }
   },
   "profiles-page": {
