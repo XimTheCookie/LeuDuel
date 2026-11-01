@@ -23,24 +23,3 @@
     opacity: 0.9;
   }
 }
-
-.actions-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  flex: 1;
-
-  &__cols-one {
-    grid-template-columns: 1fr;
-  }
-
-  &__cols-two {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  &__cols-three {
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 0.25rem;
-  }
-}

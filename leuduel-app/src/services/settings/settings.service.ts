@@ -60,6 +60,7 @@ const DEFAULT_VALUES: SettingsSnapshot = {
   firstVisit: true,
   landscapeMode: false,
   swapPlayers: false,
+  monoControls: false,
   showCustomPlayers: false,
   theme: 'dark',
   language: 'en_GB',
@@ -81,6 +82,7 @@ interface SettingsSnapshot {
   soundsOn: boolean;
   landscapeMode: boolean;
   swapPlayers: boolean;
+  monoControls: boolean;
   modalOpacity: number;
   firstVisit: boolean;
   showCustomPlayers: boolean;
@@ -107,6 +109,7 @@ export class SettingsService {
   soundsOn = signal<boolean>(DEFAULT_VALUES.soundsOn);
   landscapeMode = signal<boolean>(false);
   swapPlayers = signal<boolean>(DEFAULT_VALUES.swapPlayers);
+  monoControls = signal<boolean>(DEFAULT_VALUES.monoControls);
   modalOpacity = signal<number>(DEFAULT_VALUES.modalOpacity);
   firstVisit = signal<boolean>(DEFAULT_VALUES.firstVisit);
   showCustomPlayers = signal<boolean>(DEFAULT_VALUES.showCustomPlayers);
@@ -140,6 +143,7 @@ export class SettingsService {
     this.soundsOn.set(saved.soundsOn);
     this.landscapeMode.set(saved.landscapeMode ?? false);
     this.swapPlayers.set(saved.swapPlayers ?? false);
+    this.monoControls.set(saved.monoControls ?? false);
     this.modalOpacity.set(saved.modalOpacity ?? 7);
     this.firstVisit.set(saved.firstVisit == null ? true : saved.firstVisit);
     this.showCustomPlayers.set(saved.showCustomPlayers ?? false);
@@ -163,6 +167,7 @@ export class SettingsService {
       soundsOn: this.soundsOn(),
       landscapeMode: this.landscapeMode(),
       swapPlayers: this.swapPlayers(),
+      monoControls: this.monoControls(),
       modalOpacity: this.modalOpacity(),
       firstVisit: this.firstVisit(),
       showCustomPlayers: this.showCustomPlayers(),
@@ -274,6 +279,14 @@ export class SettingsService {
 
   resetSwapPlayers() {
     this.swapPlayers.set(DEFAULT_VALUES.swapPlayers);
+  }
+
+  setMonoControls(value: boolean) {
+    this.monoControls.set(value);
+  }
+
+  resetMonoControls() {
+    this.monoControls.set(DEFAULT_VALUES.monoControls);
   }
 
   getKeepAwake() {

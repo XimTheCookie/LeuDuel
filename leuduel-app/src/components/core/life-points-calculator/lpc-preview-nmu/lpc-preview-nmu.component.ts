@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { SettingsService } from '../../../../services/settings/settings.service';
 
 type Op = 'damage' | 'heal';
 
@@ -9,6 +10,7 @@ type Op = 'damage' | 'heal';
   standalone: true,
 })
 export class LpcPreviewNmuComponent {
+  readonly settingsService = inject(SettingsService);
   currentLp = input.required<number>();
   op = input.required<Op>();
   inputVal = input.required<string>();

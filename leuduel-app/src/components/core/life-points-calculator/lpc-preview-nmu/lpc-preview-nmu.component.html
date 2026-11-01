@@ -1,4 +1,8 @@
-<div class="lpc-preview-nmu" [class.lpc-preview-nmu--sle]="sle()">
+<div
+  class="lpc-preview-nmu"
+  [class.lpc-preview-nmu--sle]="sle()"
+  [class.lpc-preview-nmu--mono]="settingsService.monoControls()"
+>
   <span class="lpc-preview-nmu__lp">{{ currentLp() }}</span>
   <span class="lpc-preview-nmu__op" [class.lpc-preview-nmu__op--pos]="op() === 'heal'">{{
     op() === 'heal' ? '+' : '−'

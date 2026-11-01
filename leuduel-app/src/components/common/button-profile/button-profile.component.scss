@@ -1,0 +1,47 @@
+.profile-button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border-glow);
+  background: var(--btn-neutral-surface);
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.profile-button--2xs { width: 2rem;   height: 2rem; }
+.profile-button--xs  { width: 2.5rem; height: 2.5rem; }
+.profile-button--sm  { width: 3rem;   height: 3rem; }
+.profile-button--md  { width: 4rem;   height: 4rem; }
+.profile-button--xl  { width: 5rem;   height: 5rem; border-width: 2px; box-shadow: 0 0 20px var(--btn-neutral-glow); }
+
+.profile-button:hover:not(:disabled) {
+  transform: scale(1.06);
+  box-shadow: 0 0 28px var(--btn-neutral-glow), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.profile-button:active  { transform: scale(0.94); }
+
+.profile-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.profile-button:focus-visible {
+  outline: 2px solid var(--btn-neutral-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-button { transition: none; }
+}

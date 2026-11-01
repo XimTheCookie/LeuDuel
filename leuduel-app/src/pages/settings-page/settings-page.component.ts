@@ -56,6 +56,8 @@ export class SettingsPageComponent {
   private readonly behaviourSettingsService = inject(BehaviourSettingsService);
   private readonly translateService = inject(TranslateService);
 
+  readonly isVerticalMode = signal<boolean>(!this.settingsService.landscapeMode());
+
   /** Behaviour configs */
   readonly behaviourConfigs = BEHAVIOURS_CONFIG;
 
@@ -92,7 +94,8 @@ export class SettingsPageComponent {
   isLandscapeOrientation = new FormControl<boolean>(this.settingsService.landscapeMode());
 
   swapPlayers = new FormControl<boolean>(this.settingsService.swapPlayers());
-  swapPlayersDisabled = signal(!this.settingsService.landscapeMode());
+
+  monoControls = new FormControl<boolean>(this.settingsService.monoControls());
 
   theme = new FormControl<string>(this.settingsService.theme());
 
@@ -129,7 +132,7 @@ export class SettingsPageComponent {
   numberOfRapidButtons = new FormControl<number>(this.settingsService.getNumberOfRapidButtons(), [
     Validators.required,
     Validators.min(1),
-    Validators.max(15),
+    Validators.max(16),
   ]);
 
   rapidButtonsColumns = new FormControl<number>(this.settingsService.getRapidButtonsColumns(), [
@@ -195,6 +198,17 @@ export class SettingsPageComponent {
   ];
 
   readonly swapPlayerOptions = [
+    {
+      label: 'common.label.no',
+      value: false,
+    },
+    {
+      label: 'common.label.yes',
+      value: true,
+    },
+  ];
+
+  readonly monoControlsOptions = [
     {
       label: 'common.label.no',
       value: false,
@@ -345,7 +359,7 @@ export class SettingsPageComponent {
   screenOrientationUpdated() {
     setTimeout(() => {
       const isLandscape = !!this.isLandscapeOrientation.value;
-      this.swapPlayersDisabled.set(!isLandscape);
+      this.isVerticalMode.set(!isLandscape);
       if (!isLandscape) {
         this.swapPlayers.setValue(false);
       }
@@ -438,6 +452,12 @@ export class SettingsPageComponent {
     if (!this.swapPlayers.valid) return;
     this.soundboardService.clickSound();
     this.settingsService.setSwapPlayers(!!this.swapPlayers.value);
+  }
+
+  monoControlsChanged() {
+    if (!this.monoControls.valid) return;
+    this.soundboardService.clickSound();
+    this.settingsService.setMonoControls(!!this.monoControls.value);
   }
 
   useRapidButtonsChanged() {

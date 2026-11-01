@@ -53,6 +53,44 @@
       <app-life-points-calculator class="duel-page__calculator" [player]="selectedPlayer()" />
     }
   </div>
+} @else if (settingsService.monoControls()) {
+  <div class="duel-page duel-page--mono">
+    <app-duel-controller />
+
+    <div class="duel-page__lp-wins">
+      <app-wins-bar class="w-full" [wins]="wins1()" />
+      <app-wins-bar class="w-full" [wins]="wins2()" />
+    </div>
+    <div class="duel-page__lp-row">
+      <div
+        class="duel-page__lp-cell duel-page__lp-cell--mono"
+        [class.duel-page__lp-cell--selected-mono]="selectedPlayer() === 'player1'"
+        [class.duel-page__lp-cell--bg]="hasDefaultBg()"
+        (click)="onLpSelect('player1')"
+      >
+        <app-life-points
+          (lpClick)="onLpClick('player1')"
+          class="w-full"
+          [compact]="true"
+          player="player1"
+        />
+      </div>
+      <div
+        class="duel-page__lp-cell duel-page__lp-cell--right duel-page__lp-cell--mono"
+        [class.duel-page__lp-cell--selected-mono]="selectedPlayer() === 'player2'"
+        [class.duel-page__lp-cell--bg]="hasDefaultBg()"
+        (click)="onLpSelect('player2')"
+      >
+        <app-life-points
+          (lpClick)="onLpClick('player2')"
+          class="w-full"
+          [compact]="true"
+          player="player2"
+        />
+      </div>
+    </div>
+    <app-lp-panel class="duel-page__mono-lp" [player]="selectedPlayer()" />
+  </div>
 } @else {
   <div class="duel-page">
     <div class="duel-page__panel duel-page__panel--opponent mirror">

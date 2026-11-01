@@ -101,13 +101,21 @@
           [options]="orientationOptions"
           (valueChanged)="screenOrientationChanged()"
         />
-        <app-list-picker
-          [disabled]="swapPlayersDisabled()"
-          [formControl]="swapPlayers"
-          label="settings.section.gui.swap-players"
-          [options]="swapPlayerOptions"
-          (valueChanged)="swapPlayersChanged()"
-        />
+        @if (isVerticalMode()) {
+          <app-list-picker
+            [formControl]="monoControls"
+            label="settings.section.gui.mono-controls"
+            [options]="monoControlsOptions"
+            (valueChanged)="monoControlsChanged()"
+          />
+        } @else {
+          <app-list-picker
+            [formControl]="swapPlayers"
+            label="settings.section.gui.swap-players"
+            [options]="swapPlayerOptions"
+            (valueChanged)="swapPlayersChanged()"
+          />
+        }
       </div>
 
       <div class="settings-section__fields--row" id="leu-ctn-rbs">
@@ -133,7 +141,7 @@
         class="leu-ctn-rbs-0"
         [formControl]="numberOfRapidButtons"
         label="settings.section.gui.rb-number"
-        [maxValue]="15"
+        [maxValue]="16"
         [minValue]="1"
         [step]="1"
       />

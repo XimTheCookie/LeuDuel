@@ -20,6 +20,10 @@
   font-family: var(--font-mono);
   animation: lpc-preview-nmu-pop 180ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 
+  &--mono {
+    top: -2rem;
+  }
+
   &--sle {
     top: -2.5rem;
   }

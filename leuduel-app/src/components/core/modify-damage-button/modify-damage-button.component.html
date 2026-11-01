@@ -43,7 +43,7 @@
   </div>
 
   <div class="modify-form__footer">
-    @if (!landscapeMode()) {
+    @if (!landscapeMode() && !monoControls()) {
       <span class="modify-form__footer_label">
         {{ 'damage-button.info' | translate }}
       </span>

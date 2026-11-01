@@ -37,6 +37,7 @@ export class ModifyDamageButtonComponent {
   mirror = signal(false);
 
   landscapeMode = computed(() => this.settingsService.landscapeMode());
+  monoControls = computed(() => this.settingsService.monoControls());
 
   buttonValueController = new FormControl<number | null>(1, [
     Validators.required,

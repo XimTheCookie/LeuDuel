@@ -1,5 +1,5 @@
 <div class="cam">
-  @if (!settingsService.landscapeMode()) {
+  @if (!settingsService.landscapeMode() && !settingsService.monoControls()) {
     <div class="mirror cam__section">
       <app-number-input
         [formControl]="counterValue"

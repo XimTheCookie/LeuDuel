@@ -17,6 +17,7 @@ import { LifePointsResetComponent } from '../life-points-reset/life-points-reset
 import { DuelStore } from '../../../stores/duel-store/duel.store';
 import { ButtonComponent } from '../../common/button/button.component';
 import { ConditionPageComponent } from '../../../pages/condition-page/condition-page.component';
+import { ButtonProfileComponent } from '../../common/button-profile/button-profile.component';
 
 const ANIM_DURATION = 1500;
 
@@ -25,7 +26,7 @@ const ANIM_DURATION = 1500;
   templateUrl: './life-points.component.html',
   styleUrls: ['./life-points.component.scss'],
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [ButtonComponent, ButtonProfileComponent],
 })
 export class LifePointsComponent implements OnDestroy {
   private readonly settingsService = inject(SettingsService);
@@ -39,6 +40,14 @@ export class LifePointsComponent implements OnDestroy {
 
   compact = input(false);
   player = input.required<'player1' | 'player2'>();
+
+  playerProfile = computed(() => {
+    if (this.settingsService.showCustomPlayers()) {
+      return this.duelStore[this.player()]()?.profile;
+    }
+    return null;
+  });
+
   lifePoints = computed(() =>
     this.player() === 'player1' ? this.duelStore.lifePoints1() : this.duelStore.lifePoints2(),
   );

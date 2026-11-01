@@ -1,0 +1,14 @@
+<button
+  class="profile-button"
+  [class.profile-button--2xs]="size() === '2xs'"
+  [class.profile-button--xs]="size() === 'xs'"
+  [class.profile-button--sm]="size() === 'sm'"
+  [class.profile-button--md]="size() === 'md'"
+  [class.profile-button--xl]="size() === 'xl'"
+  type="button"
+  [disabled]="isDisabled()"
+  [attr.aria-label]="profile()?.displayName"
+  (click)="clickHandler()"
+>
+  <img [src]="profile()?.card ?? 'card.png'" [alt]="profile()?.displayName" />
+</button>

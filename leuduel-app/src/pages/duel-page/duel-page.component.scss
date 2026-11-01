@@ -14,6 +14,11 @@
     flex-direction: column;
     justify-content: space-between;
   }
+
+  &--mono {
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .duel-page__panel {
@@ -75,6 +80,10 @@
     background: var(--bg-panel);
   }
 }
+.duel-page__lp-cell--mono {
+  flex: 1;
+}
+
 .duel-page__lp-cell--right {
   border-right: none;
   border-left: 1px solid var(--border-subtle);
@@ -86,18 +95,25 @@
 }
 
 .duel-page__lp-cell--selected {
-  background: linear-gradient(135deg, var(--bg-panel) 0%, rgba(201, 168, 76, 0.15) 100%);
+  background: linear-gradient(135deg, var(--bg-panel) 0%, var(--gold-light-alt) 100%);
   border-color: var(--border-glow) !important;
+  backdrop-filter: blur(2px);
+
+  &-mono {
+    backdrop-filter: blur(2px);
+    border-color: var(--border-glow) !important;
+    background: var(--gold-light-alt);
+  }
 
   &.duel-page__lp-cell--swap {
-    background: linear-gradient(315deg, var(--bg-panel) 0%, rgba(201, 168, 76, 0.15) 100%);
+    background: linear-gradient(315deg, var(--bg-panel) 0%, var(--gold-light-alt) 100%);
   }
 
   &.duel-page__lp-cell--right {
-    background: linear-gradient(315deg, var(--bg-panel) 0%, rgba(201, 168, 76, 0.15) 100%);
+    background: linear-gradient(315deg, var(--bg-panel) 0%, var(--gold-light-alt) 100%);
     border-color: var(--border-glow) !important;
     &.duel-page__lp-cell--swap {
-      background: linear-gradient(135deg, var(--bg-panel) 0%, rgba(201, 168, 76, 0.15) 100%);
+      background: linear-gradient(135deg, var(--bg-panel) 0%, var(--gold-light-alt) 100%);
     }
   }
 
@@ -122,4 +138,10 @@
 .duel-page__calculator {
   flex: 1;
   padding-top: 0.25rem;
+}
+
+.duel-page__mono-lp {
+  padding-top: 2rem;
+  max-height: 45%;
+  overflow-y: auto;
 }

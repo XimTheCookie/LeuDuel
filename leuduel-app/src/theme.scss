@@ -7,6 +7,7 @@
   --border-glow: rgba(180, 150, 60, 0.5);
   --gold: #c9a84c;
   --gold-light: #f0d080;
+  --gold-light-alt: rgba(240, 208, 128, 0.25);
   --gold-dim: rgba(201, 168, 76, 0.15);
   --gold-glow: rgba(201, 168, 76, 0.35);
   --lp-color: #e8f4ff;
@@ -65,6 +66,7 @@ body.high-contrast {
   --border-glow: rgba(255, 220, 80, 0.8);
   --gold: #ffe066;
   --gold-light: #fff0a0;
+  --gold-light-alt: rgba(255, 240, 160, 0.25);
   --gold-dim: rgba(255, 224, 102, 0.2);
   --gold-glow: rgba(255, 224, 102, 0.5);
   --lp-color: #ffffff;
@@ -117,6 +119,7 @@ body.light {
   --border-glow: rgba(180, 150, 60, 0.5);
   --gold: #a07820;
   --gold-light: #c9a84c;
+  --gold-light-alt: rgba(201, 168, 76, 0.25);
   --gold-dim: rgba(160, 120, 32, 0.15);
   --gold-glow: rgba(160, 120, 32, 0.3);
   --lp-color: #1a2a4a;

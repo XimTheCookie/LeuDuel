@@ -9,6 +9,7 @@ import { DuelStore } from '../../stores/duel-store/duel.store';
 import { LifePointsAdjustModalComponent } from '../../components/core/life-points-adjust-modal/life-points-adjust-modal.component';
 import { WinsBarComponent } from '../../components/common/wins-bar/wins-bar.component';
 import { LifePointsCalculatorComponent } from '../../components/core/life-points-calculator/life-points-calculator.component';
+import { LpPanelComponent } from '../../components/core/lp-panel/lp-panel.component';
 
 @Component({
   selector: 'app-duel-page',
@@ -21,6 +22,7 @@ import { LifePointsCalculatorComponent } from '../../components/core/life-points
     LifePointsComponent,
     WinsBarComponent,
     LifePointsCalculatorComponent,
+    LpPanelComponent,
   ],
   standalone: true,
 })
