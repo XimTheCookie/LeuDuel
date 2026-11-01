@@ -10,6 +10,7 @@ import { TextButtonComponent } from '../../common/text-button/text-button.compon
 import { SoundboardService } from '../../../services/soundboard/soundboard.service';
 import { TranslatePipe } from '../../../pipes/translate/translate.pipe';
 import { TutorialService } from '../../../services/tutorial/tutorial.service';
+import { TranslateService } from '../../../services/translate/translate.service';
 
 @Component({
   selector: 'welcome-modal',
@@ -22,6 +23,7 @@ export class WelcomeModalComponent {
   private readonly tutorialService = inject(TutorialService);
   private readonly soundboardService = inject(SoundboardService);
   private readonly settingsService = inject(SettingsService);
+  private readonly translateService = inject(TranslateService);
 
   theme = new FormControl<string>(this.settingsService.theme());
   language = new FormControl<string>(this.settingsService.language());
@@ -51,8 +53,9 @@ export class WelcomeModalComponent {
     this.settingsService.setTheme(this.theme.value!);
   }
 
-  onLanguageChanged() {
+  async onLanguageChanged() {
     this.soundboardService.clickSound();
+    await this.translateService.loadLanguage(this.language.value!);
     this.settingsService.setLanguage(this.language.value!);
   }
 
