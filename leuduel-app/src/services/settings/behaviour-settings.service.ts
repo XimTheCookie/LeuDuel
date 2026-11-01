@@ -68,9 +68,9 @@ export const BEHAVIOURS_CONFIG: Record<string, BehaviourOption> = {
 
 const DEFAULT_VALUES: BehaviourSettingsSnapshot = {
   counterReset: 1,
-  gameReset: 0,
-  winnerSelect: 0,
-  matchStop: 0,
+  gameReset: 1,
+  winnerSelect: 1,
+  matchStop: 3,
   onStartup: 0,
   conditionReset: 1,
 };
