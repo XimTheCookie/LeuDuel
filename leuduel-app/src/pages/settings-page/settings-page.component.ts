@@ -347,10 +347,6 @@ export class SettingsPageComponent {
       .pipe(takeUntilDestroyed(), debounceTime(300))
       .subscribe(() => this.duelDurationChanged());
 
-    this.bestOf.valueChanges
-      .pipe(takeUntilDestroyed(), debounceTime(300))
-      .subscribe(() => this.numberOfGamesChanged());
-
     this.numberOfRapidButtons.valueChanges
       .pipe(takeUntilDestroyed(), debounceTime(300))
       .subscribe(() => this.numberOfRapidButtonsChanged());
