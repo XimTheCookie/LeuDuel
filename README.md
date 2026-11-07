@@ -6,8 +6,8 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](#license)
 [![Android](https://img.shields.io/badge/platform-Android-green.svg)](#supported-platforms)
-[![F-Droid](https://img.shields.io/badge/F--Droid-planned-green.svg)](#distribution)
-[![Google Play](https://img.shields.io/badge/Google%20Play-available-green.svg)](#distribution)
+[![F-Droid](https://img.shields.io/badge/F--Droid-Planned-green.svg)](#distribution)
+[![Google Play](https://img.shields.io/badge/Google%20Play-Available-blue.svg)](#distribution)
 
 ---
 
