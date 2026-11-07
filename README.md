@@ -100,7 +100,7 @@ Requires Android 7.0 (API level 24) or higher.
 The application is intended to be distributed through:
 
 * **F-Droid:** Planned
-* **Google Play:** Testing
+* **Google Play:** Available
 * **Apple App Store:** Not planned
 
 ---
@@ -255,8 +255,6 @@ docker compose -f docker-compose.android.yml up --build --remove-orphans
 
 ## 🚀 Android Release Build
 
-* Google play release is in progress.
-
 > **Security:** Never commit release keystores, signing passwords, API keys, or other secrets to the repository.
 
 # 🏗️ Release & Distribution
@@ -267,7 +265,7 @@ Planned. Not yet published.
 
 ## Google Play
 
-Planned. Currently testing is in progress.
+Available.
 
 
 ---
@@ -305,7 +303,6 @@ See [Issues](https://github.com/XimTheCookie/LeuDuel/issues) for current bugs an
 
 # 🗺️ Roadmap
 
-* [ ] Google Play release
 * [ ] F-Droid release
 * [ ] iOS support
 
