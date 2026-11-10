@@ -195,3 +195,13 @@
 .history__chip:nth-child(5) {
   font-size: 0.65rem;
 }
+
+.result-positive {
+  color: var(--color-positive);
+  text-shadow: 0 0 20px var(--success);
+}
+
+.result-negative {
+  color: var(--color-negative);
+  text-shadow: 0 0 20px var(--danger);
+}

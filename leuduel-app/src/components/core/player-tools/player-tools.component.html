@@ -13,14 +13,21 @@
           </div>
         }
         <div class="last-result">
+          @let lastRoll = diceRolls()[diceRolls().length - 1].result;
           @if (diceAnimTick() % 2 === 0) {
-            <span class="last-result__value anim-a">{{
-              diceRolls()[diceRolls().length - 1].result
-            }}</span>
+            <span
+              class="last-result__value anim-a"
+              [class.result-positive]="lastRoll === 6"
+              [class.result-negative]="lastRoll === 1"
+              >{{ lastRoll }}</span
+            >
           } @else {
-            <span class="last-result__value anim-b">{{
-              diceRolls()[diceRolls().length - 1].result
-            }}</span>
+            <span
+              class="last-result__value anim-b"
+              [class.result-positive]="lastRoll === 6"
+              [class.result-negative]="lastRoll === 1"
+              >{{ lastRoll }}</span
+            >
           }
         </div>
       }
@@ -53,21 +60,18 @@
           </div>
         }
         <div class="last-result">
+          @let lastFlip = coinFlips()[coinFlips().length - 1].result;
           @if (coinAnimTick() % 2 === 0) {
             <span
               class="last-result__value last-result__value--coin anim-a"
-              [class.last-result__value--heads]="
-                coinFlips()[coinFlips().length - 1].result === 'heads'
-              "
-              >{{ 'common.label.' + coinFlips()[coinFlips().length - 1].result | translate }}</span
+              [class.last-result__value--heads]="lastFlip === 'heads'"
+              >{{ 'common.label.' + lastFlip | translate }}</span
             >
           } @else {
             <span
               class="last-result__value last-result__value--coin anim-b"
-              [class.last-result__value--heads]="
-                coinFlips()[coinFlips().length - 1].result === 'heads'
-              "
-              >{{ 'common.label.' + coinFlips()[coinFlips().length - 1].result | translate }}</span
+              [class.last-result__value--heads]="lastFlip === 'heads'"
+              >{{ 'common.label.' + lastFlip | translate }}</span
             >
           }
         </div>
