@@ -92,6 +92,11 @@ const CONDITIONS: Record<number, Condition> = {
     positive: false,
     cardRequired: true,
   },
+  20: {
+    description:
+      'You cannot add cards from the Deck to the hand during the Duel you activate this effect, except by drawing them.',
+    positive: false,
+  },
 };
 
 // Cards that grant conditions
@@ -165,6 +170,16 @@ const CONDITION_CARDS: Record<number, ConditionCards> = {
     conditions: [18],
     target: 'both',
     cardRequired: true,
+  },
+  14: {
+    name: 'Raise Moon Starter Squeeze',
+    conditions: [20],
+    target: 'self',
+  },
+  15: {
+    name: 'The Glitter of Raise Moon',
+    conditions: [20],
+    target: 'self',
   },
 };
 
