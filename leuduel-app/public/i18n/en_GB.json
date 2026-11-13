@@ -40,6 +40,7 @@
       "duel": {
         "title": "Duel Settings",
         "start-lp": "Starting LP",
+        "start-lp-quick": "Quick LP presets",
         "best-of": "Best of",
         "timer": "Duel timer",
         "custom-profiles": "Custom profiles",

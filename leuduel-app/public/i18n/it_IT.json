@@ -40,6 +40,7 @@
       "duel": {
         "title": "Impostazioni Duello",
         "start-lp": "LP iniziali",
+        "start-lp-quick": "Modifica rapida LP iniziali",
         "best-of": "Al meglio di",
         "timer": "Timer duello",
         "custom-profiles": "Profili custom",

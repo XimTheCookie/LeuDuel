@@ -40,6 +40,7 @@
       "duel": {
         "title": "Ajustes del duelo",
         "start-lp": "LP iniciales",
+        "start-lp-quick": "Ajustes rápidos de LP",
         "best-of": "Mejor de",
         "timer": "Temporizador del duelo",
         "custom-profiles": "Perfiles personalizados",

@@ -57,7 +57,14 @@
         } @else if (duelStore.isDuelStarted()) {
           <app-button (clicked)="pauseDuel()" icon="pause" label="Pause" size="md" tone="warning" />
         } @else {
-          <app-button (clicked)="startDuel()" icon="play" label="Play" size="md" tone="positive" />
+          <app-button
+            (clicked)="startDuel()"
+            (rightClicked)="startRightClicked()"
+            icon="play"
+            label="Play"
+            size="md"
+            tone="positive"
+          />
         }
       </div>
     </div>
@@ -96,3 +103,7 @@
     </div>
   </div>
 </div>
+
+@if (isModifyingStartingLp()) {
+  <app-quick-lp-settings (closed)="isModifyingStartingLp.set(false)" />
+}

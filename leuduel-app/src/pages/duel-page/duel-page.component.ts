@@ -1,15 +1,15 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { LifePointsComponent } from '../../components/core/life-points/life-points.component';
-import { LandscapeActionsComponent } from '../../components/core/landscape-actions/landscape-actions.component';
-import { DuelControllerComponent } from '../../components/core/duel-controller/duel-controller.component';
-import { PlayerPanelComponent } from '../../components/core/player-panel/player-panel.component';
-import { SettingsService } from '../../services/settings/settings.service';
-import { ModalService } from '../../services/modal/modal.service';
-import { DuelStore } from '../../stores/duel-store/duel.store';
-import { LifePointsAdjustModalComponent } from '../../components/core/life-points-adjust-modal/life-points-adjust-modal.component';
 import { WinsBarComponent } from '../../components/common/wins-bar/wins-bar.component';
+import { DuelControllerComponent } from '../../components/core/duel-controller/duel-controller.component';
+import { LandscapeActionsComponent } from '../../components/core/landscape-actions/landscape-actions.component';
+import { LifePointsAdjustModalComponent } from '../../components/core/life-points-adjust-modal/life-points-adjust-modal.component';
 import { LifePointsCalculatorComponent } from '../../components/core/life-points-calculator/life-points-calculator.component';
+import { LifePointsComponent } from '../../components/core/life-points/life-points.component';
 import { LpPanelComponent } from '../../components/core/lp-panel/lp-panel.component';
+import { PlayerPanelComponent } from '../../components/core/player-panel/player-panel.component';
+import { ModalService } from '../../services/modal/modal.service';
+import { SettingsService } from '../../services/settings/settings.service';
+import { DuelStore } from '../../stores/duel-store/duel.store';
 
 @Component({
   selector: 'app-duel-page',

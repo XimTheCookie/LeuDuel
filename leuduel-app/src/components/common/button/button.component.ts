@@ -16,6 +16,7 @@ export class ButtonComponent {
   label = input<string>('');
 
   clicked = output<void>();
+  rightClicked = output<void>();
 
   cooldown = input<number>(100);
 
@@ -30,5 +31,16 @@ export class ButtonComponent {
       this.coolingDown.set(false);
     }, this.cooldown());
     this.clicked.emit();
+  }
+
+  rightClickHandler() {
+    if (this.coolingDown() || this.isDisabled()) {
+      return;
+    }
+    this.coolingDown.set(true);
+    setTimeout(() => {
+      this.coolingDown.set(false);
+    }, this.cooldown());
+    this.rightClicked.emit();
   }
 }

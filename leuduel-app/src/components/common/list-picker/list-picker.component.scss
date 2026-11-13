@@ -6,6 +6,10 @@
   user-select: none;
   text-align: center;
 
+  &.hidden {
+    display: none;
+  }
+
   & > div {
     display: flex;
     align-items: center;

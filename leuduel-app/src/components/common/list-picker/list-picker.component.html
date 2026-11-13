@@ -1,4 +1,4 @@
-<div class="lp-container">
+<div class="lp-container" [class.hidden]="fieldHidden()">
   @if (label()) {
     <span class="lp-label">{{ label() | translate }}</span>
   }

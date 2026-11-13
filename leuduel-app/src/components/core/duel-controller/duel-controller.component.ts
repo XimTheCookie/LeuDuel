@@ -19,13 +19,14 @@ import { take } from 'rxjs';
 import { TimerService } from '../../../services/timer/timer.service';
 import { PlayerRandomizerPageComponent } from '../../../pages/player-randomizer-page/player-randomizer-page.component';
 import { TutorialService } from '../../../services/tutorial/tutorial.service';
+import { QuickLpSettingsComponent } from '../quick-lp-settings/quick-lp-settings.component';
 
 @Component({
   selector: 'app-duel-controller',
   templateUrl: './duel-controller.component.html',
   styleUrl: './duel-controller.component.scss',
   standalone: true,
-  imports: [ButtonComponent, TimerComponent],
+  imports: [ButtonComponent, TimerComponent, QuickLpSettingsComponent],
 })
 export class DuelControllerComponent implements AfterViewInit {
   private readonly androidManagementService = inject(AndroidManagementService);
@@ -42,6 +43,8 @@ export class DuelControllerComponent implements AfterViewInit {
   private duelActionCooldown = false;
 
   private readonly tutorialService = inject(TutorialService);
+
+  isModifyingStartingLp = signal(false);
 
   constructor() {
     effect(() => {
@@ -231,5 +234,15 @@ export class DuelControllerComponent implements AfterViewInit {
 
   private startTutorial() {
     this.tutorialService.startTutorial();
+  }
+
+  startRightClicked() {
+    if (
+      this.duelStore.isDuelFinished() &&
+      this.duelStore.lifePoints1() === this.settingsService.getStartingLifePoints() &&
+      this.duelStore.lifePoints2() === this.settingsService.getStartingLifePoints()
+    ) {
+      this.isModifyingStartingLp.set(true);
+    }
   }
 }

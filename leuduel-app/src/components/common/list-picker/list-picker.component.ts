@@ -20,7 +20,11 @@ export class ListPickerComponent {
   disabled = input<boolean>(false);
   doReset = output<void>();
 
+  fieldHidden = input(false);
+
   valueChanged = output<void>();
+
+  closed = output<void>();
 
   isOpen = signal(false);
   private dragStartY = 0;
@@ -51,6 +55,7 @@ export class ListPickerComponent {
 
   close() {
     this.isOpen.set(false);
+    this.closed.emit();
     this.dragDelta.set(0);
   }
 

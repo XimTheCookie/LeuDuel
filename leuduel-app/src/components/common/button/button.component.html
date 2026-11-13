@@ -13,6 +13,7 @@
   [disabled]="isDisabled()"
   [aria-label]="label()"
   (click)="clickHandler()"
+  (contextmenu)="rightClickHandler()"
 >
   @if (icon()) {
     <app-icon [icon]="icon()" />

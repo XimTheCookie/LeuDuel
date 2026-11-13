@@ -1,0 +1,9 @@
+<app-list-picker
+  #presetLpPicker
+  [fieldHidden]="true"
+  infoLabel="settings.section.duel.start-lp-quick"
+  [options]="presetLpOptions"
+  [formControl]="lifePoints"
+  (valueChanged)="onLpChange()"
+  (closed)="onLpClosed()"
+/>

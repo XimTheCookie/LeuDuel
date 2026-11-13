@@ -40,6 +40,7 @@
       "duel": {
         "title": "Ustawienia pojedynku",
         "start-lp": "Początkowe PK",
+        "start-lp-quick": "Szybkie ustawienia PK",
         "best-of": "Najlepszy z",
         "timer": "Licznik pojedynku",
         "custom-profiles": "Profile niestandardowe",
