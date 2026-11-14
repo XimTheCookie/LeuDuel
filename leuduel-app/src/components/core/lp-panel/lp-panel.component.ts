@@ -24,6 +24,8 @@ export class LpPanelComponent {
     Math.max(3, Math.ceil(this.rapidButtons().length / this.numberOfColumns())),
   );
 
+  useButtonOpacity = computed(() => this.settingsService.background() !== 0);
+
   useRapidButtons = computed(() => this.settingsService.useRapidButtons());
 
   doModify = (index: number) => {
