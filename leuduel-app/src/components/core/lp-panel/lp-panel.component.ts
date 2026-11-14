@@ -29,7 +29,7 @@ export class LpPanelComponent {
   useRapidButtons = computed(() => this.settingsService.useRapidButtons());
 
   doModify = (index: number) => {
-    const isMirror = this.player() === 'player2';
+    const isMirror = this.player() === 'player2' && this.settingsService.monoControls() === false;
     const modalRef = this.modalService.open(
       ModifyDamageButtonComponent,
       {
